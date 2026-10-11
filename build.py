@@ -5,7 +5,7 @@ def page(title,body):
     return f'<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title}</title><style>{CSS}</style></head><body>{NAV}{body}</body></html>'
 d=json.load(open('supplements.json'))
 r=''.join(f"<tr><td>{x['n']}</td><td><b>{html.escape(x['name'])}</b><br><small>{html.escape(x['brand'])}</small></td><td>{html.escape(x['schedule'])}</td><td>{html.escape(x['serving'])}</td><td>{html.escape(x['nutrients'])}</td><td><small>{html.escape(x['other'])}</small></td></tr>" for x in d)
-open('index.html','w').write(page('Supplements',f'<h1>My Supplements</h1><p>Reference list. Amounts are approximate; consult a doctor for personal advice.</p><table><tr><th>#</th><th>Supplement</th><th>When</th><th>Serving</th><th>Key nutrients</th><th>Other ingredients</th></tr>{r}</table>'))
+open('index.html','w').write(page('Supplements',f'<h1>My Supplements</h1><p>Reference list. Amounts are approximate; consult a doctor for personal advice.</p><table><tr><th>#</th><th>Supplement</th><th>When</th><th>Serving</th><th>Key nutrients</th><th>Other ingredients</th></tr>{r}</table>'+open('summary.html-fragment').read()))
 f=json.load(open('foodlog.json'))
 b=''
 for day in sorted(f,key=lambda x:x['date'],reverse=True):
