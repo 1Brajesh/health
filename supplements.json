@@ -1,11 +1,101 @@
 [
-{"n":1,"name":"Vitamin B12 (Methylcobalamin)","schedule":"M/W/F","brand":"Superior Source","serving":"1 MicroLingual tablet","nutrients":"Vitamin B12 – 1,000 mcg (41,667% DV)","other":"Lactose (milk), acacia gum"},
-{"n":2,"name":"Vitamin D3 + K2","schedule":"M/T/W/Th/F","brand":"Superior Source","serving":"1 MicroLingual tablet","nutrients":"Vitamin D3 – 125 mcg (5,000 IU, 625% DV); Vitamin K2 – 100 mcg (83.3% DV); Stevia Leaf Extract – 1 mg","other":"Lactose (milk), acacia gum"},
-{"n":3,"name":"Zinc Lozenjets","schedule":"Daily, one morning and one evening","brand":"Superior Source","serving":"1 MicroLingual tablet","nutrients":"Vitamin C – 15 mg (100% DV kids / 16.7% DV adults); Zinc – 5 mg (167% DV kids / 45% DV adults); Stevia Leaf Extract – 2 mg","other":"Lactose (milk), natural cherry flavor, acacia gum"},
-{"n":4,"name":"Magnesium (Bisglycinate)","schedule":"Daily in the evening before bed","brand":"Nature Made","serving":"2 capsules","nutrients":"Magnesium – 200 mg (48% DV); Calories – 10; Protein – 2 g","other":"Citric acid, gelatin, water, magnesium stearate, stearic acid, cellulose gel, silicon dioxide"},
-{"n":5,"name":"Omega-3 Fish Oil","schedule":"Daily, 1 gel before bed","brand":"Nordic Naturals","serving":"2 soft gels","nutrients":"Total Omega-3 – 1,280 mg; EPA – 650 mg; DHA – 450 mg","other":"Purified deep sea fish oil, gelatin, glycerin, water, natural flavor, RRR-alpha tocopherol, rosemary extract"},
-{"n":6,"name":"Grassfed Liver","schedule":"Every other day, 6 capsules","brand":"Ancestral Supplements","serving":"6 capsules","nutrients":"Grassfed Liver (Bovine) – 3,000 mg. Approximate per serving: Vitamin A ~2,830 mcg; B12 ~1.4 mcg; D3 ~121 IU; Vitamin K (incl. K2) present; Folate present; Thiamin ~2.8 mg; Riboflavin ~0.6 mg; Niacin ~12.7 mg; B6 ~0.03 mg; Pantothenic acid ~0.4 mg; Iron (heme) ~3 mg; Copper ~0.16 mg; Zinc ~0.35 mg; Magnesium ~1.7 mg; Selenium ~2.4 mcg; Phosphorus ~29 mg; Potassium ~31 mg; Sodium ~13 mg; also choline, CoQ10, hyaluronic acid","other":"Gelatin (capsule)"},
-{"n":7,"name":"Glucosamine + Chondroitin","schedule":"Every other day, 4 capsules","brand":"Jarrow Formulas","serving":"4 capsules","nutrients":"Vitamin C – 60 mg (67% DV); Manganese – 1 mg (43% DV); Sodium – 120 mg (5% DV); Potassium – 260 mg (6% DV); Glucosamine – 1,500 mg; Chondroitin – 1,200 mg","other":"Magnesium stearate, bovine gelatin, microcrystalline cellulose, silicon dioxide"},
-{"n":9,"name":"CoQ10 Ubiquinol 100 mg","schedule":"Daily after lunch, 1 softgel","brand":"Doctor's Best (Kaneka Ubiquinol, reduced form of CoQ10)","serving":"1 softgel","nutrients":"Ubiquinol (CoQ10) – 100 mg","other":"Extra-virgin olive oil, softgel capsule (gelatin, glycerin, purified water, annatto color), medium chain triglycerides, sunflower lecithin, beeswax, rosemary leaf extract"},
-{"n":10,"name":"Vitamin C (whole food)","schedule":"Daily after lunch, 1 capsule","brand":"Garden of Life","serving":"2 capsules (60 servings per container)","nutrients":"Vitamin C (from Saccharomyces cerevisiae culture) – 500 mg (556% DV); Raw Organic Fruit & Vegetable Blend – 720 mg; Raw Probiotic & Enzyme Blend – 60 mg (Lactobacillus bulgaricus, L. plantarum, 500 million CFU)","other":"Fruit & vegetable blend: apple, beet, broccoli, carrot, spinach, tomato, strawberry, tart cherry, blackberry, citrus bioflavonoids, green bell pepper, Brussels sprout, blueberry, ginger, garlic, green onion, raspberry, parsley, cauliflower, red cabbage, kale, cucumber, celery, asparagus. Enzymes: lipase, protease, aspergillopepsin, beta-glucanase, cellulase, bromelain, phytase, lactase, papain, peptidase, pectinase, hemicellulase, xylanase. (Entry was cut off; may be incomplete.)"}
+ {
+  "n": 1,
+  "name": "Vitamin B12 (Methylcobalamin)",
+  "schedule": "M/W/F",
+  "brand": "Superior Source",
+  "serving": "1 MicroLingual tablet",
+  "nutrients": "Vitamin B12 – 1,000 mcg (41,667% DV)",
+  "other": "Lactose (milk), acacia gum"
+ },
+ {
+  "n": 2,
+  "name": "Vitamin D3 + K2",
+  "schedule": "M/T/W/Th/F",
+  "brand": "Superior Source",
+  "serving": "1 MicroLingual tablet",
+  "nutrients": "Vitamin D3 – 125 mcg (5,000 IU, 625% DV); Vitamin K2 – 100 mcg (83.3% DV); Stevia Leaf Extract – 1 mg",
+  "other": "Lactose (milk), acacia gum"
+ },
+ {
+  "n": 3,
+  "name": "Zinc Lozenjets",
+  "schedule": "Daily, one morning and one evening",
+  "brand": "Superior Source",
+  "serving": "1 MicroLingual tablet",
+  "nutrients": "Vitamin C – 15 mg (100% DV kids / 16.7% DV adults); Zinc – 5 mg (167% DV kids / 45% DV adults); Stevia Leaf Extract – 2 mg",
+  "other": "Lactose (milk), natural cherry flavor, acacia gum"
+ },
+ {
+  "n": 4,
+  "name": "Magnesium (Bisglycinate)",
+  "schedule": "Daily in the evening before bed",
+  "brand": "Nature Made",
+  "serving": "2 capsules",
+  "nutrients": "Magnesium – 200 mg (48% DV); Calories – 10; Protein – 2 g",
+  "other": "Citric acid, gelatin, water, magnesium stearate, stearic acid, cellulose gel, silicon dioxide"
+ },
+ {
+  "n": 5,
+  "name": "Omega-3 Fish Oil",
+  "schedule": "Daily, 1 gel before bed",
+  "brand": "Nordic Naturals",
+  "serving": "2 soft gels",
+  "nutrients": "Total Omega-3 – 1,280 mg; EPA – 650 mg; DHA – 450 mg",
+  "other": "Purified deep sea fish oil, gelatin, glycerin, water, natural flavor, RRR-alpha tocopherol, rosemary extract"
+ },
+ {
+  "n": 6,
+  "name": "Grassfed Liver",
+  "schedule": "Every other day, 6 capsules",
+  "brand": "Ancestral Supplements",
+  "serving": "6 capsules",
+  "nutrients": "Grassfed Liver (Bovine) – 3,000 mg. Approximate per serving: Vitamin A ~2,830 mcg; B12 ~1.4 mcg; D3 ~121 IU; Vitamin K (incl. K2) present; Folate present; Thiamin ~2.8 mg; Riboflavin ~0.6 mg; Niacin ~12.7 mg; B6 ~0.03 mg; Pantothenic acid ~0.4 mg; Iron (heme) ~3 mg; Copper ~0.16 mg; Zinc ~0.35 mg; Magnesium ~1.7 mg; Selenium ~2.4 mcg; Phosphorus ~29 mg; Potassium ~31 mg; Sodium ~13 mg; also choline, CoQ10, hyaluronic acid",
+  "other": "Gelatin (capsule)"
+ },
+ {
+  "n": 7,
+  "name": "Glucosamine + Chondroitin",
+  "schedule": "Every other day, 4 capsules",
+  "brand": "Jarrow Formulas",
+  "serving": "4 capsules",
+  "nutrients": "Vitamin C – 60 mg (67% DV); Manganese – 1 mg (43% DV); Sodium – 120 mg (5% DV); Potassium – 260 mg (6% DV); Glucosamine – 1,500 mg; Chondroitin – 1,200 mg",
+  "other": "Magnesium stearate, bovine gelatin, microcrystalline cellulose, silicon dioxide"
+ },
+ {
+  "n": 8,
+  "name": "Collagen Peptides Powder (unflavored, hydrolyzed, Type 1, 2 & 3, grass fed)",
+  "schedule": "Every other day",
+  "brand": "Forest Leaf",
+  "serving": "11 g per serving",
+  "nutrients": "Hydrolyzed collagen protein – 11 g",
+  "other": "Not provided"
+ },
+ {
+  "n": 9,
+  "name": "CoQ10 Ubiquinol 100 mg",
+  "schedule": "Daily after lunch, 1 softgel",
+  "brand": "Doctor's Best (Kaneka Ubiquinol, reduced form of CoQ10)",
+  "serving": "1 softgel",
+  "nutrients": "Ubiquinol (CoQ10) – 100 mg",
+  "other": "Extra-virgin olive oil, softgel capsule (gelatin, glycerin, purified water, annatto color), medium chain triglycerides, sunflower lecithin, beeswax, rosemary leaf extract"
+ },
+ {
+  "n": 10,
+  "name": "Vitamin C (whole food)",
+  "schedule": "Daily after lunch, 1 capsule",
+  "brand": "Garden of Life",
+  "serving": "2 capsules (60 servings per container)",
+  "nutrients": "Vitamin C (from Saccharomyces cerevisiae culture) – 500 mg (556% DV); Raw Organic Fruit & Vegetable Blend – 720 mg; Raw Probiotic & Enzyme Blend – 60 mg (Lactobacillus bulgaricus, L. plantarum, 500 million CFU)",
+  "other": "Fruit & vegetable blend: apple, beet, broccoli, carrot, spinach, tomato, strawberry, tart cherry, blackberry, citrus bioflavonoids, green bell pepper, Brussels sprout, blueberry, ginger, garlic, green onion, raspberry, parsley, cauliflower, red cabbage, kale, cucumber, celery, asparagus. Enzymes: lipase, protease, aspergillopepsin, beta-glucanase, cellulase, bromelain, phytase, lactase, papain, peptidase, pectinase, hemicellulase, xylanase. (Entry was cut off; may be incomplete.)"
+ },
+ {
+  "n": 11,
+  "name": "Iodine (as potassium iodide)",
+  "schedule": "Not specified",
+  "brand": "Not specified",
+  "serving": "1 capsule (120 servings per container)",
+  "nutrients": "Iodine – 225 mcg (150% DV)",
+  "other": "Hypoallergenic plant fiber (cellulose), vegetarian capsule (cellulose, water)"
+ }
 ]
