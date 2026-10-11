@@ -1,10 +1,44 @@
 [
-{"date":"2026-10-10","meals":[
-{"meal":"Lunch","items":"Cabbage, spinach, pumpkin seeds, Polish sausage links"},
-{"meal":"After lunch","items":"Glass of milk"},
-{"meal":"Afternoon","items":"Chocolate croissant, latte"},
-{"meal":"Dinner","items":"Cabbage, spinach, tomatoes, pulled pork"},
-{"meal":"Late evening","items":"Popcorn"},
-{"meal":"Evening","items":"Glass of milk (with supplements)"}
-]}
+ {
+  "date": "2026-10-10",
+  "meals": [
+   {
+    "meal": "Lunch",
+    "items": "Cabbage, spinach, pumpkin seeds, Polish sausage links"
+   },
+   {
+    "meal": "After lunch",
+    "items": "Glass of milk"
+   },
+   {
+    "meal": "Afternoon",
+    "items": "Chocolate croissant, latte"
+   },
+   {
+    "meal": "Dinner",
+    "items": "Cabbage, spinach, tomatoes, pulled pork"
+   },
+   {
+    "meal": "Late evening",
+    "items": "Popcorn"
+   },
+   {
+    "meal": "Evening",
+    "items": "Glass of milk (with supplements)"
+   }
+  ]
+ },
+ {
+  "date": "2026-10-11",
+  "meals": [
+   {
+    "meal": "~11am",
+    "items": "Hot chocolate, about 8 oz"
+   },
+   {
+    "meal": "Lunch",
+    "items": "Cabbage 100 g and spinach 70 g sauteed in olive oil with ginger and garlic; 1 slice Whole Foods pizza; ginger 15 g; kombucha 8 oz; kefir 3 oz"
+   }
+  ]
+ }
 ]
