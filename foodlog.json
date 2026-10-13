@@ -72,6 +72,10 @@
    {
     "meal": "Lunch",
     "items": "Half a tuna sandwich; eggplant, potato, and onion tomato curry; kefir ~3 oz; 1 wheat flour tortilla"
+   },
+   {
+    "meal": "Afternoon snack",
+    "items": "Latte (coffee with milk), ~6 oz"
    }
   ]
  }
