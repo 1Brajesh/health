@@ -48,5 +48,22 @@
     "items": "1 cup Whole Foods lentil soup; 1/2 cup Siggi's plain yogurt with 3 strawberries; 20 g pumpkin seeds"
    }
   ]
+ },
+ {
+  "date": "2026-10-12",
+  "meals": [
+   {
+    "meal": "Lunch",
+    "items": "Cabbage ~100 g, spinach ~70 g, 1/4 onion, white fish ~5 oz, glass of milk"
+   },
+   {
+    "meal": "Kefir",
+    "items": "Kefir ~5 oz"
+   },
+   {
+    "meal": "Dinner (planned, not yet eaten)",
+    "items": "Small portion of tuna sandwich, bowl of lentils"
+   }
+  ]
  }
 ]
