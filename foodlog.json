@@ -76,6 +76,10 @@
    {
     "meal": "Afternoon snack",
     "items": "Latte (coffee with milk), ~6 oz"
+   },
+   {
+    "meal": "Dinner (planned, not yet eaten)",
+    "items": "Half a tuna sandwich, lentils"
    }
   ]
  }
