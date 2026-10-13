@@ -65,5 +65,14 @@
     "items": "Small portion of tuna sandwich, bowl of lentils"
    }
   ]
+ },
+ {
+  "date": "2026-10-13",
+  "meals": [
+   {
+    "meal": "Lunch",
+    "items": "Half a tuna sandwich; eggplant, potato, and onion tomato curry; kefir ~3 oz; 1 wheat flour tortilla"
+   }
+  ]
  }
 ]
