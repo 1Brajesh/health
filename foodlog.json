@@ -86,5 +86,14 @@
     "items": "Yogurt ~3 oz, kefir ~3 oz, 4 strawberries"
    }
   ]
+ },
+ {
+  "date": "2026-10-14",
+  "meals": [
+   {
+    "meal": "Lunch",
+    "items": "Eggplant potato curry with tomatoes, onions, ginger, garlic, red bell peppers; 1.5 wheat flour tortillas"
+   }
+  ]
  }
 ]
