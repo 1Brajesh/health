@@ -80,6 +80,10 @@
    {
     "meal": "Dinner (planned, not yet eaten)",
     "items": "Half a tuna sandwich, lentils"
+   },
+   {
+    "meal": "After dinner, before bed",
+    "items": "Yogurt ~3 oz, kefir ~3 oz, 4 strawberries"
    }
   ]
  }
