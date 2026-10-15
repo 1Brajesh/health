@@ -60,6 +60,16 @@ ul{padding-left:1.2rem}li{margin:.3rem 0}
 .week td:first-child{white-space:nowrap;font-weight:600}.week td,.week th{text-align:right}.week th:first-child{text-align:left}
 .assume{color:var(--accent);font-weight:700}
 .wk{margin-bottom:1.2rem}
+.nt{margin:.2rem 0 .9rem}.nhead,.nr{display:grid;grid-template-columns:1.1fr 1fr 1fr 1.2fr;gap:.4rem;align-items:start}
+.nhead{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;padding:0 .3rem}
+.nr{padding:.45rem .5rem;margin:.3rem 0;border:1px solid var(--line);border-left:5px solid var(--c);border-radius:10px}
+.nr .l{font-weight:700;font-size:.85rem;color:var(--c)}.nr .l small,.nr .h{color:var(--muted);font-weight:600}
+.nr .h{display:none;font-size:.65rem;text-transform:uppercase;letter-spacing:.04em}
+.nr .c b{display:block;font-size:1.05rem}.nr .c.o b{color:var(--c)}.nr .c.s b{color:var(--brand2)}
+.nr .t{font-size:.7rem;color:var(--muted);display:block}
+.sx{font-size:.85rem;margin-top:.7rem;color:var(--muted)}
+.gap{border-left:5px solid var(--accent)}.gap.ok{border-left-color:var(--brand)}.gap.un{border-left-color:var(--muted)}
+@media(max-width:560px){.nhead{display:none}.nr{grid-template-columns:1fr 1fr 1fr}.nr .l{grid-column:1/-1}.nr .h{display:block}}
 footer{text-align:center;color:var(--muted);font-size:.85rem;padding:1.5rem 1rem 2.5rem}
 """
 def page(title,sub,active,body):
@@ -100,28 +110,76 @@ def fmt(x):
 def rng(t): return f'{fmt(t[1])}&ndash;{fmt(t[2])}'
 days=sorted(nut['days'],key=lambda x:x['date'],reverse=True)
 res={d['date']:calc(d) for d in days}
+
+# ---- supplement contributions (label values x schedule) ----
+SUPK=['kcal','protein','fiber','calcium','potassium','magnesium','sodium']
+def supp_day(date):
+    wd=datetime.date.fromisoformat(date).weekday()  # Mon=0
+    mwf=wd in (0,2,4); wkd=wd<5
+    z=lambda:{k:0.0 for k in SUPK+['vitd','k2','zinc','iodine','b12','vita','vitc','iron','omega3']}
+    t=z()
+    t['magnesium']+=200;t['kcal']+=10;t['protein']+=2                     # #4 Nature Made, 2 caps nightly
+    t['zinc']+=10;t['vitc']+=30                                           # #3 two tablets/day x (5 mg Zn, 15 mg C)
+    t['omega3']+=640                                                      # #5 1 softgel = half of 1,280 mg/2 softgels
+    t['vitc']+=250                                                        # #10 1 capsule = half of 500 mg/2 caps
+    if wkd: t['vitd']+=125;t['k2']+=100                                   # #2
+    if mwf: t['iodine']+=225;t['b12']+=1000                               # #11, #1
+    h=0.5                                                                 # every-other-day items, averaged (start day not logged)
+    t['vita']+=1391*h;t['b12']+=13.6*h;t['iron']+=2*h                     # #6 liver label values
+    t['vitc']+=60*h;t['potassium']+=260*h;t['sodium']+=120*h              # #7 glucosamine
+    t['protein']+=11*h                                                    # #8 collagen
+    return t
+SUPX=[('vitd','Vitamin D','mcg'),('k2','Vitamin K2','mcg'),('zinc','Zinc','mg'),('iodine','Iodine','mcg'),('b12','Vitamin B12','mcg'),('vita','Vitamin A','mcg RAE'),('vitc','Vitamin C','mg'),('iron','Iron','mg'),('omega3','Omega-3 (total)','mg')]
+sup={d['date']:supp_day(d['date']) for d in days}
+def avg(k,which):
+    v=[(res[d['date']][0][k][0] if which!='s' else 0)+(sup[d['date']].get(k,0) if which!='f' else 0) for d in days]
+    return sum(v)/len(v)
 wk=''
 for d in days:
     tot,mi=res[d['date']]
     dt=datetime.date.fromisoformat(d['date']).strftime('%a %b %-d')
     cells=''.join(f'<td>~{fmt(tot[k][0])}{"+" if mi[k] else ""}</td>' for k,*_ in NUT)
     wk+=f'<tr><td>{dt}</td>{cells}</tr>'
-weektbl='<section class="day wk"><h2>Week at a glance <span class="badge">logged meals only</span></h2><div class="tw"><table class="week"><tr><th>Day</th>'+''.join(f'<th>{l.replace(" (eaten)","")}<br><small>{u}</small></th>' for k,l,u,*_ in NUT)+f'</tr>{wk}</table></div><p class="est">Targets for a 54-year-old man: protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg, sodium under 2,300 mg. "+" means some foods had no data for that nutrient, so the true total is higher. Tuna sandwich, curry, and many portions are assumed; see each day.</p></section>'
-note='<div class="note"><b>Estimates only.</b> Values come from USDA FoodData Central, scaled to portions you gave or to stated assumptions, and cover only the meals logged (no breakfasts or unlogged snacks). <b>Calcium shown is the amount eaten, not the amount absorbed</b> (for example, spinach calcium is poorly absorbed). Supplements are excluded; they are tracked on the Supplements page. Ranges reflect portion uncertainty.</div>'
-b=f'<div class="stats"><div class="stat"><b>{len(f)}</b><span>days logged</span></div><div class="stat"><b>{sum(len(x["meals"]) for x in f)}</b><span>meals and snacks</span></div></div>'+note+weektbl
+weektbl='<section class="day wk"><h2>Week at a glance <span class="badge">food only, logged meals</span></h2><div class="tw"><table class="week"><tr><th>Day</th>'+''.join(f'<th>{l.replace(" (eaten)","")}<br><small>{u}</small></th>' for k,l,u,*_ in NUT)+f'</tr>{wk}</table></div><p class="est">Targets for a 54-year-old man: protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg, sodium under 2,300 mg. "+" means some foods had no data for that nutrient, so the true total is higher. Tuna sandwich, curry, and many portions are assumed; see each day.</p></section>'
+note='<div class="note"><b>Estimates only.</b> Values come from USDA FoodData Central, scaled to portions you gave or to stated assumptions, and cover only the meals logged (no breakfasts or unlogged snacks). <b>Calcium shown is the amount eaten, not the amount absorbed</b> (for example, spinach calcium is poorly absorbed). Each day shows food, supplements and combined separately. Supplement amounts are label values times the schedule on the Supplements page. Every-other-day items (liver, glucosamine, collagen) are averaged at half a dose per day because their start day is not logged; iodine and B12 count only Mon/Wed/Fri, vitamin D3+K2 only Mon-Fri. Collagen calories are not on the label, so they are excluded. Supplement magnesium upper limit of 350 mg/day (NIH ODS) applies to supplement magnesium only, not food. Ranges reflect portion uncertainty.</div>'
+b0=f'<div class="stats"><div class="stat"><b>{len(f)}</b><span>days logged</span></div><div class="stat"><b>{sum(len(x["meals"]) for x in f)}</b><span>meals and snacks</span></div></div>'+note+weektbl
+
+n=len(days)
+def row(label,k,tg,u,src,extra=''):
+    f_=avg(k,'f');c=avg(k,'c');sv=c-f_
+    st='Possible gap' if c<0.85*tg else 'Looks adequate'
+    cls='gap' if c<0.85*tg else 'gap ok'
+    return f'<tr><td>{label}</td><td>{fmt(f_)}</td><td>{fmt(sv) if sv else "0"}</td><td><b>{fmt(c)}</b> {u}</td><td>{tg:,} {u}</td><td>{st}{extra}</td><td>{src}</td></tr>'
+ODS='https://ods.od.nih.gov/factsheets/'
+gp=''
+gp+=row('Fiber','fiber',30,'g','<a href="https://nap.nationalacademies.org/catalog/10490">NAM DRI 2005</a>')
+gp+=row('Calcium (eaten)','calcium',1000,'mg',f'<a href="{ODS}Calcium-HealthProfessional/">NIH ODS Calcium</a>',' (no listed supplement has calcium)')
+gp+=row('Potassium','potassium',3400,'mg','<a href="https://nap.nationalacademies.org/catalog/25353">NASEM 2019</a>',' (AI)')
+gp+=row('Magnesium','magnesium',420,'mg',f'<a href="{ODS}Magnesium-HealthProfessional/">NIH ODS Magnesium</a>')
+gp+=row('Protein','protein',56,'g','<a href="https://www.ncbi.nlm.nih.gov/books/NBK56068/">NAM DRI</a>')
+unk='<tr><td>Vitamin D</td><td colspan=5>Supplement D3 125 mcg on Mon-Fri (about 75 mcg/day averaged) is far above the 15 mcg RDA, so no gap from supplements. Food vitamin D was not computed. Note: 125 mcg is above the 100 mcg/day tolerable upper limit (NIH ODS), so worth raising with your doctor and asking about a vitamin D blood test.</td><td><a href="'+ODS+'VitaminD-HealthProfessional/">NIH ODS Vitamin D</a></td></tr>'
+unk+='<tr><td>Vitamin K, vitamin E, choline, omega-3 from food, folate, B vitamins, selenium</td><td colspan=5><b>Unknown.</b> Food values for these are not in the data yet, so no gap can be claimed. Supplements give K2 100 mcg (Mon-Fri), omega-3 640 mcg EPA+DHA... see below, and choline only as an unquantified trace from liver.</td><td><a href="'+ODS+'">NIH ODS fact sheets</a></td></tr>'
+unk=unk.replace('640 mcg EPA+DHA... see below','about 640 mg EPA+DHA a day (label 1,280 mg per 2 softgels, 1 taken)')
+gapsec=f'<section class="day"><h2>Possible gaps <span class="badge">estimates</span></h2><p class="est">Average per day over {n} logged days ({days[-1]["date"]} to {days[0]["date"]}), food plus supplements, against adult male 51+ reference intakes. Meals logged only (no breakfasts), many portions assumed, so real intake is likely higher than shown. Estimates, not medical advice. Sources accessed 2026-10-15.</p><div class="tw"><table class="est"><tr><th>Nutrient</th><th>Food avg</th><th>Supp avg</th><th>Combined avg</th><th>Reference</th><th>Verdict</th><th>Source</th></tr>{gp}{unk}</table></div><p class="est">Reading: only rows marked "Possible gap" are supported by the data, and even those may reflect unlogged meals. Sodium and the 350 mg supplement-magnesium limit (NIH ODS) are not gaps; the limit applies to supplement magnesium only.</p></section>'
 fm={d['date']:d for d in f}
+b=b0+gapsec
 for day in days:
     raw=fm[day['date']]
     tot,mi=res[day['date']]
     dt=datetime.date.fromisoformat(day['date']).strftime('%A, %B %-d, %Y')
-    tiles=''
+    sp=sup[day['date']]
+    rowsn=''
     for k,l,u,tg,cl in NUT:
         t=tot[k]; plus='+' if mi[k] else ''
+        fv=t[0]; sv=sp[k]; cv=fv+sv
+        cu=' <small>'+'unknown (excluded)'+'</small>' if False else ''
         bar=''
-        if tg:
-            pct=min(100,t[0]/tg*100); bar=f'<div class="bar"><i style="width:{pct:.0f}%"></i></div><div class="t">{t[0]/tg*100:.0f}% of {TGT[k]}</div>'
-        else: bar='<div class="t">no target set</div>'
-        tiles+=f'<div class="tile {cl}"><div class="l">{l}</div><div class="v">~{fmt(t[0])}{plus} <small>{u}</small></div><div class="r">range {rng(t)}</div>{bar}</div>'
+        if tg: bar=f'<div class="bar"><i style="width:{min(100,cv/tg*100):.0f}%"></i></div><div class="t">{cv/tg*100:.0f}% of {TGT[k]}</div>'
+        extra=' <span class="t">(+collagen kcal unknown)</span>' if k=='kcal' else ''
+        sdisp=fmt(sv) if sv else '0'
+        rowsn+=f'<div class="nr {cl}"><div class="l">{l} <small>{u}</small></div><div class="c f"><span class="h">Food</span><b>~{fmt(fv)}{plus}</b><span class="t">{rng(t)}</span></div><div class="c s"><span class="h">Supplements</span><b>{sdisp}</b>{extra if sv or k=="kcal" else ""}</div><div class="c o"><span class="h">Combined</span><b>~{fmt(cv)}{plus}</b>{bar}</div></div>'
+    sx=''.join(f'<span class="chip">{l}: <b>{sp[k]:,.0f}</b> {u}</span>' if sp[k]>=10 or sp[k]==0 else f'<span class="chip">{l}: <b>{sp[k]:,.1f}</b> {u}</span>' for k,l,u in SUPX)
+    tiles=f'<div class="nhead"><span></span><span>Food</span><span>Supplements</span><span>Combined</span></div>{rowsn}<div class="sx"><b>Supplement-only nutrients today (not tracked in food data):</b><br>{sx}</div>'
     badge='<span class="badge">partial day: logged meals only</span>' if day['partial'] else ''
     rows=''
     for m in raw['meals']:
@@ -137,6 +195,6 @@ for day in days:
     notes=''.join(f'<li><b>{E(foods[u]["name"])}:</b> {E(foods[u]["note"])}</li>' for u in used if foods[u]['note'])
     miss=''.join(f'<li><b>{dict((k,l) for k,l,*_ in NUT)[k]}:</b> no data for {E(", ".join(sorted(v)))}; excluded, not counted as zero.</li>' for k,v in mi.items() if v)
     det=f'<details><summary>How this was estimated</summary><p class="est">{E(day["partial_note"])} Totals are the sum of rows below (USDA per-100 g value x grams). "Assumed" = I chose the portion because it was not logged. Accessed {nut["accessed"]}.</p><div class="tw"><table class="est"><tr><th>Meal</th><th>Item</th><th>Amount</th><th>Portion</th><th>Source</th></tr>{er}</table></div><p class="est"><b>Data gaps:</b></p><ul class="est">{miss}</ul><p class="est"><b>Notes on foods:</b></p><ul class="est">{notes}</ul></details>'
-    b+=f'<section class="day"><h2>{dt}{badge}</h2><div class="tiles">{tiles}</div>{rows}{det}</section>'
+    b+=f'<section class="day"><h2>{dt}{badge}</h2><div class="nt">{tiles}</div>{rows}{det}</section>'
 b+='<p class="est">Reference targets: fiber 30 g (National Academy of Medicine, adult men 51+), calcium 1,000 mg RDA, potassium 3,400 mg AI, magnesium 420 mg RDA, protein 56 g RDA, sodium under 2,300 mg (Dietary Guidelines). Calories have no target here. These are rough estimates, not medical advice.</p>'
 open('food.html','w').write(page('Food Log','Daily meals with estimated nutrition, newest first.','f',b))
