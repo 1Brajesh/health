@@ -132,7 +132,7 @@ def supp_day(date):
 SUPX=[('vitd','Vitamin D','mcg'),('k2','Vitamin K2','mcg'),('zinc','Zinc','mg'),('iodine','Iodine','mcg'),('b12','Vitamin B12','mcg'),('vita','Vitamin A','mcg RAE'),('vitc','Vitamin C','mg'),('iron','Iron','mg'),('omega3','Omega-3 (total)','mg')]
 sup={d['date']:supp_day(d['date']) for d in days}
 def avg(k,which):
-    v=[(res[d['date']][0][k][0] if which!='s' else 0)+(sup[d['date']].get(k,0) if which!='f' else 0) for d in days]
+    v=[(res[d['date']][0][k][0] if which!='s' else 0)+(sup[d['date']].get(k,0) if which!='f' else 0) for d in days if not d.get('in_progress')]
     return sum(v)/len(v)
 wk=''
 for d in days:
@@ -144,7 +144,8 @@ weektbl='<section class="day wk"><h2>Week at a glance <span class="badge">food o
 note='<div class="note"><b>Estimates only.</b> Values come from USDA FoodData Central, scaled to portions you gave or to stated assumptions, and cover only the meals logged (no breakfasts or unlogged snacks). <b>Calcium shown is the amount eaten, not the amount absorbed</b> (for example, spinach calcium is poorly absorbed). Each day shows food, supplements and combined separately. Supplement amounts are label values times the schedule on the Supplements page. Every-other-day items (liver, glucosamine, collagen) are averaged at half a dose per day because their start day is not logged; iodine and B12 count only Mon/Wed/Fri, vitamin D3+K2 only Mon-Fri. Collagen calories are not on the label, so they are excluded. Supplement magnesium upper limit of 350 mg/day (NIH ODS) applies to supplement magnesium only, not food. Ranges reflect portion uncertainty.</div>'
 b0=f'<div class="stats"><div class="stat"><b>{len(f)}</b><span>days logged</span></div><div class="stat"><b>{sum(len(x["meals"]) for x in f)}</b><span>meals and snacks</span></div></div>'+note+weektbl
 
-n=len(days)
+gdays=[d for d in days if not d.get('in_progress')]
+n=len(gdays)
 def row(label,k,tg,u,src,extra=''):
     f_=avg(k,'f');c=avg(k,'c');sv=c-f_
     st='Possible gap' if c<0.85*tg else 'Looks adequate'
@@ -160,7 +161,7 @@ gp+=row('Protein','protein',56,'g','<a href="https://www.ncbi.nlm.nih.gov/books/
 unk='<tr><td>Vitamin D</td><td colspan=5>Supplement D3 125 mcg on Mon-Fri (about 75 mcg/day averaged) is far above the 15 mcg RDA, so no gap from supplements. Food vitamin D was not computed. Note: 125 mcg is above the 100 mcg/day tolerable upper limit (NIH ODS), so worth raising with your doctor and asking about a vitamin D blood test.</td><td><a href="'+ODS+'VitaminD-HealthProfessional/">NIH ODS Vitamin D</a></td></tr>'
 unk+='<tr><td>Vitamin K, vitamin E, choline, omega-3 from food, folate, B vitamins, selenium</td><td colspan=5><b>Unknown.</b> Food values for these are not in the data yet, so no gap can be claimed. Supplements give K2 100 mcg (Mon-Fri), omega-3 640 mcg EPA+DHA... see below, and choline only as an unquantified trace from liver.</td><td><a href="'+ODS+'">NIH ODS fact sheets</a></td></tr>'
 unk=unk.replace('640 mcg EPA+DHA... see below','about 640 mg EPA+DHA a day (label 1,280 mg per 2 softgels, 1 taken)')
-gapsec=f'<section class="day"><h2>Possible gaps <span class="badge">estimates</span></h2><p class="est">Average per day over {n} logged days ({days[-1]["date"]} to {days[0]["date"]}), food plus supplements, against adult male 51+ reference intakes. Meals logged only (no breakfasts), many portions assumed, so real intake is likely higher than shown. Estimates, not medical advice. Sources accessed 2026-10-15.</p><div class="tw"><table class="est"><tr><th>Nutrient</th><th>Food avg</th><th>Supp avg</th><th>Combined avg</th><th>Reference</th><th>Verdict</th><th>Source</th></tr>{gp}{unk}</table></div><p class="est">Reading: only rows marked "Possible gap" are supported by the data, and even those may reflect unlogged meals. Sodium and the 350 mg supplement-magnesium limit (NIH ODS) are not gaps; the limit applies to supplement magnesium only.</p></section>'
+gapsec=f'<section class="day"><h2>Possible gaps <span class="badge">estimates</span></h2><p class="est">Average per day over {n} logged days ({gdays[-1]["date"]} to {gdays[0]["date"]}; today's unfinished day is left out), food plus supplements, against adult male 51+ reference intakes. Meals logged only (no breakfasts), many portions assumed, so real intake is likely higher than shown. Estimates, not medical advice. Sources accessed 2026-10-15.</p><div class="tw"><table class="est"><tr><th>Nutrient</th><th>Food avg</th><th>Supp avg</th><th>Combined avg</th><th>Reference</th><th>Verdict</th><th>Source</th></tr>{gp}{unk}</table></div><p class="est">Reading: only rows marked "Possible gap" are supported by the data, and even those may reflect unlogged meals. Sodium and the 350 mg supplement-magnesium limit (NIH ODS) are not gaps; the limit applies to supplement magnesium only.</p></section>'
 fm={d['date']:d for d in f}
 b=b0+gapsec
 for day in days:

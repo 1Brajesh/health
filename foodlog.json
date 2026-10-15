@@ -99,5 +99,14 @@
     "items": "1/4 tuna roll sandwich, 1/4 raw onion, bowl of lentils, kombucha, 1 oz pumpkin seeds, 1 piece of toast"
    }
   ]
+ },
+ {
+  "date": "2026-10-15",
+  "meals": [
+   {
+    "meal": "Lunch",
+    "items": "3 eggs over easy; 2 slices wheat bread toast; 5 steamed broccoli florets; 1 oz pumpkin seeds; kefir 3 oz; kombucha 8 oz; all drizzled with olive oil (about 1 tsp, assumed). Status: eaten."
+   }
+  ]
  }
 ]
