@@ -93,6 +93,10 @@
    {
     "meal": "Lunch",
     "items": "Eggplant potato curry with tomatoes, onions, ginger, garlic, red bell peppers; 1.5 wheat flour tortillas"
+   },
+   {
+    "meal": "Dinner",
+    "items": "1/4 tuna roll sandwich, 1/4 raw onion, bowl of lentils, kombucha, 1 oz pumpkin seeds, 1 piece of toast"
    }
   ]
  }
