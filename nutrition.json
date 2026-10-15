@@ -1,0 +1,1298 @@
+{
+ "accessed": "2026-10-15",
+ "method": "Per-100 g values from USDA FoodData Central API (fdc.nal.usda.gov). null = nutrient not reported for that entry (excluded from totals, never treated as zero). Target intake values: see build.py.",
+ "foods": {
+  "cabbage": {
+   "name": "Cabbage, raw",
+   "approx": false,
+   "note": "",
+   "fdc_id": 169975,
+   "usda_description": "Cabbage, raw",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/169975/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 25.0,
+    "protein": 1.28,
+    "fiber": 2.5,
+    "calcium": 40.0,
+    "potassium": 170.0,
+    "magnesium": 12.0,
+    "sodium": 18.0
+   }
+  },
+  "spinach": {
+   "name": "Spinach, raw",
+   "approx": false,
+   "note": "Logged as sauteed; raw values used (cooking changes weight).",
+   "fdc_id": 168462,
+   "usda_description": "Spinach, raw",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/168462/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 23.0,
+    "protein": 2.86,
+    "fiber": 2.2,
+    "calcium": 99.0,
+    "potassium": 558.0,
+    "magnesium": 79.0,
+    "sodium": 79.0
+   }
+  },
+  "pumpkin_seeds": {
+   "name": "Pumpkin seeds, dried kernels",
+   "approx": false,
+   "note": "",
+   "fdc_id": 170556,
+   "usda_description": "Seeds, pumpkin and squash seed kernels, dried",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/170556/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 559.0,
+    "protein": 30.23,
+    "fiber": 6.0,
+    "calcium": 46.0,
+    "potassium": 809.0,
+    "magnesium": 592.0,
+    "sodium": 7.0
+   }
+  },
+  "polish_sausage": {
+   "name": "Polish sausage (pork)",
+   "approx": true,
+   "note": "Brand unknown; generic USDA pork Polish sausage.",
+   "fdc_id": 174577,
+   "usda_description": "Polish sausage, pork",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/174577/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 326.0,
+    "protein": 14.1,
+    "fiber": 0.0,
+    "calcium": 12.0,
+    "potassium": 237.0,
+    "magnesium": 14.0,
+    "sodium": 876.0
+   }
+  },
+  "milk_2": {
+   "name": "Milk, 2% reduced fat",
+   "approx": true,
+   "note": "Milk type not logged; 2% assumed.",
+   "fdc_id": 171267,
+   "usda_description": "Milk, reduced fat, fluid, 2% milkfat, with added vitamin A and vitamin D",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/171267/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 50.0,
+    "protein": 3.3,
+    "fiber": 0.0,
+    "calcium": 120.0,
+    "potassium": 140.0,
+    "magnesium": 11.0,
+    "sodium": 47.0
+   }
+  },
+  "croissant": {
+   "name": "Croissant (butter) as proxy for chocolate croissant",
+   "approx": true,
+   "note": "USDA has no chocolate croissant; plain butter croissant used, so chocolate adds a little sugar/calories.",
+   "fdc_id": 174987,
+   "usda_description": "Croissants, butter",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/174987/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 406.0,
+    "protein": 8.2,
+    "fiber": 2.6,
+    "calcium": 37.0,
+    "potassium": 118.0,
+    "magnesium": 16.0,
+    "sodium": 384.0
+   }
+  },
+  "pork_shoulder": {
+   "name": "Pulled pork (braised pork shoulder, lean+fat)",
+   "approx": true,
+   "note": "Proxy for pulled pork; sauce not included.",
+   "fdc_id": 168256,
+   "usda_description": "Pork, fresh, shoulder, arm picnic, separable lean and fat, cooked, braised",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/168256/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 235.0,
+    "protein": 24.88,
+    "fiber": 0.0,
+    "calcium": 16.0,
+    "potassium": 357.0,
+    "magnesium": 22.0,
+    "sodium": 96.0
+   }
+  },
+  "popcorn": {
+   "name": "Popcorn, air-popped",
+   "approx": true,
+   "note": "Preparation/salt unknown; unsalted air-popped assumed, so sodium may be higher.",
+   "fdc_id": 167959,
+   "usda_description": "Snacks, popcorn, air-popped",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/167959/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 387.0,
+    "protein": 12.94,
+    "fiber": 14.5,
+    "calcium": 7.0,
+    "potassium": 329.0,
+    "magnesium": 144.0,
+    "sodium": 8.0
+   }
+  },
+  "hot_cocoa": {
+   "name": "Hot chocolate, homemade with milk",
+   "approx": true,
+   "note": "Proxy; actual drink (mix vs. cafe) unknown.",
+   "fdc_id": 171277,
+   "usda_description": "Milk, chocolate beverage, hot cocoa, homemade",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/171277/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 77.0,
+    "protein": 3.52,
+    "fiber": 1.0,
+    "calcium": 114.0,
+    "potassium": 197.0,
+    "magnesium": 23.0,
+    "sodium": 44.0
+   }
+  },
+  "olive_oil": {
+   "name": "Olive oil",
+   "approx": false,
+   "note": "",
+   "fdc_id": 171413,
+   "usda_description": "Oil, olive, salad or cooking",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/171413/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 884.0,
+    "protein": 0.0,
+    "fiber": 0.0,
+    "calcium": 1.0,
+    "potassium": 1.0,
+    "magnesium": 0.0,
+    "sodium": 2.0
+   }
+  },
+  "ginger": {
+   "name": "Ginger root, raw",
+   "approx": false,
+   "note": "",
+   "fdc_id": 169231,
+   "usda_description": "Ginger root, raw",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/169231/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 80.0,
+    "protein": 1.82,
+    "fiber": 2.0,
+    "calcium": 16.0,
+    "potassium": 415.0,
+    "magnesium": 43.0,
+    "sodium": 13.0
+   }
+  },
+  "garlic": {
+   "name": "Garlic, raw",
+   "approx": false,
+   "note": "",
+   "fdc_id": 169230,
+   "usda_description": "Garlic, raw",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/169230/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 149.0,
+    "protein": 6.36,
+    "fiber": 2.1,
+    "calcium": 181.0,
+    "potassium": 401.0,
+    "magnesium": 25.0,
+    "sodium": 17.0
+   }
+  },
+  "wf_pizza": {
+   "name": "Whole Foods Market cheese pizza (1/8 pizza, 126 g)",
+   "approx": true,
+   "note": "Branded USDA entry (Aryzta for Whole Foods). Lacks potassium and magnesium data. Actual slice/topping unknown.",
+   "fdc_id": 2186572,
+   "usda_description": "WHOLE FOODS MARKET, CHEESE PIZZA",
+   "data_type": "Branded",
+   "source": "https://fdc.nal.usda.gov/food-details/2186572/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 230.0,
+    "protein": 11.9,
+    "fiber": 1.6,
+    "calcium": 238.0,
+    "potassium": null,
+    "magnesium": null,
+    "sodium": 508.0
+   }
+  },
+  "kombucha": {
+   "name": "Kombucha (Kroger brand entry)",
+   "approx": true,
+   "note": "Brand not logged; this entry reports only calories and sodium/protein.",
+   "fdc_id": 512654,
+   "usda_description": "KOMBUCHA",
+   "data_type": "Branded",
+   "source": "https://fdc.nal.usda.gov/food-details/512654/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 17.0,
+    "protein": 0.0,
+    "fiber": null,
+    "calcium": null,
+    "potassium": null,
+    "magnesium": null,
+    "sodium": 0.0
+   }
+  },
+  "kefir": {
+   "name": "Kefir, lowfat plain (Lifeway)",
+   "approx": true,
+   "note": "Brand/fat level not logged; Lifeway lowfat plain assumed.",
+   "fdc_id": 170904,
+   "usda_description": "Kefir, lowfat, plain, LIFEWAY",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/170904/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 43.0,
+    "protein": 3.79,
+    "fiber": 0.0,
+    "calcium": 130.0,
+    "potassium": 164.0,
+    "magnesium": 12.0,
+    "sodium": 40.0
+   }
+  },
+  "strawberry": {
+   "name": "Strawberries, raw",
+   "approx": false,
+   "note": "",
+   "fdc_id": 167762,
+   "usda_description": "Strawberries, raw",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/167762/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 32.0,
+    "protein": 0.67,
+    "fiber": 2.0,
+    "calcium": 16.0,
+    "potassium": 153.0,
+    "magnesium": 13.0,
+    "sodium": 1.0
+   }
+  },
+  "onion": {
+   "name": "Onion, raw",
+   "approx": false,
+   "note": "Used for cooked onion too.",
+   "fdc_id": 170000,
+   "usda_description": "Onions, raw",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/170000/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 40.0,
+    "protein": 1.1,
+    "fiber": 1.7,
+    "calcium": 23.0,
+    "potassium": 146.0,
+    "magnesium": 10.0,
+    "sodium": 4.0
+   }
+  },
+  "cod": {
+   "name": "Cod, Pacific, cooked",
+   "approx": true,
+   "note": "\"White fish\" species unknown; cod used. USDA lists no fiber value for cod; set to 0 (animal food).",
+   "fdc_id": 175178,
+   "usda_description": "Fish, cod, Pacific, cooked",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/175178/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 84.0,
+    "protein": 20.42,
+    "fiber": 0.0,
+    "calcium": 17.0,
+    "potassium": 372.0,
+    "magnesium": 35.0,
+    "sodium": 134.0
+   }
+  },
+  "tuna": {
+   "name": "Tuna, light, canned in water, drained",
+   "approx": true,
+   "note": "Sandwich filling assumed.",
+   "fdc_id": 171986,
+   "usda_description": "Fish, tuna, light, canned in water, without salt, drained solids",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/171986/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 116.0,
+    "protein": 25.51,
+    "fiber": 0.0,
+    "calcium": 11.0,
+    "potassium": 237.0,
+    "magnesium": 27.0,
+    "sodium": 50.0
+   }
+  },
+  "mayo": {
+   "name": "Mayonnaise, regular",
+   "approx": true,
+   "note": "Assumed in tuna sandwich.",
+   "fdc_id": 171009,
+   "usda_description": "Salad dressing, mayonnaise, regular",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/171009/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 680.0,
+    "protein": 0.96,
+    "fiber": 0.0,
+    "calcium": 8.0,
+    "potassium": 20.0,
+    "magnesium": 1.0,
+    "sodium": 635.0
+   }
+  },
+  "lentils": {
+   "name": "Lentils, boiled, no salt",
+   "approx": true,
+   "note": "Home recipe/salt unknown; unsalted values used, so sodium may be higher.",
+   "fdc_id": 172421,
+   "usda_description": "Lentils, mature seeds, cooked, boiled, without salt",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/172421/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 116.0,
+    "protein": 9.02,
+    "fiber": 7.9,
+    "calcium": 19.0,
+    "potassium": 369.0,
+    "magnesium": 36.0,
+    "sodium": 2.0
+   }
+  },
+  "eggplant": {
+   "name": "Eggplant, boiled",
+   "approx": false,
+   "note": "Curry assembled from ingredient proxies.",
+   "fdc_id": 169229,
+   "usda_description": "Eggplant, cooked, boiled, drained, without salt",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/169229/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 35.0,
+    "protein": 0.83,
+    "fiber": 2.5,
+    "calcium": 6.0,
+    "potassium": 123.0,
+    "magnesium": 11.0,
+    "sodium": 1.0
+   }
+  },
+  "potato": {
+   "name": "Potato, boiled, flesh",
+   "approx": false,
+   "note": "Curry assembled from ingredient proxies.",
+   "fdc_id": 170438,
+   "usda_description": "Potatoes, boiled, cooked in skin, flesh, without salt",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/170438/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 87.0,
+    "protein": 1.87,
+    "fiber": 1.8,
+    "calcium": 5.0,
+    "potassium": 379.0,
+    "magnesium": 22.0,
+    "sodium": 4.0
+   }
+  },
+  "tortilla": {
+   "name": "Flour tortilla (shelf stable)",
+   "approx": true,
+   "note": "Brand not logged; USDA generic, 49 g each.",
+   "fdc_id": 167535,
+   "usda_description": "Tortillas, ready-to-bake or -fry, flour, shelf stable",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/167535/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 297.0,
+    "protein": 8.01,
+    "fiber": 2.4,
+    "calcium": 163.0,
+    "potassium": 133.0,
+    "magnesium": 21.0,
+    "sodium": 742.0
+   }
+  },
+  "red_pepper": {
+   "name": "Red bell pepper, raw",
+   "approx": false,
+   "note": "",
+   "fdc_id": 170108,
+   "usda_description": "Peppers, sweet, red, raw",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/170108/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 26.0,
+    "protein": 0.99,
+    "fiber": 2.1,
+    "calcium": 7.0,
+    "potassium": 211.0,
+    "magnesium": 12.0,
+    "sodium": 4.0
+   }
+  },
+  "bread": {
+   "name": "Wheat bread, toasted",
+   "approx": true,
+   "note": "Bread type not logged; wheat assumed.",
+   "fdc_id": 172687,
+   "usda_description": "Bread, wheat, toasted",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/172687/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 313.0,
+    "protein": 12.96,
+    "fiber": 4.7,
+    "calcium": 165.0,
+    "potassium": 223.0,
+    "magnesium": 59.0,
+    "sodium": 601.0
+   }
+  },
+  "tomato": {
+   "name": "Tomato, raw",
+   "approx": false,
+   "note": "",
+   "fdc_id": 170457,
+   "usda_description": "Tomatoes, red, ripe, raw, year round average",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/170457/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 18.0,
+    "protein": 0.88,
+    "fiber": 1.2,
+    "calcium": 10.0,
+    "potassium": 237.0,
+    "magnesium": 11.0,
+    "sodium": 5.0
+   }
+  },
+  "coffee": {
+   "name": "Coffee, brewed",
+   "approx": false,
+   "note": "",
+   "fdc_id": 171890,
+   "usda_description": "Beverages, coffee, brewed, prepared with tap water",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/171890/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 1.0,
+    "protein": 0.12,
+    "fiber": 0.0,
+    "calcium": 2.0,
+    "potassium": 49.0,
+    "magnesium": 3.0,
+    "sodium": 2.0
+   }
+  },
+  "wf_lentil_soup": {
+   "name": "Whole Foods Market lentil soup (1 cup, 245 g)",
+   "approx": true,
+   "note": "Branded USDA entry (Kettle Cuisine for Whole Foods). Lacks potassium, magnesium data.",
+   "fdc_id": 2061447,
+   "usda_description": "WHOLE FOODS MARKET, LENTIL SOUP",
+   "data_type": "Branded",
+   "source": "https://fdc.nal.usda.gov/food-details/2061447/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 114.0,
+    "protein": 4.9,
+    "fiber": 6.1,
+    "calcium": 24.0,
+    "potassium": null,
+    "magnesium": null,
+    "sodium": 253.0
+   }
+  },
+  "siggis": {
+   "name": "Siggi's plain 0% strained yogurt",
+   "approx": true,
+   "note": "Plain Siggi's assumed; entry lacks calcium, potassium, magnesium.",
+   "fdc_id": 2756890,
+   "usda_description": "Siggi's 0% Milkfat Strained Non- Fat Plain Yogurt",
+   "data_type": "Branded",
+   "source": "https://fdc.nal.usda.gov/food-details/2756890/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 66.0793,
+    "protein": 12.3348,
+    "fiber": 0.0,
+    "calcium": null,
+    "potassium": null,
+    "magnesium": null,
+    "sodium": 37.4449
+   }
+  },
+  "sushi_roll": {
+   "name": "Tempura shrimp roll (proxy for Red Dragon roll)",
+   "approx": true,
+   "note": "WEAK: generic tempura shrimp roll from one brand; not the Moshi Moshi roll (tuna topping, eel sauce, ponzu mayo). Energy/fiber/protein/sodium only; likely understates.",
+   "fdc_id": 2181918,
+   "usda_description": "TEMPURA SHRIMP ROLL",
+   "data_type": "Branded",
+   "source": "https://fdc.nal.usda.gov/food-details/2181918/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 182.0,
+    "protein": 2.53,
+    "fiber": 4.0,
+    "calcium": null,
+    "potassium": null,
+    "magnesium": null,
+    "sodium": 121.0
+   }
+  }
+ },
+ "days": [
+  {
+   "date": "2026-10-10",
+   "partial": true,
+   "partial_note": "Portions were not logged and no breakfast; all amounts are assumed.",
+   "entries": [
+    {
+     "meal": "Lunch",
+     "food": "cabbage",
+     "grams": 100,
+     "label": "Cabbage 100 g (assumed, copied from Oct 11)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch",
+     "food": "spinach",
+     "grams": 70,
+     "label": "Spinach 70 g (assumed, copied from Oct 11)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch",
+     "food": "pumpkin_seeds",
+     "grams": 28,
+     "label": "Pumpkin seeds 1 oz (assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch",
+     "food": "polish_sausage",
+     "grams": 100,
+     "label": "Polish sausage links ~100 g (assumed 2 links)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "After lunch",
+     "food": "milk_2",
+     "grams": 244,
+     "label": "Milk 1 cup (assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Afternoon",
+     "food": "croissant",
+     "grams": 57,
+     "label": "Chocolate croissant 57 g (USDA standard croissant, assumed; proxy)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.5
+    },
+    {
+     "meal": "Afternoon",
+     "food": "milk_2",
+     "grams": 150,
+     "label": "Latte: ~150 g milk (assumed 8 oz latte)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Afternoon",
+     "food": "coffee",
+     "grams": 60,
+     "label": "Latte: espresso/coffee ~60 g (assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner",
+     "food": "cabbage",
+     "grams": 100,
+     "label": "Cabbage 100 g (assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner",
+     "food": "spinach",
+     "grams": 70,
+     "label": "Spinach 70 g (assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner",
+     "food": "tomato",
+     "grams": 60,
+     "label": "Tomatoes ~60 g (assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner",
+     "food": "pork_shoulder",
+     "grams": 100,
+     "label": "Pulled pork ~100 g cooked (assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Late evening",
+     "food": "popcorn",
+     "grams": 24,
+     "label": "Popcorn ~3 cups air-popped (assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Evening",
+     "food": "milk_2",
+     "grams": 244,
+     "label": "Milk 1 cup (assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    }
+   ]
+  },
+  {
+   "date": "2026-10-11",
+   "partial": true,
+   "partial_note": "No breakfast logged, and the Red Dragon roll portion was not recorded.",
+   "entries": [
+    {
+     "meal": "~11am",
+     "food": "hot_cocoa",
+     "grams": 240,
+     "label": "Hot chocolate 8 oz (given; recipe assumed)",
+     "assumed": false,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch",
+     "food": "cabbage",
+     "grams": 100,
+     "label": "Cabbage 100 g (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch",
+     "food": "spinach",
+     "grams": 70,
+     "label": "Spinach 70 g (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch",
+     "food": "olive_oil",
+     "grams": 13.5,
+     "label": "Olive oil 1 tbsp (assumed; amount not logged)",
+     "assumed": true,
+     "lo": 0.3,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "ginger",
+     "grams": 15,
+     "label": "Ginger 15 g (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch",
+     "food": "garlic",
+     "grams": 3,
+     "label": "Garlic 1 clove (assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch",
+     "food": "wf_pizza",
+     "grams": 126,
+     "label": "Whole Foods pizza slice = 126 g (1/8 pizza, label serving; slice assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "kombucha",
+     "grams": 240,
+     "label": "Kombucha 8 oz (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch",
+     "food": "kefir",
+     "grams": 85,
+     "label": "Kefir 3 oz (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner",
+     "food": "sushi_roll",
+     "grams": 198,
+     "label": "Red Dragon roll ~198 g (portion not recorded; proxy)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.6
+    },
+    {
+     "meal": "After dinner",
+     "food": "wf_lentil_soup",
+     "grams": 245,
+     "label": "Whole Foods lentil soup 1 cup (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "After dinner",
+     "food": "siggis",
+     "grams": 113,
+     "label": "Siggi's yogurt 1/2 cup ~113 g (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "After dinner",
+     "food": "strawberry",
+     "grams": 36,
+     "label": "3 strawberries ~12 g each (assumed size)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "After dinner",
+     "food": "pumpkin_seeds",
+     "grams": 20,
+     "label": "Pumpkin seeds 20 g (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    }
+   ]
+  },
+  {
+   "date": "2026-10-12",
+   "partial": true,
+   "partial_note": "No breakfast logged.",
+   "entries": [
+    {
+     "meal": "Lunch",
+     "food": "cabbage",
+     "grams": 100,
+     "label": "Cabbage ~100 g (given approx)",
+     "assumed": false,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Lunch",
+     "food": "spinach",
+     "grams": 70,
+     "label": "Spinach ~70 g (given approx)",
+     "assumed": false,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Lunch",
+     "food": "onion",
+     "grams": 28,
+     "label": "1/4 onion ~28 g (assumed medium onion 110 g)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch",
+     "food": "cod",
+     "grams": 142,
+     "label": "White fish ~5 oz cooked (given; cod assumed)",
+     "assumed": false,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Lunch",
+     "food": "milk_2",
+     "grams": 244,
+     "label": "Glass of milk 1 cup (assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Kefir",
+     "food": "kefir",
+     "grams": 142,
+     "label": "Kefir ~5 oz (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner",
+     "food": "bread",
+     "grams": 28.0,
+     "label": "Small portion tuna sandwich = 1/2 sandwich (assumed) - bread (2 slices x 28 g per sandwich, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "tuna",
+     "grams": 30.0,
+     "label": "Small portion tuna sandwich = 1/2 sandwich (assumed) - tuna (60 g per sandwich, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "mayo",
+     "grams": 7.0,
+     "label": "Small portion tuna sandwich = 1/2 sandwich (assumed) - mayo (1 tbsp per sandwich, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "lentils",
+     "grams": 198,
+     "label": "Bowl of lentils = 1 cup cooked (assumed)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    }
+   ]
+  },
+  {
+   "date": "2026-10-13",
+   "partial": true,
+   "partial_note": "No breakfast logged.",
+   "entries": [
+    {
+     "meal": "Lunch",
+     "food": "bread",
+     "grams": 28.0,
+     "label": "Half tuna sandwich - bread (2 slices x 28 g per sandwich, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "tuna",
+     "grams": 30.0,
+     "label": "Half tuna sandwich - tuna (60 g per sandwich, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "mayo",
+     "grams": 7.0,
+     "label": "Half tuna sandwich - mayo (1 tbsp per sandwich, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "eggplant",
+     "grams": 100,
+     "label": "Curry: eggplant ~100 g (assumed share)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "potato",
+     "grams": 100,
+     "label": "Curry: potato ~100 g (assumed)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "onion",
+     "grams": 40,
+     "label": "Curry: onion ~40 g (assumed)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "tomato",
+     "grams": 60,
+     "label": "Curry: tomato ~60 g (assumed)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "olive_oil",
+     "grams": 13.5,
+     "label": "Curry: 1 tbsp oil (assumed; oil type unknown)",
+     "assumed": true,
+     "lo": 0.3,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "kefir",
+     "grams": 85,
+     "label": "Kefir ~3 oz (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch",
+     "food": "tortilla",
+     "grams": 49,
+     "label": "1 flour tortilla 49 g (USDA standard)",
+     "assumed": false,
+     "lo": 0.8,
+     "hi": 1.3
+    },
+    {
+     "meal": "Afternoon snack",
+     "food": "milk_2",
+     "grams": 120,
+     "label": "Latte ~6 oz: ~120 g milk (assumed split)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Afternoon snack",
+     "food": "coffee",
+     "grams": 60,
+     "label": "Latte: coffee ~60 g (assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner",
+     "food": "bread",
+     "grams": 28.0,
+     "label": "Half tuna sandwich - bread (2 slices x 28 g per sandwich, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "tuna",
+     "grams": 30.0,
+     "label": "Half tuna sandwich - tuna (60 g per sandwich, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "mayo",
+     "grams": 7.0,
+     "label": "Half tuna sandwich - mayo (1 tbsp per sandwich, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "lentils",
+     "grams": 198,
+     "label": "Lentils 1 cup cooked (assumed)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Before bed",
+     "food": "siggis",
+     "grams": 85,
+     "label": "Yogurt ~3 oz (given; Siggi's plain assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Before bed",
+     "food": "kefir",
+     "grams": 85,
+     "label": "Kefir ~3 oz (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Before bed",
+     "food": "strawberry",
+     "grams": 48,
+     "label": "4 strawberries ~12 g each (assumed size)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    }
+   ]
+  },
+  {
+   "date": "2026-10-14",
+   "partial": true,
+   "partial_note": "No breakfast logged.",
+   "entries": [
+    {
+     "meal": "Lunch",
+     "food": "eggplant",
+     "grams": 100,
+     "label": "Curry: eggplant ~100 g (assumed share)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "potato",
+     "grams": 100,
+     "label": "Curry: potato ~100 g (assumed)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "onion",
+     "grams": 40,
+     "label": "Curry: onion ~40 g (assumed)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "tomato",
+     "grams": 60,
+     "label": "Curry: tomato ~60 g (assumed)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "olive_oil",
+     "grams": 13.5,
+     "label": "Curry: 1 tbsp oil (assumed; oil type unknown)",
+     "assumed": true,
+     "lo": 0.3,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "ginger",
+     "grams": 5,
+     "label": "Curry: ginger ~5 g (assumed)",
+     "assumed": true,
+     "lo": 0.3,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch",
+     "food": "garlic",
+     "grams": 3,
+     "label": "Curry: garlic 1 clove (assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch",
+     "food": "red_pepper",
+     "grams": 50,
+     "label": "Curry: red bell pepper ~50 g (assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "tortilla",
+     "grams": 73.5,
+     "label": "1.5 flour tortillas (given; 49 g each)",
+     "assumed": false,
+     "lo": 0.8,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner",
+     "food": "bread",
+     "grams": 14.0,
+     "label": "1/4 tuna roll sandwich (assumed same filling as other days) - bread (2 slices x 28 g per sandwich, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "tuna",
+     "grams": 15.0,
+     "label": "1/4 tuna roll sandwich (assumed same filling as other days) - tuna (60 g per sandwich, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "mayo",
+     "grams": 3.5,
+     "label": "1/4 tuna roll sandwich (assumed same filling as other days) - mayo (1 tbsp per sandwich, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "onion",
+     "grams": 28,
+     "label": "1/4 raw onion ~28 g (assumed medium)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner",
+     "food": "lentils",
+     "grams": 198,
+     "label": "Bowl of lentils = 1 cup cooked (assumed)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "kombucha",
+     "grams": 240,
+     "label": "Kombucha 8 oz (assumed; size not logged)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "pumpkin_seeds",
+     "grams": 28.4,
+     "label": "Pumpkin seeds 1 oz (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner",
+     "food": "bread",
+     "grams": 28,
+     "label": "1 slice toast ~28 g (assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    }
+   ]
+  }
+ ]
+}
