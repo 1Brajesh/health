@@ -106,6 +106,10 @@
    {
     "meal": "Lunch",
     "items": "3 eggs over easy; 2 slices wheat bread toast; 5 steamed broccoli florets; 1 oz pumpkin seeds; kefir 3 oz; kombucha 8 oz; all drizzled with olive oil (about 1 tsp, assumed). Status: eaten."
+   },
+   {
+    "meal": "Later (time not given)",
+    "items": "8 oz milk (2% assumed); small salad of onion, tomato and lemon juice (portions assumed); 2 prunes. Status: eaten."
    }
   ]
  }

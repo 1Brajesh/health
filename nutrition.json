@@ -628,6 +628,44 @@
     "magnesium": 21.0,
     "sodium": 41.0
    }
+  },
+  "lemon_juice": {
+   "name": "Lemon juice, raw",
+   "approx": false,
+   "note": "",
+   "fdc_id": 167747,
+   "usda_description": "Lemon juice, raw",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/167747/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 22.0,
+    "protein": 0.35,
+    "fiber": 0.3,
+    "calcium": 6.0,
+    "potassium": 103.0,
+    "magnesium": 6.0,
+    "sodium": 1.0
+   }
+  },
+  "prunes": {
+   "name": "Prunes (dried plums), uncooked",
+   "approx": false,
+   "note": "",
+   "fdc_id": 168162,
+   "usda_description": "Plums, dried (prunes), uncooked",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/168162/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 240.0,
+    "protein": 2.18,
+    "fiber": 7.1,
+    "calcium": 43.0,
+    "potassium": 732.0,
+    "magnesium": 41.0,
+    "sodium": 2.0
+   }
   }
  },
  "days": [
@@ -1335,7 +1373,7 @@
   {
    "date": "2026-10-15",
    "partial": true,
-   "partial_note": "No breakfast logged; only lunch so far (dinner not yet eaten).",
+   "partial_note": "No breakfast logged; lunch and a later snack/meal (time not given) logged; dinner may not be eaten yet.",
    "entries": [
     {
      "meal": "Lunch",
@@ -1399,6 +1437,51 @@
      "assumed": true,
      "lo": 0.5,
      "hi": 3
+    },
+    {
+     "meal": "Later (time not given)",
+     "food": "milk_2",
+     "grams": 240,
+     "label": "Milk 8 oz (given; 2% assumed)",
+     "assumed": true,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Later (time not given)",
+     "food": "onion",
+     "grams": 35,
+     "label": "Onion ~half small (assumed)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Later (time not given)",
+     "food": "tomato",
+     "grams": 90,
+     "label": "Tomato 1 small (assumed)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Later (time not given)",
+     "food": "lemon_juice",
+     "grams": 15,
+     "label": "Lemon juice ~1/4 lemon (assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Later (time not given)",
+     "food": "prunes",
+     "grams": 19,
+     "label": "2 prunes (given; ~9.5 g each assumed)",
+     "assumed": false,
+     "lo": 0.8,
+     "hi": 1.2
     }
    ],
    "in_progress": true
