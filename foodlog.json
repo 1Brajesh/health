@@ -110,6 +110,10 @@
    {
     "meal": "Later (time not given)",
     "items": "8 oz milk (2% assumed); small salad of onion, tomato and lemon juice (portions assumed); 2 prunes. Status: eaten."
+   },
+   {
+    "meal": "Dinner",
+    "items": "Bowl of lentils (1 cup cooked assumed); 20 g walnuts; 20 g pumpkin seeds. Status: eaten."
    }
   ]
  }

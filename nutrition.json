@@ -666,6 +666,25 @@
     "magnesium": 41.0,
     "sodium": 2.0
    }
+  },
+  "walnuts": {
+   "name": "Walnuts, English",
+   "approx": false,
+   "note": "",
+   "fdc_id": 170187,
+   "usda_description": "Nuts, walnuts, english",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/170187/nutrients",
+   "accessed": "2026-10-15",
+   "per100g": {
+    "kcal": 654.0,
+    "protein": 15.23,
+    "fiber": 6.7,
+    "calcium": 98.0,
+    "potassium": 441.0,
+    "magnesium": 158.0,
+    "sodium": 2.0
+   }
   }
  },
  "days": [
@@ -1373,7 +1392,7 @@
   {
    "date": "2026-10-15",
    "partial": true,
-   "partial_note": "No breakfast logged; lunch and a later snack/meal (time not given) logged; dinner may not be eaten yet.",
+   "partial_note": "No breakfast logged; lunch, a later snack/meal (time not given) and dinner logged.",
    "entries": [
     {
      "meal": "Lunch",
@@ -1482,9 +1501,35 @@
      "assumed": false,
      "lo": 0.8,
      "hi": 1.2
+    },
+    {
+     "meal": "Dinner",
+     "food": "lentils",
+     "grams": 198,
+     "label": "Bowl of lentils = 1 cup cooked (assumed)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "walnuts",
+     "grams": 20,
+     "label": "Walnuts 20 g (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner",
+     "food": "pumpkin_seeds",
+     "grams": 20,
+     "label": "Pumpkin seeds 20 g (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
     }
-   ],
-   "in_progress": true
+   ]
   }
  ]
 }
