@@ -116,5 +116,18 @@
     "items": "Bowl of lentils (1 cup cooked assumed); 20 g walnuts; 20 g pumpkin seeds. Status: eaten."
    }
   ]
+ },
+ {
+  "date": "2026-10-16",
+  "meals": [
+   {
+    "meal": "Lunch",
+    "items": "1.5 organic wheat flour tortillas; potato, eggplant and tomato curry with garlic and ginger; about 30 g chicken (cooked breast meat assumed). Status: eaten. "
+   },
+   {
+    "meal": "Afternoon snack (3:30 PM)",
+    "items": "8 oz (240 g) ultra-filtered 2% milk (Fairlife-type; generic 2% milk values assumed). Status: eaten."
+   }
+  ]
  }
 ]

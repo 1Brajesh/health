@@ -685,6 +685,25 @@
     "magnesium": 158.0,
     "sodium": 2.0
    }
+  },
+  "chicken_breast": {
+   "name": "Chicken breast, meat only, cooked, roasted",
+   "approx": true,
+   "note": "Cut and cooking not stated; cooked roasted breast meat (no skin) assumed. Skin or dark meat would add calories and fat.",
+   "fdc_id": 171477,
+   "usda_description": "Chicken, broilers or fryers, breast, meat only, cooked, roasted",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/171477/nutrients",
+   "accessed": "2026-10-16",
+   "per100g": {
+    "kcal": 165.0,
+    "protein": 31.02,
+    "fiber": 0.0,
+    "calcium": 15.0,
+    "potassium": 256.0,
+    "magnesium": 29.0,
+    "sodium": 74.0
+   }
   }
  },
  "days": [
@@ -1528,6 +1547,95 @@
      "assumed": false,
      "lo": 0.9,
      "hi": 1.1
+    }
+   ]
+  },
+  {
+   "date": "2026-10-16",
+   "partial": true,
+   "in_progress": true,
+   "partial_note": "In progress: lunch and 3:30 PM snack only so far; no breakfast logged and dinner not yet eaten. Excluded from the Possible gaps averages.",
+   "entries": [
+    {
+     "meal": "Lunch",
+     "food": "eggplant",
+     "grams": 100,
+     "label": "Curry: eggplant ~100 g (assumed share, same as Oct 13/14)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "potato",
+     "grams": 100,
+     "label": "Curry: potato ~100 g (assumed, same as Oct 13/14)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "tomato",
+     "grams": 60,
+     "label": "Curry: tomato ~60 g (assumed, same as Oct 13/14)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "olive_oil",
+     "grams": 13.5,
+     "label": "Curry: 1 tbsp oil (assumed; oil type unknown)",
+     "assumed": true,
+     "lo": 0.3,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "ginger",
+     "grams": 5,
+     "label": "Curry: ginger ~5 g (assumed)",
+     "assumed": true,
+     "lo": 0.3,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch",
+     "food": "garlic",
+     "grams": 3,
+     "label": "Curry: garlic 1 clove (assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch",
+     "food": "tortilla",
+     "grams": 73.5,
+     "label": "1.5 organic wheat flour tortillas (given; generic flour tortilla 49 g each assumed)",
+     "assumed": false,
+     "lo": 0.8,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch",
+     "food": "chicken_breast",
+     "grams": 30,
+     "label": "Chicken ~30 g (given; cooked breast meat assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Afternoon snack (3:30 PM)",
+     "food": "milk_2",
+     "grams": 240,
+     "label": "Milk 8 oz (given; ultra-filtered 2% - generic 2% milk values assumed, so protein and calcium are likely understated)",
+     "assumed": true,
+     "lo": 0.9,
+     "hi": 1.5
     }
    ]
   }
