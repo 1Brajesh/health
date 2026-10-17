@@ -1743,6 +1743,15 @@
      "assumed": true,
      "lo": 0.8,
      "hi": 1.2
+    },
+    {
+     "meal": "Lunch",
+     "food": "pumpkin_seeds",
+     "grams": 28.4,
+     "label": "Pumpkin seeds 1 oz (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
     }
    ]
   }
