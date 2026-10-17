@@ -454,7 +454,9 @@ def c10(mode):
 
 
 # ===== 0 overlay bar =====
-OVC={'protein':'#0072B2','fiber':'#009E73','calcium':'#E69F00','potassium':'#D55E00','magnesium':'#CC79A7','sodium':'#56B4E9'}
+OVC={'protein':'#0047ff','fiber':'#00a650','calcium':'#ffffff','potassium':'#e00000','magnesium':'#000000','sodium':'#ffe600'}
+OVO={'protein':'#ffffff','fiber':'#ffffff','calcium':'#111111','potassium':'#ffffff','magnesium':'#ffffff','sodium':'#111111'}
+def sw(k): return f'<i class="sw" style="--oc:{OVC[k]};--ol:{OVO[k]}"></i>'
 def ov_scale(mode,pct):
     if pct: return smax(mode)
     m=max(raw(i,k,mode) for i in range(n_) for k,*_ in MK)
@@ -482,13 +484,13 @@ def ov(mode,pct):
             pc=P(i,k,mode)
             pcs=f'{pc:.0f}% of '+(f'{t:,} {u} limit' if k=='sodium' else f'{t:,} {u} target')
             aria=f'{ln}, {MDL[i]}{" in progress" if ip else ""}: {v:,.0f} {u}, {pcs}; {sp}'
-            h+=(f'<div class="ly" tabindex="0" role="img" aria-label="{E(aria)}" style="width:{w:.2f}%;--oc:{OVC[k]};z-index:{z+1}"><span class="tp" aria-hidden="true"><b>{ln}</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>{v:,.0f} {u} · {pcs}<br>{sp}</span></div>')
+            h+=(f'<div class="ly" tabindex="0" role="img" aria-label="{E(aria)}" style="width:{w:.2f}%;--oc:{OVC[k]};--ol:{OVO[k]};z-index:{z+1}"><span class="tp" aria-hidden="true">{sw(k)}<b>{ln}</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>{v:,.0f} {u} · {pcs}<br>{sp}</span></div>')
         if pct: h+=f'<i class="m100" style="left:{100/mx*100:.2f}%"></i>'
         h+='</div></div>'
     h+='</div></div>'
     return h
 def ovleg():
-    return '<div class="lg ovg">'+''.join(f'<span><i style="background:{OVC[k]}"></i>{l}</span>' for k,l,u,t,c in MK)+'</div>'
+    return '<div class="lg ovg">'+''.join(f'<span>{sw(k)}{l}</span>' for k,l,u,t,c in MK)+'</div>'
 def ov_all(mode): return ovleg()+ov(mode,True)+ov(mode,False)
 OVCSS="""
 .ovl{margin:.4rem 0 1.2rem}
@@ -497,15 +499,18 @@ OVCSS="""
 .ovd{font-size:.85rem;color:var(--muted);line-height:1.1}.ovd small{display:block;font-size:.65rem;font-style:italic}
 .ovk{position:relative;height:30px;border-radius:7px;background:var(--line);margin-right:.4rem}
 .ovr.ip .ovk{background:repeating-linear-gradient(45deg,var(--line) 0 4px,transparent 4px 9px),var(--card);outline:1px dashed var(--muted)}
-.ovr.ip .ly{border-style:dashed}
-.ly{position:absolute;left:0;top:0;bottom:0;background:var(--oc);border-radius:7px;opacity:.8;border:2px solid var(--oc);box-sizing:border-box;min-width:4px;cursor:pointer}
-.ly:hover,.ly:focus{opacity:.95;outline:3px solid var(--ink);outline-offset:1px;z-index:50!important}
+
+.ly{position:absolute;left:0;top:0;bottom:0;background:var(--oc);border-radius:7px;opacity:1;border:2px solid var(--ol);box-sizing:border-box;min-width:4px;cursor:pointer}
+.ly:hover,.ly:focus{outline:3px solid #ff00d4;outline-offset:1px;z-index:50!important}
 .ly:hover .tp,.ly:focus .tp{display:block}
 .tp{display:none;position:absolute;left:0;top:calc(100% + 6px);width:max-content;max-width:min(260px,80vw);background:var(--ink);color:var(--card);padding:.45rem .6rem;border-radius:8px;font-size:.78rem;line-height:1.35;box-shadow:0 3px 14px rgba(0,0,0,.35);pointer-events:none;z-index:99;font-weight:400}
-.m100{position:absolute;top:-4px;bottom:-4px;width:0;border-left:2px dashed var(--brand2);z-index:30;pointer-events:none;margin-left:-1px}
+.m100{position:absolute;top:-4px;bottom:-4px;width:4px;margin-left:-2px;background:repeating-linear-gradient(to bottom,#ff00d4 0 5px,#fff 5px 8px);outline:1px solid #111;z-index:30;pointer-events:none}
 .ovt{position:relative;height:1.1rem;margin-right:.4rem}.ovt span{position:absolute;transform:translateX(-50%);font-size:.7rem;color:var(--muted)}.ovt span:first-child{transform:none}
 .ova .ovd{visibility:hidden}
-.ovg i{height:12px;width:16px;opacity:.85;border-radius:3px}
+.sw{display:inline-block;vertical-align:middle;height:12px;width:16px;border-radius:3px;background:var(--oc);border:2px solid var(--ol);box-sizing:border-box;margin-right:.3rem}.tp .sw{border-color:var(--ol)}
+.lg .sw{width:16px;height:12px;border-radius:3px;background:var(--oc);border:2px solid var(--ol)}.lg.ovg{color:var(--ink)}
+.ovt span,.ovd{color:var(--ink)}
+.tp{border:1px solid var(--muted)}
 .tg3{margin-top:.2rem}
 #sp:checked ~ .charts label[for=sp],#sr:checked ~ .charts label[for=sr]{background:var(--brand);color:#fff}
 #sr:checked ~ .charts .s-p,#sp:checked ~ .charts .s-r{display:none}
@@ -517,11 +522,11 @@ OVCSS="""
 ov_sec=('<section class="day var" id="v0"><h2>New) Overlay bar <span class="mockbadge">new</span></h2>'
  '<p class="pc">One bar per day; every nutrient is its own colored layer starting at the left, longest at the back so none is hidden. Hover, tap or Tab onto a layer for the numbers.</p>'
  '<div class="ovs" role="group" aria-label="Scale"><b>Scale:</b><label for="sp">% of target (default)</label><label for="sr">Raw amount (mg-equivalent, small nutrients tiny)</label></div>'
- '<p class="est s-p">Scale: % of each nutrient’s daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). Sodium* is against its 2,300 mg limit, so shorter is better. Dashed line = 100%. Bars past the right edge are clipped.</p>'
+ '<p class="est s-p">Scale: % of each nutrient’s daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). Sodium* is against its 2,300 mg limit, so shorter is better. Dashed magenta line = 100%. Bars past the right edge are clipped.</p>'
  '<p class="est s-r">Scale: raw numbers on one shared axis, as logged (mg for calcium, potassium, magnesium and sodium; g for protein and fiber). Fiber and protein, in grams, look tiny next to potassium in mg, which is why % mode is the default. Tiny layers are given a minimum width so they stay visible.</p>'
  +toggled(ov_all)+
- '<p class="est">Hatched row = in progress. Layers overlap with transparency; where one is hidden behind another, hover its visible part or use Tab. Food + supplements view includes supplements; food only excludes them.</p>'
- '<details><summary>Data table (amounts and % of target, food + supplements)</summary><div class="tw"><table class="est"><tr><th>Day</th>'+''.join(f'<th>{l}</th>' for k,l,u,t,c in MK)+'</tr>'
+ '<p class="est">Hatched row = in progress. Layers are solid with a thin outline (white or black) so each stays visible; where one is hidden behind another, hover its visible part or use Tab. Food + supplements view includes supplements; food only excludes them.</p>'
+ '<details><summary>Data table (amounts and % of target, food + supplements)</summary><div class="tw"><table class="est"><tr><th>Day</th>'+''.join(f'<th>{sw(k)}{l}</th>' for k,l,u,t,c in MK)+'</tr>'
  +''.join(f'<tr><td>{MDL[i]}{" (in progress)" if MIP[i] else ""}</td>'+''.join(f'<td>{raw(i,k,"c"):,.0f} {u} ({P(i,k,"c"):.0f}%)</td>' for k,l,u,t,c in MK)+'</tr>' for i in range(n_))
  +'</table></div></details></section>')
 VAR=[
