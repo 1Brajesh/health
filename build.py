@@ -69,6 +69,16 @@ ul{padding-left:1.2rem}li{margin:.3rem 0}
 .nr .t{font-size:.7rem;color:var(--muted);display:block}
 .sx{font-size:.85rem;margin-top:.7rem;color:var(--muted)}
 .gap{border-left:5px solid var(--accent)}.gap.ok{border-left-color:var(--brand)}.gap.un{border-left-color:var(--muted)}
+.bd{margin:-.2rem 0 .5rem;border:1px solid var(--line);border-left:5px solid var(--c);border-top:0;border-radius:0 0 10px 10px;padding:0 .6rem;background:var(--card)}
+.bd>summary{display:block;padding:.65rem .1rem;min-height:44px;box-sizing:border-box;font-size:.85rem;list-style:none}
+.bd>summary::-webkit-details-marker{display:none}
+.bd>summary::before{content:"▸";display:inline-block;width:1.1em;transition:transform .15s}
+.bd[open]>summary::before{transform:rotate(90deg)}
+.bd[open]{padding-bottom:.5rem}
+.bd table{font-size:.8rem}.bd td,.bd th{padding:.35rem .45rem}.bd td.n,.bd th.n{text-align:right;white-space:nowrap}
+.bd tr.sup td{background:rgba(91,184,220,.10)}.bd tr.nd td{color:var(--muted);font-style:italic}
+.bd .tag{display:inline-block;background:var(--chip);color:var(--brand2);border-radius:999px;padding:0 .5rem;font-size:.7rem;font-weight:700;margin-left:.3rem;font-style:normal}
+.bd .est{margin:.4rem 0}
 @media(max-width:560px){.nhead{display:none}.nr{grid-template-columns:1fr 1fr 1fr}.nr .l{grid-column:1/-1}.nr .h{display:block}}
 footer{text-align:center;color:var(--muted);font-size:.85rem;padding:1.5rem 1rem 2.5rem}
 """
@@ -129,6 +139,13 @@ def supp_day(date):
     t['vitc']+=60*h;t['potassium']+=260*h;t['sodium']+=120*h              # #7 glucosamine
     t['protein']+=11*h                                                    # #8 collagen
     return t
+
+def supp_items(date):
+    wd=datetime.date.fromisoformat(date).weekday();mwf=wd in (0,2,4);wkd=wd<5;h=0.5
+    L=[('Magnesium bisglycinate (Nature Made, 2 caps)',{'magnesium':200,'kcal':10,'protein':2}),
+       ('Collagen (every other day, averaged at half a dose)',{'protein':11*h}),
+       ('Glucosamine (every other day, averaged at half a dose)',{'potassium':260*h,'sodium':120*h})]
+    return L
 SUPX=[('vitd','Vitamin D','mcg'),('k2','Vitamin K2','mcg'),('zinc','Zinc','mg'),('iodine','Iodine','mcg'),('b12','Vitamin B12','mcg'),('vita','Vitamin A','mcg RAE'),('vitc','Vitamin C','mg'),('iron','Iron','mg'),('omega3','Omega-3 (total)','mg')]
 sup={d['date']:supp_day(d['date']) for d in days}
 def avg(k,which):
@@ -143,6 +160,31 @@ for d in days:
 weektbl='<section class="day wk"><h2>Week at a glance <span class="badge">food only, logged meals</span></h2><div class="tw"><table class="week"><tr><th>Day</th>'+''.join(f'<th>{l.replace(" (eaten)","")}<br><small>{u}</small></th>' for k,l,u,*_ in NUT)+f'</tr>{wk}</table></div><p class="est">Targets for a 54-year-old man: protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg, sodium under 2,300 mg. "+" means some foods had no data for that nutrient, so the true total is higher. Tuna sandwich, curry, and many portions are assumed; see each day.</p></section>'
 note='<div class="note"><b>Estimates only.</b> Values come from USDA FoodData Central, scaled to portions you gave or to stated assumptions, and cover only the meals logged (breakfast is not normally eaten, so none is expected; unlogged snacks are not counted). <b>Calcium shown is the amount eaten, not the amount absorbed</b> (for example, spinach calcium is poorly absorbed). Each day shows food, supplements and combined separately. Supplement amounts are label values times the schedule on the Supplements page. Every-other-day items (liver, glucosamine, collagen) are averaged at half a dose per day because their start day is not logged; iodine and B12 count only Mon/Wed/Fri, vitamin D3+K2 only Mon-Fri. Collagen calories are not on the label, so they are excluded. Supplement magnesium upper limit of 350 mg/day (NIH ODS) applies to supplement magnesium only, not food. Ranges reflect portion uncertainty.</div>'
 b0=f'<div class="stats"><div class="stat"><b>{len(f)}</b><span>days logged</span></div><div class="stat"><b>{sum(len(x["meals"]) for x in f)}</b><span>meals and snacks</span></div></div>'+note+weektbl
+
+
+def breakdown(day,k,l,u,sp,cl_):
+    items=[];nd=[]
+    for en in day['entries']:
+        fd=foods[en['food']];v=fd['per100g'][k]
+        if v is None: nd.append(en);continue
+        items.append((v*en['grams']/100,en,fd))
+    sup_=[(it[1][k],it[0]) for it in supp_items(day['date']) if it[1].get(k)]
+    fsum=sum(i[0] for i in items);ssum=sum(x[0] for x in sup_);ctot=fsum+ssum
+    assert abs(ssum-sp[k])<1e-6,(k,ssum,sp[k])
+    rows=[(a,'f',en,fd) for a,en,fd in items]+[(a,'s',n_,None) for a,n_ in sup_]
+    rows.sort(key=lambda r:-r[0])
+    def d1(x): return f'{x:,.1f}' if x<10 else f'{x:,.0f}'
+    h=''
+    for a,t,en,fd in rows:
+        pc=a/ctot*100 if ctot else 0
+        if t=='f': h+=f'<tr><td>{E(en["label"])} <small>({E(en["meal"])})</small></td><td class="n">{en["grams"]:g} g</td><td class="n">{d1(a)}</td><td class="n">{pc:.0f}%</td></tr>'
+        else: h+=f'<tr class="sup"><td>{E(en)}<span class="tag">supplement</span></td><td class="n">label dose</td><td class="n">{d1(a)}</td><td class="n">{pc:.0f}%</td></tr>'
+    for en in nd:
+        h+=f'<tr class="nd"><td>{E(en["label"])} <small>({E(en["meal"])})</small></td><td class="n">{en["grams"]:g} g</td><td class="n" colspan="2">no data</td></tr>'
+    plus=' (food excludes no-data items, so true total is higher)' if nd else ''
+    return (f'<details class="bd {cl_}"><summary>See what contributed to {l.lower().replace(" (eaten)","")} ({len(rows)} sources{", "+str(len(nd))+" no data" if nd else ""})</summary>'
+     f'<div class="tw"><table class="est"><tr><th>Source</th><th class="n">Portion</th><th class="n">{u}</th><th class="n">% of day</th></tr>{h}</table></div>'
+     f'<p class="est">Food {d1(fsum)} + supplements {d1(ssum)} = combined {d1(ctot)} {u}{plus}. Percentages are of the combined day total. Uses the same midpoint estimates as the tiles; each line is rounded, so lines may differ from the tile total by a rounding step. Sorted highest to lowest; "no data" foods are unknown, not zero.</p></details>')
 
 gdays=[d for d in days if not d.get('in_progress')]
 n=len(gdays)
@@ -179,6 +221,7 @@ for day in days:
         extra=' <span class="t">(+collagen kcal unknown)</span>' if k=='kcal' else ''
         sdisp=fmt(sv) if sv else '0'
         rowsn+=f'<div class="nr {cl}"><div class="l">{l} <small>{u}</small></div><div class="c f"><span class="h">Food</span><b>~{fmt(fv)}{plus}</b><span class="t">{rng(t)}</span></div><div class="c s"><span class="h">Supplements</span><b>{sdisp}</b>{extra if sv or k=="kcal" else ""}</div><div class="c o"><span class="h">Combined</span><b>~{fmt(cv)}{plus}</b>{bar}</div></div>'
+        if k!='kcal': rowsn+=breakdown(day,k,l,u,sp,cl)
     sx=''.join(f'<span class="chip">{l}: <b>{sp[k]:,.0f}</b> {u}</span>' if sp[k]>=10 or sp[k]==0 else f'<span class="chip">{l}: <b>{sp[k]:,.1f}</b> {u}</span>' for k,l,u in SUPX)
     tiles=f'<div class="nhead"><span></span><span>Food</span><span>Supplements</span><span>Combined</span></div>{rowsn}<div class="sx"><b>Supplement-only nutrients today (not tracked in food data):</b><br>{sx}</div>'
     badge='<span class="badge">estimates: logged meals only</span>' if day['partial'] else ''
