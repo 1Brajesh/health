@@ -453,83 +453,6 @@ def c10(mode):
     return legend().replace('</div>','<span class="t-cal"><i></i>Calories</span></div>')+svg(W,H,lab,s)+'<p class="est">Log axis: each gridline step is a multiple of 10 (10, 100, 1,000, 10,000). Mixed units (g, mg, kcal).</p>'
 
 
-# ===== 0 overlay bar =====
-OVC={'protein':'#5a2d0c','fiber':'#00a650','calcium':'#ffffff','potassium':'#e00000','magnesium':'#ff8a00','sodium':'#ffe600'}
-OVO={'protein':'#f5e6d3','fiber':'#ffffff','calcium':'#111111','potassium':'#ffffff','magnesium':'#111111','sodium':'#111111'}
-def sw(k): return f'<i class="sw" style="--oc:{OVC[k]};--ol:{OVO[k]}"></i>'
-def ov_scale(mode,pct):
-    if pct: return smax(mode)
-    m=max(raw(i,k,mode) for i in range(n_) for k,*_ in MK)
-    return max(1000,math.ceil((m+50)/500)*500)
-def ov(mode,pct):
-    mx=ov_scale(mode,pct); cl='s-p' if pct else 's-r'
-    ticks=range(0,mx+1,50 if pct else 500)
-    if pct and mx>300: ticks=range(0,mx+1,100)
-    h=f'<div class="{cl}"><div class="ovl">'
-    h+='<div class="ova"><span class="ovd"></span><div class="ovt">'+''.join(f'<span style="left:{v/mx*100:.2f}%">{v}{"%" if pct else ""}</span>' for v in ticks)+'</div></div>'
-    for i in range(n_):
-        items=[]
-        for k,l,u,t,c in MK:
-            v=raw(i,k,mode); fv=raw(i,k,'f'); sv=raw(i,k,'c')-fv
-            val=P(i,k,mode) if pct else v
-            items.append((val,k,l,u,t,v,fv,sv))
-        items.sort(key=lambda x:-x[0])
-        ip=MIP[i]
-        h+=f'<div class="ovr{" ip" if ip else ""}"><div class="ovd">{MDL[i]}{"<small>in progress</small>" if ip else ""}</div><div class="ovk">'
-        for z,(val,k,l,u,t,v,fv,sv) in enumerate(items):
-            w=max(min(val,mx)/mx*100,.7)
-            ln=l.rstrip('*')
-            sp=f'food {fv:,.0f} {u}'+(f' + supplements {sv:,.0f} {u}' if sv>=.5 else ' + supplements 0')
-            if mode=='f': sp=f'food only view ({fv:,.0f} {u})'+(f'; supplements would add {raw(i,k,"c")-fv:,.0f} {u}' if raw(i,k,'c')-fv>=.5 else '')
-            pc=P(i,k,mode)
-            pcs=f'{pc:.0f}% of '+(f'{t:,} {u} limit' if k=='sodium' else f'{t:,} {u} target')
-            aria=f'{ln}, {MDL[i]}{" in progress" if ip else ""}: {v:,.0f} {u}, {pcs}; {sp}'
-            h+=(f'<div class="ly" tabindex="0" role="img" aria-label="{E(aria)}" style="width:{w:.2f}%;--oc:{OVC[k]};--ol:{OVO[k]};z-index:{z+1}"><span class="tp" aria-hidden="true">{sw(k)}<b>{ln}</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>{v:,.0f} {u} · {pcs}<br>{sp}</span></div>')
-        if pct: h+=f'<i class="m100" style="left:{100/mx*100:.2f}%"></i>'
-        h+='</div></div>'
-    h+='</div></div>'
-    return h
-def ovleg():
-    return '<div class="lg ovg">'+''.join(f'<span>{sw(k)}{l}</span>' for k,l,u,t,c in MK)+'</div>'
-def ov_all(mode): return ovleg()+ov(mode,True)+ov(mode,False)
-OVCSS="""
-.ovl{margin:.4rem 0 1.2rem}
-.ovr,.ova{display:grid;grid-template-columns:4.6rem 1fr;gap:.5rem;align-items:center;margin:.3rem 0;position:relative}
-.ovr:hover,.ovr:focus-within{z-index:20}
-.ovd{font-size:.85rem;color:var(--muted);line-height:1.1}.ovd small{display:block;font-size:.65rem;font-style:italic}
-.ovk{position:relative;height:30px;border-radius:7px;background:var(--line);margin-right:.4rem}
-.ovr.ip .ovk{background:repeating-linear-gradient(45deg,var(--line) 0 4px,transparent 4px 9px),var(--card);outline:1px dashed var(--muted)}
-
-.ly{position:absolute;left:0;top:0;bottom:0;background:var(--oc);border-radius:7px;opacity:1;border:2px solid var(--ol);box-sizing:border-box;min-width:4px;cursor:pointer}
-.ly:hover,.ly:focus{outline:3px solid #ff00d4;outline-offset:1px;z-index:50!important}
-.ly:hover .tp,.ly:focus .tp{display:block}
-.tp{display:none;position:absolute;left:0;top:calc(100% + 6px);width:max-content;max-width:min(260px,80vw);background:var(--ink);color:var(--card);padding:.45rem .6rem;border-radius:8px;font-size:.78rem;line-height:1.35;box-shadow:0 3px 14px rgba(0,0,0,.35);pointer-events:none;z-index:99;font-weight:400}
-.m100{position:absolute;top:-4px;bottom:-4px;width:4px;margin-left:-2px;background:repeating-linear-gradient(to bottom,#ff00d4 0 5px,#fff 5px 8px);outline:1px solid #111;z-index:30;pointer-events:none}
-.ovt{position:relative;height:1.1rem;margin-right:.4rem}.ovt span{position:absolute;transform:translateX(-50%);font-size:.7rem;color:var(--muted)}.ovt span:first-child{transform:none}
-.ova .ovd{visibility:hidden}
-.sw{display:inline-block;vertical-align:middle;height:12px;width:16px;border-radius:3px;background:var(--oc);border:2px solid var(--ol);box-sizing:border-box;margin-right:.3rem}.tp .sw{border-color:var(--ol)}
-.lg .sw{width:16px;height:12px;border-radius:3px;background:var(--oc);border:2px solid var(--ol)}.lg.ovg{color:var(--ink)}
-.ovt span,.ovd{color:var(--ink)}
-.tp{border:1px solid var(--muted)}
-.tg3{margin-top:.2rem}
-#sp:checked ~ .charts label[for=sp],#sr:checked ~ .charts label[for=sr]{background:var(--brand);color:#fff}
-#sr:checked ~ .charts .s-p,#sp:checked ~ .charts .s-r{display:none}
-#sp:focus-visible ~ .charts label[for=sp],#sr:focus-visible ~ .charts label[for=sr]{outline:3px solid var(--accent);outline-offset:2px}
-.ovs{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin:.3rem 0}
-.ovs label{cursor:pointer;padding:.35rem .9rem;border-radius:999px;border:2px solid var(--brand);color:var(--brand);font-weight:700;font-size:.85rem}
-@media(max-width:560px){.ovr,.ova{grid-template-columns:3.6rem 1fr}.ovk{height:26px}}
-"""
-ov_sec=('<section class="day var" id="v0"><h2>New) Overlay bar <span class="mockbadge">new</span></h2>'
- '<p class="pc">One bar per day; every nutrient is its own colored layer starting at the left, longest at the back so none is hidden. Hover, tap or Tab onto a layer for the numbers.</p>'
- '<div class="ovs" role="group" aria-label="Scale"><b>Scale:</b><label for="sp">% of target (default)</label><label for="sr">Raw amount (mg-equivalent, small nutrients tiny)</label></div>'
- '<p class="est s-p">Scale: % of each nutrient’s daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). Sodium* is against its 2,300 mg limit, so shorter is better. Dashed magenta line = 100%. Bars past the right edge are clipped.</p>'
- '<p class="est s-r">Scale: raw numbers on one shared axis, as logged (mg for calcium, potassium, magnesium and sodium; g for protein and fiber). Fiber and protein, in grams, look tiny next to potassium in mg, which is why % mode is the default. Tiny layers are given a minimum width so they stay visible.</p>'
- +toggled(ov_all)+
- '<p class="est">Hatched row = in progress. Layers are solid with a thin outline (white or dark) so each stays visible; where one is hidden behind another, hover its visible part or use Tab. Food + supplements view includes supplements; food only excludes them.</p>'
- '<details><summary>Data table (amounts and % of target, food + supplements)</summary><div class="tw"><table class="est"><tr><th>Day</th>'+''.join(f'<th>{sw(k)}{l}</th>' for k,l,u,t,c in MK)+'</tr>'
- +''.join(f'<tr><td>{MDL[i]}{" (in progress)" if MIP[i] else ""}</td>'+''.join(f'<td>{raw(i,k,"c"):,.0f} {u} ({P(i,k,"c"):.0f}%)</td>' for k,l,u,t,c in MK)+'</tr>' for i in range(n_))
- +'</table></div></details></section>')
-
 # ===== calcium eaten vs absorbed mockups =====
 NIHCA='https://ods.od.nih.gov/factsheets/Calcium-HealthProfessional/'
 NAS='https://www.nationalacademies.org/read/13050/chapter/4'
@@ -556,6 +479,108 @@ for i,dd in enumerate(MD):
     items.sort(key=lambda x:-x['mg'])
     e=sum(x['mg'] for x in items); ab=sum(x['ab'] for x in items)
     AD.append(dict(i=i,e=e,a=ab,items=items,nd=nd,ip=MIP[i],l=MDL[i]))
+# ===== 0 overlay bar =====
+OVC={'protein':'#5a2d0c','fiber':'#00a650','calcium':'#ffffff','potassium':'#e00000','magnesium':'#ff8a00','sodium':'#ffe600'}
+OVO={'protein':'#f5e6d3','fiber':'#ffffff','calcium':'#111111','potassium':'#ffffff','magnesium':'#111111','sodium':'#111111'}
+def sw(k): return f'<i class="sw" style="--oc:{OVC[k]};--ol:{OVO[k]}"></i>'
+def ov_scale(mode,pct):
+    if pct: return smax(mode)
+    m=max(raw(i,k,mode) for i in range(n_) for k,*_ in MK)
+    return max(1000,math.ceil((m+50)/500)*500)
+def cabs(i,mode):
+    x=AD[i]; r=raw(i,'calcium',mode)
+    return (r*x['a']/x['e'] if x['e']>0 else r), x['e'], (x['a']/x['e']*100 if x['e']>0 else 100)
+def ov(mode,pct,ab=False):
+    mx=ov_scale(mode,pct); cl='s-p' if pct else 's-r'
+    ticks=range(0,mx+1,50 if pct else 500)
+    if pct and mx>300: ticks=range(0,mx+1,100)
+    h=f'<div class="{cl}"><div class="ovl">'
+    h+='<div class="ova"><span class="ovd"></span><div class="ovt">'+''.join(f'<span style="left:{v/mx*100:.2f}%">{v}{"%" if pct else ""}</span>' for v in ticks)+'</div></div>'
+    for i in range(n_):
+        items=[]
+        for k,l,u,t,c in MK:
+            v=raw(i,k,mode); fv=raw(i,k,'f'); sv=raw(i,k,'c')-fv
+            if ab and k=='calcium': v=cabs(i,mode)[0]
+            val=v/t*100 if pct else v
+            items.append((val,k,l,u,t,v,fv,sv))
+        items.sort(key=lambda x:-x[0])
+        ip=MIP[i]
+        h+=f'<div class="ovr{" ip" if ip else ""}"><div class="ovd">{MDL[i]}{"<small>in progress</small>" if ip else ""}</div><div class="ovk">'
+        for z,(val,k,l,u,t,v,fv,sv) in enumerate(items):
+            w=max(min(val,mx)/mx*100,.7)
+            ln=l.rstrip('*')
+            sp=f'food {fv:,.0f} {u}'+(f' + supplements {sv:,.0f} {u}' if sv>=.5 else ' + supplements 0')
+            if mode=='f': sp=f'food only view ({fv:,.0f} {u})'+(f'; supplements would add {raw(i,k,"c")-fv:,.0f} {u}' if raw(i,k,'c')-fv>=.5 else '')
+            pc=v/t*100
+            pcs=f'{pc:.0f}% of '+(f'{t:,} {u} limit' if k=='sodium' else f'{t:,} {u} target')
+            aria=f'{ln}, {MDL[i]}{" in progress" if ip else ""}: {v:,.0f} {u}, {pcs}; {sp}'
+            zi=z+1
+            if ab:
+                zi=2*z+2
+                if k=='calcium':
+                    _,ce,cp=cabs(i,mode)
+                    ex=f'eaten {ce:,.0f} mg · absorbed {v:,.0f} mg · {cp:.0f}% absorbed (estimate)'
+                    aria=f'{ln}, {MDL[i]}{" in progress" if ip else ""}: estimated absorbed {v:,.0f} mg, {pcs}; {ex}. Estimate for a typical adult.'
+                    sp2=ex+'<br><i>estimate</i>, typical adult'
+                    gw=max(min((ce/t*100) if pct else ce,mx)/mx*100,.7)
+                    h+=f'<div class="gh" aria-hidden="true" style="width:{gw:.2f}%;z-index:{zi-1}"></div>'
+                else:
+                    aria+='; absorption not adjusted'
+                    sp2=sp+'<br>absorption not adjusted'
+            else: sp2=sp
+            h+=(f'<div class="ly" tabindex="0" role="img" aria-label="{E(aria)}" style="width:{w:.2f}%;--oc:{OVC[k]};--ol:{OVO[k]};z-index:{zi}"><span class="tp" aria-hidden="true">{sw(k)}<b>{ln}</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>{v:,.0f} {u}{" absorbed (est.)" if ab and k=="calcium" else ""} · {pcs}<br>{sp2}</span></div>')
+        if pct: h+=f'<i class="m100" style="left:{100/mx*100:.2f}%"></i>'
+        h+='</div></div>'
+    h+='</div></div>'
+    return h
+def ovleg():
+    return '<div class="lg ovg">'+''.join(f'<span>{sw(k)}{l}</span>' for k,l,u,t,c in MK)+'</div>'
+def ov_all(mode): return ovleg()+'<div class="a-e">'+ov(mode,True)+ov(mode,False)+'</div><div class="a-a">'+ov(mode,True,True)+ov(mode,False,True)+'</div>'
+OVCSS="""
+.ovl{margin:.4rem 0 1.2rem}
+.ovr,.ova{display:grid;grid-template-columns:4.6rem 1fr;gap:.5rem;align-items:center;margin:.3rem 0;position:relative}
+.ovr:hover,.ovr:focus-within{z-index:20}
+.ovd{font-size:.85rem;color:var(--muted);line-height:1.1}.ovd small{display:block;font-size:.65rem;font-style:italic}
+.ovk{position:relative;height:30px;border-radius:7px;background:var(--line);margin-right:.4rem}
+.ovr.ip .ovk{background:repeating-linear-gradient(45deg,var(--line) 0 4px,transparent 4px 9px),var(--card);outline:1px dashed var(--muted)}
+
+.ly{position:absolute;left:0;top:0;bottom:0;background:var(--oc);border-radius:7px;opacity:1;border:2px solid var(--ol);box-sizing:border-box;min-width:4px;cursor:pointer}
+.ly:hover,.ly:focus{outline:3px solid #ff00d4;outline-offset:1px;z-index:50!important}
+.ly:hover .tp,.ly:focus .tp{display:block}
+.tp{display:none;position:absolute;left:0;top:calc(100% + 6px);width:max-content;max-width:min(260px,80vw);background:var(--ink);color:var(--card);padding:.45rem .6rem;border-radius:8px;font-size:.78rem;line-height:1.35;box-shadow:0 3px 14px rgba(0,0,0,.35);pointer-events:none;z-index:99;font-weight:400}
+.m100{position:absolute;top:-4px;bottom:-4px;width:4px;margin-left:-2px;background:repeating-linear-gradient(to bottom,#ff00d4 0 5px,#fff 5px 8px);outline:1px solid #111;z-index:30;pointer-events:none}
+.ovt{position:relative;height:1.1rem;margin-right:.4rem}.ovt span{position:absolute;transform:translateX(-50%);font-size:.7rem;color:var(--muted)}.ovt span:first-child{transform:none}
+.ova .ovd{visibility:hidden}
+.sw{display:inline-block;vertical-align:middle;height:12px;width:16px;border-radius:3px;background:var(--oc);border:2px solid var(--ol);box-sizing:border-box;margin-right:.3rem}.tp .sw{border-color:var(--ol)}
+.lg .sw{width:16px;height:12px;border-radius:3px;background:var(--oc);border:2px solid var(--ol)}.lg.ovg{color:var(--ink)}
+.ovt span,.ovd{color:var(--ink)}
+.tp{border:1px solid var(--muted)}
+.tg3{margin-top:.2rem}
+.a-a{display:none}#aa:checked ~ .charts .a-a{display:block}#aa:checked ~ .charts .a-e{display:none}
+#ae:checked ~ .charts label[for=ae],#aa:checked ~ .charts label[for=aa]{background:var(--brand);color:#fff}
+#ae:focus-visible ~ .charts label[for=ae],#aa:focus-visible ~ .charts label[for=aa]{outline:3px solid var(--accent);outline-offset:2px}
+.gh{position:absolute;left:0;top:0;bottom:0;box-sizing:border-box;border:2px dashed var(--ink);opacity:.45;border-radius:7px;pointer-events:none;background:none}
+p.a-a{display:none}#aa:checked ~ .charts p.a-a{display:block}
+#sp:checked ~ .charts label[for=sp],#sr:checked ~ .charts label[for=sr]{background:var(--brand);color:#fff}
+#sr:checked ~ .charts .s-p,#sp:checked ~ .charts .s-r{display:none}
+#sp:focus-visible ~ .charts label[for=sp],#sr:focus-visible ~ .charts label[for=sr]{outline:3px solid var(--accent);outline-offset:2px}
+.ovs{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin:.3rem 0}
+.ovs label{cursor:pointer;padding:.35rem .9rem;border-radius:999px;border:2px solid var(--brand);color:var(--brand);font-weight:700;font-size:.85rem}
+@media(max-width:560px){.ovr,.ova{grid-template-columns:3.6rem 1fr}.ovk{height:26px}}
+"""
+ov_sec=('<section class="day var" id="v0"><h2>New) Overlay bar <span class="mockbadge">new</span></h2>'
+ '<p class="pc">One bar per day; every nutrient is its own colored layer starting at the left, longest at the back so none is hidden. Hover, tap or Tab onto a layer for the numbers.</p>'
+ '<div class="ovs" role="group" aria-label="Scale"><b>Scale:</b><label for="sp">% of target (default)</label><label for="sr">Raw amount (mg-equivalent, small nutrients tiny)</label></div>'
+ '<div class="ovs" role="group" aria-label="Amount basis"><b>Amount:</b><label for="ae">Eaten (default)</label><label for="aa">Absorbed (estimate)</label></div>'
+ '<p class="est a-a">Absorbed view: only calcium is adjusted, to estimated absorbed (typical adult; milk 27%, spinach 5%, cabbage/broccoli 27%, others an assumed 25%; <a href="'+NIHCA+'">NIH ODS</a>, <a href="'+NAS+'">National Academies 2011</a>, accessed 2026-10-17); the faint dashed outline = calcium eaten. All other nutrients: absorption not adjusted. Target lines are unchanged because targets are for total eaten.</p>'
+ '<p class="est s-p">Scale: % of each nutrient’s daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). Sodium* is against its 2,300 mg limit, so shorter is better. Dashed magenta line = 100%. Bars past the right edge are clipped.</p>'
+ '<p class="est s-r">Scale: raw numbers on one shared axis, as logged (mg for calcium, potassium, magnesium and sodium; g for protein and fiber). Fiber and protein, in grams, look tiny next to potassium in mg, which is why % mode is the default. Tiny layers are given a minimum width so they stay visible.</p>'
+ +toggled(ov_all)+
+ '<p class="est">Hatched row = in progress. Layers are solid with a thin outline (white or dark) so each stays visible; where one is hidden behind another, hover its visible part or use Tab. Food + supplements view includes supplements; food only excludes them.</p>'
+ '<details><summary>Data table (amounts and % of target, food + supplements)</summary><div class="tw"><table class="est"><tr><th>Day</th>'+''.join(f'<th>{sw(k)}{l}</th>' for k,l,u,t,c in MK)+'<th>Calcium absorbed, estimate</th></tr>'
+ +''.join(f'<tr><td>{MDL[i]}{" (in progress)" if MIP[i] else ""}</td>'+''.join(f'<td>{raw(i,k,"c"):,.0f} {u} ({P(i,k,"c"):.0f}%)</td>' for k,l,u,t,c in MK)+f'<td>{cabs(i,"c")[0]:,.0f} mg ({cabs(i,"c")[0]/10:.0f}% of target; {cabs(i,"c")[2]:.0f}% of eaten)</td></tr>' for i in range(n_))
+ +'</table></div></details></section>')
+
 ABMAX=max(1100,math.ceil((max(x['e'] for x in AD)+40)/100)*100)
 ILL=ABS_DEF*10   # 25% x 1,000 mg = 250 mg
 CRM='#fff4d0';GRN='#00c040'
@@ -713,7 +738,7 @@ MCSS=OVCSS+ACSS+"""
 """
 mb=f'<p><span class="mockbadge">mock</span> Experimental chart gallery, not part of the main site. <a href="food.html">&larr; Back to Food Log</a></p>'
 mb+=f'<div class="note"><b>How to read:</b> every nutrient is shown as % of its daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). <b>*Sodium is vs its 2,300 mg upper limit, so lower is better.</b> Calories have no target and are omitted (except in chart 10). Uses the real logged data for {MDL[NC[0]]} to {MDL[NC[-1]]} ({len(NC)} complete days); <b>{MDL[-1]} is still in progress</b>, drawn dashed, hollow or hatched, and left out of averages and the radar. Food values exclude items with no data, so some totals are minimums. Estimates only.</div>'
-tg='<input class="rd" type="radio" name="s" id="sp" checked aria-label="Percent of target scale"><input class="rd" type="radio" name="s" id="sr" aria-label="Raw amount scale"><input class="rd" type="radio" name="m" id="mf" aria-label="Food only"><input class="rd" type="radio" name="m" id="mc" checked aria-label="Food plus supplements"><div class="tg2" role="group" aria-label="Data shown"><b>Show:</b><label for="mf">Food only</label><label for="mc">Food + supplements</label></div>'
+tg='<input class="rd" type="radio" name="ab" id="ae" checked aria-label="Show calcium as eaten"><input class="rd" type="radio" name="ab" id="aa" aria-label="Show calcium as estimated absorbed"><input class="rd" type="radio" name="s" id="sp" checked aria-label="Percent of target scale"><input class="rd" type="radio" name="s" id="sr" aria-label="Raw amount scale"><input class="rd" type="radio" name="m" id="mf" aria-label="Food only"><input class="rd" type="radio" name="m" id="mc" checked aria-label="Food plus supplements"><div class="tg2" role="group" aria-label="Data shown"><b>Show:</b><label for="mf">Food only</label><label for="mc">Food + supplements</label></div>'
 ch='<div class="charts">'+ov_sec+abs_sec
 for n,t,pc,fn,tgl in VAR:
     body_=toggled(fn) if tgl else fn('c')
