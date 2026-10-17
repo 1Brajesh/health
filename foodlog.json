@@ -127,6 +127,19 @@
    {
     "meal": "Afternoon snack (3:30 PM)",
     "items": "8 oz (240 g) ultra-filtered 2% milk (Fairlife-type; generic 2% milk values assumed). Status: eaten."
+   },
+   {
+    "meal": "Dinner",
+    "items": "Bowl of lentils (1 cup cooked assumed); 3 oz (85 g) white fish; 2 prunes. Status: eaten."
+   }
+  ]
+ },
+ {
+  "date": "2026-10-17",
+  "meals": [
+   {
+    "meal": "Lunch",
+    "items": "Bowl of lentils (1 cup cooked assumed); cabbage ~100 g and spinach ~70 g (assumed); 1 single-serve \"extra creamy\" Icelandic skyr yogurt (~150 g plain whole-milk skyr assumed, brand unknown); kombucha 8 oz. Status: eaten."
    }
   ]
  }
