@@ -144,6 +144,10 @@
    {
     "meal": "Afternoon snack (time not given)",
     "items": "Café con leche 8 oz (assumed ~4 oz 2% milk + ~4 oz brewed coffee; no sugar mentioned, none assumed). Status: eaten."
+   },
+   {
+    "meal": "Evening (time not given)",
+    "items": "4 oz (120 g) ultra-filtered 2% milk (generic 2% milk values assumed). Status: eaten."
    }
   ]
  }
