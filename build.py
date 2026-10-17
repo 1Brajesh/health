@@ -242,3 +242,280 @@ for day in days:
     b+=f'<section class="day"><h2>{dt}{badge}</h2><div class="nt">{tiles}</div>{rows}{det}</section>'
 b+='<p class="est">Reference targets: fiber 30 g (National Academy of Medicine, adult men 51+), calcium 1,000 mg RDA, potassium 3,400 mg AI, magnesium 420 mg RDA, protein 56 g RDA, sodium under 2,300 mg (Dietary Guidelines). Calories have no target here. These are rough estimates, not medical advice.</p>'
 open('food.html','w').write(page('Food Log','Daily meals with estimated nutrition, newest first.','f',b))
+
+# ================= mock.html : week-at-a-glance chart variations =================
+import math
+MK=[('protein','Protein','g',56,'t-pro'),('fiber','Fiber','g',30,'t-fib'),('calcium','Calcium','mg',1000,'t-ca'),('potassium','Potassium','mg',3400,'t-k'),('magnesium','Magnesium','mg',420,'t-mg'),('sodium','Sodium*','mg',2300,'t-na')]
+MD=sorted(days,key=lambda x:x['date'])
+MDATES=[d['date'] for d in MD]
+MIP=[bool(d.get('in_progress')) for d in MD]
+MDL=[datetime.date.fromisoformat(x).strftime('%b %-d') for x in MDATES]
+NC=[i for i,v in enumerate(MIP) if not v]          # complete-day indexes
+LAST=NC[-1]
+def raw(i,k,mode):
+    fv=res[MDATES[i]][0][k][0]; sv=sup[MDATES[i]].get(k,0)
+    return fv if mode=='f' else fv+sv
+def P(i,k,mode):
+    tg=[m[3] for m in MK if m[0]==k][0]; return raw(i,k,mode)/tg*100
+def AVG(k,mode): return sum(P(i,k,mode) for i in NC)/len(NC)
+MODELAB={'f':'food only','c':'food + supplements'}
+def smax(mode,extra=0):
+    m=max([P(i,m_[0],mode) for i in range(len(MD)) for m_ in MK]+[extra,100])
+    return max(150,math.ceil((m+5)/50)*50)
+def toggled(fn):
+    return f'<div class="m-f">{fn("f")}</div><div class="m-c">{fn("c")}</div>'
+def alt(mode,extra=''):
+    parts=[f'{l.rstrip("*")}: '+', '.join(f'{MDL[i]} {P(i,k,mode):.0f}%' for i in range(len(MD))) for k,l,u,t,c in MK]
+    return f'Percent of daily target, {MODELAB[mode]}{extra}. '+'; '.join(parts)+'.'
+SVGN=[0]
+def svg(w,h,label,inner,mode=None):
+    SVGN[0]+=1; inner=inner.replace('id="hz"',f'id="hz{SVGN[0]}"').replace('url(#hz)',f'url(#hz{SVGN[0]})')
+    return f'<div class="sc"><svg viewBox="0 0 {w} {h}" role="img" aria-label="{E(label)}" class="mk"><title>{E(label[:90])}</title><desc>{E(label)}</desc>{inner}</svg></div>'
+def legend():
+    return '<div class="lg">'+''.join(f'<span class="{c}"><i></i>{l}</span>' for k,l,u,t,c in MK)+'</div>'
+HATCH='<defs><pattern id="hz" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="var(--card)"/><rect width="3" height="6" fill="currentColor" opacity=".55"/></pattern></defs>'
+def axisY(x0,x1,y0,y1,mx,step=50,fmtf=lambda v:f'{v}%'):
+    s=''
+    for v in range(0,int(mx)+1,step):
+        y=y1-(y1-y0)*v/mx
+        s+=f'<line x1="{x0}" x2="{x1}" y1="{y:.1f}" y2="{y:.1f}" class="gl"/><text x="{x0-6}" y="{y+4:.1f}" class="tx" text-anchor="end">{fmtf(v)}</text>'
+    return s
+def tline(x0,x1,y0,y1,mx,lab='100% target'):
+    y=y1-(y1-y0)*100/mx
+    return f'<line x1="{x0}" x2="{x1}" y1="{y:.1f}" y2="{y:.1f}" class="tl"/><text x="{x1}" y="{y-5:.1f}" class="tx tg" text-anchor="end">{lab}</text>'
+def xlabels(xs,y):
+    return ''.join(f'<text x="{x:.1f}" y="{y}" class="tx{" ip" if MIP[i] else ""}" text-anchor="middle">{MDL[i]}{"*" if MIP[i] else ""}</text>' for i,x in enumerate(xs))
+n_=len(MD)
+
+# 1 multi-line
+def c1(mode):
+    W,H,L,R,T,B=560,300,44,28,14,34; mx=smax(mode)
+    xs=[L+(W-L-R)*i/(n_-1) for i in range(n_)]
+    yy=lambda p:H-B-(H-B-T)*p/mx
+    s=axisY(L,W-R,T,H-B,mx)+tline(L,W-R,T,H-B,mx)+xlabels(xs,H-12)
+    for k,l,u,t,c in MK:
+        pts=[(xs[i],yy(P(i,k,mode))) for i in range(n_)]
+        solid=' '.join(f'{x:.1f},{y:.1f}' for x,y in pts[:LAST+1])
+        s+=f'<g class="{c}"><polyline points="{solid}" class="ln{" lo" if k=="sodium" else ""}"/>'
+        if LAST<n_-1: s+=f'<polyline points="{pts[LAST][0]:.1f},{pts[LAST][1]:.1f} {pts[-1][0]:.1f},{pts[-1][1]:.1f}" class="ln da"/>'
+        for i,(x,y) in enumerate(pts):
+            s+=f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3.4" class="{"dot hol" if MIP[i] else "dot"}"><title>{l.rstrip("*")} {MDL[i]}: {P(i,k,mode):.0f}%</title></circle>'
+        s+='</g>'
+    return legend()+svg(W,H,'Multi-line chart. '+alt(mode,'; last day dashed because in progress'),s)
+
+# 2 heatmap (HTML table)
+def hcol(p,k):
+    if k=='sodium':
+        return f'rgba(214,78,66,{min(.75,max(0,(p-70)/90)):.2f})' if p>70 else f'rgba(76,199,154,{.15+.25*(1-p/70):.2f})'
+    if p>=100: return f'rgba(76,199,154,{min(.7,.35+(p-100)/150):.2f})'
+    return f'rgba(242,165,65,{.12+.6*(1-p/100):.2f})'
+def c2(mode):
+    h='<div class="tw"><table class="hm"><caption class="sr">Percent of daily target by nutrient and day, '+MODELAB[mode]+'</caption><thead><tr><th scope="col">Nutrient</th>'
+    h+=''.join(f'<th scope="col"{" class=ipc" if MIP[i] else ""}>{MDL[i]}{"<br><small>in progress</small>" if MIP[i] else ""}</th>' for i in range(n_))+f'<th scope="col">{len(NC)}-day avg</th></tr></thead><tbody>'
+    for k,l,u,t,c in MK:
+        h+=f'<tr class="{c}"><th scope="row">{l}</th>'
+        for i in range(n_):
+            p=P(i,k,mode); h+=f'<td class="{"ipc" if MIP[i] else ""}" style="background-color:{hcol(p,k)}">{p:.0f}%</td>'
+        a=AVG(k,mode); h+=f'<td class="av" style="background-color:{hcol(a,k)}">{a:.0f}%</td></tr>'
+    return h+'</tbody></table></div><p class="est">Green = at/above target (for sodium: well under the limit), amber = below target, red = near/over the sodium limit. Hatched column = in-progress day.</p>'
+
+# 3 grouped bars
+def c3(mode):
+    W,H,L,R,T,B=560,300,44,10,14,34; mx=smax(mode)
+    gw=(W-L-R)/len(MK); bw=(gw-12)/n_
+    s=HATCH+axisY(L,W-R,T,H-B,mx)+tline(L,W-R,T,H-B,mx)
+    for gi,(k,l,u,t,c) in enumerate(MK):
+        s+=f'<g class="{c}">'
+        for i in range(n_):
+            p=min(P(i,k,mode),mx); h_=(H-B-T)*p/mx; x=L+gi*gw+6+i*bw
+            fill='url(#hz)' if MIP[i] else 'var(--c)'
+            op='' if MIP[i] else f' opacity="{.45+.55*i/(n_-1):.2f}"'
+            s+=f'<rect x="{x:.1f}" y="{H-B-h_:.1f}" width="{bw-1:.1f}" height="{h_:.1f}" fill="{fill}"{op} class="br"><title>{l.rstrip("*")} {MDL[i]}: {P(i,k,mode):.0f}%</title></rect>'
+        s+=f'<text x="{L+gi*gw+gw/2:.1f}" y="{H-14}" class="tx" text-anchor="middle">{l}</text></g>'
+    return svg(W,H,'Grouped bars, each nutrient has one bar per day (oldest left, shading darkens toward newer; hatched = in progress). '+alt(mode),s)+f'<p class="est">Within each group: {MDL[0]} (lightest) to {MDL[-1]} (hatched, in progress).</p>'
+
+# 4 small multiples
+def c4(mode):
+    out='<div class="sm">'
+    for k,l,u,t,c in MK:
+        W,H,L,R,T,B=220,130,32,8,10,22; mx=max(150,math.ceil((max(P(i,k,mode) for i in range(n_))+5)/50)*50)
+        xs=[L+(W-L-R)*i/(n_-1) for i in range(n_)]; yy=lambda p:H-B-(H-B-T)*p/mx
+        s=axisY(L,W-R,T,H-B,mx,50 if mx<=200 else 100)+tline(L,W-R,T,H-B,mx,'100%')
+        pts=[(xs[i],yy(P(i,k,mode))) for i in range(n_)]
+        s+=f'<g class="{c}"><polyline points="'+' '.join(f'{x:.1f},{y:.1f}' for x,y in pts[:LAST+1])+'" class="ln"/>'
+        if LAST<n_-1: s+=f'<polyline points="{pts[LAST][0]:.1f},{pts[LAST][1]:.1f} {pts[-1][0]:.1f},{pts[-1][1]:.1f}" class="ln da"/>'
+        for i,(x,y) in enumerate(pts): s+=f'<circle cx="{x:.1f}" cy="{y:.1f}" r="2.8" class="{"dot hol" if MIP[i] else "dot"}"><title>{MDL[i]}: {P(i,k,mode):.0f}%</title></circle>'
+        s+='</g>'+''.join(f'<text x="{xs[i]:.1f}" y="{H-6}" class="tx s" text-anchor="middle">{MDL[i].split()[1]}</text>' for i in (0,3,n_-1))
+        lab=f'{l.rstrip("*")}: '+', '.join(f'{MDL[i]} {P(i,k,mode):.0f}%' for i in range(n_))+f' (target {t:,} {u}'+(', upper limit, lower is better' if k=='sodium' else '')+')'
+        out+=f'<figure class="{c}"><figcaption><b>{l}</b> <small>avg {AVG(k,mode):.0f}% of {t:,} {u}</small></figcaption>'+svg(W,H,lab,s)+'</figure>'
+    return out+'</div>'
+
+# 5 radar
+def c5(mode):
+    W,H=420,340; cx,cy,R_=210,172,112; mx=max(150,math.ceil((max(max(P(LAST,k,mode),AVG(k,mode)) for k,*_ in MK)+5)/50)*50)
+    ang=lambda j:-math.pi/2+2*math.pi*j/len(MK)
+    pt=lambda j,p:(cx+R_*p/mx*math.cos(ang(j)),cy+R_*p/mx*math.sin(ang(j)))
+    s=''
+    for v in range(50,int(mx)+1,50):
+        poly=' '.join('%.1f,%.1f'%pt(j,v) for j in range(len(MK)))
+        s+=f'<polygon points="{poly}" class="{"ring100" if v==100 else "ring"}"/>'
+    s+=f'<text x="{cx+4}" y="{cy-R_*100/mx-3:.1f}" class="tx tg">100%</text>'
+    for j,(k,l,u,t,c) in enumerate(MK):
+        x,y=pt(j,mx); s+=f'<line x1="{cx}" y1="{cy}" x2="{x:.1f}" y2="{y:.1f}" class="gl"/>'
+        lx,ly=cx+(R_+22)*math.cos(ang(j)),cy+(R_+16)*math.sin(ang(j))
+        s+=f'<text x="{lx:.1f}" y="{ly+4:.1f}" class="tx" text-anchor="middle">{l}</text>'
+    pa=' '.join('%.1f,%.1f'%pt(j,AVG(k,mode)) for j,(k,*_) in enumerate(MK))
+    pl=' '.join('%.1f,%.1f'%pt(j,P(LAST,k,mode)) for j,(k,*_) in enumerate(MK))
+    s+=f'<polygon points="{pa}" class="ra"/><polygon points="{pl}" class="rl"/>'
+    lab=f'Radar chart, % of target, {MODELAB[mode]}. {MDL[LAST]} (latest complete day): '+', '.join(f'{l.rstrip("*")} {P(LAST,k,mode):.0f}%' for k,l,*_ in MK)+f'. {len(NC)}-day average: '+', '.join(f'{l.rstrip("*")} {AVG(k,mode):.0f}%' for k,l,*_ in MK)+'.'
+    return f'<div class="lg"><span class="k1"><i></i>{MDL[LAST]} (latest complete day)</span><span class="k2"><i></i>{len(NC)}-day average</span></div>'+svg(W,H,lab,s)
+
+# 6 bullet bars
+def c6(mode):
+    h='<div class="bl">'
+    for k,l,u,t,c in MK:
+        a=AVG(k,mode); lo=min(P(i,k,mode) for i in NC); hi=max(P(i,k,mode) for i in NC); mx=smax(mode)
+        w=lambda p:min(100,p/mx*100)
+        good=(a<=100) if k=='sodium' else (a>=100)
+        h+=(f'<div class="bi {c}" role="img" aria-label="{l.rstrip("*")}: {len(NC)}-day average {a:.0f}% of target, range {lo:.0f} to {hi:.0f}%"><div class="bn"><b>{l}</b><span>{a:.0f}% <small>({lo:.0f}–{hi:.0f}%)</small></span></div>'
+            f'<div class="trk"><i class="fl" style="width:{w(a):.1f}%"></i><i class="rg" style="left:{w(lo):.1f}%;width:{max(.8,w(hi)-w(lo)):.1f}%"></i><i class="tm" style="left:{w(100):.1f}%"></i></div></div>')
+    return h+f'</div><p class="est">Bar = {len(NC)}-day average, thin band = lowest to highest day, vertical tick = 100% target. Scale 0–{smax(mode)}%.</p>'
+
+# 7 stacked food vs supplement (average)
+def c7(_):
+    W,H,L,R=560,40*len(MK)+46,92,64; mx=smax('c')
+    xx=lambda p:L+(W-L-R)*min(p,mx)/mx
+    s=HATCH
+    for v in range(0,mx+1,50): s+=f'<line x1="{xx(v):.1f}" x2="{xx(v):.1f}" y1="8" y2="{H-30}" class="gl"/><text x="{xx(v):.1f}" y="{H-14}" class="tx" text-anchor="middle">{v}%</text>'
+    for r,(k,l,u,t,c) in enumerate(MK):
+        fa=AVG(k,'f'); ca=AVG(k,'c'); y=14+r*40
+        s+=f'<g class="{c}"><text x="{L-8}" y="{y+17}" class="tx" text-anchor="end">{l}</text><rect x="{L}" y="{y}" width="{xx(fa)-L:.1f}" height="24" fill="var(--c)" class="br"><title>{l.rstrip("*")} food: {fa:.0f}%</title></rect>'
+        if ca-fa>0.05: s+=f'<rect x="{xx(fa):.1f}" y="{y}" width="{xx(ca)-xx(fa):.1f}" height="24" fill="url(#hz)" stroke="var(--c)" class="br"><title>{l.rstrip("*")} supplements: {ca-fa:.0f}%</title></rect>'
+        s+=f'<text x="{xx(ca)+5:.1f}" y="{y+17}" class="tx v">{fa:.0f}%'+(f' + {ca-fa:.0f}%' if ca-fa>=.5 else '')+'</text></g>'
+    s+=f'<line x1="{xx(100):.1f}" x2="{xx(100):.1f}" y1="6" y2="{H-30}" class="tl"/>'
+    lab=f'Stacked horizontal bars, {len(NC)}-day average % of target, food then supplement share. '+'; '.join(f'{l.rstrip("*")}: food {AVG(k,"f"):.0f}%, supplements {AVG(k,"c")-AVG(k,"f"):.0f}%' for k,l,*_ in MK)+'.'
+    return '<div class="lg"><span class="solid"><i></i>Food (solid)</span><span class="hat"><i></i>Supplements (hatched)</span></div>'+svg(W,H,lab,s)
+
+# 8 dot plot
+def c8(mode):
+    W,H,L,R=560,46*len(MK)+40,88,30; mx=smax(mode)
+    xx=lambda p:L+(W-L-R)*min(p,mx)/mx
+    s=''
+    for v in range(0,mx+1,50): s+=f'<line x1="{xx(v):.1f}" x2="{xx(v):.1f}" y1="6" y2="{H-30}" class="gl"/><text x="{xx(v):.1f}" y="{H-12}" class="tx" text-anchor="middle">{v}%</text>'
+    s+=f'<line x1="{xx(100):.1f}" x2="{xx(100):.1f}" y1="6" y2="{H-30}" class="tl"/>'
+    for r,(k,l,u,t,c) in enumerate(MK):
+        y=26+r*46; vals=[P(i,k,mode) for i in range(n_)]
+        s+=f'<g class="{c}"><text x="{L-8}" y="{y+4}" class="tx" text-anchor="end">{l}</text><line x1="{L}" x2="{xx(max(vals)):.1f}" y1="{y}" y2="{y}" class="stem"/>'
+        for i,p in enumerate(vals): s+=f'<circle cx="{xx(p):.1f}" cy="{y}" r="5.5" class="{"dot hol" if MIP[i] else "dot"}" opacity=".85"><title>{l.rstrip("*")} {MDL[i]}: {p:.0f}%</title></circle>'
+        s+=f'<path d="M{xx(AVG(k,mode)):.1f},{y-12} l-4,-6 h8 z" class="av"><title>{len(NC)}-day avg {AVG(k,mode):.0f}%</title></path></g>'
+    return svg(W,H,'Dot plot, one dot per day per nutrient (hollow = in progress, triangle = average). '+alt(mode),s)+'<p class="est">Filled dot = complete day, hollow = in progress, triangle = 7-day average.</p>'
+
+# 9 diverging
+def c9(mode):
+    W,H,L,R,T,B=560,300,44,10,14,34
+    ext=max(abs(P(i,k,mode)-100) for i in range(n_) for k,*_ in MK); mx=max(50,math.ceil((ext+5)/25)*25)
+    mid=(T+H-B)/2; sc=(H-B-T)/2/mx
+    gw=(W-L-R)/len(MK); bw=(gw-12)/n_
+    s=HATCH
+    for v in range(-mx,mx+1,25 if mx<=100 else 50):
+        y=mid-v*sc; s+=f'<line x1="{L}" x2="{W-R}" y1="{y:.1f}" y2="{y:.1f}" class="{"tl" if v==0 else "gl"}"/><text x="{L-6}" y="{y+4:.1f}" class="tx" text-anchor="end">{"+" if v>0 else ""}{v}%</text>'
+    s+=f'<text x="{W-R}" y="{mid-5:.1f}" class="tx tg" text-anchor="end">0 = on target</text>'
+    for gi,(k,l,u,t,c) in enumerate(MK):
+        s+=f'<g class="{c}">'
+        for i in range(n_):
+            d_=P(i,k,mode)-100; h_=abs(d_)*sc; x=L+gi*gw+6+i*bw
+            bad=(d_>0) if k=='sodium' else (d_<0)
+            cl='bad' if bad else 'good'
+            fill='url(#hz)' if MIP[i] else 'currentColor'
+            y=mid-h_ if d_>=0 else mid
+            s+=f'<rect x="{x:.1f}" y="{y:.1f}" width="{bw-1:.1f}" height="{max(h_,.5):.1f}" fill="{fill}" class="dv {cl}"><title>{l.rstrip("*")} {MDL[i]}: {"+" if d_>=0 else ""}{d_:.0f}% vs target</title></rect>'
+        s+=f'<text x="{L+gi*gw+gw/2:.1f}" y="{H-14}" class="tx" text-anchor="middle">{l}</text></g>'
+    lab='Diverging bars, distance from 100% of target, one bar per day (oldest left). '+'; '.join(f'{l.rstrip("*")}: '+', '.join(f'{MDL[i]} {P(i,k,mode)-100:+.0f}%' for i in range(n_)) for k,l,*_ in MK)+'.'
+    return '<div class="lg"><span class="gd"><i></i>On/better than target</span><span class="bd2"><i></i>Short of target (sodium: over limit)</span></div>'+svg(W,H,lab,s)
+
+# 10 log-scale raw
+def c10(mode):
+    W,H,L,R,T,B=560,300,52,28,14,34; lo,hi=1,4
+    xs=[L+(W-L-R)*i/(n_-1) for i in range(n_)]
+    yy=lambda v:H-B-(H-B-T)*(math.log10(max(v,1))-lo)/(hi-lo)
+    s=''
+    for e in range(lo,hi+1):
+        for m in ([1] if e==hi else [1,2,5]):
+            v=m*10**e; y=yy(v); s+=f'<line x1="{L}" x2="{W-R}" y1="{y:.1f}" y2="{y:.1f}" class="gl{" ms" if m==1 else " mn"}"/>'+(f'<text x="{L-6}" y="{y+4:.1f}" class="tx" text-anchor="end">{v:,}</text>' if m==1 else '')
+    s+=xlabels(xs,H-12)
+    for k,l,u,t,c in MK+[('kcal','Calories','kcal',0,'t-cal')]:
+        pts=[(xs[i],yy(raw(i,k,mode))) for i in range(n_)]
+        s+=f'<g class="{c}"><polyline points="'+' '.join(f'{x:.1f},{y:.1f}' for x,y in pts[:LAST+1])+'" class="ln"/>'
+        if LAST<n_-1: s+=f'<polyline points="{pts[LAST][0]:.1f},{pts[LAST][1]:.1f} {pts[-1][0]:.1f},{pts[-1][1]:.1f}" class="ln da"/>'
+        for i,(x,y) in enumerate(pts): s+=f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3" class="{"dot hol" if MIP[i] else "dot"}"><title>{l.rstrip("*")} {MDL[i]}: {raw(i,k,mode):,.0f} {u}</title></circle>'
+        s+='</g>'
+    lab=f'Log-scale line chart of raw amounts, {MODELAB[mode]} (g, mg or kcal, units differ). '+'; '.join(f'{l.rstrip("*")}: '+', '.join(f'{MDL[i]} {raw(i,k,mode):,.0f}' for i in range(n_)) for k,l,*_ in MK+[('kcal','Calories','',0,'')])+'.'
+    return legend().replace('</div>','<span class="t-cal"><i></i>Calories</span></div>')+svg(W,H,lab,s)+'<p class="est">Log axis: each gridline step is a multiple of 10 (10, 100, 1,000, 10,000). Mixed units (g, mg, kcal).</p>'
+
+VAR=[
+ (1,'Multi-line with 100% target line','Pro: shows trends and all nutrients together. Con: lines tangle when values are close.',c1,True),
+ (2,'Heatmap grid (nutrients × days)','Pro: exact numbers plus color, easiest to spot gaps. Con: no trend shape, only color and digits.',c2,True),
+ (3,'Grouped bars per nutrient','Pro: compare days within a nutrient at a glance. Con: 48 thin bars is busy on a phone.',c3,True),
+ (4,'Small multiples (one chart per nutrient)','Pro: clearest per-nutrient trend, no overlap. Con: takes the most space, harder to compare across nutrients.',c4,True),
+ (5,'Radar chart: latest complete day vs average','Pro: one-glance shape of the balance. Con: only two snapshots, area is easy to misread.',c5,True),
+ (6,'Bullet bars: 7-day average vs target','Pro: simplest answer to "am I meeting targets". Con: hides day-to-day swings except the thin range band.',c6,True),
+ (7,'Stacked bars: food vs supplement share','Pro: shows how much of each target comes from supplements. Con: averages only (always food vs supplement, no toggle).',c7,False),
+ (8,'Dot plot (lollipop) of daily %','Pro: every day visible on one shared axis per nutrient, low clutter. Con: no ordering by day unless you hover or count dots.',c8,True),
+ (9,'Diverging bars: over/under target','Pro: gaps and surpluses pop out around a single center line. Con: loses absolute level, and good/bad flips for sodium.',c9,True),
+ (10,'Log-scale raw values (contrast)','Pro: real units on one axis. Con: log scale hides size differences and can’t show target attainment, so it’s a poor fit.',c10,True),
+]
+MCSS="""
+.mk{width:100%;height:auto;display:block;max-width:760px;margin:0 auto}
+.sc{overflow-x:auto}
+.mk .tx{fill:var(--muted);font-size:12px;font-family:inherit}.mk .tx.s{font-size:11px}.mk .tx.ip{font-style:italic}.mk .tx.tg{fill:var(--brand2);font-weight:700}.mk .tx.v{font-weight:700;fill:var(--ink)}
+.mk .gl{stroke:var(--line);stroke-width:1}.mk .gl.mn{stroke-dasharray:2 4;opacity:.7}.mk .tl{stroke:var(--brand2);stroke-width:1.6;stroke-dasharray:5 4}
+.mk .ln{fill:none;stroke:var(--c);stroke-width:2.4;stroke-linejoin:round}.mk .ln.da{stroke-dasharray:5 5;opacity:.8}.mk .ln.lo{stroke-width:2.4;opacity:.95}
+.mk .dot{fill:var(--c);stroke:var(--card);stroke-width:1}.mk .dot.hol{fill:var(--card);stroke:var(--c);stroke-width:2}
+.mk .stem{stroke:var(--c);stroke-width:2;opacity:.35}.mk .av{fill:var(--ink)}
+.mk g{color:var(--c)}.mk .br{stroke-width:1.2}
+.mk .dv.good{color:#2e8b6a}.mk .dv.bad{color:#d98a1e}.mk .dv.good{fill:#2e8b6a}.mk .dv.bad{fill:#e0a23a}
+@media(prefers-color-scheme:dark){.mk .dv.good{color:#4cc79a;fill:#4cc79a}.mk .dv.bad{color:#f5b85c;fill:#f5b85c}}
+.mk .ring{fill:none;stroke:var(--line)}.mk .ring100{fill:none;stroke:var(--brand2);stroke-width:1.6;stroke-dasharray:5 4}
+.mk .ra{fill:rgba(245,184,92,.28);stroke:var(--accent);stroke-width:2;stroke-dasharray:5 3}.mk .rl{fill:rgba(76,199,154,.30);stroke:var(--brand);stroke-width:2.4}
+.lg{display:flex;flex-wrap:wrap;gap:.3rem .9rem;margin:.2rem 0 .5rem;font-size:.82rem;color:var(--muted)}
+.lg span{display:inline-flex;align-items:center;gap:.35rem}.lg i{display:inline-block;width:14px;height:4px;border-radius:2px;background:var(--c,var(--brand))}
+.lg .k1 i{background:var(--brand)}.lg .k2 i{background:var(--accent)}.lg .solid i{height:12px;background:var(--brand2)}.lg .hat i{height:12px;border:1.5px solid var(--brand2);background:repeating-linear-gradient(45deg,var(--brand2) 0 2px,transparent 2px 5px)}
+.lg .gd i{height:12px;background:#2e8b6a}.lg .bd2 i{height:12px;background:#e0a23a}
+.sr{position:absolute;left:-9999px}
+.hm{font-size:.85rem}.hm th,.hm td{text-align:center;padding:.45rem .35rem;white-space:nowrap}.hm tbody th{text-align:left;color:var(--c);position:static}.hm thead th{position:static}
+.hm td.av{font-weight:800;border-left:2px solid var(--line)}
+.hm .ipc{background-image:repeating-linear-gradient(45deg,rgba(128,128,128,.28) 0 3px,transparent 3px 8px);font-style:italic}
+.hm small{font-weight:400;color:var(--muted);font-size:.65rem}
+.sm{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.7rem}
+.sm figure{margin:0;border:1px solid var(--line);border-radius:12px;padding:.4rem .5rem;border-top:4px solid var(--c)}
+.sm figcaption{font-size:.85rem;color:var(--c)}.sm figcaption small{color:var(--muted)}
+.sm .sc{overflow:visible}.sm .mk{max-width:none}
+.bl{display:grid;gap:.7rem}.bn{display:flex;justify-content:space-between;font-size:.88rem;color:var(--c)}.bn small{color:var(--muted)}
+.trk{position:relative;height:18px;border-radius:9px;background:var(--line);overflow:hidden}
+.trk i{position:absolute;top:0;bottom:0}.trk .fl{left:0;background:var(--c);opacity:.85}.trk .rg{top:7px;bottom:7px;background:var(--ink);opacity:.7;border-radius:2px}.trk .tm{width:3px;margin-left:-1px;background:var(--brand2);box-shadow:0 0 0 1px var(--card)}
+.tg2{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin:.4rem 0 1rem}
+.tg2 label{cursor:pointer;padding:.45rem 1rem;border-radius:999px;border:2px solid var(--brand);color:var(--brand);font-weight:700;font-size:.9rem}
+.rd{position:absolute;opacity:0;pointer-events:none}
+#mc:checked ~ .tg2 label[for=mc],#mf:checked ~ .tg2 label[for=mf]{background:var(--brand);color:#fff}
+#mf:checked ~ .charts .m-c,#mc:checked ~ .charts .m-f{display:none}
+#mf:focus-visible ~ .tg2 label[for=mf],#mc:focus-visible ~ .tg2 label[for=mc]{outline:3px solid var(--accent);outline-offset:2px}
+.var h2{font-size:1.15rem;margin:.1rem 0 .1rem;border:0;color:var(--brand2)}.var .pc{color:var(--muted);font-size:.9rem;margin:0 0 .6rem}
+.mockbadge{display:inline-block;background:#fff3df;color:#9a5c00;border-radius:999px;padding:.1rem .7rem;font-size:.75rem;font-weight:700}
+@media(prefers-color-scheme:dark){.mockbadge{background:#3a2d12;color:var(--accent)}}
+@media(min-width:561px){.swipe{display:none}}
+@media(max-width:560px){.mk{min-width:430px}.sm .mk{min-width:0}.var{padding:.9rem .8rem}}
+"""
+mb=f'<p><span class="mockbadge">mock</span> Experimental chart gallery, not part of the main site. <a href="food.html">&larr; Back to Food Log</a></p>'
+mb+=f'<div class="note"><b>How to read:</b> every nutrient is shown as % of its daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). <b>*Sodium is vs its 2,300 mg upper limit, so lower is better.</b> Calories have no target and are omitted (except in chart 10). Uses the real logged data for {MDL[NC[0]]} to {MDL[NC[-1]]} ({len(NC)} complete days); <b>{MDL[-1]} is still in progress</b>, drawn dashed, hollow or hatched, and left out of averages and the radar. Food values exclude items with no data, so some totals are minimums. Estimates only.</div>'
+tg='<input class="rd" type="radio" name="m" id="mf" aria-label="Food only"><input class="rd" type="radio" name="m" id="mc" checked aria-label="Food plus supplements"><div class="tg2" role="group" aria-label="Data shown"><b>Show:</b><label for="mf">Food only</label><label for="mc">Food + supplements</label></div>'
+ch='<div class="charts">'
+for n,t,pc,fn,tgl in VAR:
+    body_=toggled(fn) if tgl else fn('c')
+    ch+=f'<section class="day var" id="v{n}"><h2>{n}) {t}</h2><p class="pc">{pc}'+('' if tgl else ' <i>(not affected by the toggle)</i>')+f'</p><p class="est swipe">Swipe sideways if the chart is wider than the screen.</p>{body_}</section>'
+ch+='</div>'
+dt_='<section class="day"><details><summary>Data table (all numbers behind the charts, % of target, food + supplements)</summary><div class="tw"><table class="est"><tr><th>Nutrient</th>'+''.join(f'<th>{MDL[i]}{" (in progress)" if MIP[i] else ""}</th>' for i in range(n_))+'</tr>'
+for k,l,u,t,c in MK: dt_+=f'<tr><td>{l}</td>'+''.join(f'<td>{P(i,k,"c"):.0f}%</td>' for i in range(n_))+'</tr>'
+dt_+='</table></div></details></section>'
+mp=page('Mock: week-at-a-glance charts','Ten ways to show the whole week on one view.','',mb+tg+ch+dt_)
+mp=mp.replace('</style>',MCSS+'</style>',1).replace('<nav><a href="index.html">💊 Supplements</a><a href="food.html">🥗 Food Log</a></nav>','<nav><a href="food.html">&larr; Food Log</a></nav>')
+open('mock.html','w').write(mp)
