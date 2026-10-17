@@ -529,6 +529,135 @@ ov_sec=('<section class="day var" id="v0"><h2>New) Overlay bar <span class="mock
  '<details><summary>Data table (amounts and % of target, food + supplements)</summary><div class="tw"><table class="est"><tr><th>Day</th>'+''.join(f'<th>{sw(k)}{l}</th>' for k,l,u,t,c in MK)+'</tr>'
  +''.join(f'<tr><td>{MDL[i]}{" (in progress)" if MIP[i] else ""}</td>'+''.join(f'<td>{raw(i,k,"c"):,.0f} {u} ({P(i,k,"c"):.0f}%)</td>' for k,l,u,t,c in MK)+'</tr>' for i in range(n_))
  +'</table></div></details></section>')
+
+# ===== calcium eaten vs absorbed mockups =====
+NIHCA='https://ods.od.nih.gov/factsheets/Calcium-HealthProfessional/'
+NAS='https://www.nationalacademies.org/read/13050/chapter/4'
+ABS_DEF=25
+ABSR={'milk_2':(27,'NIH ODS: ~27% from milk'),'hot_cocoa':(27,'assumed: milk-based, NIH milk figure'),
+ 'spinach':(5,'NIH ODS: ~5% from spinach (high oxalate)'),
+ 'cabbage':(27,'NIH ODS: low-oxalate greens (broccoli, kale, cabbage) similar to milk'),
+ 'broccoli':(27,'NIH ODS: low-oxalate greens (broccoli, kale, cabbage) similar to milk')}
+def absr(fk):
+    if fk in ABSR:
+        p,s=ABSR[fk]; return p,s,('assumed' if s.startswith('assumed') else 'sourced')
+    return ABS_DEF,f'assumed default ~{ABS_DEF}% (adult average, National Academies 2011)','assumed'
+AD=[]
+for i,dd in enumerate(MD):
+    agg={}; nd=[]
+    for en in dd['entries']:
+        fd=foods[en['food']]; v=fd['per100g']['calcium']
+        if v is None: nd.append(en['label']); continue
+        a=agg.setdefault(en['food'],{'name':fd['name'].replace(', raw','').replace(', cooked',''),'g':0,'mg':0.0})
+        a['g']+=en['grams']; a['mg']+=v*en['grams']/100
+    items=[]
+    for fk,a in agg.items():
+        p,s,t=absr(fk); items.append(dict(a,key=fk,pct=p,src=s,typ=t,ab=a['mg']*p/100))
+    items.sort(key=lambda x:-x['mg'])
+    e=sum(x['mg'] for x in items); ab=sum(x['ab'] for x in items)
+    AD.append(dict(i=i,e=e,a=ab,items=items,nd=nd,ip=MIP[i],l=MDL[i]))
+ABMAX=max(1100,math.ceil((max(x['e'] for x in AD)+40)/100)*100)
+ILL=ABS_DEF*10   # 25% x 1,000 mg = 250 mg
+CRM='#fff4d0';GRN='#00c040'
+def dl(x): return f'{x["l"]}{" (in progress)" if x["ip"] else ""}'
+def asw(kind): return f'<i class="asw {kind}"></i>'
+ALEG=('<div class="lg alg"><span>'+asw('e')+'Calcium eaten (food only)</span><span>'+asw('a')+'Estimated absorbed (typical adult)</span>'
+ '<span><i class="tgl"></i>1,000 mg RDA target</span><span><i class="ill"></i>~250 mg illustrative arithmetic (25% × 1,000), not an official figure</span><span>* = day in progress, dashed</span></div>')
+def aalt(): return 'Calcium eaten vs estimated absorbed, food only: '+'; '.join(f'{dl(x)} eaten {x["e"]:,.0f} mg, absorbed about {x["a"]:,.0f} mg ({x["a"]/x["e"]*100:.0f}%)' for x in AD)+'.'
+# (1) paired bars
+def a1():
+    W,H,L,R,T,B=560,310,46,16,18,36; mx=ABMAX
+    yy=lambda v:H-B-(H-B-T)*v/mx
+    s=''
+    for v in range(0,mx+1,200 if mx<=1400 else 500):
+        s+=f'<line x1="{L}" x2="{W-R}" y1="{yy(v):.1f}" y2="{yy(v):.1f}" class="gl"/><text x="{L-6}" y="{yy(v)+4:.1f}" class="tx" text-anchor="end">{v:,}</text>'
+    n=len(AD); sl=(W-L-R)/n; bw=sl*.34
+    for j,x in enumerate(AD):
+        cx=L+sl*(j+.5); da=' stroke-dasharray="4 3"' if x['ip'] else ''
+        for o,(val,fill,nm) in enumerate([(x['e'],CRM,'eaten'),(x['a'],GRN,'absorbed (est.)')]):
+            bx=cx-bw-1 if o==0 else cx+1; y=yy(val)
+            s+=f'<rect x="{bx:.1f}" y="{y:.1f}" width="{bw:.1f}" height="{H-B-y:.1f}" fill="{fill}" stroke="#111" stroke-width="1.5"{da}><title>{dl(x)}: {nm} {val:,.0f} mg</title></rect>'
+            s+=f'<text x="{bx+bw/2:.1f}" y="{y-4:.1f}" class="tx s v" text-anchor="middle">{val:,.0f}</text>'
+        s+=f'<text x="{cx:.1f}" y="{H-18}" class="tx{" ip" if x["ip"] else ""}" text-anchor="middle">{x["l"]}{"*" if x["ip"] else ""}</text>'
+    s+=f'<line x1="{L}" x2="{W-R}" y1="{yy(1000):.1f}" y2="{yy(1000):.1f}" class="tl"/><text x="{W-R}" y="{yy(1000)-5:.1f}" class="tx tg" text-anchor="end">1,000 mg target</text>'
+    s+=f'<line x1="{L}" x2="{W-R}" y1="{yy(ILL):.1f}" y2="{yy(ILL):.1f}" class="il"/>'
+    return ALEG+svg(W,H,aalt(),s)
+# (2) overlay style
+def a2():
+    mx=ABMAX; ticks=range(0,mx+1,200 if mx<=1400 else 500)
+    h='<div class="ovl"><div class="ova"><span class="ovd"></span><div class="ovt">'+''.join(f'<span style="left:{v/mx*100:.2f}%">{v:,}</span>' for v in ticks)+'</div></div>'
+    for x in AD:
+        h+=f'<div class="ovr{" ip" if x["ip"] else ""}"><div class="ovd">{x["l"]}{"<small>in progress</small>" if x["ip"] else ""}</div><div class="ovk">'
+        pc=x['a']/x['e']*100
+        tipe=f'Eaten {x["e"]:,.0f} mg · absorbed (est.) {x["a"]:,.0f} mg · {pc:.0f}% absorbed<br>ESTIMATE, typical adult; assumed defaults used for most foods'
+        for z,(val,nm,oc,ol) in enumerate([(x['e'],'Calcium eaten',CRM,'#111'),(x['a'],'Absorbed (estimate)',GRN,'#111')]):
+            ar=f'{nm}, {dl(x)}: {val:,.0f} mg. Eaten {x["e"]:,.0f} mg, estimated absorbed {x["a"]:,.0f} mg, {pc:.0f}% absorbed. Estimate for a typical adult.'
+            h+=f'<div class="ly" tabindex="0" role="img" aria-label="{E(ar)}" style="width:{max(val/mx*100,.7):.2f}%;--oc:{oc};--ol:{ol};z-index:{z+1}"><span class="tp" aria-hidden="true"><b>{nm}</b> · {dl(x)}<br>{tipe}</span></div>'
+        h+=f'<i class="m100" style="left:{1000/mx*100:.2f}%"></i><i class="m250" style="left:{ILL/mx*100:.2f}%"></i></div></div>'
+    h+='</div>'
+    return ALEG+h+'<p class="est">Solid green layer sits inside the cream eaten layer. Dashed magenta = 1,000 mg target; thin dark dashed = illustrative ~250 mg. Hover, tap or Tab onto a layer for numbers.</p>'
+# (3) food breakdown
+def a3day(x):
+    if not x['items']: return '<p class="est">No calcium data.</p>'
+    m=max(i['mg'] for i in x['items']); h='<div class="fb">'
+    for it in x['items']:
+        tag=f'<span class="tag2 {it["typ"]}">{"sourced" if it["typ"]=="sourced" else "assumed default"}</span>'
+        h+=(f'<div class="fr" role="group" aria-label="{E(it["name"])}: eaten {it["mg"]:,.0f} mg, estimated absorbed {it["ab"]:,.1f} mg at {it["pct"]}%"><div class="fn"><b>{E(it["name"])}</b> <small>{it["g"]:g} g · {it["pct"]}%</small> {tag}</div>'
+         f'<div class="fbars"><div class="mb"><i class="e" style="width:{max(it["mg"]/m*100,1):.1f}%"></i></div><div class="mb"><i class="a" style="width:{max(it["ab"]/m*100,.8):.1f}%"></i></div></div>'
+         f'<div class="fv"><span>{it["mg"]:,.0f} <small>eaten</small></span><span class="g">{it["ab"]:,.1f} <small>absorbed</small></span></div></div>')
+    h+='</div>'
+    if x['nd']: h+='<p class="est">No calcium data (excluded, not zero): '+E('; '.join(x['nd']))+'</p>'
+    return h+f'<p class="est"><b>Total:</b> {x["e"]:,.0f} mg eaten, about {x["a"]:,.0f} mg absorbed ({x["a"]/x["e"]*100:.0f}%). Sorted by calcium eaten, highest first.</p>'
+def a3():
+    h='<div class="lg"><span>'+asw('e')+'Eaten (top bar)</span><span>'+asw('a')+'Absorbed, est. (bottom bar)</span></div>'
+    for x in sorted(AD,key=lambda z:(z['ip'],-z['i'])):
+        op=' open' if x['i'] in (LAST,0) else ''
+        lab=('latest complete day' if x['i']==LAST else 'in progress' if x['ip'] else '')
+        h+=f'<details class="bd3"{op}><summary>{x["l"]} · {x["e"]:,.0f} mg eaten, ~{x["a"]:,.0f} mg absorbed{" · "+lab if lab else ""}</summary>{a3day(x)}</details>'
+    return h
+# (4) stacked
+def a4():
+    W,H,L,R,T,B=560,320,46,16,18,36; mx=ABMAX
+    yy=lambda v:H-B-(H-B-T)*v/mx
+    s=''
+    for v in range(0,mx+1,200 if mx<=1400 else 500):
+        s+=f'<line x1="{L}" x2="{W-R}" y1="{yy(v):.1f}" y2="{yy(v):.1f}" class="gl"/><text x="{L-6}" y="{yy(v)+4:.1f}" class="tx" text-anchor="end">{v:,}</text>'
+    n=len(AD); sl=(W-L-R)/n; bw=sl*.56
+    for j,x in enumerate(AD):
+        cx=L+sl*(j+.5); da=' stroke-dasharray="4 3"' if x['ip'] else ''; bx=cx-bw/2
+        na=x['e']-x['a']
+        s+=f'<rect x="{bx:.1f}" y="{yy(x["a"]):.1f}" width="{bw:.1f}" height="{H-B-yy(x["a"]):.1f}" fill="{GRN}" stroke="#111" stroke-width="1.5"{da}><title>{dl(x)}: absorbed (est.) {x["a"]:,.0f} mg</title></rect>'
+        s+=f'<rect x="{bx:.1f}" y="{yy(x["e"]):.1f}" width="{bw:.1f}" height="{yy(x["a"])-yy(x["e"]):.1f}" fill="{CRM}" stroke="#111" stroke-width="1.5"{da}><title>{dl(x)}: not absorbed (est.) {na:,.0f} mg</title></rect>'
+        if H-B-yy(x['a'])>16: s+=f'<text x="{cx:.1f}" y="{(yy(x["a"])+H-B)/2+4:.1f}" class="tx s v" text-anchor="middle" style="fill:#111">{x["a"]:,.0f}</text>'
+        s+=f'<text x="{cx:.1f}" y="{(yy(x["e"])+yy(x["a"]))/2+4:.1f}" class="tx s v" text-anchor="middle" style="fill:#111">{na:,.0f}</text>'
+        s+=f'<text x="{cx:.1f}" y="{yy(x["e"])-5:.1f}" class="tx s v" text-anchor="middle">{x["e"]:,.0f}</text>'
+        s+=f'<text x="{cx:.1f}" y="{H-18}" class="tx{" ip" if x["ip"] else ""}" text-anchor="middle">{x["l"]}{"*" if x["ip"] else ""}</text>'
+    s+=f'<line x1="{L}" x2="{W-R}" y1="{yy(1000):.1f}" y2="{yy(1000):.1f}" class="tl"/><text x="{W-R}" y="{yy(1000)-5:.1f}" class="tx tg" text-anchor="end">1,000 mg target</text>'
+    return '<div class="lg alg"><span>'+asw('a')+'Absorbed (est.)</span><span>'+asw('e')+'Not absorbed (est.), top of bar = calcium eaten</span><span><i class="tgl"></i>1,000 mg target</span></div>'+svg(W,H,aalt(),s)
+ACSS="""
+.lg .asw,.asw{display:inline-block;width:16px;height:12px;border-radius:3px;border:2px solid #111;box-sizing:border-box}.lg .asw.e,.asw.e{background:#fff4d0}.lg .asw.a,.asw.a{background:#00c040}
+.lg .tgl{height:4px;width:18px;background:repeating-linear-gradient(to right,#ff00d4 0 5px,transparent 5px 8px)}.lg .ill{height:0;width:18px;border-top:2px dashed var(--ink);background:none;border-radius:0}
+.mk .il{stroke:var(--ink);stroke-width:1.3;stroke-dasharray:2 3}
+.m250{position:absolute;top:-2px;bottom:-2px;width:0;border-left:2px dashed var(--ink);z-index:29;pointer-events:none}
+.bd3{margin:.4rem 0;border:1px solid var(--line);border-radius:10px;padding:0 .7rem}.bd3>summary{padding:.6rem 0;min-height:44px;font-size:.9rem}.bd3[open]{padding-bottom:.4rem}
+.fr{display:grid;grid-template-columns:minmax(8rem,1.2fr) 2fr minmax(7rem,.8fr);gap:.5rem;align-items:center;padding:.35rem 0;border-top:1px solid var(--line)}
+.fn small{color:var(--muted)}.tag2{display:inline-block;border-radius:999px;padding:0 .45rem;font-size:.65rem;font-weight:700;background:var(--chip);color:var(--brand)}.tag2.assumed{background:#fff3df;color:#9a5c00}
+@media(prefers-color-scheme:dark){.tag2.assumed{background:#3a2d12;color:var(--accent)}}
+.mb{height:11px;margin:2px 0;background:var(--line);border-radius:3px;overflow:hidden}.mb i{display:block;height:100%;border:1.5px solid #111;box-sizing:border-box;border-radius:3px}.mb i.e{background:#fff4d0}.mb i.a{background:#00c040}
+.fv{display:flex;flex-direction:column;font-size:.82rem;text-align:right;line-height:1.3}.fv small{color:var(--muted);font-size:.7rem}.fv .g{color:#0a8a33;font-weight:700}
+@media(prefers-color-scheme:dark){.fv .g{color:#4de07a}}
+@media(max-width:560px){.fr{grid-template-columns:1fr 6.2rem}.fn{grid-column:1/-1}}
+"""
+abs_sec=('<section class="day var" id="va"><h2>Eaten vs absorbed (calcium mockups) <span class="mockbadge">new</span></h2>'
+ '<p class="pc">Four ways to show calcium eaten next to calcium absorbed, using the real logged data, food only (supplements have no calcium). All absorbed numbers are <b>ESTIMATES</b> for a typical adult, not personal values; these mockups ignore the food/supplement toggle.</p>'
+ f'<div class="note"><b>Assumptions (estimates):</b> absorbed = eaten × an assumed percentage per food. <b>Sourced</b> ({"NIH ODS calcium fact sheet"}, <a href="{NIHCA}">link</a>, accessed 2026-10-17): milk ~27%, spinach ~5%, and low-oxalate greens such as broccoli, kale and cabbage described as similar to milk (27% used). <b>Assumed default</b> ~{ABS_DEF}% (adult average per <a href="{NAS}">National Academies 2011 report</a>) for everything else: pumpkin seeds, lentils, walnuts, fish, eggs, bread, yogurt, kefir, skyr and so on (NIH gives ~30% for dairy and fortified foods, but I kept the default as marked). Hot chocolate is treated as milk (27%, assumed). Real absorption varies with dose, age and the rest of the meal. There is <b>no official “absorbed requirement”</b>; the dashed ~250 mg line (25% × 1,000 mg) is <b>illustrative arithmetic, not an official figure</b>.</div>'
+ '<h3>A) Paired bars per day</h3><p class="pc">Cream = eaten, green in front = estimated absorbed.</p>'+a1()+
+ '<h3>B) Overlay bar style</h3><p class="pc">Same look as the Overlay bar: cream layer = eaten, solid green layer inside = absorbed.</p>'+a2()+
+ '<h3>C) Food breakdown per day</h3><p class="pc">Each food’s eaten and estimated absorbed calcium, highest first. Latest complete day (and Oct 10, which has a big spinach portion) are open; tap another day to expand.</p>'+a3()+
+ '<h3>D) Stacked bar: absorbed vs not absorbed</h3><p class="pc">Total height = calcium eaten; green part = estimated absorbed.</p>'+a4()+
+ '<details><summary>Data table (calcium eaten and estimated absorbed per day)</summary><div class="tw"><table class="est"><tr><th>Day</th><th>Eaten (mg)</th><th>Absorbed, est. (mg)</th><th>% absorbed</th><th>% of 1,000 mg eaten</th></tr>'
+ +''.join(f'<tr><td>{dl(x)}</td><td>{x["e"]:,.0f}</td><td>{x["a"]:,.0f}</td><td>{x["a"]/x["e"]*100:.0f}%</td><td>{x["e"]/10:.0f}%</td></tr>' for x in AD)
+ +'</table></div></details></section>')
 VAR=[
  (1,'Multi-line with 100% target line','Pro: shows trends and all nutrients together. Con: lines tangle when values are close.',c1,True),
  (2,'Heatmap grid (nutrients × days)','Pro: exact numbers plus color, easiest to spot gaps. Con: no trend shape, only color and digits.',c2,True),
@@ -541,7 +670,7 @@ VAR=[
  (9,'Diverging bars: over/under target','Pro: gaps and surpluses pop out around a single center line. Con: loses absolute level, and good/bad flips for sodium.',c9,True),
  (10,'Log-scale raw values (contrast)','Pro: real units on one axis. Con: log scale hides size differences and can’t show target attainment, so it’s a poor fit.',c10,True),
 ]
-MCSS=OVCSS+"""
+MCSS=OVCSS+ACSS+"""
 .mk{width:100%;height:auto;display:block;max-width:760px;margin:0 auto}
 .sc{overflow-x:auto}
 .mk .tx{fill:var(--muted);font-size:12px;font-family:inherit}.mk .tx.s{font-size:11px}.mk .tx.ip{font-style:italic}.mk .tx.tg{fill:var(--brand2);font-weight:700}.mk .tx.v{font-weight:700;fill:var(--ink)}
@@ -585,7 +714,7 @@ MCSS=OVCSS+"""
 mb=f'<p><span class="mockbadge">mock</span> Experimental chart gallery, not part of the main site. <a href="food.html">&larr; Back to Food Log</a></p>'
 mb+=f'<div class="note"><b>How to read:</b> every nutrient is shown as % of its daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). <b>*Sodium is vs its 2,300 mg upper limit, so lower is better.</b> Calories have no target and are omitted (except in chart 10). Uses the real logged data for {MDL[NC[0]]} to {MDL[NC[-1]]} ({len(NC)} complete days); <b>{MDL[-1]} is still in progress</b>, drawn dashed, hollow or hatched, and left out of averages and the radar. Food values exclude items with no data, so some totals are minimums. Estimates only.</div>'
 tg='<input class="rd" type="radio" name="s" id="sp" checked aria-label="Percent of target scale"><input class="rd" type="radio" name="s" id="sr" aria-label="Raw amount scale"><input class="rd" type="radio" name="m" id="mf" aria-label="Food only"><input class="rd" type="radio" name="m" id="mc" checked aria-label="Food plus supplements"><div class="tg2" role="group" aria-label="Data shown"><b>Show:</b><label for="mf">Food only</label><label for="mc">Food + supplements</label></div>'
-ch='<div class="charts">'+ov_sec
+ch='<div class="charts">'+ov_sec+abs_sec
 for n,t,pc,fn,tgl in VAR:
     body_=toggled(fn) if tgl else fn('c')
     ch+=f'<section class="day var" id="v{n}"><h2>{n}) {t}</h2><p class="pc">{pc}'+('' if tgl else ' <i>(not affected by the toggle)</i>')+f'</p><p class="est swipe">Swipe sideways if the chart is wider than the screen.</p>{body_}</section>'
