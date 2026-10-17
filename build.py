@@ -452,6 +452,78 @@ def c10(mode):
     lab=f'Log-scale line chart of raw amounts, {MODELAB[mode]} (g, mg or kcal, units differ). '+'; '.join(f'{l.rstrip("*")}: '+', '.join(f'{MDL[i]} {raw(i,k,mode):,.0f}' for i in range(n_)) for k,l,*_ in MK+[('kcal','Calories','',0,'')])+'.'
     return legend().replace('</div>','<span class="t-cal"><i></i>Calories</span></div>')+svg(W,H,lab,s)+'<p class="est">Log axis: each gridline step is a multiple of 10 (10, 100, 1,000, 10,000). Mixed units (g, mg, kcal).</p>'
 
+
+# ===== 0 overlay bar =====
+OVC={'protein':'#0072B2','fiber':'#009E73','calcium':'#E69F00','potassium':'#D55E00','magnesium':'#CC79A7','sodium':'#56B4E9'}
+def ov_scale(mode,pct):
+    if pct: return smax(mode)
+    m=max(raw(i,k,mode) for i in range(n_) for k,*_ in MK)
+    return max(1000,math.ceil((m+50)/500)*500)
+def ov(mode,pct):
+    mx=ov_scale(mode,pct); cl='s-p' if pct else 's-r'
+    ticks=range(0,mx+1,50 if pct else 500)
+    if pct and mx>300: ticks=range(0,mx+1,100)
+    h=f'<div class="{cl}"><div class="ovl">'
+    h+='<div class="ova"><span class="ovd"></span><div class="ovt">'+''.join(f'<span style="left:{v/mx*100:.2f}%">{v}{"%" if pct else ""}</span>' for v in ticks)+'</div></div>'
+    for i in range(n_):
+        items=[]
+        for k,l,u,t,c in MK:
+            v=raw(i,k,mode); fv=raw(i,k,'f'); sv=raw(i,k,'c')-fv
+            val=P(i,k,mode) if pct else v
+            items.append((val,k,l,u,t,v,fv,sv))
+        items.sort(key=lambda x:-x[0])
+        ip=MIP[i]
+        h+=f'<div class="ovr{" ip" if ip else ""}"><div class="ovd">{MDL[i]}{"<small>in progress</small>" if ip else ""}</div><div class="ovk">'
+        for z,(val,k,l,u,t,v,fv,sv) in enumerate(items):
+            w=max(min(val,mx)/mx*100,.7)
+            ln=l.rstrip('*')
+            sp=f'food {fv:,.0f} {u}'+(f' + supplements {sv:,.0f} {u}' if sv>=.5 else ' + supplements 0')
+            if mode=='f': sp=f'food only view ({fv:,.0f} {u})'+(f'; supplements would add {raw(i,k,"c")-fv:,.0f} {u}' if raw(i,k,'c')-fv>=.5 else '')
+            pc=P(i,k,mode)
+            pcs=f'{pc:.0f}% of '+(f'{t:,} {u} limit' if k=='sodium' else f'{t:,} {u} target')
+            aria=f'{ln}, {MDL[i]}{" in progress" if ip else ""}: {v:,.0f} {u}, {pcs}; {sp}'
+            h+=(f'<div class="ly" tabindex="0" role="img" aria-label="{E(aria)}" style="width:{w:.2f}%;--oc:{OVC[k]};z-index:{z+1}"><span class="tp" aria-hidden="true"><b>{ln}</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>{v:,.0f} {u} · {pcs}<br>{sp}</span></div>')
+        if pct: h+=f'<i class="m100" style="left:{100/mx*100:.2f}%"></i>'
+        h+='</div></div>'
+    h+='</div></div>'
+    return h
+def ovleg():
+    return '<div class="lg ovg">'+''.join(f'<span><i style="background:{OVC[k]}"></i>{l}</span>' for k,l,u,t,c in MK)+'</div>'
+def ov_all(mode): return ovleg()+ov(mode,True)+ov(mode,False)
+OVCSS="""
+.ovl{margin:.4rem 0 1.2rem}
+.ovr,.ova{display:grid;grid-template-columns:4.6rem 1fr;gap:.5rem;align-items:center;margin:.3rem 0;position:relative}
+.ovr:hover,.ovr:focus-within{z-index:20}
+.ovd{font-size:.85rem;color:var(--muted);line-height:1.1}.ovd small{display:block;font-size:.65rem;font-style:italic}
+.ovk{position:relative;height:30px;border-radius:7px;background:var(--line);margin-right:.4rem}
+.ovr.ip .ovk{background:repeating-linear-gradient(45deg,var(--line) 0 4px,transparent 4px 9px),var(--card);outline:1px dashed var(--muted)}
+.ovr.ip .ly{border-style:dashed}
+.ly{position:absolute;left:0;top:0;bottom:0;background:var(--oc);border-radius:7px;opacity:.8;border:2px solid var(--oc);box-sizing:border-box;min-width:4px;cursor:pointer}
+.ly:hover,.ly:focus{opacity:.95;outline:3px solid var(--ink);outline-offset:1px;z-index:50!important}
+.ly:hover .tp,.ly:focus .tp{display:block}
+.tp{display:none;position:absolute;left:0;top:calc(100% + 6px);width:max-content;max-width:min(260px,80vw);background:var(--ink);color:var(--card);padding:.45rem .6rem;border-radius:8px;font-size:.78rem;line-height:1.35;box-shadow:0 3px 14px rgba(0,0,0,.35);pointer-events:none;z-index:99;font-weight:400}
+.m100{position:absolute;top:-4px;bottom:-4px;width:0;border-left:2px dashed var(--brand2);z-index:30;pointer-events:none;margin-left:-1px}
+.ovt{position:relative;height:1.1rem;margin-right:.4rem}.ovt span{position:absolute;transform:translateX(-50%);font-size:.7rem;color:var(--muted)}.ovt span:first-child{transform:none}
+.ova .ovd{visibility:hidden}
+.ovg i{height:12px;width:16px;opacity:.85;border-radius:3px}
+.tg3{margin-top:.2rem}
+#sp:checked ~ .charts label[for=sp],#sr:checked ~ .charts label[for=sr]{background:var(--brand);color:#fff}
+#sr:checked ~ .charts .s-p,#sp:checked ~ .charts .s-r{display:none}
+#sp:focus-visible ~ .charts label[for=sp],#sr:focus-visible ~ .charts label[for=sr]{outline:3px solid var(--accent);outline-offset:2px}
+.ovs{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin:.3rem 0}
+.ovs label{cursor:pointer;padding:.35rem .9rem;border-radius:999px;border:2px solid var(--brand);color:var(--brand);font-weight:700;font-size:.85rem}
+@media(max-width:560px){.ovr,.ova{grid-template-columns:3.6rem 1fr}.ovk{height:26px}}
+"""
+ov_sec=('<section class="day var" id="v0"><h2>New) Overlay bar <span class="mockbadge">new</span></h2>'
+ '<p class="pc">One bar per day; every nutrient is its own colored layer starting at the left, longest at the back so none is hidden. Hover, tap or Tab onto a layer for the numbers.</p>'
+ '<div class="ovs" role="group" aria-label="Scale"><b>Scale:</b><label for="sp">% of target (default)</label><label for="sr">Raw amount (mg-equivalent, small nutrients tiny)</label></div>'
+ '<p class="est s-p">Scale: % of each nutrient’s daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). Sodium* is against its 2,300 mg limit, so shorter is better. Dashed line = 100%. Bars past the right edge are clipped.</p>'
+ '<p class="est s-r">Scale: raw numbers on one shared axis, as logged (mg for calcium, potassium, magnesium and sodium; g for protein and fiber). Fiber and protein, in grams, look tiny next to potassium in mg, which is why % mode is the default. Tiny layers are given a minimum width so they stay visible.</p>'
+ +toggled(ov_all)+
+ '<p class="est">Hatched row = in progress. Layers overlap with transparency; where one is hidden behind another, hover its visible part or use Tab. Food + supplements view includes supplements; food only excludes them.</p>'
+ '<details><summary>Data table (amounts and % of target, food + supplements)</summary><div class="tw"><table class="est"><tr><th>Day</th>'+''.join(f'<th>{l}</th>' for k,l,u,t,c in MK)+'</tr>'
+ +''.join(f'<tr><td>{MDL[i]}{" (in progress)" if MIP[i] else ""}</td>'+''.join(f'<td>{raw(i,k,"c"):,.0f} {u} ({P(i,k,"c"):.0f}%)</td>' for k,l,u,t,c in MK)+'</tr>' for i in range(n_))
+ +'</table></div></details></section>')
 VAR=[
  (1,'Multi-line with 100% target line','Pro: shows trends and all nutrients together. Con: lines tangle when values are close.',c1,True),
  (2,'Heatmap grid (nutrients × days)','Pro: exact numbers plus color, easiest to spot gaps. Con: no trend shape, only color and digits.',c2,True),
@@ -464,7 +536,7 @@ VAR=[
  (9,'Diverging bars: over/under target','Pro: gaps and surpluses pop out around a single center line. Con: loses absolute level, and good/bad flips for sodium.',c9,True),
  (10,'Log-scale raw values (contrast)','Pro: real units on one axis. Con: log scale hides size differences and can’t show target attainment, so it’s a poor fit.',c10,True),
 ]
-MCSS="""
+MCSS=OVCSS+"""
 .mk{width:100%;height:auto;display:block;max-width:760px;margin:0 auto}
 .sc{overflow-x:auto}
 .mk .tx{fill:var(--muted);font-size:12px;font-family:inherit}.mk .tx.s{font-size:11px}.mk .tx.ip{font-style:italic}.mk .tx.tg{fill:var(--brand2);font-weight:700}.mk .tx.v{font-weight:700;fill:var(--ink)}
@@ -507,8 +579,8 @@ MCSS="""
 """
 mb=f'<p><span class="mockbadge">mock</span> Experimental chart gallery, not part of the main site. <a href="food.html">&larr; Back to Food Log</a></p>'
 mb+=f'<div class="note"><b>How to read:</b> every nutrient is shown as % of its daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). <b>*Sodium is vs its 2,300 mg upper limit, so lower is better.</b> Calories have no target and are omitted (except in chart 10). Uses the real logged data for {MDL[NC[0]]} to {MDL[NC[-1]]} ({len(NC)} complete days); <b>{MDL[-1]} is still in progress</b>, drawn dashed, hollow or hatched, and left out of averages and the radar. Food values exclude items with no data, so some totals are minimums. Estimates only.</div>'
-tg='<input class="rd" type="radio" name="m" id="mf" aria-label="Food only"><input class="rd" type="radio" name="m" id="mc" checked aria-label="Food plus supplements"><div class="tg2" role="group" aria-label="Data shown"><b>Show:</b><label for="mf">Food only</label><label for="mc">Food + supplements</label></div>'
-ch='<div class="charts">'
+tg='<input class="rd" type="radio" name="s" id="sp" checked aria-label="Percent of target scale"><input class="rd" type="radio" name="s" id="sr" aria-label="Raw amount scale"><input class="rd" type="radio" name="m" id="mf" aria-label="Food only"><input class="rd" type="radio" name="m" id="mc" checked aria-label="Food plus supplements"><div class="tg2" role="group" aria-label="Data shown"><b>Show:</b><label for="mf">Food only</label><label for="mc">Food + supplements</label></div>'
+ch='<div class="charts">'+ov_sec
 for n,t,pc,fn,tgl in VAR:
     body_=toggled(fn) if tgl else fn('c')
     ch+=f'<section class="day var" id="v{n}"><h2>{n}) {t}</h2><p class="pc">{pc}'+('' if tgl else ' <i>(not affected by the toggle)</i>')+f'</p><p class="est swipe">Swipe sideways if the chart is wider than the screen.</p>{body_}</section>'
