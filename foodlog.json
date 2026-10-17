@@ -140,6 +140,10 @@
    {
     "meal": "Lunch",
     "items": "Bowl of lentils (1 cup cooked assumed); cabbage ~100 g and spinach ~70 g (assumed); 1 single-serve \"extra creamy\" Icelandic skyr yogurt (~150 g plain whole-milk skyr assumed, brand unknown); kombucha 8 oz; 1 oz (28.4 g) pumpkin seeds; 2 oz (57 g) whitefish (cod values used, cooking method assumed). Status: eaten."
+   },
+   {
+    "meal": "Afternoon snack (time not given)",
+    "items": "Café con leche 8 oz (assumed ~4 oz 2% milk + ~4 oz brewed coffee; no sugar mentioned, none assumed). Status: eaten."
    }
   ]
  }
