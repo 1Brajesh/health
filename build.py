@@ -172,7 +172,7 @@ def salt_mg(date,mode=None):
     dd=next(x for x in nut['days'] if x['date']==date)
     return sum(foods[e['food']]['per100g']['sodium']*e['grams']/100 for e in dd['entries'] if e['food']=='salt_table')
 SALT_NOTE='Includes assumed table salt (salt to taste, amount unknown; default ~1/4 tsp, about 575 mg sodium, per home-cooked dish, range half to double). Not measured; packaged and restaurant food is not given extra salt.'
-def breakdown(day,k,l,u,sp,cl_):
+def contrib(day,k,sp):
     items=[];nd=[]
     for en in day['entries']:
         fd=foods[en['food']];v=fd['per100g'][k]
@@ -183,7 +183,10 @@ def breakdown(day,k,l,u,sp,cl_):
     assert abs(ssum-sp[k])<1e-6,(k,ssum,sp[k])
     rows=[(a,'f',en,fd) for a,en,fd in items]+[(a,'s',n_,None) for a,n_ in sup_]
     rows.sort(key=lambda r:-r[0])
-    def d1(x): return f'{x:,.1f}' if x<10 else f'{x:,.0f}'
+    return rows,nd,fsum,ssum,ctot
+def d1(x): return f'{x:,.1f}' if x<10 else f'{x:,.0f}'
+def breakdown(day,k,l,u,sp,cl_):
+    rows,nd,fsum,ssum,ctot=contrib(day,k,sp)
     h=''
     for a,t,en,fd in rows:
         pc=a/ctot*100 if ctot else 0
@@ -544,6 +547,26 @@ def kcal_info(i,mode):
         g='Lunch' if m.startswith('lunch') else 'Dinner' if m.startswith('dinner') else 'Snacks &amp; other'
         grp[g]=grp.get(g,0)+v*en['grams']/100
     return dict(f=fk,s=sk,tot=fk+sk,shown=(fk if mode=='f' else fk+sk),grp=grp)
+TOPN=6
+def tipbd(i,k,mode,u):
+    """ranked contributors for the tooltip; same contrib() rows as the day-card breakdown"""
+    day=MD[i]; rows,nd,fsum,ssum,ctot=contrib(day,k,sup[day['date']])
+    assert abs(fsum-res[day['date']][0][k][0])<1e-6 and abs(ctot-res[day['date']][0][k][0]-sup[day['date']][k])<1e-6,(i,k)
+    fr=[r for r in rows if r[1]=='f']; sr=[r for r in rows if r[1]=='s'] if mode=='c' else []
+    den=ctot if mode=='c' else fsum
+    top=fr[:TOPN]; rest=fr[TOPN:]
+    def rw(a,name,tag='',cls=''):
+        pc=a/den*100 if den else 0
+        return f'<span class="br{cls}"><span class="bn"><span class="nm">{name}</span>{tag}</span><b>{d1(a)}</b><em>{pc:.0f}%</em></span>'
+    h=''
+    for a,t,en,fd in top:
+        salt=en['food']=='salt_table'
+        h+=rw(a,E(en['label']),'<span class="tg">assumed</span>' if salt else '',' salt' if salt else '')
+    if rest: h+=rw(sum(r[0] for r in rest),f'other ({len(rest)} more)','','  oth')
+    for a,t,n_,_ in sr: h+=rw(a,E(n_),'<span class="tg">supplement</span>',' sup')
+    if nd: h+=f'<span class="bnd">{len(nd)} food{"s" if len(nd)>1 else ""} with no data (not counted)</span>'
+    ttl=f'{"Food" if mode=="f" else "Food + supplements"} {d1(den)} {u}'
+    return f'<span class="bh">Top sources · % of {ttl}</span>'+h
 def kmark(i,mode):
     ki=kcal_info(i,mode); ip=MIP[i]; x=min(ki['shown'],KMAX)/KMAX*100
     meal=''.join(f'{g}: {fm0(ki["grp"][g])} kcal<br>' for g in ('Lunch','Dinner','Snacks &amp; other') if g in ki['grp'])
@@ -553,8 +576,10 @@ def kmark(i,mode):
     body+=f'<br>food ~{fm0(ki["f"])}{PL(i,"kcal")} + supplements {fm0(ki["s"])} kcal<br>{meal}<i>estimate</i>; logged meals only{"; day in progress, so the total is partial" if ip else ""}. No calorie target is used.'
     if ki['shown']>KMAX: body+=' Marker clipped at the 2,500 kcal edge.'
     aria=f'Calories, {MDL[i]}{" in progress" if ip else ""}: about {fm0(ki["shown"])}{PL(i,"kcal")} kcal, estimate; food {fm0(ki["f"])}, supplements {fm0(ki["s"])}'
-    return (f'<div class="kc{" kh" if ip else ""}" data-x="{x:.2f}" tabindex="0" role="img" aria-label="{E(aria)}" style="left:{x:.2f}%">'
-            f'<span class="tp kt" aria-hidden="true">{body}</span></div>')
+    kr=' kr' if x>50 else ''
+    head=f'<b>Calories</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>{"Eaten (food only): " if mode=="f" else "Eaten (food + supplements): "}<b>~{fm0(ki["shown"])}{PL(i,"kcal")} kcal</b>'
+    return (f'<div class="kc{" kh" if ip else ""}{kr}" data-x="{x:.2f}" tabindex="0" role="img" aria-label="{E(aria)}" style="left:{x:.2f}%">'
+            f'<span class="tp kt tb" aria-hidden="true">{head}{tipbd(i,"kcal",mode,"kcal")}<small class="hint">Meal split and notes in the panel below the chart.</small></span><span class="dt" aria-hidden="true">{body}</span></div>')
 def kaxis():
     return ('<div class="ovb"><span class="ovd kl axt"><i class="sw ksw"></i>kcal</span><div class="ovt kt2">'
       +''.join(f'<span style="left:{v/KMAX*100:.2f}%">{v:,}</span>' for v in range(0,KMAX+1,500))+'</div></div>')
@@ -626,7 +651,7 @@ def ov(mode,pct,ab=False):
             allr='<span class="al"><b>All nutrients, '+MDL[i]+'</b>'+''.join(r.replace('class="ar"','class="ar me"') if kk==k else r for kk,r in allrows.items())+'</span>'
             near=any((abs(val-o[0])<1.5 if pct else abs(w-max(min(o[0],mx)/mx*100,.7))<1.5) for o in items if o[1]!=k and o[0]<=val)
             edge='<span class="ed" aria-hidden="true"></span>' if near else ''
-            h+=(f'<div class="ly{" cs" if (k=="calcium" or k in SPLIT or k=="protein") else ""}{" nr" if near else ""}" data-k="{k}" data-d="{MDATES[i]}" data-f="{nsx['f']}" data-s="{nsx['s']}" data-c="{nsx['c']}" data-p="{plk}" tabindex="0" role="img" aria-label="{E(aria+"; all nutrients: "+"; ".join(f"{o[2].rstrip(chr(42))} {fm0(o[5])} {o[3]}" for o in items))}" style="width:{w:.2f}%;--oc:{OVC[k]};--ol:{OVO[k]};z-index:{zi}"><span class="tp" aria-hidden="true">{sw(k)}<b>{ln}</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>Eaten ({lab}): <b class="tv">~{fm0(v)}{plk} {u}</b> · {pcs}<br>{sp}{pnote}{("<br>"+sp2) if sp2 else ""}{allr}</span>{seg}{edge}</div>')
+            h+=(f'<div class="ly{" cs" if (k=="calcium" or k in SPLIT or k=="protein") else ""}{" nr" if near else ""}" data-k="{k}" data-d="{MDATES[i]}" data-f="{nsx['f']}" data-s="{nsx['s']}" data-c="{nsx['c']}" data-p="{plk}" tabindex="0" role="img" aria-label="{E(aria+"; all nutrients: "+"; ".join(f"{o[2].rstrip(chr(42))} {fm0(o[5])} {o[3]}" for o in items))}" style="width:{w:.2f}%;--oc:{OVC[k]};--ol:{OVO[k]};z-index:{zi}"><span class="tp tb" aria-hidden="true">{sw(k)}<b>{ln}</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>Eaten ({lab}): <b class="tv">~{fm0(v)}{plk} {u}</b> · {pcs}{tipbd(i,k,mode,u)}<small class="hint">Absorption, sources and all nutrients in the panel below the chart.</small></span><span class="dt" aria-hidden="true">{sw(k)}<b>{ln}</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>Eaten ({lab}): <b class="tv">~{fm0(v)}{plk} {u}</b> · {pcs}<br>{sp}{pnote}{("<br>"+sp2) if sp2 else ""}{allr}</span>{seg}{edge}</div>')
         h+=kmark(i,mode)
         if pct:
             h+=f'<i class="m100" style="left:{100/mx*100:.2f}%"></i>'
@@ -640,6 +665,18 @@ def ovleg():
     return '<div class="lg ovg">'+''.join(f'<span class="lc" tabindex="0" role="button" aria-pressed="false" data-k="{k}" title="Hover, tap or focus to bring {l.rstrip("*")} to the front">{sw(k)}{l}</span>' for k,l,u,t,c in MK)+'<span class="lk on" tabindex="0" role="button" aria-pressed="true" title="Show or hide the calorie line (bottom axis, kcal)"><i class="sw ksw"></i>Calories</span></div>'
 def ov_all(mode): return ovleg()+ov(mode,True)+ov(mode,False)
 OVCSS="""
+.tp.tb{max-width:min(300px,calc(100vw - 5.5rem));width:max-content;min-width:12rem}
+.tb .bh{display:block;margin-top:.4rem;padding-top:.3rem;border-top:1px solid var(--muted);font-size:.7rem;opacity:.85}
+.tb .br{display:grid;grid-template-columns:minmax(0,1fr) auto 2.6rem;gap:.4rem;align-items:baseline;font-size:.76rem;line-height:1.35}
+.tb .br .bn{display:flex;align-items:baseline;min-width:0}.tb .br .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}.tb .br .tg{flex:none}.tb .br b{text-align:right;font-weight:700}.tb .br em{text-align:right;font-style:normal;opacity:.8}
+.tb .br .tg{margin-left:.3rem;font-size:.62rem;border:1px solid currentColor;border-radius:999px;padding:0 .3rem;opacity:.9}
+.tb .br.oth{opacity:.8;font-style:italic}.tb .bnd{display:block;font-size:.68rem;opacity:.8;margin-top:.15rem}
+.tb .hint{display:block;margin-top:.35rem;opacity:.7;font-size:.66rem}
+.dt{display:none}
+.kc.kr .tp{left:auto;right:-4px;transform:none}
+.dpn{margin:.6rem 0 1rem;padding:.7rem .9rem;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font-size:.82rem;line-height:1.45;min-height:5.5rem}
+.dpn.empty{color:var(--muted)}.dpn .al{border-top:1px solid var(--line)}.dpn small{opacity:.85}.dpn .ar{display:block;opacity:.85}.dpn .ar.me{opacity:1;font-weight:700}.dpn .al b{display:block}
+.dpn .pin{display:block;margin-top:.5rem;font-size:.7rem;color:var(--muted)}
 .ovl{margin:.4rem 0 1.2rem}
 .ovr,.ova{display:grid;grid-template-columns:4.6rem 1fr;gap:.5rem;align-items:center;margin:.3rem 0;position:relative}
 .ovr:hover,.ovr:focus-within{z-index:60}.ovl{position:relative}
@@ -736,6 +773,8 @@ OVCSS="""
 @media(max-width:560px){#v0 .ovr,#v0 .ova{grid-template-columns:3.6rem 1fr}#v0 .ovk{height:18px}#v0 .lc,#v0 .lk{padding:.2rem .5rem}}
 
 """
+PANEL='<div class="dpn empty" id="dpn" aria-live="polite">Hover, tap or Tab onto a bar layer or a calorie tick: the tooltip lists the top sources for that day, and the full detail (eaten vs absorbed, sources, all nutrients, meal split) appears here. Tapping pins the last selection.</div>'
+PANEL_JS='''<script>(function(){var s=document.getElementById("v0"),p=document.getElementById("dpn"),pin=null,D=p.innerHTML;function show(h,pn){p.classList.remove("empty");p.innerHTML=h+(pn?'<span class="pin">Pinned. Tap another layer to change, or the same one to clear.</span>':"")}function reset(){if(pin){show(pin.querySelector(".dt").innerHTML,true)}else{p.classList.add("empty");p.innerHTML=D}}function dt(e){return e.querySelector(".dt").innerHTML}function cl(e){var t=e.querySelector(".tp");if(!t)return;requestAnimationFrame(function(){t.style.translate="0px";var r=t.getBoundingClientRect(),w=document.documentElement.clientWidth,m=0;if(r.width&&r.left<6)m=6-r.left;else if(r.right>w-6)m=w-6-r.right;t.style.translate=m+"px"})}s.querySelectorAll(".ly,.kc").forEach(function(e){e.addEventListener("mouseenter",function(){show(dt(e));cl(e)});e.addEventListener("mouseleave",reset);e.addEventListener("focus",function(){show(dt(e));cl(e)});e.addEventListener("blur",reset);e.addEventListener("click",function(){cl(e);pin=(pin===e)?null:e;if(pin)show(dt(e),true);else show(dt(e))})});s.querySelectorAll(".rd").forEach(function(r){r.addEventListener("change",function(){pin=null;reset()})})})()</script>'''
 ov_sec=('<section class="day var" id="v0"><h2>New) Overlay bar <span class="mockbadge">new</span></h2>'
  '<p class="pc">One bar per day; every nutrient is its own colored layer starting at the left, longest at the back so none is hidden. Hover, tap or Tab onto a layer for the numbers. Hover or tap the <b>calcium, potassium, magnesium or protein</b> layer (or its legend name) to see it split into estimated absorbed (solid) and not absorbed (hatched). Sodium and fiber show a one-line note instead of a split.</p>'
  '<p class="est"><b>Calories:</b> the black tick on each bar shows each day’s estimated calories on the <b>bottom kcal axis</b> (0 to 2,500). The top axis is still % of target. There is no calorie target; the line only shows the amount. A hollow marker means the day is in progress. Use the “Calories” chip in the legend to hide it.</p>'
@@ -743,8 +782,9 @@ ov_sec=('<section class="day var" id="v0"><h2>New) Overlay bar <span class="mock
  '<p class="est s-p">Scale: % of each nutrient’s daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). Sodium* is against its 2,300 mg limit, so shorter is better. Dashed magenta line = 100%; faint lines = 50% and 150%. Bars past the right edge are clipped.</p>'
  '<p class="est s-r">Scale: raw numbers on one shared axis, as logged (mg for calcium, potassium, magnesium and sodium; g for protein and fiber). Fiber and protein, in grams, look tiny next to potassium in mg, which is why % mode is the default. Tiny layers are given a minimum width so they stay visible.</p>'
  '<p class="est">Can’t see a layer? Hover, tap or Tab onto its name in the legend to bring it to the front and highlight it. When two layers end within about 1.5% of each other, the hidden one gets a small tab under the end of its bar that you can also hover or tap.</p>'
- +toggled(ov_all)+
- '<script>(function(){var s=document.getElementById("v0");function draw(l){var svg=l.querySelector(".kln");if(!svg)return;var lr=l.getBoundingClientRect();if(!lr.width){return}svg.setAttribute("viewBox","0 0 "+lr.width+" "+lr.height);var p=[];l.querySelectorAll(".kc").forEach(function(m){var r=m.getBoundingClientRect();p.push((r.left+r.width/2-lr.left).toFixed(1)+","+(r.top+r.height/2-lr.top).toFixed(1))});var q=p.join(" ");var mk="";l.querySelectorAll(".kc").forEach(function(m){var r=m.getBoundingClientRect(),h=m.classList.contains("kh");mk+=\'<rect x="\'+(r.left+1.5-lr.left).toFixed(1)+\'" y="\'+(r.top-lr.top).toFixed(1)+\'" width="\'+(r.width-3)+\'" height="\'+r.height+\'" rx="2" fill="\'+(h?"#fff":"#111")+\'" stroke="\'+(h?"#111":"#fff")+\'" stroke-width="1.5"/>\'});svg.innerHTML=mk}var ls=s.querySelectorAll(".ovl");function all(){ls.forEach(draw)}if(window.ResizeObserver){var ro=new ResizeObserver(all);ls.forEach(function(l){ro.observe(l)})}window.addEventListener("resize",all);window.addEventListener("load",all);all();s.querySelectorAll(".lk").forEach(function(e){function t(){var off=s.classList.toggle("nok");s.querySelectorAll(".lk").forEach(function(x){x.classList.toggle("on",!off);x.setAttribute("aria-pressed",!off)})}e.addEventListener("click",t);e.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();t()}})})})()</script><script>(function(){var s=document.getElementById("v0"),c=null;function set(k){if(k)s.setAttribute("data-hl",k);else s.removeAttribute("data-hl");s.querySelectorAll(".lc").forEach(function(e){var on=e.dataset.k===k;e.classList.toggle("on",on);e.setAttribute("aria-pressed",on)})}s.querySelectorAll(".lc").forEach(function(e){var k=e.dataset.k;e.addEventListener("mouseenter",function(){if(!c)set(k)});e.addEventListener("mouseleave",function(){if(!c)set(null)});e.addEventListener("focus",function(){if(!c)set(k)});e.addEventListener("blur",function(){if(!c)set(null)});e.addEventListener("click",function(){c=(c===k)?null:k;set(c)});e.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();e.click()}})})})()</script>'
+ +toggled(ov_all)+PANEL+
+ '<script>(function(){var s=document.getElementById("v0");function draw(l){var svg=l.querySelector(".kln");if(!svg)return;var lr=l.getBoundingClientRect();if(!lr.width){return}svg.setAttribute("viewBox","0 0 "+lr.width+" "+lr.height);var p=[];l.querySelectorAll(".kc").forEach(function(m){var r=m.getBoundingClientRect();p.push((r.left+r.width/2-lr.left).toFixed(1)+","+(r.top+r.height/2-lr.top).toFixed(1))});var q=p.join(" ");var mk="";l.querySelectorAll(".kc").forEach(function(m){var r=m.getBoundingClientRect(),h=m.classList.contains("kh");mk+=\'<rect x="\'+(r.left+1.5-lr.left).toFixed(1)+\'" y="\'+(r.top-lr.top).toFixed(1)+\'" width="\'+(r.width-3)+\'" height="\'+r.height+\'" rx="2" fill="\'+(h?"#fff":"#111")+\'" stroke="\'+(h?"#111":"#fff")+\'" stroke-width="1.5"/>\'});svg.innerHTML=mk}var ls=s.querySelectorAll(".ovl");function all(){ls.forEach(draw)}if(window.ResizeObserver){var ro=new ResizeObserver(all);ls.forEach(function(l){ro.observe(l)})}window.addEventListener("resize",all);window.addEventListener("load",all);all();s.querySelectorAll(".lk").forEach(function(e){function t(){var off=s.classList.toggle("nok");s.querySelectorAll(".lk").forEach(function(x){x.classList.toggle("on",!off);x.setAttribute("aria-pressed",!off)})}e.addEventListener("click",t);e.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();t()}})})})()</script><script>(function(){var s=document.getElementById("v0"),c=null;function set(k){if(k)s.setAttribute("data-hl",k);else s.removeAttribute("data-hl");s.querySelectorAll(".lc").forEach(function(e){var on=e.dataset.k===k;e.classList.toggle("on",on);e.setAttribute("aria-pressed",on)})}s.querySelectorAll(".lc").forEach(function(e){var k=e.dataset.k;e.addEventListener("mouseenter",function(){if(!c)set(k)});e.addEventListener("mouseleave",function(){if(!c)set(null)});e.addEventListener("focus",function(){if(!c)set(k)});e.addEventListener("blur",function(){if(!c)set(null)});e.addEventListener("click",function(){c=(c===k)?null:k;set(c)});e.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();e.click()}})})})()</script>'+
+ PANEL_JS+
  '<p class="est">Hatched row = in progress. Layers are solid with a thin outline (white or dark) so each stays visible; where one is hidden behind another, hover its visible part or use Tab. Food + supplements view includes supplements; food only excludes them.</p>'
  '<details><summary>Data table (amounts and % of target, food + supplements)</summary><div class="tw"><table class="est"><tr><th>Day</th>'+''.join(f'<th>{sw(k)}{l}</th>' for k,l,u,t,c in MK)+'<th>Calcium absorbed, estimate</th></tr>'
  +''.join(f'<tr><td>{MDL[i]}{" (in progress)" if MIP[i] else ""}</td>'+''.join(f'<td>~{NS(i,k)["c"]}{NS(i,k)["p"]} {u} ({P(i,k,"c"):.0f}%)</td>' for k,l,u,t,c in MK)+f'<td>{fm0(cabs(i,"c")[0])}{NS(i,"calcium")["p"]} mg ({cabs(i,"c")[0]/10:.0f}% of target; {cabs(i,"c")[2]:.0f}% of eaten)</td></tr>' for i in range(n_))
@@ -968,7 +1008,7 @@ chart_html=(
  '<p class="est s-p">% of each nutrient&rsquo;s daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). Sodium* is against its 2,300 mg limit, so shorter is better. Dashed magenta line = 100%. Bars past the right edge are clipped.</p>'
  '<p class="est s-r">Raw numbers on one shared axis (mg or g as logged). Small nutrients in grams look tiny, which is why % mode is the default.</p>'
  '<p class="est">Can&rsquo;t see a layer? Hover, tap or Tab onto its name in the legend to bring it to the front. A small tab under a bar&rsquo;s end marks a layer hidden behind another. &ldquo;+&rdquo; after a number means some foods had no data, so the true amount is higher. Hollow marker or hatched row = day in progress. Calories have no target; tap &ldquo;Calories&rdquo; in the legend to hide the tick. Estimates for a typical adult; targets are for a 54-year-old man. Tuna sandwich, curry and many portions are assumed; see each day.</p>'
- +toggled(ov_all)+'</div>'
+ +toggled(ov_all)+'</div>'+PANEL
  +ov_sec[ov_sec.index('<script>'):ov_sec.index('<p class="est">Hatched row')]
  +ov_sec[ov_sec.index('<details><summary>Data table'):]
 )
@@ -997,3 +1037,34 @@ for d_ in days:
         cnt+=1
 assert cnt==len(days)*len(MK)
 print('chart/day-card numbers match for',cnt,'day-nutrient pairs')
+
+# ---- check: tooltip contributor rows == day-card breakdown rows (names, amounts, and % in combined view) ----
+import html as _h
+cardrows={}
+for sec in fp.split('<section class="day"><h2>')[1:]:
+    m=re.match(r'([A-Z][a-z]+day, [A-Z][a-z]+ \d+, \d{4})',sec)
+    if not m: continue
+    dd=datetime.datetime.strptime(m.group(1),'%A, %B %d, %Y').date().isoformat()
+    for cl,body in re.findall(r'<details class="bd (t-\w+)">(.*?)</details>',sec,flags=re.S):
+        rl=[]
+        for lab,amt,pc in re.findall(r'<tr[^>]*><td>(.*?)</td><td class="n">[^<]*</td><td class="n">([^<]*)</td><td class="n">(\d+)%</td></tr>',body):
+            lab=re.split(r'<span class="tag">| <small>',lab)[0]
+            rl.append((_h.unescape(lab),amt,pc))
+        cardrows[(dd,cmap[cl])]=rl
+tcount=0
+for mode,seg in (('f',chart_html.split('<div class="m-c">')[0]),('c',chart_html.split('<div class="m-c">')[1])):
+    for m in re.finditer(r'<div class="ly[^"]*" data-k="(\w+)" data-d="([\d-]+)".*?<span class="tp tb"(.*?)</span><span class="dt"',seg,flags=re.S):
+        k,dd,tp=m.groups()
+        trs=re.findall(r'<span class="br([^"]*)"><span class="bn"><span class="nm">(.*?)</span>(?:<span class="tg">[^<]*</span>)?</span><b>([^<]*)</b><em>(\d+)%</em></span>',tp)
+        cr=cardrows[(dd,k)]; used=0; last=1e18
+        for cls,lab,amt,pc in trs:
+            if 'oth' in cls: continue
+            lab=_h.unescape(lab); hit=[r for r in cr if r[0]==lab and r[1]==amt and (mode=='f' or r[2]==pc)]
+            assert hit,(mode,dd,k,lab,amt,pc)
+            v=float(amt.replace(',',''))
+            if 'sup' not in cls: assert v<=last+1e-9,(dd,k,'not ranked'); last=v
+            used+=1
+        assert 0<used<=TOPN+3,(dd,k,used)
+        tcount+=1
+assert tcount>=2*len(days)*len(MK)
+print('tooltip breakdown rows match day-card breakdowns for',tcount,'layer tooltips')
