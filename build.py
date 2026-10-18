@@ -528,14 +528,22 @@ def ov(mode,pct,ab=False):
                     aria+='; absorption not adjusted'
                     sp2=sp+'<br>absorption not adjusted'
             else: sp2=sp
-            h+=(f'<div class="ly" tabindex="0" role="img" aria-label="{E(aria)}" style="width:{w:.2f}%;--oc:{OVC[k]};--ol:{OVO[k]};z-index:{zi}"><span class="tp" aria-hidden="true">{sw(k)}<b>{ln}</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>{v:,.0f} {u}{" absorbed (est.)" if ab and k=="calcium" else ""} · {pcs}<br>{sp2}</span></div>')
+            seg=''
+            if k=='calcium':
+                _,ce,cp=cabs(i,mode); ca=ce*cp/100
+                srcd=sum(it['mg'] for it in AD[i]['items'] if it['typ']=='sourced'); tot=sum(it['mg'] for it in AD[i]['items'])
+                ss=(srcd/tot*100 if tot>0 else 0)
+                seg=f'<span class="sn" aria-hidden="true" style="left:{cp:.2f}%"></span>'
+                sp2=(f'<b>Calcium split (estimate)</b><br>Eaten {ce:,.0f} mg<br>Absorbed ~{ca:,.0f} mg ({cp:.0f}%) <span class="kd">solid</span><br>Not absorbed ~{ce-ca:,.0f} mg <span class="kd h">hatched</span><br>{ss:.0f}% of eaten calcium uses sourced percentages (milk 27%, spinach 5%, cabbage/broccoli 27%); the rest uses an assumed default of {ABS_DEF}%.<br><small>Source: NIH ODS calcium fact sheet, updated June 22, 2026. Typical adult, not a personal value.</small>')
+                aria+=f'; estimated absorbed about {ca:,.0f} mg of {ce:,.0f} mg eaten ({cp:.0f}%), not absorbed about {ce-ca:,.0f} mg. Estimate, typical adult.'
+            h+=(f'<div class="ly{" cs" if k=="calcium" else ""}" tabindex="0" role="img" aria-label="{E(aria)}" style="width:{w:.2f}%;--oc:{OVC[k]};--ol:{OVO[k]};z-index:{zi}"><span class="tp" aria-hidden="true">{sw(k)}<b>{ln}</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>{v:,.0f} {u} · {pcs}<br>{sp2}</span>{seg}</div>')
         if pct: h+=f'<i class="m100" style="left:{100/mx*100:.2f}%"></i>'
         h+='</div></div>'
     h+='</div></div>'
     return h
 def ovleg():
     return '<div class="lg ovg">'+''.join(f'<span>{sw(k)}{l}</span>' for k,l,u,t,c in MK)+'</div>'
-def ov_all(mode): return ovleg()+'<div class="a-e">'+ov(mode,True)+ov(mode,False)+'</div><div class="a-a">'+ov(mode,True,True)+ov(mode,False,True)+'</div>'
+def ov_all(mode): return ovleg()+ov(mode,True)+ov(mode,False)
 OVCSS="""
 .ovl{margin:.4rem 0 1.2rem}
 .ovr,.ova{display:grid;grid-template-columns:4.6rem 1fr;gap:.5rem;align-items:center;margin:.3rem 0;position:relative}
@@ -556,11 +564,11 @@ OVCSS="""
 .ovt span,.ovd{color:var(--ink)}
 .tp{border:1px solid var(--muted)}
 .tg3{margin-top:.2rem}
-.a-a{display:none}#aa:checked ~ .charts .a-a{display:block}#aa:checked ~ .charts .a-e{display:none}
-#ae:checked ~ .charts label[for=ae],#aa:checked ~ .charts label[for=aa]{background:var(--brand);color:#fff}
-#ae:focus-visible ~ .charts label[for=ae],#aa:focus-visible ~ .charts label[for=aa]{outline:3px solid var(--accent);outline-offset:2px}
-.gh{position:absolute;left:0;top:0;bottom:0;box-sizing:border-box;border:2px dashed var(--ink);opacity:.45;border-radius:7px;pointer-events:none;background:none}
-p.a-a{display:none}#aa:checked ~ .charts p.a-a{display:block}
+.cs .sn{position:absolute;top:0;bottom:0;right:0;border-radius:0 5px 5px 0;border-left:2px solid #111;background:repeating-linear-gradient(135deg,#bdbdbd 0 3px,#fff 3px 7px);opacity:0;transform:scaleX(0);transform-origin:left;transition:transform .4s ease,opacity .3s ease;pointer-events:none}
+.cs:hover .sn,.cs:focus .sn{opacity:1;transform:scaleX(1)}
+.kd{display:inline-block;width:.8em;height:.8em;background:#fff;border:1px solid #111;vertical-align:baseline;margin-left:.2rem}.kd.h{background:repeating-linear-gradient(135deg,#bdbdbd 0 2px,#fff 2px 4px)}
+.tp small{opacity:.85}
+@media(prefers-reduced-motion:reduce){.cs .sn{transition:none}}
 #sp:checked ~ .charts label[for=sp],#sr:checked ~ .charts label[for=sr]{background:var(--brand);color:#fff}
 #sr:checked ~ .charts .s-p,#sp:checked ~ .charts .s-r{display:none}
 #sp:focus-visible ~ .charts label[for=sp],#sr:focus-visible ~ .charts label[for=sr]{outline:3px solid var(--accent);outline-offset:2px}
@@ -569,10 +577,8 @@ p.a-a{display:none}#aa:checked ~ .charts p.a-a{display:block}
 @media(max-width:560px){.ovr,.ova{grid-template-columns:3.6rem 1fr}.ovk{height:26px}}
 """
 ov_sec=('<section class="day var" id="v0"><h2>New) Overlay bar <span class="mockbadge">new</span></h2>'
- '<p class="pc">One bar per day; every nutrient is its own colored layer starting at the left, longest at the back so none is hidden. Hover, tap or Tab onto a layer for the numbers.</p>'
+ '<p class="pc">One bar per day; every nutrient is its own colored layer starting at the left, longest at the back so none is hidden. Hover, tap or Tab onto a layer for the numbers. Hover or tap the white <b>calcium</b> layer to see it split into estimated absorbed (solid) and not absorbed (hatched).</p>'
  '<div class="ovs" role="group" aria-label="Scale"><b>Scale:</b><label for="sp">% of target (default)</label><label for="sr">Raw amount (mg-equivalent, small nutrients tiny)</label></div>'
- '<div class="ovs" role="group" aria-label="Amount basis"><b>Amount:</b><label for="ae">Eaten (default)</label><label for="aa">Absorbed (estimate)</label></div>'
- '<p class="est a-a">Absorbed view: only calcium is adjusted, to estimated absorbed (typical adult; milk 27%, spinach 5%, cabbage/broccoli 27%, others an assumed 25%; <a href="'+NIHCA+'">NIH ODS</a>, <a href="'+NAS+'">National Academies 2011</a>, accessed 2026-10-17); the faint dashed outline = calcium eaten. All other nutrients: absorption not adjusted. Target lines are unchanged because targets are for total eaten.</p>'
  '<p class="est s-p">Scale: % of each nutrient’s daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). Sodium* is against its 2,300 mg limit, so shorter is better. Dashed magenta line = 100%. Bars past the right edge are clipped.</p>'
  '<p class="est s-r">Scale: raw numbers on one shared axis, as logged (mg for calcium, potassium, magnesium and sodium; g for protein and fiber). Fiber and protein, in grams, look tiny next to potassium in mg, which is why % mode is the default. Tiny layers are given a minimum width so they stay visible.</p>'
  +toggled(ov_all)+
@@ -738,7 +744,7 @@ MCSS=OVCSS+ACSS+"""
 """
 mb=f'<p><span class="mockbadge">mock</span> Experimental chart gallery, not part of the main site. <a href="food.html">&larr; Back to Food Log</a></p>'
 mb+=f'<div class="note"><b>How to read:</b> every nutrient is shown as % of its daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). <b>*Sodium is vs its 2,300 mg upper limit, so lower is better.</b> Calories have no target and are omitted (except in chart 10). Uses the real logged data for {MDL[NC[0]]} to {MDL[NC[-1]]} ({len(NC)} complete days); <b>{MDL[-1]} is still in progress</b>, drawn dashed, hollow or hatched, and left out of averages and the radar. Food values exclude items with no data, so some totals are minimums. Estimates only.</div>'
-tg='<input class="rd" type="radio" name="ab" id="ae" checked aria-label="Show calcium as eaten"><input class="rd" type="radio" name="ab" id="aa" aria-label="Show calcium as estimated absorbed"><input class="rd" type="radio" name="s" id="sp" checked aria-label="Percent of target scale"><input class="rd" type="radio" name="s" id="sr" aria-label="Raw amount scale"><input class="rd" type="radio" name="m" id="mf" aria-label="Food only"><input class="rd" type="radio" name="m" id="mc" checked aria-label="Food plus supplements"><div class="tg2" role="group" aria-label="Data shown"><b>Show:</b><label for="mf">Food only</label><label for="mc">Food + supplements</label></div>'
+tg='<input class="rd" type="radio" name="s" id="sp" checked aria-label="Percent of target scale"><input class="rd" type="radio" name="s" id="sr" aria-label="Raw amount scale"><input class="rd" type="radio" name="m" id="mf" aria-label="Food only"><input class="rd" type="radio" name="m" id="mc" checked aria-label="Food plus supplements"><div class="tg2" role="group" aria-label="Data shown"><b>Show:</b><label for="mf">Food only</label><label for="mc">Food + supplements</label></div>'
 ch='<div class="charts">'+ov_sec+abs_sec
 for n,t,pc,fn,tgl in VAR:
     body_=toggled(fn) if tgl else fn('c')
