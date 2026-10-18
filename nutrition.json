@@ -723,6 +723,82 @@
     "magnesium": null,
     "sodium": 50.0
    }
+  },
+  "corn_tortilla_fried": {
+   "name": "Corn tortilla (ready-to-fry)",
+   "approx": true,
+   "note": "Assumed: small corn tortilla ~27 g per flauta. Restaurant tortilla may differ.",
+   "fdc_id": 175036,
+   "usda_description": "Tortillas, ready-to-bake or -fry, corn",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/175036/nutrients",
+   "accessed": "2026-10-17",
+   "per100g": {
+    "kcal": 218.0,
+    "protein": 5.7,
+    "fiber": 6.3,
+    "calcium": 81.0,
+    "potassium": 186.0,
+    "magnesium": 72.0,
+    "sodium": 45.0
+   }
+  },
+  "duck_cooked": {
+   "name": "Duck meat, cooked",
+   "approx": true,
+   "note": "Assumed filling is duck (user's belief), meat only, no skin; added salt/seasoning not included.",
+   "fdc_id": 172411,
+   "usda_description": "Duck, domesticated, meat only, cooked, roasted",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/172411/nutrients",
+   "accessed": "2026-10-17",
+   "per100g": {
+    "kcal": 201.0,
+    "protein": 23.48,
+    "fiber": 0.0,
+    "calcium": 12.0,
+    "potassium": 252.0,
+    "magnesium": 20.0,
+    "sodium": 65.0
+   }
+  },
+  "melting_cheese": {
+   "name": "Melting cheese (mozzarella-type)",
+   "approx": true,
+   "note": "Cheese type unknown; Oaxaca/mozzarella-type melting cheese assumed as the closest USDA entry. Could be e.g. cotija or queso fresco (different values).",
+   "fdc_id": 170846,
+   "usda_description": "Cheese, mozzarella, whole milk, low moisture",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/170846/nutrients",
+   "accessed": "2026-10-17",
+   "per100g": {
+    "kcal": 318.0,
+    "protein": 21.6,
+    "fiber": 0.0,
+    "calcium": 575.0,
+    "potassium": 75.0,
+    "magnesium": 21.0,
+    "sodium": 710.0
+   }
+  },
+  "veg_oil_fry": {
+   "name": "Vegetable oil (frying)",
+   "approx": true,
+   "note": "Assumed ~5 g absorbed oil per flauta; oil type unknown, soybean used as generic vegetable oil.",
+   "fdc_id": 172370,
+   "usda_description": "Oil, vegetable, soybean, refined",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/172370/nutrients",
+   "accessed": "2026-10-17",
+   "per100g": {
+    "kcal": 884.0,
+    "protein": 0.0,
+    "fiber": 0.0,
+    "calcium": 0.0,
+    "potassium": 0.0,
+    "magnesium": 0.0,
+    "sodium": 0.0
+   }
   }
  },
  "days": [
@@ -1687,8 +1763,7 @@
   {
    "date": "2026-10-17",
    "partial": true,
-   "in_progress": true,
-   "partial_note": "In progress: lunch only so far; dinner not yet eaten. Excluded from the Possible gaps averages until the day is complete.",
+   "partial_note": "Lunch, afternoon snacks, evening milk and dinner are logged (breakfast is not eaten). Many portions are assumed; the dinner flautas are a wide-range estimate (filling and cheese unknown, no toppings or sides mentioned).",
    "entries": [
     {
      "meal": "Lunch",
@@ -1779,6 +1854,42 @@
      "assumed": true,
      "lo": 0.9,
      "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "corn_tortilla_fried",
+     "grams": 55,
+     "label": "Flautas x2: corn tortilla ~27 g each (assumed; each flauta ~6 in x 1 in)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.6
+    },
+    {
+     "meal": "Dinner",
+     "food": "duck_cooked",
+     "grams": 55,
+     "label": "Flautas x2: cooked duck meat ~27 g each (assumed; user believes duck filling)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.6
+    },
+    {
+     "meal": "Dinner",
+     "food": "melting_cheese",
+     "grams": 20,
+     "label": "Flautas x2: melting cheese ~10 g each (assumed Oaxaca/mozzarella-type; cheese type unknown)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.6
+    },
+    {
+     "meal": "Dinner",
+     "food": "veg_oil_fry",
+     "grams": 10,
+     "label": "Flautas x2: ~5 g absorbed frying oil each (assumed; likely fried)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.6
     }
    ]
   }
