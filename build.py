@@ -518,6 +518,32 @@ def ov_scale(mode,pct):
 def cabs(i,mode):
     x=AD[i]; r=raw(i,'calcium',mode)
     return (r*x['a']/x['e'] if x['e']>0 else r), x['e'], (x['a']/x['e']*100 if x['e']>0 else 100)
+
+KMAX=2500
+def kcal_info(i,mode):
+    d=MD[i]; fk=res[d['date']][0]['kcal'][0]; sk=sup[d['date']].get('kcal',0)
+    grp={}
+    for en in d['entries']:
+        v=foods[en['food']]['per100g']['kcal']
+        if v is None: continue
+        m=en['meal'].lower()
+        g='Lunch' if m.startswith('lunch') else 'Dinner' if m.startswith('dinner') else 'Snacks &amp; other'
+        grp[g]=grp.get(g,0)+v*en['grams']/100
+    return dict(f=fk,s=sk,tot=fk+sk,shown=(fk if mode=='f' else fk+sk),grp=grp)
+def kmark(i,mode):
+    ki=kcal_info(i,mode); ip=MIP[i]; x=min(ki['shown'],KMAX)/KMAX*100
+    meal=''.join(f'{g}: {ki["grp"][g]:,.0f} kcal<br>' for g in ('Lunch','Dinner','Snacks &amp; other') if g in ki['grp'])
+    meal+=f'Supplements: {ki["s"]:,.0f} kcal<br>'
+    body=f'<b>Calories</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>{"Food only: " if mode=="f" else "Total: "}<b>{ki["shown"]:,.0f} kcal</b>'
+    if mode=='f': body+=f' (food + supplements {ki["tot"]:,.0f})'
+    body+=f'<br>Food {ki["f"]:,.0f} kcal · supplements {ki["s"]:,.0f} kcal<br>{meal}<i>estimate</i>; logged meals only{"; day in progress, so the total is partial" if ip else ""}. No calorie target is used.'
+    if ki['shown']>KMAX: body+=' Marker clipped at the 2,500 kcal edge.'
+    aria=f'Calories, {MDL[i]}{" in progress" if ip else ""}: about {ki["shown"]:,.0f} kcal, estimate; food {ki["f"]:,.0f}, supplements {ki["s"]:,.0f}'
+    return (f'<div class="kc{" kh" if ip else ""}" data-x="{x:.2f}" tabindex="0" role="img" aria-label="{E(aria)}" style="left:{x:.2f}%">'
+            f'<span class="tp kt" aria-hidden="true">{body}</span></div>')
+def kaxis():
+    return ('<div class="ovb"><span class="ovd kl"><i class="sw ksw"></i>kcal</span><div class="ovt kt2">'
+      +''.join(f'<span style="left:{v/KMAX*100:.2f}%">{v:,}</span>' for v in range(0,KMAX+1,500))+'</div></div>')
 def ov(mode,pct,ab=False):
     mx=ov_scale(mode,pct); cl='s-p' if pct else 's-r'
     ticks=range(0,mx+1,50 if pct else 500)
@@ -583,17 +609,19 @@ def ov(mode,pct,ab=False):
             near=any((abs(val-o[0])<1.5 if pct else abs(w-max(min(o[0],mx)/mx*100,.7))<1.5) for o in items if o[1]!=k and o[0]<=val)
             edge='<span class="ed" aria-hidden="true"></span>' if near else ''
             h+=(f'<div class="ly{" cs" if (k=="calcium" or k in SPLIT or k=="protein") else ""}{" nr" if near else ""}" data-k="{k}" tabindex="0" role="img" aria-label="{E(aria+"; all nutrients: "+"; ".join(f"{o[2].rstrip(chr(42))} {o[5]:,.0f} {o[3]}" for o in items))}" style="width:{w:.2f}%;--oc:{OVC[k]};--ol:{OVO[k]};z-index:{zi}"><span class="tp" aria-hidden="true">{sw(k)}<b>{ln}</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>{v:,.0f} {u} · {pcs}<br>{sp2}{allr}</span>{seg}{edge}</div>')
+        h+=kmark(i,mode)
         if pct: h+=f'<i class="m100" style="left:{100/mx*100:.2f}%"></i>'
         h+='</div></div>'
+    h+=kaxis()+'<svg class="kln" aria-hidden="true"></svg>'
     h+='</div></div>'
     return h
 def ovleg():
-    return '<div class="lg ovg">'+''.join(f'<span class="lc" tabindex="0" role="button" aria-pressed="false" data-k="{k}" title="Hover, tap or focus to bring {l.rstrip("*")} to the front">{sw(k)}{l}</span>' for k,l,u,t,c in MK)+'</div>'
+    return '<div class="lg ovg">'+''.join(f'<span class="lc" tabindex="0" role="button" aria-pressed="false" data-k="{k}" title="Hover, tap or focus to bring {l.rstrip("*")} to the front">{sw(k)}{l}</span>' for k,l,u,t,c in MK)+'<span class="lk on" tabindex="0" role="button" aria-pressed="true" title="Show or hide the calorie line (bottom axis, kcal)"><i class="sw ksw"></i>Calories (line)</span></div>'
 def ov_all(mode): return ovleg()+ov(mode,True)+ov(mode,False)
 OVCSS="""
 .ovl{margin:.4rem 0 1.2rem}
 .ovr,.ova{display:grid;grid-template-columns:4.6rem 1fr;gap:.5rem;align-items:center;margin:.3rem 0;position:relative}
-.ovr:hover,.ovr:focus-within{z-index:20}
+.ovr:hover,.ovr:focus-within{z-index:60}.ovl{position:relative}
 .ovd{font-size:.85rem;color:var(--muted);line-height:1.1}.ovd small{display:block;font-size:.65rem;font-style:italic}
 .ovk{position:relative;height:30px;border-radius:7px;background:var(--line);margin-right:.4rem}
 .ovr.ip .ovk{background:repeating-linear-gradient(45deg,var(--line) 0 4px,transparent 4px 9px),var(--card);outline:1px dashed var(--muted)}
@@ -623,6 +651,21 @@ OVCSS="""
 #v0[data-hl] .ly[data-k]{opacity:.45}
 #v0[data-hl=protein] .ly[data-k=protein],#v0[data-hl=fiber] .ly[data-k=fiber],#v0[data-hl=calcium] .ly[data-k=calcium],#v0[data-hl=potassium] .ly[data-k=potassium],#v0[data-hl=magnesium] .ly[data-k=magnesium],#v0[data-hl=sodium] .ly[data-k=sodium]{opacity:1;z-index:45!important;outline:3px solid #ff00d4;outline-offset:1px}
 #v0[data-hl=calcium] .cs[data-k=calcium] .sn,#v0[data-hl=potassium] .cs[data-k=potassium] .sn,#v0[data-hl=magnesium] .cs[data-k=magnesium] .sn,#v0[data-hl=protein] .cs[data-k=protein] .sn{opacity:1;transform:scaleX(1)}
+
+.ovb{display:grid;grid-template-columns:4.6rem 1fr;gap:.5rem;align-items:center;margin:.3rem 0}
+.ovb .ovt{border-top:2px solid #111}.kt2 span{font-weight:700;color:#111}.kt2 span:last-child{transform:translateX(-100%)}
+.ovb .kl{font-weight:700;color:#111;display:flex;align-items:center}
+.ksw{background:#111!important;border:2px solid #fff!important;box-shadow:0 0 0 1px #111;width:8px!important;height:14px!important;border-radius:2px!important}
+.kc{position:absolute;top:-5px;bottom:-5px;width:10px;margin-left:-5px;border-radius:3px;box-sizing:border-box;z-index:70;cursor:pointer}
+.kc:hover,.kc:focus{outline:3px solid #ff00d4;outline-offset:2px}
+.kc:hover .tp,.kc:focus .tp{display:block}
+.kc .tp{left:50%;transform:translateX(-30%);text-align:left}
+.kln{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:55;overflow:visible}
+.kln polyline{fill:none;stroke-linejoin:round;stroke-linecap:round}
+.lk{cursor:pointer;padding:.15rem .4rem;border-radius:999px;border:2px solid transparent;user-select:none;display:inline-flex;align-items:center;opacity:.55}
+.lk.on{opacity:1;border-color:#111}.lk:hover,.lk:focus{outline:none;border-color:#ff00d4}
+#v0.nok .kc,#v0.nok .kln,#v0.nok .ovb{display:none}
+@media(max-width:560px){.ovb{grid-template-columns:3.6rem 1fr}.kt2 span{font-size:.62rem}}
 @media(prefers-reduced-motion:reduce){.cs .sn{transition:none}}
 #sp:checked ~ .charts label[for=sp],#sr:checked ~ .charts label[for=sr]{background:var(--brand);color:#fff}
 #sr:checked ~ .charts .s-p,#sp:checked ~ .charts .s-r{display:none}
@@ -633,12 +676,13 @@ OVCSS="""
 """
 ov_sec=('<section class="day var" id="v0"><h2>New) Overlay bar <span class="mockbadge">new</span></h2>'
  '<p class="pc">One bar per day; every nutrient is its own colored layer starting at the left, longest at the back so none is hidden. Hover, tap or Tab onto a layer for the numbers. Hover or tap the <b>calcium, potassium, magnesium or protein</b> layer (or its legend name) to see it split into estimated absorbed (solid) and not absorbed (hatched). Sodium and fiber show a one-line note instead of a split.</p>'
+ '<p class="est"><b>Calories:</b> the bold black line with square markers shows each day’s estimated calories on the <b>bottom kcal axis</b> (0 to 2,500). The top axis is still % of target. There is no calorie target; the line only shows the amount. A hollow marker means the day is in progress. Use the “Calories (line)” chip in the legend to hide it.</p>'
  '<div class="ovs" role="group" aria-label="Scale"><b>Scale:</b><label for="sp">% of target (default)</label><label for="sr">Raw amount (mg-equivalent, small nutrients tiny)</label></div>'
  '<p class="est s-p">Scale: % of each nutrient’s daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). Sodium* is against its 2,300 mg limit, so shorter is better. Dashed magenta line = 100%. Bars past the right edge are clipped.</p>'
  '<p class="est s-r">Scale: raw numbers on one shared axis, as logged (mg for calcium, potassium, magnesium and sodium; g for protein and fiber). Fiber and protein, in grams, look tiny next to potassium in mg, which is why % mode is the default. Tiny layers are given a minimum width so they stay visible.</p>'
  '<p class="est">Can’t see a layer? Hover, tap or Tab onto its name in the legend to bring it to the front and highlight it. When two layers end within about 1.5% of each other, the hidden one gets a small tab under the end of its bar that you can also hover or tap.</p>'
  +toggled(ov_all)+
- '<script>(function(){var s=document.getElementById("v0"),c=null;function set(k){if(k)s.setAttribute("data-hl",k);else s.removeAttribute("data-hl");s.querySelectorAll(".lc").forEach(function(e){var on=e.dataset.k===k;e.classList.toggle("on",on);e.setAttribute("aria-pressed",on)})}s.querySelectorAll(".lc").forEach(function(e){var k=e.dataset.k;e.addEventListener("mouseenter",function(){if(!c)set(k)});e.addEventListener("mouseleave",function(){if(!c)set(null)});e.addEventListener("focus",function(){if(!c)set(k)});e.addEventListener("blur",function(){if(!c)set(null)});e.addEventListener("click",function(){c=(c===k)?null:k;set(c)});e.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();e.click()}})})})()</script>'
+ '<script>(function(){var s=document.getElementById("v0");function draw(l){var svg=l.querySelector(".kln");if(!svg)return;var lr=l.getBoundingClientRect();if(!lr.width){return}svg.setAttribute("viewBox","0 0 "+lr.width+" "+lr.height);var p=[];l.querySelectorAll(".kc").forEach(function(m){var r=m.getBoundingClientRect();p.push((r.left+r.width/2-lr.left).toFixed(1)+","+(r.top+r.height/2-lr.top).toFixed(1))});var q=p.join(" ");var mk="";l.querySelectorAll(".kc").forEach(function(m){var r=m.getBoundingClientRect(),h=m.classList.contains("kh");mk+=\'<rect x="\'+(r.left+1-lr.left).toFixed(1)+\'" y="\'+(r.top-lr.top).toFixed(1)+\'" width="\'+(r.width-2)+\'" height="\'+r.height+\'" rx="3" fill="\'+(h?"#fff":"#111")+\'" stroke="\'+(h?"#111":"#fff")+\'" stroke-width="2"/>\'});svg.innerHTML=\'<polyline points="\'+q+\'" stroke="#fff" stroke-width="7"/><polyline points="\'+q+\'" stroke="#111" stroke-width="3.5"/>\'+mk}var ls=s.querySelectorAll(".ovl");function all(){ls.forEach(draw)}if(window.ResizeObserver){var ro=new ResizeObserver(all);ls.forEach(function(l){ro.observe(l)})}window.addEventListener("resize",all);window.addEventListener("load",all);all();s.querySelectorAll(".lk").forEach(function(e){function t(){var off=s.classList.toggle("nok");s.querySelectorAll(".lk").forEach(function(x){x.classList.toggle("on",!off);x.setAttribute("aria-pressed",!off)})}e.addEventListener("click",t);e.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();t()}})})})()</script><script>(function(){var s=document.getElementById("v0"),c=null;function set(k){if(k)s.setAttribute("data-hl",k);else s.removeAttribute("data-hl");s.querySelectorAll(".lc").forEach(function(e){var on=e.dataset.k===k;e.classList.toggle("on",on);e.setAttribute("aria-pressed",on)})}s.querySelectorAll(".lc").forEach(function(e){var k=e.dataset.k;e.addEventListener("mouseenter",function(){if(!c)set(k)});e.addEventListener("mouseleave",function(){if(!c)set(null)});e.addEventListener("focus",function(){if(!c)set(k)});e.addEventListener("blur",function(){if(!c)set(null)});e.addEventListener("click",function(){c=(c===k)?null:k;set(c)});e.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();e.click()}})})})()</script>'
  '<p class="est">Hatched row = in progress. Layers are solid with a thin outline (white or dark) so each stays visible; where one is hidden behind another, hover its visible part or use Tab. Food + supplements view includes supplements; food only excludes them.</p>'
  '<details><summary>Data table (amounts and % of target, food + supplements)</summary><div class="tw"><table class="est"><tr><th>Day</th>'+''.join(f'<th>{sw(k)}{l}</th>' for k,l,u,t,c in MK)+'<th>Calcium absorbed, estimate</th></tr>'
  +''.join(f'<tr><td>{MDL[i]}{" (in progress)" if MIP[i] else ""}</td>'+''.join(f'<td>{raw(i,k,"c"):,.0f} {u} ({P(i,k,"c"):.0f}%)</td>' for k,l,u,t,c in MK)+f'<td>{cabs(i,"c")[0]:,.0f} mg ({cabs(i,"c")[0]/10:.0f}% of target; {cabs(i,"c")[2]:.0f}% of eaten)</td></tr>' for i in range(n_))
