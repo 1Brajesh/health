@@ -1,4 +1,4 @@
-import json,html,re,datetime
+import json,html,re,datetime,math
 E=html.escape
 CSS="""
 :root{--bg:#f4f8f5;--card:#fff;--ink:#1f2d27;--muted:#5d6f66;--brand:#2e8b6a;--brand2:#1d6f8f;--accent:#f2a541;--line:#dfe9e3;--chip:#e6f4ee;--shadow:0 2px 10px rgba(30,70,55,.08)}
@@ -115,8 +115,10 @@ def calc(day):
             x=v*en['grams']/100
             tot[k][0]+=x;tot[k][1]+=x*en['lo'];tot[k][2]+=x*en['hi']
     return tot,missing
-def fmt(x):
-    return f'{round(x/5)*5:,}' if x>=100 else f'{round(x):,}'
+def fm0(x):
+    # ONE whole-number formatter used by day cards, possible-gaps and the overlay chart (round half up)
+    return f'{math.floor(x+0.5):,}'
+fmt=fm0
 def rng(t): return f'{fmt(t[1])}&ndash;{fmt(t[2])}'
 days=sorted(nut['days'],key=lambda x:x['date'],reverse=True)
 res={d['date']:calc(d) for d in days}
@@ -151,13 +153,17 @@ sup={d['date']:supp_day(d['date']) for d in days}
 def avg(k,which):
     v=[(res[d['date']][0][k][0] if which!='s' else 0)+(sup[d['date']].get(k,0) if which!='f' else 0) for d in days if not d.get('in_progress')]
     return sum(v)/len(v)
+def numset(date,k):
+    # single source of display numbers for day cards AND the overlay chart
+    fv=res[date][0][k][0]; sv=sup[date].get(k,0)
+    return dict(f=fm0(fv),s=fm0(sv) if sv else '0',c=fm0(fv+sv),p='+' if res[date][1][k] else '')
 wk=''
 for d in days:
     tot,mi=res[d['date']]
     dt=datetime.date.fromisoformat(d['date']).strftime('%a %b %-d')
     cells=''.join(f'<td>~{fmt(tot[k][0])}{"+" if mi[k] else ""}</td>' for k,*_ in NUT)
     wk+=f'<tr><td>{dt}</td>{cells}</tr>'
-weektbl='<section class="day wk"><h2>Week at a glance <span class="badge">food only, logged meals</span></h2><div class="tw"><table class="week"><tr><th>Day</th>'+''.join(f'<th>{l.replace(" (eaten)","")}<br><small>{u}</small></th>' for k,l,u,*_ in NUT)+f'</tr>{wk}</table></div><p class="est">Targets for a 54-year-old man: protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg, sodium under 2,300 mg. "+" means some foods had no data for that nutrient, so the true total is higher. Tuna sandwich, curry, and many portions are assumed; see each day.</p></section>'
+weektbl='@@CHART@@'
 note='<div class="note"><b>Estimates only.</b> Values come from USDA FoodData Central, scaled to portions you gave or to stated assumptions, and cover only the meals logged (breakfast is not normally eaten, so none is expected; unlogged snacks are not counted). <b>Calcium shown is the amount eaten, not the amount absorbed</b> (for example, spinach calcium is poorly absorbed). Each day shows food, supplements and combined separately. Supplement amounts are label values times the schedule on the Supplements page. Every-other-day items (liver, glucosamine, collagen) are averaged at half a dose per day because their start day is not logged; iodine and B12 count only Mon/Wed/Fri, vitamin D3+K2 only Mon-Fri. Collagen calories are not on the label, so they are excluded. Supplement magnesium upper limit of 350 mg/day (NIH ODS) applies to supplement magnesium only, not food. Ranges reflect portion uncertainty.</div>'
 b0=f'<div class="stats"><div class="stat"><b>{len(f)}</b><span>days logged</span></div><div class="stat"><b>{sum(len(x["meals"]) for x in f)}</b><span>meals and snacks</span></div></div>'+note+weektbl
 
@@ -213,14 +219,14 @@ for day in days:
     sp=sup[day['date']]
     rowsn=''
     for k,l,u,tg,cl in NUT:
-        t=tot[k]; plus='+' if mi[k] else ''
+        t=tot[k]; NSD=numset(day['date'],k); plus=NSD['p']
         fv=t[0]; sv=sp[k]; cv=fv+sv
         cu=' <small>'+'unknown (excluded)'+'</small>' if False else ''
         bar=''
         if tg: bar=f'<div class="bar"><i style="width:{min(100,cv/tg*100):.0f}%"></i></div><div class="t">{cv/tg*100:.0f}% of {TGT[k]}</div>'
         extra=' <span class="t">(+collagen kcal unknown)</span>' if k=='kcal' else ''
-        sdisp=fmt(sv) if sv else '0'
-        rowsn+=f'<div class="nr {cl}"><div class="l">{l} <small>{u}</small></div><div class="c f"><span class="h">Food</span><b>~{fmt(fv)}{plus}</b><span class="t">{rng(t)}</span></div><div class="c s"><span class="h">Supplements</span><b>{sdisp}</b>{extra if sv or k=="kcal" else ""}</div><div class="c o"><span class="h">Combined</span><b>~{fmt(cv)}{plus}</b>{bar}</div></div>'
+        sdisp=NSD['s']
+        rowsn+=f'<div class="nr {cl}"><div class="l">{l} <small>{u}</small></div><div class="c f"><span class="h">Food</span><b>~{NSD['f']}{plus}</b><span class="t">{rng(t)}</span></div><div class="c s"><span class="h">Supplements</span><b>{sdisp}</b>{extra if sv or k=="kcal" else ""}</div><div class="c o"><span class="h">Combined</span><b>~{NSD['c']}{plus}</b>{bar}</div></div>'
         if k!='kcal': rowsn+=breakdown(day,k,l,u,sp,cl)
     sx=''.join(f'<span class="chip">{l}: <b>{sp[k]:,.0f}</b> {u}</span>' if sp[k]>=10 or sp[k]==0 else f'<span class="chip">{l}: <b>{sp[k]:,.1f}</b> {u}</span>' for k,l,u in SUPX)
     tiles=f'<div class="nhead"><span></span><span>Food</span><span>Supplements</span><span>Combined</span></div>{rowsn}<div class="sx"><b>Supplement-only nutrients today (not tracked in food data):</b><br>{sx}</div>'
@@ -241,7 +247,7 @@ for day in days:
     det=f'<details><summary>How this was estimated</summary><p class="est">{E(day["partial_note"])} Totals are the sum of rows below (USDA per-100 g value x grams). "Assumed" = I chose the portion because it was not logged. Accessed {nut["accessed"]}.</p><div class="tw"><table class="est"><tr><th>Meal</th><th>Item</th><th>Amount</th><th>Portion</th><th>Source</th></tr>{er}</table></div><p class="est"><b>Data gaps:</b></p><ul class="est">{miss}</ul><p class="est"><b>Notes on foods:</b></p><ul class="est">{notes}</ul></details>'
     b+=f'<section class="day"><h2>{dt}{badge}</h2><div class="nt">{tiles}</div>{rows}{det}</section>'
 b+='<p class="est">Reference targets: fiber 30 g (National Academy of Medicine, adult men 51+), calcium 1,000 mg RDA, potassium 3,400 mg AI, magnesium 420 mg RDA, protein 56 g RDA, sodium under 2,300 mg (Dietary Guidelines). Calories have no target here. These are rough estimates, not medical advice.</p>'
-open('food.html','w').write(page('Food Log','Daily meals with estimated nutrition, newest first.','f',b))
+FOOD_BODY=b
 
 # ================= mock.html : week-at-a-glance chart variations =================
 import math
@@ -521,6 +527,8 @@ def cabs(i,mode):
     return (r*x['a']/x['e'] if x['e']>0 else r), x['e'], (x['a']/x['e']*100 if x['e']>0 else 100)
 
 KMAX=2500
+def PL(i,k): return '+' if res[MDATES[i]][1][k] else ''     # '+' = some foods lack data, true amount higher
+def NS(i,k): return numset(MDATES[i],k)
 def kcal_info(i,mode):
     d=MD[i]; fk=res[d['date']][0]['kcal'][0]; sk=sup[d['date']].get('kcal',0)
     grp={}
@@ -533,13 +541,13 @@ def kcal_info(i,mode):
     return dict(f=fk,s=sk,tot=fk+sk,shown=(fk if mode=='f' else fk+sk),grp=grp)
 def kmark(i,mode):
     ki=kcal_info(i,mode); ip=MIP[i]; x=min(ki['shown'],KMAX)/KMAX*100
-    meal=''.join(f'{g}: {ki["grp"][g]:,.0f} kcal<br>' for g in ('Lunch','Dinner','Snacks &amp; other') if g in ki['grp'])
-    meal+=f'Supplements: {ki["s"]:,.0f} kcal<br>'
-    body=f'<b>Calories</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>{"Food only: " if mode=="f" else "Total: "}<b>{ki["shown"]:,.0f} kcal</b>'
-    if mode=='f': body+=f' (food + supplements {ki["tot"]:,.0f})'
-    body+=f'<br>Food {ki["f"]:,.0f} kcal · supplements {ki["s"]:,.0f} kcal<br>{meal}<i>estimate</i>; logged meals only{"; day in progress, so the total is partial" if ip else ""}. No calorie target is used.'
+    meal=''.join(f'{g}: {fm0(ki["grp"][g])} kcal<br>' for g in ('Lunch','Dinner','Snacks &amp; other') if g in ki['grp'])
+    meal+=f'Supplements: {fm0(ki["s"])} kcal<br>'
+    body=f'<b>Calories</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>{"Eaten (food only): " if mode=="f" else "Eaten (food + supplements): "}<b>~{fm0(ki["shown"])}{PL(i,"kcal")} kcal</b>'
+    if mode=='f': body+=f' (food + supplements ~{fm0(ki["tot"])}{PL(i,"kcal")})'
+    body+=f'<br>food ~{fm0(ki["f"])}{PL(i,"kcal")} + supplements {fm0(ki["s"])} kcal<br>{meal}<i>estimate</i>; logged meals only{"; day in progress, so the total is partial" if ip else ""}. No calorie target is used.'
     if ki['shown']>KMAX: body+=' Marker clipped at the 2,500 kcal edge.'
-    aria=f'Calories, {MDL[i]}{" in progress" if ip else ""}: about {ki["shown"]:,.0f} kcal, estimate; food {ki["f"]:,.0f}, supplements {ki["s"]:,.0f}'
+    aria=f'Calories, {MDL[i]}{" in progress" if ip else ""}: about {fm0(ki["shown"])}{PL(i,"kcal")} kcal, estimate; food {fm0(ki["f"])}, supplements {fm0(ki["s"])}'
     return (f'<div class="kc{" kh" if ip else ""}" data-x="{x:.2f}" tabindex="0" role="img" aria-label="{E(aria)}" style="left:{x:.2f}%">'
             f'<span class="tp kt" aria-hidden="true">{body}</span></div>')
 def kaxis():
@@ -560,38 +568,41 @@ def ov(mode,pct,ab=False):
             items.append((val,k,l,u,t,v,fv,sv))
         items.sort(key=lambda x:-x[0])
         ip=MIP[i]
-        allrows={it[1]:f'<span class="ar" data-n="{it[1]}">{sw(it[1])}{it[2].rstrip("*")}: {it[5]:,.0f} {it[3]} · {it[5]/it[4]*100:.0f}%</span>' for it in items}
+        allrows={it[1]:f'<span class="ar" data-n="{it[1]}">{sw(it[1])}{it[2].rstrip("*")}: ~{fm0(it[5])}{PL(i,it[1])} {it[3]} · {it[5]/it[4]*100:.0f}%</span>' for it in items}
         h+=f'<div class="ovr{" ip" if ip else ""}"><div class="ovd" title="{MDL[i]}"><span class="wd">{WDL[i]}</span>{"<small>in progress</small>" if ip else ""}</div><div class="ovk">'
         for z,(val,k,l,u,t,v,fv,sv) in enumerate(items):
             w=max(min(val,mx)/mx*100,.7)
             ln=l.rstrip('*')
-            sp=f'food {fv:,.0f} {u}'+(f' + supplements {sv:,.0f} {u}' if sv>=.5 else ' + supplements 0')
-            if mode=='f': sp=f'food only view ({fv:,.0f} {u})'+(f'; supplements would add {raw(i,k,"c")-fv:,.0f} {u}' if raw(i,k,'c')-fv>=.5 else '')
+            lab='food only' if mode=='f' else 'food + supplements'
+            plk=PL(i,k); nsx=NS(i,k)
+            if mode=='f': sp=f'food ~{nsx["f"]}{plk} {u} + supplements {nsx["s"]} {u} (supplements not counted in this view)'
+            else: sp=f'food ~{nsx["f"]}{plk} {u} + supplements {nsx["s"]} {u}'
+            pnote=f'<br><small>&ldquo;+&rdquo; = some foods have no data for {l.rstrip("*").lower()}, so the true amount is higher.</small>' if plk else ''
             pc=v/t*100
             pcs=f'{pc:.0f}% of '+(f'{t:,} {u} limit' if k=='sodium' else f'{t:,} {u} target')
-            aria=f'{ln}, {MDL[i]}{" in progress" if ip else ""}: {v:,.0f} {u}, {pcs}; {sp}'
+            aria=f'{ln}, {MDL[i]}{" in progress" if ip else ""}: eaten ({lab}) {fm0(v)}{plk} {u}, {pcs}; {sp}'
             zi=z+1
             if ab:
                 zi=2*z+2
                 if k=='calcium':
                     _,ce,cp=cabs(i,mode)
-                    ex=f'eaten {ce:,.0f} mg · absorbed {v:,.0f} mg · {cp:.0f}% absorbed (estimate)'
-                    aria=f'{ln}, {MDL[i]}{" in progress" if ip else ""}: estimated absorbed {v:,.0f} mg, {pcs}; {ex}. Estimate for a typical adult.'
+                    ex=f'eaten {fm0(ce)} mg · absorbed {fm0(v)} mg · {cp:.0f}% absorbed (estimate)'
+                    aria=f'{ln}, {MDL[i]}{" in progress" if ip else ""}: estimated absorbed {fm0(v)} mg, {pcs}; {ex}. Estimate for a typical adult.'
                     sp2=ex+'<br><i>estimate</i>, typical adult'
                     gw=max(min((ce/t*100) if pct else ce,mx)/mx*100,.7)
                     h+=f'<div class="gh" aria-hidden="true" style="width:{gw:.2f}%;z-index:{zi-1}"></div>'
                 else:
                     aria+='; absorption not adjusted'
                     sp2=sp+'<br>absorption not adjusted'
-            else: sp2=sp
+            else: sp2=''
             seg=''
             if k=='calcium':
                 _,ce,cp=cabs(i,mode); ca=ce*cp/100
                 srcd=sum(it['mg'] for it in AD[i]['items'] if it['typ']=='sourced'); tot=sum(it['mg'] for it in AD[i]['items'])
                 ss=(srcd/tot*100 if tot>0 else 0)
                 seg=f'<span class="sn" aria-hidden="true" style="left:{cp:.2f}%"></span>'
-                sp2=(f'<b>Calcium split (estimate)</b><br>Eaten {ce:,.0f} mg<br>Absorbed ~{ca:,.0f} mg ({cp:.0f}%) <span class="kd">solid</span><br>Not absorbed ~{ce-ca:,.0f} mg <span class="kd h">hatched</span><br>{ss:.0f}% of eaten calcium uses sourced percentages (milk 27%, spinach 5%, cabbage/broccoli 27%); the rest uses an assumed default of {ABS_DEF}%.<br><small>Source: NIH ODS calcium fact sheet, updated June 22, 2026. Typical adult, not a personal value.</small>')
-                aria+=f'; estimated absorbed about {ca:,.0f} mg of {ce:,.0f} mg eaten ({cp:.0f}%), not absorbed about {ce-ca:,.0f} mg. Estimate, typical adult.'
+                sp2=(f'<b>Calcium split (estimate)</b><br>Absorbed ~{fm0(ca)}{plk} mg ({cp:.0f}%) <span class="kd">solid</span><br>Not absorbed ~{fm0(ce-ca)}{plk} mg <span class="kd h">hatched</span><br>{ss:.0f}% of eaten calcium uses sourced percentages (milk 27%, spinach 5%, cabbage/broccoli 27%); the rest uses an assumed default of {ABS_DEF}%.<br><small>Source: NIH ODS calcium fact sheet, updated June 22, 2026. Typical adult, not a personal value.</small>')
+                aria+=f'; estimated absorbed about {fm0(ca)}{plk} mg of {fm0(ce)}{plk} mg eaten ({cp:.0f}%), not absorbed about {fm0(ce-ca)} mg. Estimate, typical adult.'
             if k in SPLIT or k=='protein':
                 si=split_info(i,k,mode); sa=si['a']; spc=sa/si['e']*100 if si['e']>0 else 0
                 seg=f'<span class="sn" aria-hidden="true" style="left:{spc:.2f}%"></span>'
@@ -599,17 +610,17 @@ def ov(mode,pct,ab=False):
                     rng=''; srcl=f'{si["sh"]:.0f}% of the protein eaten uses sourced digestibility (milk 96%, egg 98%, fish ~90%, lentils 84%, wheat ~91%); the rest is <b>assumed</b> at a default {PRO_DEF}% (chicken, duck, nuts, seeds, vegetables, most dairy products have no usable data).'
                     srcc=f'Source: {PRO_SRC}. Digestibility, not amino-acid quality.'
                 else:
-                    c=SPLIT[k]; rng=f' (range {si["lo"]:,.0f}-{si["hi"]:,.0f} {u}, {c["lo"]}-{c["hi"]}%)'
+                    c=SPLIT[k]; rng=f' (range {fm0(si["lo"])}-{fm0(si["hi"])} {u}, {c["lo"]}-{c["hi"]}%)'
                     srcl=c['note']; srcc='Source: '+c['src']+'.'
-                sp2=(f'<b>{ln} split (estimate)</b><br>Eaten {si["e"]:,.0f} {u}<br>Absorbed ~{sa:,.0f} {u}{rng} · {spc:.0f}% <span class="kd">solid</span><br>Not absorbed ~{si["e"]-sa:,.0f} {u} <span class="kd h">hatched</span><br>{srcl}<br><small>{srcc} Typical adult, estimate, not a personal value.</small>')
-                aria+=f'; estimated absorbed about {sa:,.0f} {u} of {si["e"]:,.0f} {u} eaten ({spc:.0f}%){rng}. Estimate, typical adult.'
+                sp2=(f'<b>{ln} split (estimate)</b><br>Absorbed ~{fm0(sa)}{plk} {u}{rng} · {spc:.0f}% <span class="kd">solid</span><br>Not absorbed ~{fm0(si["e"]-sa)}{plk} {u} <span class="kd h">hatched</span><br>{srcl}<br><small>{srcc} Typical adult, estimate, not a personal value.</small>')
+                aria+=f'; estimated absorbed about {fm0(sa)}{plk} {u} of {fm0(si["e"])}{plk} {u} eaten ({spc:.0f}%){rng}. Estimate, typical adult.'
             elif k in NOSPLIT:
-                sp2=sp2+f'<br><small>{ln}: {NOSPLIT[k]}. No split shown.</small>'
+                sp2=f'<small>{ln}: {NOSPLIT[k]}. No split shown.</small>'
                 aria+=f'; {NOSPLIT[k]}'
             allr='<span class="al"><b>All nutrients, '+MDL[i]+'</b>'+''.join(r.replace('class="ar"','class="ar me"') if kk==k else r for kk,r in allrows.items())+'</span>'
             near=any((abs(val-o[0])<1.5 if pct else abs(w-max(min(o[0],mx)/mx*100,.7))<1.5) for o in items if o[1]!=k and o[0]<=val)
             edge='<span class="ed" aria-hidden="true"></span>' if near else ''
-            h+=(f'<div class="ly{" cs" if (k=="calcium" or k in SPLIT or k=="protein") else ""}{" nr" if near else ""}" data-k="{k}" tabindex="0" role="img" aria-label="{E(aria+"; all nutrients: "+"; ".join(f"{o[2].rstrip(chr(42))} {o[5]:,.0f} {o[3]}" for o in items))}" style="width:{w:.2f}%;--oc:{OVC[k]};--ol:{OVO[k]};z-index:{zi}"><span class="tp" aria-hidden="true">{sw(k)}<b>{ln}</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>{v:,.0f} {u} · {pcs}<br>{sp2}{allr}</span>{seg}{edge}</div>')
+            h+=(f'<div class="ly{" cs" if (k=="calcium" or k in SPLIT or k=="protein") else ""}{" nr" if near else ""}" data-k="{k}" data-d="{MDATES[i]}" data-f="{nsx['f']}" data-s="{nsx['s']}" data-c="{nsx['c']}" data-p="{plk}" tabindex="0" role="img" aria-label="{E(aria+"; all nutrients: "+"; ".join(f"{o[2].rstrip(chr(42))} {fm0(o[5])} {o[3]}" for o in items))}" style="width:{w:.2f}%;--oc:{OVC[k]};--ol:{OVO[k]};z-index:{zi}"><span class="tp" aria-hidden="true">{sw(k)}<b>{ln}</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>Eaten ({lab}): <b class="tv">~{fm0(v)}{plk} {u}</b> · {pcs}<br>{sp}{pnote}{("<br>"+sp2) if sp2 else ""}{allr}</span>{seg}{edge}</div>')
         h+=kmark(i,mode)
         if pct:
             h+=f'<i class="m100" style="left:{100/mx*100:.2f}%"></i>'
@@ -730,7 +741,7 @@ ov_sec=('<section class="day var" id="v0"><h2>New) Overlay bar <span class="mock
  '<script>(function(){var s=document.getElementById("v0");function draw(l){var svg=l.querySelector(".kln");if(!svg)return;var lr=l.getBoundingClientRect();if(!lr.width){return}svg.setAttribute("viewBox","0 0 "+lr.width+" "+lr.height);var p=[];l.querySelectorAll(".kc").forEach(function(m){var r=m.getBoundingClientRect();p.push((r.left+r.width/2-lr.left).toFixed(1)+","+(r.top+r.height/2-lr.top).toFixed(1))});var q=p.join(" ");var mk="";l.querySelectorAll(".kc").forEach(function(m){var r=m.getBoundingClientRect(),h=m.classList.contains("kh");mk+=\'<rect x="\'+(r.left+1.5-lr.left).toFixed(1)+\'" y="\'+(r.top-lr.top).toFixed(1)+\'" width="\'+(r.width-3)+\'" height="\'+r.height+\'" rx="2" fill="\'+(h?"#fff":"#111")+\'" stroke="\'+(h?"#111":"#fff")+\'" stroke-width="1.5"/>\'});svg.innerHTML=mk}var ls=s.querySelectorAll(".ovl");function all(){ls.forEach(draw)}if(window.ResizeObserver){var ro=new ResizeObserver(all);ls.forEach(function(l){ro.observe(l)})}window.addEventListener("resize",all);window.addEventListener("load",all);all();s.querySelectorAll(".lk").forEach(function(e){function t(){var off=s.classList.toggle("nok");s.querySelectorAll(".lk").forEach(function(x){x.classList.toggle("on",!off);x.setAttribute("aria-pressed",!off)})}e.addEventListener("click",t);e.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();t()}})})})()</script><script>(function(){var s=document.getElementById("v0"),c=null;function set(k){if(k)s.setAttribute("data-hl",k);else s.removeAttribute("data-hl");s.querySelectorAll(".lc").forEach(function(e){var on=e.dataset.k===k;e.classList.toggle("on",on);e.setAttribute("aria-pressed",on)})}s.querySelectorAll(".lc").forEach(function(e){var k=e.dataset.k;e.addEventListener("mouseenter",function(){if(!c)set(k)});e.addEventListener("mouseleave",function(){if(!c)set(null)});e.addEventListener("focus",function(){if(!c)set(k)});e.addEventListener("blur",function(){if(!c)set(null)});e.addEventListener("click",function(){c=(c===k)?null:k;set(c)});e.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();e.click()}})})})()</script>'
  '<p class="est">Hatched row = in progress. Layers are solid with a thin outline (white or dark) so each stays visible; where one is hidden behind another, hover its visible part or use Tab. Food + supplements view includes supplements; food only excludes them.</p>'
  '<details><summary>Data table (amounts and % of target, food + supplements)</summary><div class="tw"><table class="est"><tr><th>Day</th>'+''.join(f'<th>{sw(k)}{l}</th>' for k,l,u,t,c in MK)+'<th>Calcium absorbed, estimate</th></tr>'
- +''.join(f'<tr><td>{MDL[i]}{" (in progress)" if MIP[i] else ""}</td>'+''.join(f'<td>{raw(i,k,"c"):,.0f} {u} ({P(i,k,"c"):.0f}%)</td>' for k,l,u,t,c in MK)+f'<td>{cabs(i,"c")[0]:,.0f} mg ({cabs(i,"c")[0]/10:.0f}% of target; {cabs(i,"c")[2]:.0f}% of eaten)</td></tr>' for i in range(n_))
+ +''.join(f'<tr><td>{MDL[i]}{" (in progress)" if MIP[i] else ""}</td>'+''.join(f'<td>~{NS(i,k)["c"]}{NS(i,k)["p"]} {u} ({P(i,k,"c"):.0f}%)</td>' for k,l,u,t,c in MK)+f'<td>{fm0(cabs(i,"c")[0])}{NS(i,"calcium")["p"]} mg ({cabs(i,"c")[0]/10:.0f}% of target; {cabs(i,"c")[2]:.0f}% of eaten)</td></tr>' for i in range(n_))
  +'</table></div></details></section>')
 
 ABMAX=max(1100,math.ceil((max(x['e'] for x in AD)+40)/100)*100)
@@ -902,3 +913,81 @@ dt_+='</table></div></details></section>'
 mp=page('Mock: week-at-a-glance charts','Ten ways to show the whole week on one view.','',mb+tg+ch+dt_)
 mp=mp.replace('</style>',MCSS+'</style>',1).replace('<nav><a href="index.html">💊 Supplements</a><a href="food.html">🥗 Food Log</a></nav>','<nav><a href="food.html">&larr; Food Log</a></nav>')
 open('mock.html','w').write(mp)
+
+
+# ================= food.html : final assembly with the overlay chart replacing "Week at a glance" =================
+def scope_css(css,pre='#v0'):
+    css=re.sub(r'/\*.*?\*/','',css,flags=re.S)
+    out=[];i=0
+    def block(i):
+        # returns (text, next index) for one rule or at-rule starting at i
+        j=css.index('{',i); head=css[i:j].strip()
+        if head.startswith('@keyframes'):
+            d=1;k=j+1
+            while d:
+                d+= (css[k]=='{')-(css[k]=='}'); k+=1
+            return css[i:k],k
+        if head.startswith('@media'):
+            inner=[];k=j+1
+            while css[k:].lstrip()[:1]!='}':
+                k=len(css)-len(css[k:].lstrip())
+                t,k=block(k); inner.append(t)
+            k=css.index('}',k)+1
+            return head+'{'+''.join(inner)+'}',k
+        e=css.index('}',j)
+        sels=[x.strip() for x in head.split(',')]
+        sels=[x if x.startswith(pre) else pre+' '+x for x in sels]
+        return ','.join(sels)+css[j:e+1],e+1
+    while css[i:].strip():
+        i=len(css)-len(css[i:].lstrip())
+        t,i=block(i); out.append(t)
+    return ''.join(out)
+FCSS_EXTRA="""
+.rd{position:absolute;opacity:0;pointer-events:none}
+.tg2{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin:.4rem 0 1rem}
+.tg2 label{cursor:pointer;padding:.45rem 1rem;border-radius:999px;border:2px solid var(--brand);color:var(--brand);font-weight:700;font-size:.9rem}
+#mc:checked ~ .tg2 label[for=mc],#mf:checked ~ .tg2 label[for=mf]{background:var(--brand);color:#fff}
+#mf:checked ~ .charts .m-c,#mc:checked ~ .charts .m-f{display:none}
+#mf:focus-visible ~ .tg2 label[for=mf],#mc:focus-visible ~ .tg2 label[for=mc]{outline:3px solid var(--accent);outline-offset:2px}
+.lg{display:flex;flex-wrap:wrap;gap:.3rem .9rem;margin:.2rem 0 .5rem;font-size:.82rem;color:var(--muted)}
+"""
+# drop the first (mock-only) #v0 block of OVCSS that is already #v0-prefixed: harmless; scope everything else
+FOODCSS=scope_css(OVCSS+FCSS_EXTRA)
+chart_html=(
+ '<section class="day wk" id="v0"><h2>Week at a glance <span class="badge">estimates, logged meals only</span></h2>'
+ '<p class="est">One bar per day; every nutrient is its own colored layer, longest at the back. Hover, tap or Tab onto a layer to see eaten amounts, % of target, and (for calcium, potassium, magnesium and protein) an estimated absorbed vs not-absorbed split. The black tick is calories on the bottom kcal axis.</p>'
+ '<input class="rd" type="radio" name="s" id="sp" checked aria-label="Percent of target scale"><input class="rd" type="radio" name="s" id="sr" aria-label="Raw amount scale"><input class="rd" type="radio" name="m" id="mf" aria-label="Food only"><input class="rd" type="radio" name="m" id="mc" checked aria-label="Food plus supplements"><div class="tg2" role="group" aria-label="Data shown"><b>Show:</b><label for="mf">Food only</label><label for="mc">Food + supplements</label></div>'
+ '<div class="charts">'
+ '<div class="ovs" role="group" aria-label="Scale"><b>Scale:</b><label for="sp">% of target (default)</label><label for="sr">Raw amount</label></div>'
+ '<p class="est s-p">% of each nutrient&rsquo;s daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). Sodium* is against its 2,300 mg limit, so shorter is better. Dashed magenta line = 100%. Bars past the right edge are clipped.</p>'
+ '<p class="est s-r">Raw numbers on one shared axis (mg or g as logged). Small nutrients in grams look tiny, which is why % mode is the default.</p>'
+ '<p class="est">Can&rsquo;t see a layer? Hover, tap or Tab onto its name in the legend to bring it to the front. A small tab under a bar&rsquo;s end marks a layer hidden behind another. &ldquo;+&rdquo; after a number means some foods had no data, so the true amount is higher. Hollow marker or hatched row = day in progress. Calories have no target; tap &ldquo;Calories&rdquo; in the legend to hide the tick. Estimates for a typical adult; targets are for a 54-year-old man. Tuna sandwich, curry and many portions are assumed; see each day.</p>'
+ +toggled(ov_all)+'</div>'
+ +ov_sec[ov_sec.index('<script>'):ov_sec.index('<p class="est">Hatched row')]
+ +ov_sec[ov_sec.index('<details><summary>Data table'):]
+)
+FOOD_BODY=FOOD_BODY.replace('@@CHART@@',chart_html)
+fp=page('Food Log','Daily meals with estimated nutrition, newest first.','f',FOOD_BODY).replace('</style>',FOODCSS+'</style>',1)
+open('food.html','w').write(fp)
+
+# ---- check: chart numbers == day-card numbers for every day/nutrient ----
+cards_={}
+for sec in fp.split('<section class="day"><h2>')[1:]:
+    m=re.match(r'([A-Z][a-z]+day, [A-Z][a-z]+ \d+, \d{4})',sec)
+    if not m: continue
+    dd=datetime.datetime.strptime(m.group(1),'%A, %B %d, %Y').date().isoformat()
+    for cl,fv_,sv_,cv_ in re.findall(r'<div class="nr (t-\w+)">.*?<span class="h">Food</span><b>~([^<]+)</b>.*?<span class="h">Supplements</span><b>([^<]+)</b>.*?<span class="h">Combined</span><b>~([^<]+)</b>',sec,flags=re.S):
+        cards_[(dd,cl)]=(fv_,sv_,cv_)
+cmap={c:k for k,l,u,t,c in NUT}
+chart_={}
+for m in re.finditer(r'<div class="ly[^"]*" data-k="(\w+)" data-d="([\d-]+)" data-f="([^"]*)" data-s="([^"]*)" data-c="([^"]*)" data-p="([^"]*)"',chart_html):
+    chart_[(m.group(2),m.group(1))]=(m.group(3),m.group(4),m.group(5),m.group(6))
+cnt=0
+for d_ in days:
+    for k,l,u,t,c in MK:
+        cf,cs,cc,cp=chart_[(d_['date'],k)]
+        df,ds,dc=cards_[(d_['date'],c)]
+        assert (cf+cp,cs,cc+cp)==(df,ds,dc),(d_['date'],k,(cf+cp,cs,cc+cp),(df,ds,dc))
+        cnt+=1
+assert cnt==len(days)*len(MK)
+print('chart/day-card numbers match for',cnt,'day-nutrient pairs')
