@@ -510,7 +510,7 @@ def split_info(i,k,mode):
     return dict(e=tot,a=a,lo=None,hi=None,sh=sh)
 # ===== 0 overlay bar =====
 OVC={'protein':'#5a2d0c','fiber':'#00a650','calcium':'#ffffff','potassium':'#e00000','magnesium':'#ff8a00','sodium':'#ffe600'}
-OVO={'protein':'#f5e6d3','fiber':'#ffffff','calcium':'#111111','potassium':'#ffffff','magnesium':'#111111','sodium':'#111111'}
+OVO={'protein':'#ffffff','fiber':'#ffffff','calcium':'#cdbfa8','potassium':'#ffffff','magnesium':'#ffffff','sodium':'#ffffff'}
 def sw(k): return f'<i class="sw" style="--oc:{OVC[k]};--ol:{OVO[k]}"></i>'
 def ov_scale(mode,pct):
     if pct: return smax(mode)
@@ -688,6 +688,7 @@ OVCSS="""
 #v0 .ovt span{font-size:.62rem;color:var(--ax)}
 #v0 .ly{border:1.5px solid var(--ol);border-radius:7px 3px 3px 7px;min-width:5px}
 #v0 .ovk>.ly:first-child{border-radius:7px 7px 7px 7px}
+#v0 .ly[data-k=calcium]{box-shadow:inset 0 0 0 .5px rgba(120,100,70,.25)}
 #v0 .ly:hover,#v0 .ly:focus{outline:2px solid var(--pin);outline-offset:1px}
 #v0 .ly:focus:not(:focus-visible):not(:hover){outline:none}
 #v0[data-hl=protein] .ly[data-k=protein],#v0[data-hl=fiber] .ly[data-k=fiber],#v0[data-hl=calcium] .ly[data-k=calcium],#v0[data-hl=potassium] .ly[data-k=potassium],#v0[data-hl=magnesium] .ly[data-k=magnesium],#v0[data-hl=sodium] .ly[data-k=sodium]{outline:2px solid var(--pin);outline-offset:1px}
