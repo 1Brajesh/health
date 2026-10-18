@@ -505,6 +505,7 @@ def ov(mode,pct,ab=False):
             items.append((val,k,l,u,t,v,fv,sv))
         items.sort(key=lambda x:-x[0])
         ip=MIP[i]
+        allrows={it[1]:f'<span class="ar" data-n="{it[1]}">{sw(it[1])}{it[2].rstrip("*")}: {it[5]:,.0f} {it[3]} · {it[5]/it[4]*100:.0f}%</span>' for it in items}
         h+=f'<div class="ovr{" ip" if ip else ""}"><div class="ovd">{MDL[i]}{"<small>in progress</small>" if ip else ""}</div><div class="ovk">'
         for z,(val,k,l,u,t,v,fv,sv) in enumerate(items):
             w=max(min(val,mx)/mx*100,.7)
@@ -536,13 +537,16 @@ def ov(mode,pct,ab=False):
                 seg=f'<span class="sn" aria-hidden="true" style="left:{cp:.2f}%"></span>'
                 sp2=(f'<b>Calcium split (estimate)</b><br>Eaten {ce:,.0f} mg<br>Absorbed ~{ca:,.0f} mg ({cp:.0f}%) <span class="kd">solid</span><br>Not absorbed ~{ce-ca:,.0f} mg <span class="kd h">hatched</span><br>{ss:.0f}% of eaten calcium uses sourced percentages (milk 27%, spinach 5%, cabbage/broccoli 27%); the rest uses an assumed default of {ABS_DEF}%.<br><small>Source: NIH ODS calcium fact sheet, updated June 22, 2026. Typical adult, not a personal value.</small>')
                 aria+=f'; estimated absorbed about {ca:,.0f} mg of {ce:,.0f} mg eaten ({cp:.0f}%), not absorbed about {ce-ca:,.0f} mg. Estimate, typical adult.'
-            h+=(f'<div class="ly{" cs" if k=="calcium" else ""}" tabindex="0" role="img" aria-label="{E(aria)}" style="width:{w:.2f}%;--oc:{OVC[k]};--ol:{OVO[k]};z-index:{zi}"><span class="tp" aria-hidden="true">{sw(k)}<b>{ln}</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>{v:,.0f} {u} · {pcs}<br>{sp2}</span>{seg}</div>')
+            allr='<span class="al"><b>All nutrients, '+MDL[i]+'</b>'+''.join(r.replace('class="ar"','class="ar me"') if kk==k else r for kk,r in allrows.items())+'</span>'
+            near=any((abs(val-o[0])<1.5 if pct else abs(w-max(min(o[0],mx)/mx*100,.7))<1.5) for o in items if o[1]!=k and o[0]<=val)
+            edge='<span class="ed" aria-hidden="true"></span>' if near else ''
+            h+=(f'<div class="ly{" cs" if k=="calcium" else ""}{" nr" if near else ""}" data-k="{k}" tabindex="0" role="img" aria-label="{E(aria+"; all nutrients: "+"; ".join(f"{o[2].rstrip(chr(42))} {o[5]:,.0f} {o[3]}" for o in items))}" style="width:{w:.2f}%;--oc:{OVC[k]};--ol:{OVO[k]};z-index:{zi}"><span class="tp" aria-hidden="true">{sw(k)}<b>{ln}</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>{v:,.0f} {u} · {pcs}<br>{sp2}{allr}</span>{seg}{edge}</div>')
         if pct: h+=f'<i class="m100" style="left:{100/mx*100:.2f}%"></i>'
         h+='</div></div>'
     h+='</div></div>'
     return h
 def ovleg():
-    return '<div class="lg ovg">'+''.join(f'<span>{sw(k)}{l}</span>' for k,l,u,t,c in MK)+'</div>'
+    return '<div class="lg ovg">'+''.join(f'<span class="lc" tabindex="0" role="button" aria-pressed="false" data-k="{k}" title="Hover, tap or focus to bring {l.rstrip("*")} to the front">{sw(k)}{l}</span>' for k,l,u,t,c in MK)+'</div>'
 def ov_all(mode): return ovleg()+ov(mode,True)+ov(mode,False)
 OVCSS="""
 .ovl{margin:.4rem 0 1.2rem}
@@ -568,6 +572,15 @@ OVCSS="""
 .cs:hover .sn,.cs:focus .sn{opacity:1;transform:scaleX(1)}
 .kd{display:inline-block;width:.8em;height:.8em;background:#fff;border:1px solid #111;vertical-align:baseline;margin-left:.2rem}.kd.h{background:repeating-linear-gradient(135deg,#bdbdbd 0 2px,#fff 2px 4px)}
 .tp small{opacity:.85}
+.al{display:block;margin-top:.4rem;padding-top:.3rem;border-top:1px solid var(--muted)}.al b{display:block}
+.ar{display:block;opacity:.8}.ar.me{opacity:1;font-weight:700}
+.ed{position:absolute;right:-7px;bottom:-8px;width:14px;height:8px;background:var(--oc);border:2px solid var(--ol);border-top:0;border-radius:0 0 4px 4px;box-sizing:border-box;box-shadow:0 0 0 1px #111}
+.ly.nr{border-right-width:3px}
+.lc{cursor:pointer;padding:.15rem .4rem;border-radius:999px;border:2px solid transparent;user-select:none;-webkit-tap-highlight-color:transparent}
+.lc:hover,.lc:focus,.lc.on{border-color:#ff00d4;outline:none}
+#v0[data-hl] .ly[data-k]{opacity:.45}
+#v0[data-hl=protein] .ly[data-k=protein],#v0[data-hl=fiber] .ly[data-k=fiber],#v0[data-hl=calcium] .ly[data-k=calcium],#v0[data-hl=potassium] .ly[data-k=potassium],#v0[data-hl=magnesium] .ly[data-k=magnesium],#v0[data-hl=sodium] .ly[data-k=sodium]{opacity:1;z-index:45!important;outline:3px solid #ff00d4;outline-offset:1px}
+#v0[data-hl=calcium] .cs .sn{opacity:1;transform:scaleX(1)}
 @media(prefers-reduced-motion:reduce){.cs .sn{transition:none}}
 #sp:checked ~ .charts label[for=sp],#sr:checked ~ .charts label[for=sr]{background:var(--brand);color:#fff}
 #sr:checked ~ .charts .s-p,#sp:checked ~ .charts .s-r{display:none}
@@ -581,7 +594,9 @@ ov_sec=('<section class="day var" id="v0"><h2>New) Overlay bar <span class="mock
  '<div class="ovs" role="group" aria-label="Scale"><b>Scale:</b><label for="sp">% of target (default)</label><label for="sr">Raw amount (mg-equivalent, small nutrients tiny)</label></div>'
  '<p class="est s-p">Scale: % of each nutrient’s daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). Sodium* is against its 2,300 mg limit, so shorter is better. Dashed magenta line = 100%. Bars past the right edge are clipped.</p>'
  '<p class="est s-r">Scale: raw numbers on one shared axis, as logged (mg for calcium, potassium, magnesium and sodium; g for protein and fiber). Fiber and protein, in grams, look tiny next to potassium in mg, which is why % mode is the default. Tiny layers are given a minimum width so they stay visible.</p>'
+ '<p class="est">Can’t see a layer? Hover, tap or Tab onto its name in the legend to bring it to the front and highlight it. When two layers end within about 1.5% of each other, the hidden one gets a small tab under the end of its bar that you can also hover or tap.</p>'
  +toggled(ov_all)+
+ '<script>(function(){var s=document.getElementById("v0"),c=null;function set(k){if(k)s.setAttribute("data-hl",k);else s.removeAttribute("data-hl");s.querySelectorAll(".lc").forEach(function(e){var on=e.dataset.k===k;e.classList.toggle("on",on);e.setAttribute("aria-pressed",on)})}s.querySelectorAll(".lc").forEach(function(e){var k=e.dataset.k;e.addEventListener("mouseenter",function(){if(!c)set(k)});e.addEventListener("mouseleave",function(){if(!c)set(null)});e.addEventListener("focus",function(){if(!c)set(k)});e.addEventListener("blur",function(){if(!c)set(null)});e.addEventListener("click",function(){c=(c===k)?null:k;set(c)});e.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();e.click()}})})})()</script>'
  '<p class="est">Hatched row = in progress. Layers are solid with a thin outline (white or dark) so each stays visible; where one is hidden behind another, hover its visible part or use Tab. Food + supplements view includes supplements; food only excludes them.</p>'
  '<details><summary>Data table (amounts and % of target, food + supplements)</summary><div class="tw"><table class="est"><tr><th>Day</th>'+''.join(f'<th>{sw(k)}{l}</th>' for k,l,u,t,c in MK)+'<th>Calcium absorbed, estimate</th></tr>'
  +''.join(f'<tr><td>{MDL[i]}{" (in progress)" if MIP[i] else ""}</td>'+''.join(f'<td>{raw(i,k,"c"):,.0f} {u} ({P(i,k,"c"):.0f}%)</td>' for k,l,u,t,c in MK)+f'<td>{cabs(i,"c")[0]:,.0f} mg ({cabs(i,"c")[0]/10:.0f}% of target; {cabs(i,"c")[2]:.0f}% of eaten)</td></tr>' for i in range(n_))
