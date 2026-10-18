@@ -2012,7 +2012,7 @@
      "meal": "Afternoon snack (time not given)",
      "food": "milk_2",
      "grams": 122.0,
-     "label": "Café con leche: ~4 oz 2% steamed milk (assumed half of 8 oz)",
+     "label": "Caf\u00e9 con leche: ~4 oz 2% steamed milk (assumed half of 8 oz)",
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
@@ -2021,7 +2021,7 @@
      "meal": "Afternoon snack (time not given)",
      "food": "coffee",
      "grams": 118.0,
-     "label": "Café con leche: ~4 oz brewed coffee (assumed half of 8 oz; espresso treated as brewed)",
+     "label": "Caf\u00e9 con leche: ~4 oz brewed coffee (assumed half of 8 oz; espresso treated as brewed)",
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
@@ -2095,6 +2095,167 @@
      "grams": 28.5,
      "label": "3 prunes (given; ~9.5 g each assumed)",
      "assumed": false,
+     "lo": 0.8,
+     "hi": 1.2
+    }
+   ]
+  },
+  {
+   "date": "2026-10-18",
+   "partial": true,
+   "in_progress": true,
+   "partial_note": "Day in progress: only the 12:30 PM lunch (with decaf latte and skyr dessert) is logged so far; dinner is not yet logged, so this day is excluded from the Possible gaps averages. Many portions are assumed.",
+   "entries": [
+    {
+     "meal": "Lunch",
+     "food": "milk_2",
+     "grams": 150,
+     "label": "Decaf latte 8 oz: ~150 g 2% milk (assumed; decaf, caffeine negligible)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch",
+     "food": "coffee",
+     "grams": 60,
+     "label": "Decaf latte 8 oz: decaf coffee ~60 g (assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch",
+     "food": "onion",
+     "grams": 55,
+     "label": "Salad: 1/2 onion ~55 g (assumed half of a medium onion, ~110 g)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch",
+     "food": "tomato",
+     "grams": 100,
+     "label": "Salad: tomato ~100 g (assumed)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "pumpkin_seeds",
+     "grams": 20,
+     "label": "Salad: pumpkin seeds 20 g (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch",
+     "food": "lemon_juice",
+     "grams": 15,
+     "label": "Salad: lemon juice ~15 g (assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch",
+     "food": "olive_oil",
+     "grams": 4.5,
+     "label": "Salad: olive oil ~1 tsp, 'a little' (assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 3
+    },
+    {
+     "meal": "Lunch",
+     "food": "salt_table",
+     "grams": 1.5,
+     "label": "Salt to taste (assumed ~1/4 tsp) - salad",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch",
+     "food": "lentils",
+     "grams": 198,
+     "label": "Lentils = 1 cup cooked (assumed)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "eggplant",
+     "grams": 100,
+     "label": "Curry: eggplant ~100 g (assumed share, same as Oct 16)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "potato",
+     "grams": 100,
+     "label": "Curry: potato ~100 g (assumed, same as Oct 16)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "tomato",
+     "grams": 60,
+     "label": "Curry: tomato ~60 g (assumed, same as Oct 16)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "olive_oil",
+     "grams": 13.5,
+     "label": "Curry: 1 tbsp oil (assumed; oil type unknown)",
+     "assumed": true,
+     "lo": 0.3,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "ginger",
+     "grams": 5,
+     "label": "Curry: ginger ~5 g (assumed)",
+     "assumed": true,
+     "lo": 0.3,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch",
+     "food": "garlic",
+     "grams": 3,
+     "label": "Curry: garlic 1 clove (assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch",
+     "food": "salt_table",
+     "grams": 1.5,
+     "label": "Salt to taste (assumed ~1/4 tsp) - lentil/curry dish (one entry for the combined dish)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch",
+     "food": "skyr",
+     "grams": 112.5,
+     "label": "Dessert: 3/4 of 1 single-serve skyr (0.75 x ~150 g, same as Oct 17; assumed, brand/size unknown)",
+     "assumed": true,
      "lo": 0.8,
      "hi": 1.2
     }
