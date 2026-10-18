@@ -692,7 +692,8 @@ OVCSS="""
 #v0 .ly:hover,#v0 .ly:focus{outline:2px solid var(--pin);outline-offset:1px}
 #v0 .ly:focus:not(:focus-visible):not(:hover){outline:none}
 #v0[data-hl=protein] .ly[data-k=protein],#v0[data-hl=fiber] .ly[data-k=fiber],#v0[data-hl=calcium] .ly[data-k=calcium],#v0[data-hl=potassium] .ly[data-k=potassium],#v0[data-hl=magnesium] .ly[data-k=magnesium],#v0[data-hl=sodium] .ly[data-k=sodium]{outline:2px solid var(--pin);outline-offset:1px}
-#v0[data-hl] .ly[data-k]{opacity:.5}
+#v0[data-hl] .ly[data-k]{opacity:1;background:color-mix(in srgb,var(--oc) 38%,var(--trk));border-color:color-mix(in srgb,var(--ol) 38%,var(--trk));outline:none}
+#v0[data-hl=protein] .ly[data-k=protein],#v0[data-hl=fiber] .ly[data-k=fiber],#v0[data-hl=calcium] .ly[data-k=calcium],#v0[data-hl=potassium] .ly[data-k=potassium],#v0[data-hl=magnesium] .ly[data-k=magnesium],#v0[data-hl=sodium] .ly[data-k=sodium]{opacity:1;background:var(--oc);border:2px solid var(--pin);outline:none;z-index:45!important}
 #v0 .m100{width:4px;margin-left:-2px;top:-4px;bottom:-4px;background:repeating-linear-gradient(to bottom,#ff00d4 0 5px,#fff 5px 8px);outline:1px solid #111;border:0;z-index:30}
 #v0 .gl5{position:absolute;top:0;bottom:0;width:0;border-left:1px solid var(--grd);opacity:.8;z-index:0;pointer-events:none}
 #v0 .ovb .ovt{border-top:1px solid var(--grd)}#v0 .kt2 span{font-weight:500;color:#5b5446;font-size:.62rem}
