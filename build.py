@@ -250,6 +250,7 @@ MD=sorted(days,key=lambda x:x['date'])
 MDATES=[d['date'] for d in MD]
 MIP=[bool(d.get('in_progress')) for d in MD]
 MDL=[datetime.date.fromisoformat(x).strftime('%b %-d') for x in MDATES]
+WDL=[datetime.date.fromisoformat(x).strftime('%a %-d') for x in MDATES]
 NC=[i for i,v in enumerate(MIP) if not v]          # complete-day indexes
 LAST=NC[-1]
 def raw(i,k,mode):
@@ -508,8 +509,8 @@ def split_info(i,k,mode):
     if sv>0: a+=sv*PRO_DEF/100; sh=sh*fv/tot
     return dict(e=tot,a=a,lo=None,hi=None,sh=sh)
 # ===== 0 overlay bar =====
-OVC={'protein':'#5a2d0c','fiber':'#00a650','calcium':'#ffffff','potassium':'#e00000','magnesium':'#ff8a00','sodium':'#ffe600'}
-OVO={'protein':'#f5e6d3','fiber':'#ffffff','calcium':'#111111','potassium':'#ffffff','magnesium':'#111111','sodium':'#111111'}
+OVC={'protein':'#5a3420','fiber':'#3f9d5f','calcium':'#fffdf8','potassium':'#c8453d','magnesium':'#f08a24','sodium':'#f2c53d'}
+OVO={'protein':'#ffffff','fiber':'#ffffff','calcium':'#cdbfa8','potassium':'#ffffff','magnesium':'#ffffff','sodium':'#ffffff'}
 def sw(k): return f'<i class="sw" style="--oc:{OVC[k]};--ol:{OVO[k]}"></i>'
 def ov_scale(mode,pct):
     if pct: return smax(mode)
@@ -542,14 +543,14 @@ def kmark(i,mode):
     return (f'<div class="kc{" kh" if ip else ""}" data-x="{x:.2f}" tabindex="0" role="img" aria-label="{E(aria)}" style="left:{x:.2f}%">'
             f'<span class="tp kt" aria-hidden="true">{body}</span></div>')
 def kaxis():
-    return ('<div class="ovb"><span class="ovd kl"><i class="sw ksw"></i>kcal</span><div class="ovt kt2">'
+    return ('<div class="ovb"><span class="ovd kl axt"><i class="sw ksw"></i>kcal</span><div class="ovt kt2">'
       +''.join(f'<span style="left:{v/KMAX*100:.2f}%">{v:,}</span>' for v in range(0,KMAX+1,500))+'</div></div>')
 def ov(mode,pct,ab=False):
     mx=ov_scale(mode,pct); cl='s-p' if pct else 's-r'
     ticks=range(0,mx+1,50 if pct else 500)
     if pct and mx>300: ticks=range(0,mx+1,100)
     h=f'<div class="{cl}"><div class="ovl">'
-    h+='<div class="ova"><span class="ovd"></span><div class="ovt">'+''.join(f'<span style="left:{v/mx*100:.2f}%">{v}{"%" if pct else ""}</span>' for v in ticks)+'</div></div>'
+    h+='<div class="ova"><span class="ovd axt">'+('% of daily target' if pct else 'raw amount')+'</span><div class="ovt">'+''.join(f'<span style="left:{v/mx*100:.2f}%">{v}{"%" if pct else ""}</span>' for v in ticks)+'</div></div>'
     for i in range(n_):
         items=[]
         for k,l,u,t,c in MK:
@@ -560,7 +561,7 @@ def ov(mode,pct,ab=False):
         items.sort(key=lambda x:-x[0])
         ip=MIP[i]
         allrows={it[1]:f'<span class="ar" data-n="{it[1]}">{sw(it[1])}{it[2].rstrip("*")}: {it[5]:,.0f} {it[3]} · {it[5]/it[4]*100:.0f}%</span>' for it in items}
-        h+=f'<div class="ovr{" ip" if ip else ""}"><div class="ovd">{MDL[i]}{"<small>in progress</small>" if ip else ""}</div><div class="ovk">'
+        h+=f'<div class="ovr{" ip" if ip else ""}"><div class="ovd" title="{MDL[i]}"><span class="wd">{WDL[i]}</span>{"<small>in progress</small>" if ip else ""}</div><div class="ovk">'
         for z,(val,k,l,u,t,v,fv,sv) in enumerate(items):
             w=max(min(val,mx)/mx*100,.7)
             ln=l.rstrip('*')
@@ -610,13 +611,16 @@ def ov(mode,pct,ab=False):
             edge='<span class="ed" aria-hidden="true"></span>' if near else ''
             h+=(f'<div class="ly{" cs" if (k=="calcium" or k in SPLIT or k=="protein") else ""}{" nr" if near else ""}" data-k="{k}" tabindex="0" role="img" aria-label="{E(aria+"; all nutrients: "+"; ".join(f"{o[2].rstrip(chr(42))} {o[5]:,.0f} {o[3]}" for o in items))}" style="width:{w:.2f}%;--oc:{OVC[k]};--ol:{OVO[k]};z-index:{zi}"><span class="tp" aria-hidden="true">{sw(k)}<b>{ln}</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>{v:,.0f} {u} · {pcs}<br>{sp2}{allr}</span>{seg}{edge}</div>')
         h+=kmark(i,mode)
-        if pct: h+=f'<i class="m100" style="left:{100/mx*100:.2f}%"></i>'
+        if pct:
+            h+=f'<i class="m100" style="left:{100/mx*100:.2f}%"></i>'
+            for gv in (50,150):
+                if gv<mx: h+=f'<i class="gl5" style="left:{gv/mx*100:.2f}%"></i>'
         h+='</div></div>'
     h+=kaxis()+'<svg class="kln" aria-hidden="true"></svg>'
     h+='</div></div>'
     return h
 def ovleg():
-    return '<div class="lg ovg">'+''.join(f'<span class="lc" tabindex="0" role="button" aria-pressed="false" data-k="{k}" title="Hover, tap or focus to bring {l.rstrip("*")} to the front">{sw(k)}{l}</span>' for k,l,u,t,c in MK)+'<span class="lk on" tabindex="0" role="button" aria-pressed="true" title="Show or hide the calorie line (bottom axis, kcal)"><i class="sw ksw"></i>Calories (line)</span></div>'
+    return '<div class="lg ovg">'+''.join(f'<span class="lc" tabindex="0" role="button" aria-pressed="false" data-k="{k}" title="Hover, tap or focus to bring {l.rstrip("*")} to the front">{sw(k)}{l}</span>' for k,l,u,t,c in MK)+'<span class="lk on" tabindex="0" role="button" aria-pressed="true" title="Show or hide the calorie line (bottom axis, kcal)"><i class="sw ksw"></i>Calories</span></div>'
 def ov_all(mode): return ovleg()+ov(mode,True)+ov(mode,False)
 OVCSS="""
 .ovl{margin:.4rem 0 1.2rem}
@@ -673,16 +677,56 @@ OVCSS="""
 .ovs{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin:.3rem 0}
 .ovs label{cursor:pointer;padding:.35rem .9rem;border-radius:999px;border:2px solid var(--brand);color:var(--brand);font-weight:700;font-size:.85rem}
 @media(max-width:560px){.ovr,.ova{grid-template-columns:3.6rem 1fr}.ovk{height:26px}}
+/* ===== calmer restyle of #v0 overlay chart ===== */
+#v0{--pin:#6d5bd0;--trk:#f3eee4;--grd:#e2d9c8;--ax:#9a9285;box-shadow:0 1px 2px rgba(60,40,10,.06),0 10px 28px rgba(60,40,10,.09);border-radius:16px}
+@media(prefers-color-scheme:dark){#v0{--pin:#a99cff;--trk:#2b2a27;--grd:#3d3b36;--ax:#8d887d;box-shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35)}}
+#v0 .ovr,#v0 .ova{margin:.55rem 0}#v0 .ova{margin-bottom:.1rem}
+#v0 .ovk{height:20px;border-radius:7px;background:var(--trk)}
+#v0 .ovr.ip .ovk{background:repeating-linear-gradient(45deg,var(--trk) 0 4px,transparent 4px 9px),var(--card);outline:1px dashed var(--grd)}
+#v0 .ovd{color:var(--ink);font-size:.8rem}#v0 .ovd .wd{font-weight:600}
+#v0 .ovd.axt{font-size:.6rem;color:var(--ax);line-height:1.15;font-weight:400;letter-spacing:.01em}
+#v0 .ovt span{font-size:.62rem;color:var(--ax)}
+#v0 .ly{border:1.5px solid var(--ol);border-radius:7px 3px 3px 7px;min-width:5px}
+#v0 .ovk>.ly:first-child{border-radius:7px 7px 7px 7px}
+#v0 .ly[data-k=calcium]{box-shadow:inset 0 0 0 .5px rgba(120,100,70,.25)}
+#v0 .ly:hover,#v0 .ly:focus{outline:2px solid var(--pin);outline-offset:1px}
+#v0 .ly:focus:not(:focus-visible):not(:hover){outline:none}
+#v0[data-hl=protein] .ly[data-k=protein],#v0[data-hl=fiber] .ly[data-k=fiber],#v0[data-hl=calcium] .ly[data-k=calcium],#v0[data-hl=potassium] .ly[data-k=potassium],#v0[data-hl=magnesium] .ly[data-k=magnesium],#v0[data-hl=sodium] .ly[data-k=sodium]{outline:2px solid var(--pin);outline-offset:1px}
+#v0[data-hl] .ly[data-k]{opacity:.5}
+#v0 .m100{width:0;margin-left:0;top:-5px;bottom:-5px;background:none;outline:0;border-left:1.5px dashed #7d6f58;z-index:30}
+#v0 .gl5{position:absolute;top:0;bottom:0;width:0;border-left:1px solid var(--grd);opacity:.8;z-index:0;pointer-events:none}
+#v0 .ovb .ovt{border-top:1px solid var(--grd)}#v0 .kt2 span{font-weight:500;color:#5b5446;font-size:.62rem}
+#v0 .ovb .kl{font-weight:400;color:var(--ax)}
+#v0 .sw,#v0 .lg .sw{width:10px;height:10px;border-radius:50%;border:1px solid rgba(60,40,10,.28);background:var(--oc);margin-right:.35rem}
+#v0 .ksw{width:4px!important;height:12px!important;border:1px solid #fff!important;box-shadow:0 0 0 .5px #111;border-radius:2px!important;margin-right:.4rem}
+#v0 .kc{top:-3px;bottom:-3px;width:8px;margin-left:-4px;border-radius:2px}
+#v0 .kc:hover,#v0 .kc:focus{outline:2px solid var(--pin);outline-offset:2px}
+#v0 .lg.ovg{gap:.2rem .35rem;justify-content:flex-start;font-size:.8rem;margin:.4rem 0 .8rem}
+#v0 .lc,#v0 .lk{display:inline-flex;align-items:center;padding:.2rem .65rem;border:1px solid transparent;border-radius:999px;color:var(--ink)}
+#v0 .lc:hover,#v0 .lc:focus,#v0 .lk:hover,#v0 .lk:focus{border-color:transparent;outline:none}
+#v0 .lc:focus-visible,#v0 .lk:focus-visible{outline:2px solid var(--pin);outline-offset:1px}
+#v0 .lc.on{border-color:var(--pin);background:color-mix(in srgb,var(--pin) 12%,transparent)}
+#v0 .lk{opacity:.45;text-decoration:line-through}#v0 .lk.on{opacity:1;text-decoration:none}
+#v0 .ova .ovd.axt{visibility:visible}
+#v0 .cs .sn{border-left:1px solid rgba(60,40,10,.5)}
+@keyframes ovgrow{from{width:0}}
+@keyframes ovfade{from{opacity:0}}
+#v0 .ly{animation:ovgrow .8s cubic-bezier(.2,.7,.2,1) both}
+#v0 .kc{animation:ovfade .6s ease .6s both}
+#v0 .ovr:nth-of-type(2) .ly{animation-delay:.04s}#v0 .ovr:nth-of-type(3) .ly{animation-delay:.08s}#v0 .ovr:nth-of-type(4) .ly{animation-delay:.12s}#v0 .ovr:nth-of-type(5) .ly{animation-delay:.16s}#v0 .ovr:nth-of-type(6) .ly{animation-delay:.2s}#v0 .ovr:nth-of-type(7) .ly{animation-delay:.24s}#v0 .ovr:nth-of-type(8) .ly{animation-delay:.28s}
+@media(prefers-reduced-motion:reduce){#v0 .ly,#v0 .kc{animation:none}}
+@media(max-width:560px){#v0 .ovr,#v0 .ova{grid-template-columns:3.6rem 1fr}#v0 .ovk{height:18px}#v0 .lc,#v0 .lk{padding:.2rem .5rem}}
+
 """
 ov_sec=('<section class="day var" id="v0"><h2>New) Overlay bar <span class="mockbadge">new</span></h2>'
  '<p class="pc">One bar per day; every nutrient is its own colored layer starting at the left, longest at the back so none is hidden. Hover, tap or Tab onto a layer for the numbers. Hover or tap the <b>calcium, potassium, magnesium or protein</b> layer (or its legend name) to see it split into estimated absorbed (solid) and not absorbed (hatched). Sodium and fiber show a one-line note instead of a split.</p>'
- '<p class="est"><b>Calories:</b> the bold black line with square markers shows each day’s estimated calories on the <b>bottom kcal axis</b> (0 to 2,500). The top axis is still % of target. There is no calorie target; the line only shows the amount. A hollow marker means the day is in progress. Use the “Calories (line)” chip in the legend to hide it.</p>'
+ '<p class="est"><b>Calories:</b> the black tick on each bar shows each day’s estimated calories on the <b>bottom kcal axis</b> (0 to 2,500). The top axis is still % of target. There is no calorie target; the line only shows the amount. A hollow marker means the day is in progress. Use the “Calories” chip in the legend to hide it.</p>'
  '<div class="ovs" role="group" aria-label="Scale"><b>Scale:</b><label for="sp">% of target (default)</label><label for="sr">Raw amount (mg-equivalent, small nutrients tiny)</label></div>'
- '<p class="est s-p">Scale: % of each nutrient’s daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). Sodium* is against its 2,300 mg limit, so shorter is better. Dashed magenta line = 100%. Bars past the right edge are clipped.</p>'
+ '<p class="est s-p">Scale: % of each nutrient’s daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). Sodium* is against its 2,300 mg limit, so shorter is better. Dashed line = 100%; faint lines = 50% and 150%. Bars past the right edge are clipped.</p>'
  '<p class="est s-r">Scale: raw numbers on one shared axis, as logged (mg for calcium, potassium, magnesium and sodium; g for protein and fiber). Fiber and protein, in grams, look tiny next to potassium in mg, which is why % mode is the default. Tiny layers are given a minimum width so they stay visible.</p>'
  '<p class="est">Can’t see a layer? Hover, tap or Tab onto its name in the legend to bring it to the front and highlight it. When two layers end within about 1.5% of each other, the hidden one gets a small tab under the end of its bar that you can also hover or tap.</p>'
  +toggled(ov_all)+
- '<script>(function(){var s=document.getElementById("v0");function draw(l){var svg=l.querySelector(".kln");if(!svg)return;var lr=l.getBoundingClientRect();if(!lr.width){return}svg.setAttribute("viewBox","0 0 "+lr.width+" "+lr.height);var p=[];l.querySelectorAll(".kc").forEach(function(m){var r=m.getBoundingClientRect();p.push((r.left+r.width/2-lr.left).toFixed(1)+","+(r.top+r.height/2-lr.top).toFixed(1))});var q=p.join(" ");var mk="";l.querySelectorAll(".kc").forEach(function(m){var r=m.getBoundingClientRect(),h=m.classList.contains("kh");mk+=\'<rect x="\'+(r.left+1-lr.left).toFixed(1)+\'" y="\'+(r.top-lr.top).toFixed(1)+\'" width="\'+(r.width-2)+\'" height="\'+r.height+\'" rx="3" fill="\'+(h?"#fff":"#111")+\'" stroke="\'+(h?"#111":"#fff")+\'" stroke-width="2"/>\'});svg.innerHTML=mk}var ls=s.querySelectorAll(".ovl");function all(){ls.forEach(draw)}if(window.ResizeObserver){var ro=new ResizeObserver(all);ls.forEach(function(l){ro.observe(l)})}window.addEventListener("resize",all);window.addEventListener("load",all);all();s.querySelectorAll(".lk").forEach(function(e){function t(){var off=s.classList.toggle("nok");s.querySelectorAll(".lk").forEach(function(x){x.classList.toggle("on",!off);x.setAttribute("aria-pressed",!off)})}e.addEventListener("click",t);e.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();t()}})})})()</script><script>(function(){var s=document.getElementById("v0"),c=null;function set(k){if(k)s.setAttribute("data-hl",k);else s.removeAttribute("data-hl");s.querySelectorAll(".lc").forEach(function(e){var on=e.dataset.k===k;e.classList.toggle("on",on);e.setAttribute("aria-pressed",on)})}s.querySelectorAll(".lc").forEach(function(e){var k=e.dataset.k;e.addEventListener("mouseenter",function(){if(!c)set(k)});e.addEventListener("mouseleave",function(){if(!c)set(null)});e.addEventListener("focus",function(){if(!c)set(k)});e.addEventListener("blur",function(){if(!c)set(null)});e.addEventListener("click",function(){c=(c===k)?null:k;set(c)});e.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();e.click()}})})})()</script>'
+ '<script>(function(){var s=document.getElementById("v0");function draw(l){var svg=l.querySelector(".kln");if(!svg)return;var lr=l.getBoundingClientRect();if(!lr.width){return}svg.setAttribute("viewBox","0 0 "+lr.width+" "+lr.height);var p=[];l.querySelectorAll(".kc").forEach(function(m){var r=m.getBoundingClientRect();p.push((r.left+r.width/2-lr.left).toFixed(1)+","+(r.top+r.height/2-lr.top).toFixed(1))});var q=p.join(" ");var mk="";l.querySelectorAll(".kc").forEach(function(m){var r=m.getBoundingClientRect(),h=m.classList.contains("kh");mk+=\'<rect x="\'+(r.left+1.5-lr.left).toFixed(1)+\'" y="\'+(r.top-lr.top).toFixed(1)+\'" width="\'+(r.width-3)+\'" height="\'+r.height+\'" rx="2" fill="\'+(h?"#fff":"#111")+\'" stroke="\'+(h?"#111":"#fff")+\'" stroke-width="1.5"/>\'});svg.innerHTML=mk}var ls=s.querySelectorAll(".ovl");function all(){ls.forEach(draw)}if(window.ResizeObserver){var ro=new ResizeObserver(all);ls.forEach(function(l){ro.observe(l)})}window.addEventListener("resize",all);window.addEventListener("load",all);all();s.querySelectorAll(".lk").forEach(function(e){function t(){var off=s.classList.toggle("nok");s.querySelectorAll(".lk").forEach(function(x){x.classList.toggle("on",!off);x.setAttribute("aria-pressed",!off)})}e.addEventListener("click",t);e.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();t()}})})})()</script><script>(function(){var s=document.getElementById("v0"),c=null;function set(k){if(k)s.setAttribute("data-hl",k);else s.removeAttribute("data-hl");s.querySelectorAll(".lc").forEach(function(e){var on=e.dataset.k===k;e.classList.toggle("on",on);e.setAttribute("aria-pressed",on)})}s.querySelectorAll(".lc").forEach(function(e){var k=e.dataset.k;e.addEventListener("mouseenter",function(){if(!c)set(k)});e.addEventListener("mouseleave",function(){if(!c)set(null)});e.addEventListener("focus",function(){if(!c)set(k)});e.addEventListener("blur",function(){if(!c)set(null)});e.addEventListener("click",function(){c=(c===k)?null:k;set(c)});e.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();e.click()}})})})()</script>'
  '<p class="est">Hatched row = in progress. Layers are solid with a thin outline (white or dark) so each stays visible; where one is hidden behind another, hover its visible part or use Tab. Food + supplements view includes supplements; food only excludes them.</p>'
  '<details><summary>Data table (amounts and % of target, food + supplements)</summary><div class="tw"><table class="est"><tr><th>Day</th>'+''.join(f'<th>{sw(k)}{l}</th>' for k,l,u,t,c in MK)+'<th>Calcium absorbed, estimate</th></tr>'
  +''.join(f'<tr><td>{MDL[i]}{" (in progress)" if MIP[i] else ""}</td>'+''.join(f'<td>{raw(i,k,"c"):,.0f} {u} ({P(i,k,"c"):.0f}%)</td>' for k,l,u,t,c in MK)+f'<td>{cabs(i,"c")[0]:,.0f} mg ({cabs(i,"c")[0]/10:.0f}% of target; {cabs(i,"c")[2]:.0f}% of eaten)</td></tr>' for i in range(n_))
