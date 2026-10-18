@@ -168,6 +168,10 @@ note='<div class="note"><b>Estimates only.</b> Values come from USDA FoodData Ce
 b0=f'<div class="stats"><div class="stat"><b>{len(f)}</b><span>days logged</span></div><div class="stat"><b>{sum(len(x["meals"]) for x in f)}</b><span>meals and snacks</span></div></div>'+note+weektbl
 
 
+def salt_mg(date,mode=None):
+    dd=next(x for x in nut['days'] if x['date']==date)
+    return sum(foods[e['food']]['per100g']['sodium']*e['grams']/100 for e in dd['entries'] if e['food']=='salt_table')
+SALT_NOTE='Includes assumed table salt (salt to taste, amount unknown; default ~1/4 tsp, about 575 mg sodium, per home-cooked dish, range half to double). Not measured; packaged and restaurant food is not given extra salt.'
 def breakdown(day,k,l,u,sp,cl_):
     items=[];nd=[]
     for en in day['entries']:
@@ -183,11 +187,12 @@ def breakdown(day,k,l,u,sp,cl_):
     h=''
     for a,t,en,fd in rows:
         pc=a/ctot*100 if ctot else 0
-        if t=='f': h+=f'<tr><td>{E(en["label"])} <small>({E(en["meal"])})</small></td><td class="n">{en["grams"]:g} g</td><td class="n">{d1(a)}</td><td class="n">{pc:.0f}%</td></tr>'
+        if t=='f': h+=f'<tr{" class=\"salt\"" if en["food"]=="salt_table" else ""}><td>{E(en["label"])}{"<span class=\"tag\">assumed salt</span>" if en["food"]=="salt_table" else ""} <small>({E(en["meal"])})</small></td><td class="n">{en["grams"]:g} g</td><td class="n">{d1(a)}</td><td class="n">{pc:.0f}%</td></tr>'
         else: h+=f'<tr class="sup"><td>{E(en)}<span class="tag">supplement</span></td><td class="n">label dose</td><td class="n">{d1(a)}</td><td class="n">{pc:.0f}%</td></tr>'
     for en in nd:
         h+=f'<tr class="nd"><td>{E(en["label"])} <small>({E(en["meal"])})</small></td><td class="n">{en["grams"]:g} g</td><td class="n" colspan="2">no data</td></tr>'
     plus=' (food excludes no-data items, so true total is higher)' if nd else ''
+    if k=='sodium' and salt_mg(day['date'])>0: plus+=f' {SALT_NOTE} Assumed salt this day: ~{salt_mg(day["date"]):,.0f} mg of the food total.'
     return (f'<details class="bd {cl_}"><summary>See what contributed to {l.lower().replace(" (eaten)","")} ({len(rows)} sources{", "+str(len(nd))+" no data" if nd else ""})</summary>'
      f'<div class="tw"><table class="est"><tr><th>Source</th><th class="n">Portion</th><th class="n">{u}</th><th class="n">% of day</th></tr>{h}</table></div>'
      f'<p class="est">Food {d1(fsum)} + supplements {d1(ssum)} = combined {d1(ctot)} {u}{plus}. Percentages are of the combined day total. Uses the same midpoint estimates as the tiles; each line is rounded, so lines may differ from the tile total by a rounding step. Sorted highest to lowest; "no data" foods are unknown, not zero.</p></details>')
@@ -578,6 +583,7 @@ def ov(mode,pct,ab=False):
             if mode=='f': sp=f'food ~{nsx["f"]}{plk} {u} + supplements {nsx["s"]} {u} (supplements not counted in this view)'
             else: sp=f'food ~{nsx["f"]}{plk} {u} + supplements {nsx["s"]} {u}'
             pnote=f'<br><small>&ldquo;+&rdquo; = some foods have no data for {l.rstrip("*").lower()}, so the true amount is higher.</small>' if plk else ''
+            if k=='sodium' and salt_mg(MDATES[i])>0: pnote+=f'<br><small>{SALT_NOTE} Assumed salt: ~{fm0(salt_mg(MDATES[i]))} mg of the food figure.</small>'
             pc=v/t*100
             pcs=f'{pc:.0f}% of '+(f'{t:,} {u} limit' if k=='sodium' else f'{t:,} {u} target')
             aria=f'{ln}, {MDL[i]}{" in progress" if ip else ""}: eaten ({lab}) {fm0(v)}{plk} {u}, {pcs}; {sp}'
