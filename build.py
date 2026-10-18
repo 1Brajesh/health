@@ -479,6 +479,34 @@ for i,dd in enumerate(MD):
     items.sort(key=lambda x:-x['mg'])
     e=sum(x['mg'] for x in items); ab=sum(x['ab'] for x in items)
     AD.append(dict(i=i,e=e,a=ab,items=items,nd=nd,ip=MIP[i],l=MDL[i]))
+
+# ===== absorption config for overlay split (typical adult; estimates). Percentages live here, not in JS =====
+SPLIT={
+ 'potassium':dict(mid=87.5,lo=85,hi=90,src='NIH ODS Potassium fact sheet, updated June 2, 2022',note='Absorbed is not the same as retained; healthy kidneys excrete the excess.'),
+ 'magnesium':dict(mid=35,lo=30,hi=40,src='NIH ODS Magnesium fact sheet, updated Jan 6, 2026',note='Absorption is lower at higher per-meal doses (Fine 1991), so a smaller evening dose likely absorbs a larger share, but no sourced number exists for your dose. Your supplement (Nature Made bisglycinate) uses the same 30-40%: <b>assumed, form-specific data lacking</b>.'),
+}
+PRO_DEF=90   # assumed default protein digestibility for foods without data
+PRO_SRC='FAO 2013 (Food and Nutrition Paper 92) and Nutrients 2019;11(8):1825'
+PRO_DIG={ # food key: (percent, sourced?)
+ 'milk_2':(96,True),'egg_fried':(98,True),'cod':(90,True),'tuna':(90,True),'lentils':(84,True),'bread':(91,True),'tortilla':(91,True),
+ 'kefir':(96,False),'kefir_maplehill':(96,False),'skyr':(96,False),'siggis':(96,False),'hot_cocoa':(96,False),
+ 'wf_lentil_soup':(84,False),'croissant':(91,False)}
+NOSPLIT={'sodium':'~98% absorbed (NASEM 2005, EFSA 2019)','fiber':'not absorbed by definition; partly fermented in colon (FAO/WHO 1998)'}
+def split_info(i,k,mode):
+    fv=raw(i,k,'f'); tot=raw(i,k,mode); sv=tot-fv
+    if k in SPLIT:
+        c=SPLIT[k]; return dict(e=tot,a=tot*c['mid']/100,lo=tot*c['lo']/100,hi=tot*c['hi']/100,sh=None)
+    # protein: per-food digestibility, weighted by food protein from log entries
+    num=den=srcd=0.0
+    for en in MD[i]['entries']:
+        fd=foods[en['food']]; v=fd['per100g']['protein']
+        if v is None: continue
+        g=v*en['grams']/100; p,so=PRO_DIG.get(en['food'],(PRO_DEF,False))
+        num+=g*p; den+=g; srcd+=g if so else 0
+    fr=(num/den/100) if den>0 else PRO_DEF/100
+    a=fv*fr; sh=(srcd/den*100) if den>0 else 0
+    if sv>0: a+=sv*PRO_DEF/100; sh=sh*fv/tot
+    return dict(e=tot,a=a,lo=None,hi=None,sh=sh)
 # ===== 0 overlay bar =====
 OVC={'protein':'#5a2d0c','fiber':'#00a650','calcium':'#ffffff','potassium':'#e00000','magnesium':'#ff8a00','sodium':'#ffe600'}
 OVO={'protein':'#f5e6d3','fiber':'#ffffff','calcium':'#111111','potassium':'#ffffff','magnesium':'#111111','sodium':'#111111'}
@@ -537,10 +565,24 @@ def ov(mode,pct,ab=False):
                 seg=f'<span class="sn" aria-hidden="true" style="left:{cp:.2f}%"></span>'
                 sp2=(f'<b>Calcium split (estimate)</b><br>Eaten {ce:,.0f} mg<br>Absorbed ~{ca:,.0f} mg ({cp:.0f}%) <span class="kd">solid</span><br>Not absorbed ~{ce-ca:,.0f} mg <span class="kd h">hatched</span><br>{ss:.0f}% of eaten calcium uses sourced percentages (milk 27%, spinach 5%, cabbage/broccoli 27%); the rest uses an assumed default of {ABS_DEF}%.<br><small>Source: NIH ODS calcium fact sheet, updated June 22, 2026. Typical adult, not a personal value.</small>')
                 aria+=f'; estimated absorbed about {ca:,.0f} mg of {ce:,.0f} mg eaten ({cp:.0f}%), not absorbed about {ce-ca:,.0f} mg. Estimate, typical adult.'
+            if k in SPLIT or k=='protein':
+                si=split_info(i,k,mode); sa=si['a']; spc=sa/si['e']*100 if si['e']>0 else 0
+                seg=f'<span class="sn" aria-hidden="true" style="left:{spc:.2f}%"></span>'
+                if k=='protein':
+                    rng=''; srcl=f'{si["sh"]:.0f}% of the protein eaten uses sourced digestibility (milk 96%, egg 98%, fish ~90%, lentils 84%, wheat ~91%); the rest is <b>assumed</b> at a default {PRO_DEF}% (chicken, duck, nuts, seeds, vegetables, most dairy products have no usable data).'
+                    srcc=f'Source: {PRO_SRC}. Digestibility, not amino-acid quality.'
+                else:
+                    c=SPLIT[k]; rng=f' (range {si["lo"]:,.0f}-{si["hi"]:,.0f} {u}, {c["lo"]}-{c["hi"]}%)'
+                    srcl=c['note']; srcc='Source: '+c['src']+'.'
+                sp2=(f'<b>{ln} split (estimate)</b><br>Eaten {si["e"]:,.0f} {u}<br>Absorbed ~{sa:,.0f} {u}{rng} · {spc:.0f}% <span class="kd">solid</span><br>Not absorbed ~{si["e"]-sa:,.0f} {u} <span class="kd h">hatched</span><br>{srcl}<br><small>{srcc} Typical adult, estimate, not a personal value.</small>')
+                aria+=f'; estimated absorbed about {sa:,.0f} {u} of {si["e"]:,.0f} {u} eaten ({spc:.0f}%){rng}. Estimate, typical adult.'
+            elif k in NOSPLIT:
+                sp2=sp2+f'<br><small>{ln}: {NOSPLIT[k]}. No split shown.</small>'
+                aria+=f'; {NOSPLIT[k]}'
             allr='<span class="al"><b>All nutrients, '+MDL[i]+'</b>'+''.join(r.replace('class="ar"','class="ar me"') if kk==k else r for kk,r in allrows.items())+'</span>'
             near=any((abs(val-o[0])<1.5 if pct else abs(w-max(min(o[0],mx)/mx*100,.7))<1.5) for o in items if o[1]!=k and o[0]<=val)
             edge='<span class="ed" aria-hidden="true"></span>' if near else ''
-            h+=(f'<div class="ly{" cs" if k=="calcium" else ""}{" nr" if near else ""}" data-k="{k}" tabindex="0" role="img" aria-label="{E(aria+"; all nutrients: "+"; ".join(f"{o[2].rstrip(chr(42))} {o[5]:,.0f} {o[3]}" for o in items))}" style="width:{w:.2f}%;--oc:{OVC[k]};--ol:{OVO[k]};z-index:{zi}"><span class="tp" aria-hidden="true">{sw(k)}<b>{ln}</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>{v:,.0f} {u} · {pcs}<br>{sp2}{allr}</span>{seg}{edge}</div>')
+            h+=(f'<div class="ly{" cs" if (k=="calcium" or k in SPLIT or k=="protein") else ""}{" nr" if near else ""}" data-k="{k}" tabindex="0" role="img" aria-label="{E(aria+"; all nutrients: "+"; ".join(f"{o[2].rstrip(chr(42))} {o[5]:,.0f} {o[3]}" for o in items))}" style="width:{w:.2f}%;--oc:{OVC[k]};--ol:{OVO[k]};z-index:{zi}"><span class="tp" aria-hidden="true">{sw(k)}<b>{ln}</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>{v:,.0f} {u} · {pcs}<br>{sp2}{allr}</span>{seg}{edge}</div>')
         if pct: h+=f'<i class="m100" style="left:{100/mx*100:.2f}%"></i>'
         h+='</div></div>'
     h+='</div></div>'
@@ -580,7 +622,7 @@ OVCSS="""
 .lc:hover,.lc:focus,.lc.on{border-color:#ff00d4;outline:none}
 #v0[data-hl] .ly[data-k]{opacity:.45}
 #v0[data-hl=protein] .ly[data-k=protein],#v0[data-hl=fiber] .ly[data-k=fiber],#v0[data-hl=calcium] .ly[data-k=calcium],#v0[data-hl=potassium] .ly[data-k=potassium],#v0[data-hl=magnesium] .ly[data-k=magnesium],#v0[data-hl=sodium] .ly[data-k=sodium]{opacity:1;z-index:45!important;outline:3px solid #ff00d4;outline-offset:1px}
-#v0[data-hl=calcium] .cs .sn{opacity:1;transform:scaleX(1)}
+#v0[data-hl=calcium] .cs[data-k=calcium] .sn,#v0[data-hl=potassium] .cs[data-k=potassium] .sn,#v0[data-hl=magnesium] .cs[data-k=magnesium] .sn,#v0[data-hl=protein] .cs[data-k=protein] .sn{opacity:1;transform:scaleX(1)}
 @media(prefers-reduced-motion:reduce){.cs .sn{transition:none}}
 #sp:checked ~ .charts label[for=sp],#sr:checked ~ .charts label[for=sr]{background:var(--brand);color:#fff}
 #sr:checked ~ .charts .s-p,#sp:checked ~ .charts .s-r{display:none}
@@ -590,7 +632,7 @@ OVCSS="""
 @media(max-width:560px){.ovr,.ova{grid-template-columns:3.6rem 1fr}.ovk{height:26px}}
 """
 ov_sec=('<section class="day var" id="v0"><h2>New) Overlay bar <span class="mockbadge">new</span></h2>'
- '<p class="pc">One bar per day; every nutrient is its own colored layer starting at the left, longest at the back so none is hidden. Hover, tap or Tab onto a layer for the numbers. Hover or tap the white <b>calcium</b> layer to see it split into estimated absorbed (solid) and not absorbed (hatched).</p>'
+ '<p class="pc">One bar per day; every nutrient is its own colored layer starting at the left, longest at the back so none is hidden. Hover, tap or Tab onto a layer for the numbers. Hover or tap the <b>calcium, potassium, magnesium or protein</b> layer (or its legend name) to see it split into estimated absorbed (solid) and not absorbed (hatched). Sodium and fiber show a one-line note instead of a split.</p>'
  '<div class="ovs" role="group" aria-label="Scale"><b>Scale:</b><label for="sp">% of target (default)</label><label for="sr">Raw amount (mg-equivalent, small nutrients tiny)</label></div>'
  '<p class="est s-p">Scale: % of each nutrient’s daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). Sodium* is against its 2,300 mg limit, so shorter is better. Dashed magenta line = 100%. Bars past the right edge are clipped.</p>'
  '<p class="est s-r">Scale: raw numbers on one shared axis, as logged (mg for calcium, potassium, magnesium and sodium; g for protein and fiber). Fiber and protein, in grams, look tiny next to potassium in mg, which is why % mode is the default. Tiny layers are given a minimum width so they stay visible.</p>'
