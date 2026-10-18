@@ -799,6 +799,23 @@
     "magnesium": 0.0,
     "sodium": 0.0
    }
+  },
+  "kefir_maplehill": {
+   "name": "Kefir, Maple Hill organic whole-milk plain unsweetened",
+   "approx": false,
+   "note": "Per-serving label values (170 g / 2/3 cup): 120 kcal, 7 g fat, 5 g protein, 0 g fiber, 85 mg sodium, 260 mg potassium, 200 mg calcium (20% DV, per Eat This Much; the Raley's page rendering omitted the calcium line). Magnesium is not on the label; 12 mg/100 g from the Lifeway kefir entry is assumed. Converted to per 100 g. Note: a USDA branded-food record for the same product (8 oz/243 g: 180 kcal, 9 g protein, 389 mg calcium) gives higher protein/calcium per gram; the label figures were used.",
+   "source": "https://www.raleys.com/product/80044668/maple-hill-100-grassfed-organic-plain-unsweetened-kefir",
+   "source2": "https://www.eatthismuch.com/calories/kefir-organic-plain-unsweetened-2255469",
+   "accessed": "2026-10-17",
+   "per100g": {
+    "kcal": 70.6,
+    "protein": 2.94,
+    "fiber": 0.0,
+    "calcium": 117.6,
+    "potassium": 152.9,
+    "magnesium": 12.0,
+    "sodium": 50.0
+   }
   }
  },
  "days": [
@@ -1890,6 +1907,33 @@
      "assumed": true,
      "lo": 0.6,
      "hi": 1.6
+    },
+    {
+     "meal": "Later (time not given)",
+     "food": "kefir_maplehill",
+     "grams": 85,
+     "label": "Maple Hill organic unsweetened plain kefir 3 oz (85 g) (given; label values)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Later (time not given)",
+     "food": "cod",
+     "grams": 30,
+     "label": "White fish 30 g cooked (given; cod assumed, same entry as before)",
+     "assumed": false,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Later (time not given)",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (given; ~9.5 g each assumed)",
+     "assumed": false,
+     "lo": 0.8,
+     "hi": 1.2
     }
    ]
   }
