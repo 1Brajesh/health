@@ -509,8 +509,8 @@ def split_info(i,k,mode):
     if sv>0: a+=sv*PRO_DEF/100; sh=sh*fv/tot
     return dict(e=tot,a=a,lo=None,hi=None,sh=sh)
 # ===== 0 overlay bar =====
-OVC={'protein':'#5a3420','fiber':'#3f9d5f','calcium':'#fffdf8','potassium':'#c8453d','magnesium':'#f08a24','sodium':'#f2c53d'}
-OVO={'protein':'#ffffff','fiber':'#ffffff','calcium':'#cdbfa8','potassium':'#ffffff','magnesium':'#ffffff','sodium':'#ffffff'}
+OVC={'protein':'#5a2d0c','fiber':'#00a650','calcium':'#ffffff','potassium':'#e00000','magnesium':'#ff8a00','sodium':'#ffe600'}
+OVO={'protein':'#f5e6d3','fiber':'#ffffff','calcium':'#111111','potassium':'#ffffff','magnesium':'#111111','sodium':'#111111'}
 def sw(k): return f'<i class="sw" style="--oc:{OVC[k]};--ol:{OVO[k]}"></i>'
 def ov_scale(mode,pct):
     if pct: return smax(mode)
@@ -688,12 +688,11 @@ OVCSS="""
 #v0 .ovt span{font-size:.62rem;color:var(--ax)}
 #v0 .ly{border:1.5px solid var(--ol);border-radius:7px 3px 3px 7px;min-width:5px}
 #v0 .ovk>.ly:first-child{border-radius:7px 7px 7px 7px}
-#v0 .ly[data-k=calcium]{box-shadow:inset 0 0 0 .5px rgba(120,100,70,.25)}
 #v0 .ly:hover,#v0 .ly:focus{outline:2px solid var(--pin);outline-offset:1px}
 #v0 .ly:focus:not(:focus-visible):not(:hover){outline:none}
 #v0[data-hl=protein] .ly[data-k=protein],#v0[data-hl=fiber] .ly[data-k=fiber],#v0[data-hl=calcium] .ly[data-k=calcium],#v0[data-hl=potassium] .ly[data-k=potassium],#v0[data-hl=magnesium] .ly[data-k=magnesium],#v0[data-hl=sodium] .ly[data-k=sodium]{outline:2px solid var(--pin);outline-offset:1px}
 #v0[data-hl] .ly[data-k]{opacity:.5}
-#v0 .m100{width:0;margin-left:0;top:-5px;bottom:-5px;background:none;outline:0;border-left:1.5px dashed #7d6f58;z-index:30}
+#v0 .m100{width:4px;margin-left:-2px;top:-4px;bottom:-4px;background:repeating-linear-gradient(to bottom,#ff00d4 0 5px,#fff 5px 8px);outline:1px solid #111;border:0;z-index:30}
 #v0 .gl5{position:absolute;top:0;bottom:0;width:0;border-left:1px solid var(--grd);opacity:.8;z-index:0;pointer-events:none}
 #v0 .ovb .ovt{border-top:1px solid var(--grd)}#v0 .kt2 span{font-weight:500;color:#5b5446;font-size:.62rem}
 #v0 .ovb .kl{font-weight:400;color:var(--ax)}
@@ -722,7 +721,7 @@ ov_sec=('<section class="day var" id="v0"><h2>New) Overlay bar <span class="mock
  '<p class="pc">One bar per day; every nutrient is its own colored layer starting at the left, longest at the back so none is hidden. Hover, tap or Tab onto a layer for the numbers. Hover or tap the <b>calcium, potassium, magnesium or protein</b> layer (or its legend name) to see it split into estimated absorbed (solid) and not absorbed (hatched). Sodium and fiber show a one-line note instead of a split.</p>'
  '<p class="est"><b>Calories:</b> the black tick on each bar shows each day’s estimated calories on the <b>bottom kcal axis</b> (0 to 2,500). The top axis is still % of target. There is no calorie target; the line only shows the amount. A hollow marker means the day is in progress. Use the “Calories” chip in the legend to hide it.</p>'
  '<div class="ovs" role="group" aria-label="Scale"><b>Scale:</b><label for="sp">% of target (default)</label><label for="sr">Raw amount (mg-equivalent, small nutrients tiny)</label></div>'
- '<p class="est s-p">Scale: % of each nutrient’s daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). Sodium* is against its 2,300 mg limit, so shorter is better. Dashed line = 100%; faint lines = 50% and 150%. Bars past the right edge are clipped.</p>'
+ '<p class="est s-p">Scale: % of each nutrient’s daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). Sodium* is against its 2,300 mg limit, so shorter is better. Dashed magenta line = 100%; faint lines = 50% and 150%. Bars past the right edge are clipped.</p>'
  '<p class="est s-r">Scale: raw numbers on one shared axis, as logged (mg for calcium, potassium, magnesium and sodium; g for protein and fiber). Fiber and protein, in grams, look tiny next to potassium in mg, which is why % mode is the default. Tiny layers are given a minimum width so they stay visible.</p>'
  '<p class="est">Can’t see a layer? Hover, tap or Tab onto its name in the legend to bring it to the front and highlight it. When two layers end within about 1.5% of each other, the hidden one gets a small tab under the end of its bar that you can also hover or tap.</p>'
  +toggled(ov_all)+
