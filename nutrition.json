@@ -2255,7 +2255,7 @@
   {
    "date": "2026-10-18",
    "partial": true,
-   "partial_note": "Lunch (12:30 PM) and dinner (~8 PM, time approximate) logged; snacks may still be added. Many portions are assumed. Dinner total weight 0.8 lb (~363 g) was user-given; the split among foods is assumed from the photo (takeout box, likely restaurant or takeout food, so sodium is probably understated). Salt not counted for dinner.",
+   "partial_note": "All meals logged (user confirmed the day is complete): lunch (12:30 PM), dinner (~8 PM, time approximate) and a late-evening kefir (~10 PM, time approximate). Many portions are assumed. Dinner total weight 0.8 lb (~363 g) was user-given; the split among foods is assumed from the photo (takeout box, likely restaurant or takeout food, so sodium is probably understated). Salt not counted for dinner. Kefir uses label values; calcium comes from a third-party label listing (20% DV) and magnesium (12 mg/100 g) is assumed from another kefir.",
    "entries": [
     {
      "meal": "Lunch",
@@ -2505,6 +2505,15 @@
      "food": "dessert_120",
      "grams": 100,
      "label": "Dessert: 120 kcal, user-given (not in photo; contents unknown, only calories counted)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Late evening (~10 PM)",
+     "food": "kefir_maplehill",
+     "grams": 85,
+     "label": "Maple Hill organic unsweetened plain kefir 3 oz (85 g) (given; label values)",
      "assumed": false,
      "lo": 0.9,
      "hi": 1.1
