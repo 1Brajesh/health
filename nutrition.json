@@ -835,6 +835,82 @@
     "magnesium": 0.0,
     "sodium": 38758.0
    }
+  },
+  "rice_white": {
+   "name": "White rice, cooked",
+   "approx": true,
+   "note": "Type of rice and cooking not stated; regular long-grain enriched cooked white rice assumed.",
+   "fdc_id": 168878,
+   "usda_description": "Rice, white, long-grain, regular, enriched, cooked",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/168878/nutrients",
+   "accessed": "2026-10-18",
+   "per100g": {
+    "kcal": 130.0,
+    "protein": 2.69,
+    "fiber": 0.4,
+    "calcium": 10.0,
+    "potassium": 35.0,
+    "magnesium": 12.0,
+    "sodium": 1.0
+   }
+  },
+  "cucumber": {
+   "name": "Cucumber, with peel, raw",
+   "approx": false,
+   "note": "",
+   "fdc_id": 168409,
+   "usda_description": "Cucumber, with peel, raw",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/168409/nutrients",
+   "accessed": "2026-10-18",
+   "per100g": {
+    "kcal": 15.0,
+    "protein": 0.65,
+    "fiber": 0.5,
+    "calcium": 16.0,
+    "potassium": 147.0,
+    "magnesium": 13.0,
+    "sodium": 2.0
+   }
+  },
+  "tikka_sauce": {
+   "name": "Tikka masala sauce (Kroger, stand-in)",
+   "approx": true,
+   "note": "Brand unknown; Kroger branded USDA entry used as a generic stand-in. Lacks potassium and magnesium data. Sodium likely high and varies a lot by brand; chicken may have been cooked in it.",
+   "fdc_id": 2084113,
+   "usda_description": "TIKKA MASALA SAUCE",
+   "data_type": "Branded",
+   "source": "https://fdc.nal.usda.gov/food-details/2084113/nutrients",
+   "accessed": "2026-10-18",
+   "per100g": {
+    "kcal": 136.0,
+    "protein": 1.69,
+    "fiber": 0.8,
+    "calcium": 17.0,
+    "potassium": null,
+    "magnesium": null,
+    "sodium": 500.0
+   }
+  },
+  "dessert_120": {
+   "name": "Dessert, unspecified (120 kcal, user-given)",
+   "approx": true,
+   "note": "Calories given by the user (120 kcal, not in the photo). Contents unknown, so no other nutrients are counted; totals for them are partial.",
+   "fdc_id": null,
+   "usda_description": "",
+   "data_type": "User-provided",
+   "source": "user-provided",
+   "accessed": "2026-10-18",
+   "per100g": {
+    "kcal": 120.0,
+    "protein": null,
+    "fiber": null,
+    "calcium": null,
+    "potassium": null,
+    "magnesium": null,
+    "sodium": null
+   }
   }
  },
  "days": [
@@ -2012,7 +2088,7 @@
      "meal": "Afternoon snack (time not given)",
      "food": "milk_2",
      "grams": 122.0,
-     "label": "Caf\u00e9 con leche: ~4 oz 2% steamed milk (assumed half of 8 oz)",
+     "label": "Café con leche: ~4 oz 2% steamed milk (assumed half of 8 oz)",
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
@@ -2021,7 +2097,7 @@
      "meal": "Afternoon snack (time not given)",
      "food": "coffee",
      "grams": 118.0,
-     "label": "Caf\u00e9 con leche: ~4 oz brewed coffee (assumed half of 8 oz; espresso treated as brewed)",
+     "label": "Café con leche: ~4 oz brewed coffee (assumed half of 8 oz; espresso treated as brewed)",
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
@@ -2103,8 +2179,7 @@
   {
    "date": "2026-10-18",
    "partial": true,
-   "in_progress": true,
-   "partial_note": "Day in progress: only the 12:30 PM lunch (with decaf latte and skyr dessert) is logged so far; dinner is not yet logged, so this day is excluded from the Possible gaps averages. Many portions are assumed.",
+   "partial_note": "Lunch (12:30 PM) and dinner (~8 PM, time approximate) logged; snacks may still be added. Many portions are assumed. Dinner total weight 0.8 lb (~363 g) was user-given; the split among foods is assumed. Salt not counted for dinner (tikka sauce and any added salt unknown).",
    "entries": [
     {
      "meal": "Lunch",
@@ -2258,6 +2333,78 @@
      "assumed": true,
      "lo": 0.8,
      "hi": 1.2
+    },
+    {
+     "meal": "Dinner",
+     "food": "chicken_breast",
+     "grams": 90,
+     "label": "Chicken ~90 g (assumed share of 0.8 lb / ~363 g plate; possibly tikka chicken)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "rice_white",
+     "grams": 90,
+     "label": "Rice ~90 g cooked (assumed share of ~363 g)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "broccoli",
+     "grams": 50,
+     "label": "Broccoli ~50 g (assumed share of ~363 g)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "red_pepper",
+     "grams": 30,
+     "label": "Red bell pepper ~30 g (assumed share of ~363 g)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "cucumber",
+     "grams": 25,
+     "label": "Cucumber-tomato salad: cucumber ~25 g (assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "tomato",
+     "grams": 25,
+     "label": "Cucumber-tomato salad: tomato ~25 g (assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "tikka_sauce",
+     "grams": 53,
+     "label": "Tikka sauce ~53 g (assumed; brand unknown, salt content likely high)",
+     "assumed": true,
+     "lo": 0.4,
+     "hi": 1.8
+    },
+    {
+     "meal": "Dinner",
+     "food": "dessert_120",
+     "grams": 100,
+     "label": "Dessert: 120 kcal, user-given (not in photo; contents unknown, only calories counted)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
     }
    ]
   }
