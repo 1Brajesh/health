@@ -2543,7 +2543,7 @@
    "date": "2026-10-19",
    "partial": true,
    "in_progress": true,
-   "partial_note": "Day in progress: only lunch (~12 PM, time approximate) is logged so far; dinner is not yet logged, so this day is excluded from the Possible gaps averages. The lentils with spinach were a Whole Foods prepared food, so no home salt was added and sodium is likely understated (store recipe salt unknown). Many portions are assumed.",
+   "partial_note": "Day in progress: lunch (~12 PM) and an afternoon snack (~3:30 PM), both times approximate, are logged so far; dinner is not yet logged, so this day is excluded from the Possible gaps averages. The lentils with spinach were a Whole Foods prepared food, so no home salt was added and sodium is likely understated (store recipe salt unknown). Many portions are assumed.",
    "entries": [
     {
      "meal": "Lunch",
@@ -2589,6 +2589,33 @@
      "assumed": false,
      "lo": 0.9,
      "hi": 1.1
+    },
+    {
+     "meal": "Afternoon snack",
+     "food": "milk_2",
+     "grams": 240,
+     "label": "Milk 8 oz (given; ultra-filtered, Fairlife-type assumed - generic 2% milk values assumed, so protein and calcium are likely understated)",
+     "assumed": true,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Afternoon snack",
+     "food": "pumpkin_seeds",
+     "grams": 20,
+     "label": "Pumpkin seeds 20 g (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Afternoon snack",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~9.5 g each assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
     }
    ]
   }

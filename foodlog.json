@@ -182,6 +182,10 @@
    {
     "meal": "Lunch (~12 PM, time approximate)",
     "items": "Bowl of lentils with some spinach from Whole Foods (store-prepared; 1 cup cooked lentils and ~30 g cooked spinach assumed; no home salt added, store salt unknown); 1.5 slices wheat toast (~28 g per slice assumed); 3/4 of an avocado (~112.5 g flesh assumed, medium avocado); kombucha 8 oz glass. Status: eaten."
+   },
+   {
+    "meal": "Afternoon snack (~3:30 PM, time approximate)",
+    "items": "8 oz (240 g) ultra-filtered milk (Fairlife-type assumed; generic 2% milk values assumed); 20 g pumpkin seeds; 3 prunes (~9.5 g each assumed). Status: eaten."
    }
   ]
  }
