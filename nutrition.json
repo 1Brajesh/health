@@ -987,6 +987,25 @@
     "magnesium": 87.0,
     "sodium": 70.0
    }
+  },
+  "avocado": {
+   "name": "Avocado, raw",
+   "approx": true,
+   "note": "Variety not logged; USDA 'all commercial varieties' entry used. Portion (3/4 of a medium avocado) assumed.",
+   "fdc_id": 171705,
+   "usda_description": "Avocados, raw, all commercial varieties",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/171705/nutrients",
+   "accessed": "2026-10-19",
+   "per100g": {
+    "kcal": 160.0,
+    "protein": 2.0,
+    "fiber": 6.7,
+    "calcium": 12.0,
+    "potassium": 485.0,
+    "magnesium": 29.0,
+    "sodium": 7.0
+   }
   }
  },
  "days": [
@@ -2514,6 +2533,59 @@
      "food": "kefir_maplehill",
      "grams": 85,
      "label": "Maple Hill organic unsweetened plain kefir 3 oz (85 g) (given; label values)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    }
+   ]
+  },
+  {
+   "date": "2026-10-19",
+   "partial": true,
+   "in_progress": true,
+   "partial_note": "Day in progress: only lunch (~12 PM, time approximate) is logged so far; dinner is not yet logged, so this day is excluded from the Possible gaps averages. The lentils with spinach were a Whole Foods prepared food, so no home salt was added and sodium is likely understated (store recipe salt unknown). Many portions are assumed.",
+   "entries": [
+    {
+     "meal": "Lunch",
+     "food": "lentils",
+     "grams": 198,
+     "label": "Whole Foods bowl of lentils = 1 cup cooked (assumed; store-prepared, unsalted values used, sodium likely understated)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch",
+     "food": "spinach_cooked",
+     "grams": 30,
+     "label": "Whole Foods lentils: spinach ~30 g cooked (assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch",
+     "food": "bread",
+     "grams": 42.0,
+     "label": "1.5 slices wheat toast (given; ~28 g per slice assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch",
+     "food": "avocado",
+     "grams": 112.5,
+     "label": "3/4 avocado (0.75 x ~150 g edible flesh of a medium avocado, assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch",
+     "food": "kombucha",
+     "grams": 240,
+     "label": "Kombucha 8 oz glass (given)",
      "assumed": false,
      "lo": 0.9,
      "hi": 1.1

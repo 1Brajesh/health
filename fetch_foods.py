@@ -45,7 +45,7 @@ PUB={ # public, generic notes for stand-in entries (no personal details)
 'olive_ripe':'Canned ripe olives (brined, high in sodium) used as a stand-in for olives in general.',
 'spinach_cooked':'Plain boiled spinach, no salt, used as a stand-in for cooked leafy greens.',
 'spinach':'Raw spinach; cooked spinach has different values per gram (see the boiled entry).','onion':'Raw onion; cooking changes values per gram.',
-'eggplant':'Boiled eggplant.','potato':'Boiled potato, flesh only.'}
+'eggplant':'Boiled eggplant.','avocado':'Raw avocado, all commercial varieties (Hass-type California avocados are close).','potato':'Boiled potato, flesh only.'}
 def sr(ids):
     ids=set(ids);foods={};nv={}
     for r in csv.DictReader(open(D+'/food.csv')):
