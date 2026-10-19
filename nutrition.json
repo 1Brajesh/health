@@ -837,9 +837,9 @@
    }
   },
   "rice_white": {
-   "name": "White rice, cooked",
+   "name": "Yellow (turmeric) rice, cooked",
    "approx": true,
-   "note": "Type of rice and cooking not stated; regular long-grain enriched cooked white rice assumed.",
+   "note": "Photo shows yellow turmeric rice; plain cooked enriched long-grain white rice (USDA) used as a stand-in. Added oil, butter, salt and seasoning not counted.",
    "fdc_id": 168878,
    "usda_description": "Rice, white, long-grain, regular, enriched, cooked",
    "data_type": "SR Legacy",
@@ -877,7 +877,7 @@
   "tikka_sauce": {
    "name": "Tikka masala sauce (Kroger, stand-in)",
    "approx": true,
-   "note": "Brand unknown; Kroger branded USDA entry used as a generic stand-in. Lacks potassium and magnesium data. Sodium likely high and varies a lot by brand; chicken may have been cooked in it.",
+   "note": "Orange tikka-style sauce seen in the photo, likely takeout/restaurant; brand unknown, so the Kroger branded USDA entry is a generic stand-in. Lacks potassium and magnesium data. Sodium likely high and varies a lot by brand.",
    "fdc_id": 2084113,
    "usda_description": "TIKKA MASALA SAUCE",
    "data_type": "Branded",
@@ -910,6 +910,82 @@
     "potassium": null,
     "magnesium": null,
     "sodium": null
+   }
+  },
+  "chicken_thigh": {
+   "name": "Chicken thigh, meat only, cooked, roasted",
+   "approx": true,
+   "note": "Photo shows seasoned dark-meat pieces; thigh assumed. Seasoning and any marinade or skin not counted.",
+   "fdc_id": 172388,
+   "usda_description": "Chicken, broilers or fryers, thigh, meat only, cooked, roasted",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/172388/nutrients",
+   "accessed": "2026-10-18",
+   "per100g": {
+    "kcal": 179.0,
+    "protein": 24.76,
+    "fiber": 0.0,
+    "calcium": 9.0,
+    "potassium": 269.0,
+    "magnesium": 24.0,
+    "sodium": 106.0
+   }
+  },
+  "feta": {
+   "name": "Feta cheese",
+   "approx": true,
+   "note": "Crumbles seen in the salad; amount assumed.",
+   "fdc_id": 173420,
+   "usda_description": "Cheese, feta",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/173420/nutrients",
+   "accessed": "2026-10-18",
+   "per100g": {
+    "kcal": 265.0,
+    "protein": 14.21,
+    "fiber": 0.0,
+    "calcium": 493.0,
+    "potassium": 62.0,
+    "magnesium": 19.0,
+    "sodium": 1139.0
+   }
+  },
+  "olive_ripe": {
+   "name": "Olive, ripe, canned",
+   "approx": true,
+   "note": "One dark kalamata-type olive seen; canned ripe olive used as a stand-in (brined, high sodium).",
+   "fdc_id": 169095,
+   "usda_description": "Olives, ripe, canned (jumbo-super colossal)",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/169095/nutrients",
+   "accessed": "2026-10-18",
+   "per100g": {
+    "kcal": 81.0,
+    "protein": 0.97,
+    "fiber": 2.5,
+    "calcium": 94.0,
+    "potassium": 9.0,
+    "magnesium": 4.0,
+    "sodium": 735.0
+   }
+  },
+  "spinach_cooked": {
+   "name": "Spinach, cooked, boiled, drained, no salt",
+   "approx": true,
+   "note": "Wilted dark greens (spinach-like, possibly creamed) from the photo; plain boiled spinach assumed. Any cream, oil or salt not counted.",
+   "fdc_id": 168463,
+   "usda_description": "Spinach, cooked, boiled, drained, without salt",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/168463/nutrients",
+   "accessed": "2026-10-18",
+   "per100g": {
+    "kcal": 23.0,
+    "protein": 2.97,
+    "fiber": 2.4,
+    "calcium": 136.0,
+    "potassium": 466.0,
+    "magnesium": 87.0,
+    "sodium": 70.0
    }
   }
  },
@@ -2179,7 +2255,7 @@
   {
    "date": "2026-10-18",
    "partial": true,
-   "partial_note": "Lunch (12:30 PM) and dinner (~8 PM, time approximate) logged; snacks may still be added. Many portions are assumed. Dinner total weight 0.8 lb (~363 g) was user-given; the split among foods is assumed. Salt not counted for dinner (tikka sauce and any added salt unknown).",
+   "partial_note": "Lunch (12:30 PM) and dinner (~8 PM, time approximate) logged; snacks may still be added. Many portions are assumed. Dinner total weight 0.8 lb (~363 g) was user-given; the split among foods is assumed from the photo (takeout box, likely restaurant or takeout food, so sodium is probably understated). Salt not counted for dinner.",
    "entries": [
     {
      "meal": "Lunch",
@@ -2336,9 +2412,9 @@
     },
     {
      "meal": "Dinner",
-     "food": "chicken_breast",
-     "grams": 90,
-     "label": "Chicken ~90 g (assumed share of 0.8 lb / ~363 g plate; possibly tikka chicken)",
+     "food": "chicken_thigh",
+     "grams": 86,
+     "label": "Chicken pieces ~86 g (photo: seasoned dark meat, thigh assumed; portion assumed from photo within 363 g total)",
      "assumed": true,
      "lo": 0.6,
      "hi": 1.5
@@ -2346,56 +2422,83 @@
     {
      "meal": "Dinner",
      "food": "rice_white",
-     "grams": 90,
-     "label": "Rice ~90 g cooked (assumed share of ~363 g)",
+     "grams": 80,
+     "label": "Yellow turmeric rice ~80 g cooked (photo-based, assumed)",
      "assumed": true,
-     "lo": 0.6,
-     "hi": 1.5
+     "lo": 0.5,
+     "hi": 1.6
     },
     {
      "meal": "Dinner",
      "food": "broccoli",
      "grams": 50,
-     "label": "Broccoli ~50 g (assumed share of ~363 g)",
+     "label": "Broccoli ~50 g (photo-based, assumed)",
      "assumed": true,
      "lo": 0.6,
      "hi": 1.5
     },
     {
      "meal": "Dinner",
-     "food": "red_pepper",
-     "grams": 30,
-     "label": "Red bell pepper ~30 g (assumed share of ~363 g)",
+     "food": "spinach_cooked",
+     "grams": 35,
+     "label": "Wilted dark greens ~35 g (photo: spinach-like, possibly creamed; assumed)",
      "assumed": true,
      "lo": 0.5,
-     "hi": 1.5
-    },
-    {
-     "meal": "Dinner",
-     "food": "cucumber",
-     "grams": 25,
-     "label": "Cucumber-tomato salad: cucumber ~25 g (assumed)",
-     "assumed": true,
-     "lo": 0.5,
-     "hi": 1.5
-    },
-    {
-     "meal": "Dinner",
-     "food": "tomato",
-     "grams": 25,
-     "label": "Cucumber-tomato salad: tomato ~25 g (assumed)",
-     "assumed": true,
-     "lo": 0.5,
-     "hi": 1.5
+     "hi": 1.6
     },
     {
      "meal": "Dinner",
      "food": "tikka_sauce",
-     "grams": 53,
-     "label": "Tikka sauce ~53 g (assumed; brand unknown, salt content likely high)",
+     "grams": 35,
+     "label": "Orange tikka-style sauce ~35 g (photo-based; brand unknown, likely takeout, sodium probably high)",
      "assumed": true,
      "lo": 0.4,
      "hi": 1.8
+    },
+    {
+     "meal": "Dinner",
+     "food": "red_pepper",
+     "grams": 25,
+     "label": "Sliced orange/yellow bell peppers ~25 g (photo-based, assumed; red pepper entry as stand-in)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.6
+    },
+    {
+     "meal": "Dinner",
+     "food": "cucumber",
+     "grams": 20,
+     "label": "Salad: cucumber ~20 g (photo-based, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.6
+    },
+    {
+     "meal": "Dinner",
+     "food": "tomato",
+     "grams": 15,
+     "label": "Salad: cherry tomato ~15 g (photo-based, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.6
+    },
+    {
+     "meal": "Dinner",
+     "food": "feta",
+     "grams": 12,
+     "label": "Salad: feta crumbles ~12 g (photo-based, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2.0
+    },
+    {
+     "meal": "Dinner",
+     "food": "olive_ripe",
+     "grams": 5,
+     "label": "Salad: 1 kalamata-type olive ~5 g (photo; canned ripe olive stand-in)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.5
     },
     {
      "meal": "Dinner",
