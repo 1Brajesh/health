@@ -1,0 +1,176 @@
+<p><span class="mockbadge">mock</span> Experimental food nutrition explorer, not part of the main site. Six ways to look at the same public USDA data. <a href="food.html">&larr; Back to Food Log</a></p>
+<div class="note"><b>About the data:</b> every value is per 100 g of food from USDA FoodData Central (<a href="https://fdc.nal.usda.gov/">fdc.nal.usda.gov</a>), accessed @@ACC@@. <b>&ldquo;no data&rdquo;</b> means USDA reports no value for that nutrient, which is not the same as zero. Foods marked <span class="px">≈ stand-in</span> use a USDA entry that approximates the real food (different brand, type or preparation), so treat them as rough. Bars are % of a daily reference for an adult man 51+ (see the source note at the bottom). Raw foods and cooked foods differ a lot per gram, so check the entry name.</div>
+<nav class="xn" aria-label="Sections"><a href="#a">A Profile</a><a href="#b">B Leaderboard</a><a href="#c">C Heatmap</a><a href="#d">D Top 5</a><a href="#e">E Compare</a><a href="#f">F Live lookup</a></nav>
+
+<section class="day xs" id="a"><h2>A) Food profile card</h2>
+<p class="pc">Every nutrient USDA reports for one food, grouped, with bars for % of daily reference.</p>
+<div class="ctl"><label>Filter <input type="search" id="a-q" placeholder="type to filter, e.g. spin" autocomplete="off"></label>
+<label>Food <select id="a-sel"></select></label>
+<label>Amount (g) <input type="number" id="a-g" value="100" min="1" max="2000" step="1" inputmode="decimal"></label>
+<span class="qb" role="group" aria-label="Quick amounts"><button type="button" data-g="30">30 g</button><button type="button" data-g="100">100 g</button><button type="button" data-g="150">150 g</button><button type="button" data-g="250">250 g</button></span></div>
+<div id="a-card" aria-live="polite"></div></section>
+
+<section class="day xs" id="b"><h2>B) Nutrient leaderboard</h2>
+<p class="pc">Pick a nutrient and see every food ranked from highest to lowest. Foods with no data are listed at the end.</p>
+<div class="ctl"><label>Nutrient <select id="b-n"></select></label>
+<label>Amount (g) <input type="number" id="b-g" value="100" min="1" max="2000" step="1" inputmode="decimal"></label>
+<label class="ck"><input type="checkbox" id="b-x"> Hide stand-in entries</label></div>
+<p class="est" id="b-sub"></p><ol class="lb" id="b-list"></ol></section>
+
+<section class="day xs" id="c"><h2>C) Sortable heatmap</h2>
+<p class="pc">Per 100 g. Darker cell = bigger % of the daily reference. Click or press a column header to sort (again to reverse). Sodium is shaded amber because it is a limit, not a goal.</p>
+<div class="tw hm"><table id="c-t"></table></div>
+<p class="est">Grey &ldquo;no data&rdquo; cells are not zeros.</p></section>
+
+<section class="day xs" id="d"><h2>D) Top 5 per nutrient</h2>
+<p class="pc">What&rsquo;s high in&hellip; Per 100 g of food as listed (so dried or fatty foods such as seeds rank high; check typical portion sizes before drawing conclusions).</p>
+<div class="tops" id="d-g"></div></section>
+
+<section class="day xs" id="e"><h2>E) Nutrient fingerprint and compare</h2>
+<p class="pc">12 nutrients as % of the daily reference per 100 g, capped at 100% at the outer ring. Pick two foods to overlay them. A missing value is drawn at the center and marked &ldquo;?&rdquo;.</p>
+<div class="ctl"><label>Food 1 <select id="e-1"></select></label><label>Food 2 <select id="e-2"></select></label></div>
+<div class="rw"><div id="e-svg"></div><div class="tw"><table id="e-t" class="est"></table></div></div></section>
+
+<section class="day xs" id="f"><h2>F) Live USDA lookup</h2>
+<p class="pc">Search any food straight from USDA FoodData Central (SR Legacy and Foundation entries) and see the same profile card. This calls the public USDA API from your browser with the shared <code>DEMO_KEY</code>, which is rate limited (about 30 requests an hour per network), so results are cached for this tab. If it fails, the list above already includes pre-fetched sweet potato, kale, bok choy, collards and broccoli.</p>
+<form class="ctl" id="f-form"><label>Search <input type="search" id="f-q" placeholder="e.g. sweet potato" autocomplete="off"></label><button type="submit" class="go">Search USDA</button>
+<label>Amount (g) <input type="number" id="f-g" value="100" min="1" max="2000" step="1" inputmode="decimal"></label></form>
+<p class="est" id="f-msg" role="status"></p><ul class="fr" id="f-res"></ul><div id="f-card" aria-live="polite"></div></section>
+
+<div class="note"><b>Daily reference values used</b> (adult man 51+): protein 56 g, fiber 30 g, calcium 1,000 mg, magnesium 420 mg, potassium 3,400 mg, sodium 2,300 mg limit, phosphorus 700 mg, iron 8 mg, zinc 11 mg, copper 0.9 mg, manganese 2.3 mg, selenium 55 µg, vitamin A 900 µg RAE, C 90 mg, D 15 µg, E 15 mg, K 120 µg, B1 1.2 mg, B2 1.3 mg, B3 16 mg, B5 5 mg, B6 1.7 mg, folate 400 µg DFE, B12 2.4 µg, choline 550 mg: DRIs from the National Academies (NAM), as summarized in the NIH Office of Dietary Supplements fact sheets. Energy 2,000 kcal, total fat 78 g, saturated fat 20 g (limit), carbohydrate 275 g, added sugars 50 g (limit), cholesterol 300 mg (limit): FDA Daily Values. No reference is shown for trans, mono- and polyunsaturated fat, total sugars, water, caffeine or alcohol. Educational only, not medical advice.</div>
+<script id="xdata" type="application/json">@@DATA@@</script>
+<script>
+(function(){
+"use strict";
+var X=JSON.parse(document.getElementById('xdata').textContent);
+var NU=X.nutrients, FO=X.foods, NK={}; NU.forEach(function(n){NK[n.key]=n;});
+// [reference, type]
+var DV={kcal:[2000,'t'],protein:[56,'t'],fat:[78,'t'],sat:[20,'l'],carbs:[275,'t'],addsug:[50,'l'],fiber:[30,'t'],chol:[300,'l'],
+calcium:[1000,'t'],iron:[8,'t'],magnesium:[420,'t'],phosphorus:[700,'t'],potassium:[3400,'t'],sodium:[2300,'l'],zinc:[11,'t'],copper:[0.9,'t'],manganese:[2.3,'t'],selenium:[55,'t'],
+vita:[900,'t'],vitc:[90,'t'],vitd:[15,'t'],vite:[15,'t'],vitk:[120,'t'],b1:[1.2,'t'],b2:[1.3,'t'],b3:[16,'t'],b5:[5,'t'],b6:[1.7,'t'],folate:[400,'t'],b12:[2.4,'t'],choline:[550,'t']};
+var GROUPS=[['macro','Macros and other'],['mineral','Minerals'],['vitamin','Vitamins']];
+function $(i){return document.getElementById(i);}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function fmt(v){if(v===0)return '0';var a=Math.abs(v);if(a>=100)return Math.round(v).toLocaleString('en-US');if(a>=10)return (Math.round(v*10)/10).toString();if(a>=1)return (Math.round(v*100)/100).toString();if(a>=0.01)return (Math.round(v*1000)/1000).toString();return v.toPrecision(2);}
+function val(f,k){var v=f.per100g[k];return (v===undefined||v===null)?null:v;}
+function pct(f,k,g){var v=val(f,k),d=DV[k];if(v===null||!d)return null;return v*g/100/d[0]*100;}
+function fname(f){return f.name+(f.proxy?' ≈':'');}
+var CORE=FO.filter(function(f){return !f.extra;}), EXT=FO.filter(function(f){return f.extra;});
+function opts(sel,sel0){var h='<optgroup label="Core list">';CORE.forEach(function(f){h+='<option value="'+f.key+'">'+esc(fname(f))+'</option>';});h+='</optgroup><optgroup label="Reference extras (pre-fetched)">';EXT.forEach(function(f){h+='<option value="'+f.key+'">'+esc(f.name)+'</option>';});sel.innerHTML=h+'</optgroup>';if(sel0)sel.value=sel0;}
+var BY={};FO.forEach(function(f){BY[f.key]=f;});
+function gval(id){var v=parseFloat($(id).value);return (isFinite(v)&&v>0)?v:100;}
+
+/* ---------- profile card (shared by A and F) ---------- */
+function card(f,g){
+  var h='<div class="pf"><h3>'+esc(f.name)+'</h3><p class="est">USDA: '+esc(f.usda_description)+' · '+esc(f.data_type)+' · FDC '+f.fdc_id+' · <a href="'+esc(f.source)+'" rel="noopener">source</a> · accessed '+esc(f.accessed)+'</p>';
+  if(f.proxy)h+='<p class="px2"><b>≈ Stand-in entry.</b> '+esc(f.note||'This USDA entry approximates the real food.')+'</p>';
+  else if(f.note)h+='<p class="est">'+esc(f.note)+'</p>';
+  h+='<p class="est">Showing <b>'+fmt(g)+' g</b>'+(g===100?' (per 100 g)':'')+'. Bar = % of daily reference'+'.</p><div class="pg">';
+  GROUPS.forEach(function(gr){
+    var ns=NU.filter(function(n){return n.group===gr[0];});
+    h+='<div class="pgc"><h4>'+gr[1]+'</h4>';
+    ns.forEach(function(n){
+      var v=val(f,n.key),d=DV[n.key],p=pct(f,n.key,g);
+      if(v===null){h+='<div class="nrw nd"><span class="nl">'+esc(n.label)+'</span><span class="nv">no data</span><span class="bt"></span></div>';return;}
+      var s=v*g/100;
+      h+='<div class="nrw'+(d&&d[1]==='l'?' lim':'')+'"><span class="nl">'+esc(n.label)+'</span><span class="nv">'+fmt(s)+' '+n.unit+(p!==null?' <em>'+(p<1?'<1':Math.round(p))+'%</em>':'')+'</span><span class="bt" aria-hidden="true">'+(p!==null?'<i style="width:'+Math.min(100,p)+'%"></i>':'')+'</span></div>';
+    });
+    h+='</div>';
+  });
+  return h+'</div><p class="est">Bars cap at 100%; amber bars are limits (sodium, saturated fat, added sugars, cholesterol), where less is better. Rows without a bar have no reference value.</p></div>';
+}
+/* A */
+opts($('a-sel'),'spinach');
+function drawA(){$('a-card').innerHTML=card(BY[$('a-sel').value],gval('a-g'));}
+$('a-sel').addEventListener('change',drawA);$('a-g').addEventListener('input',drawA);
+$('a-q').addEventListener('input',function(){var q=this.value.toLowerCase().trim(),s=$('a-sel'),first=null;
+  Array.prototype.forEach.call(s.options,function(o){var m=!q||o.text.toLowerCase().indexOf(q)>=0;o.hidden=!m;o.disabled=!m;if(m&&!first)first=o;});
+  if(s.selectedOptions[0]&&s.selectedOptions[0].disabled&&first){s.value=first.value;drawA();}});
+Array.prototype.forEach.call(document.querySelectorAll('.qb button'),function(b){b.addEventListener('click',function(){$('a-g').value=b.getAttribute('data-g');drawA();});});
+drawA();
+/* B */
+(function(){var s=$('b-n'),h='';GROUPS.forEach(function(gr){h+='<optgroup label="'+gr[1]+'">';NU.filter(function(n){return n.group===gr[0];}).forEach(function(n){h+='<option value="'+n.key+'">'+esc(n.label)+' ('+n.unit+')</option>';});h+='</optgroup>';});s.innerHTML=h;s.value='potassium';})();
+function drawB(){
+  var k=$('b-n').value,n=NK[k],g=gval('b-g'),hide=$('b-x').checked,d=DV[k];
+  var L=FO.filter(function(f){return !(hide&&f.proxy);});
+  var has=L.filter(function(f){return val(f,k)!==null;}).sort(function(a,b){return val(b,k)-val(a,k);});
+  var no=L.filter(function(f){return val(f,k)===null;});
+  var mx=has.length?val(has[0],k):1,h='';
+  has.forEach(function(f,i){var v=val(f,k)*g/100,p=pct(f,k,g);
+    h+='<li><span class="rk">'+(i+1)+'</span><span class="fn">'+esc(fname(f))+'</span><span class="bt" aria-hidden="true"><i style="width:'+(val(f,k)/mx*100)+'%"></i></span><span class="fv"><b>'+fmt(v)+'</b> '+n.unit+(p!==null?' <em>'+(p<1?'<1':Math.round(p))+'%</em>':'')+'</span></li>';});
+  if(no.length){h+='<li class="sep">No data for '+esc(n.label)+' ('+no.length+')</li>';no.forEach(function(f){h+='<li class="nd"><span class="rk">–</span><span class="fn">'+esc(fname(f))+'</span><span class="bt"></span><span class="fv">no data</span></li>';});}
+  $('b-list').innerHTML=h;
+  $('b-sub').textContent=n.label+' per '+fmt(g)+' g, '+has.length+' foods with data'+(d?', % = share of '+d[0]+' '+n.unit+(d[1]==='l'?' limit':' reference'):', no daily reference')+'. Bars are scaled to the top food.';
+}
+$('b-n').addEventListener('change',drawB);$('b-g').addEventListener('input',drawB);$('b-x').addEventListener('change',drawB);drawB();
+/* C */
+var CK=['kcal','protein','fiber','calcium','iron','magnesium','potassium','sodium','zinc','vita','vitc','vitk','folate','b12'];
+var cs={k:'name',dir:1};
+function drawC(){
+  var rows=FO.slice().sort(function(a,b){
+    if(cs.k==='name')return cs.dir*a.name.localeCompare(b.name);
+    var x=val(a,cs.k),y=val(b,cs.k);if(x===null&&y===null)return 0;if(x===null)return 1;if(y===null)return -1;return cs.dir*(y-x);});
+  var h='<thead><tr><th class="sc" aria-sort="'+(cs.k==='name'?(cs.dir===1?'ascending':'descending'):'none')+'"><button type="button" data-k="name">Food</button></th>';
+  CK.forEach(function(k){var n=NK[k];h+='<th aria-sort="'+(cs.k===k?(cs.dir===1?'descending':'ascending'):'none')+'"><button type="button" data-k="'+k+'">'+esc(n.label.replace(' (RAE)','').replace(' (DFE)',''))+'<small>'+n.unit+'</small></button></th>';});
+  h+='</tr></thead><tbody>';
+  rows.forEach(function(f){h+='<tr><th scope="row" class="sc">'+esc(fname(f))+'</th>';
+    CK.forEach(function(k){var v=val(f,k),p=pct(f,k,100);
+      if(v===null){h+='<td class="nd">no data</td>';return;}
+      var a=Math.min(1,p/100);var col=DV[k][1]==='l'?'184,138,27':'46,139,106';
+      h+='<td style="background:rgba('+col+','+(0.06+a*0.74).toFixed(2)+')'+'" title="'+Math.round(p)+'% of reference">'+fmt(v)+'</td>';});
+    h+='</tr>';});
+  $('c-t').innerHTML=h+'</tbody>';
+}
+$('c-t').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var k=b.getAttribute('data-k');
+  if(cs.k===k)cs.dir=-cs.dir;else{cs.k=k;cs.dir=1;}drawC();var nb=$('c-t').querySelector('button[data-k="'+k+'"]');if(nb)nb.focus();});
+drawC();
+/* D */
+(function(){var T=['potassium','magnesium','calcium','fiber','protein','iron','vitc','vitk','folate','b12'],h='';
+  T.forEach(function(k){var n=NK[k],L=FO.filter(function(f){return val(f,k)!==null;}).sort(function(a,b){return val(b,k)-val(a,k);}).slice(0,5),mx=val(L[0],k);
+    h+='<article class="tc"><h3>High in '+esc(n.label.toLowerCase().replace(' (rae)',''))+'</h3><ol>';
+    L.forEach(function(f){var p=pct(f,k,100);h+='<li><span class="fn">'+esc(fname(f))+'</span><span class="bt" aria-hidden="true"><i style="width:'+(val(f,k)/mx*100)+'%"></i></span><span class="fv">'+fmt(val(f,k))+' '+n.unit+(p!==null?' <em>'+Math.round(p)+'%</em>':'')+'</span></li>';});
+    h+='</ol></article>';});
+  $('d-g').innerHTML=h;})();
+/* E */
+var RK=['protein','fiber','calcium','iron','magnesium','potassium','zinc','vita','vitc','vitk','folate','b12'];
+opts($('e-1'),'spinach');opts($('e-2'),'kale_raw');
+function drawE(){
+  var f1=BY[$('e-1').value],f2=BY[$('e-2').value],N=RK.length,R=105,C=170,s='<svg viewBox="-30 0 400 340" role="img" aria-label="Radar chart comparing '+esc(f1.name)+' and '+esc(f2.name)+'; values are listed in the table">';
+  function pt(i,r){var a=-Math.PI/2+i*2*Math.PI/N;return [C+r*Math.cos(a),C+r*Math.sin(a)];}
+  [0.25,0.5,0.75,1].forEach(function(t){var p=[];for(var i=0;i<N;i++)p.push(pt(i,R*t).join(','));s+='<polygon points="'+p.join(' ')+'" class="rg"/>';});
+  for(var i=0;i<N;i++){var q=pt(i,R);s+='<line x1="'+C+'" y1="'+C+'" x2="'+q[0]+'" y2="'+q[1]+'" class="rg"/>';var l=pt(i,R+16),an=l[0]<C-8?'end':(l[0]>C+8?'start':'middle');
+    var lb=NK[RK[i]].label.replace(' (RAE)','').replace(' (DFE)','').replace('Vitamin ','Vit ');s+='<text x="'+l[0]+'" y="'+(l[1]+4)+'" text-anchor="'+an+'" class="rl">'+esc(lb)+'</text>';}
+  [[f1,'r1'],[f2,'r2']].forEach(function(o){var p=[];RK.forEach(function(k,i){var pc=pct(o[0],k,100),r=pc===null?0:Math.min(100,pc)/100*R;p.push(pt(i,r));});
+    s+='<polygon points="'+p.map(function(a){return a.join(',');}).join(' ')+'" class="'+o[1]+'"/>';
+    RK.forEach(function(k,i){s+='<circle cx="'+p[i][0]+'" cy="'+p[i][1]+'" r="3" class="'+o[1]+'d'+(pct(o[0],k,100)===null?' hol':'')+'"/>';});});
+  s+='</svg><p class="lg2"><span class="k1"></span>'+esc(f1.name)+' <span class="k2"></span>'+esc(f2.name)+'</p>';
+  $('e-svg').innerHTML=s;
+  var t='<tr><th>Nutrient</th><th>'+esc(f1.name)+'</th><th>'+esc(f2.name)+'</th></tr>';
+  RK.forEach(function(k){var n=NK[k];function c(f){var v=val(f,k);return v===null?'<td class="nd">no data ?</td>':'<td>'+fmt(v)+' '+n.unit+' <em>'+Math.round(pct(f,k,100))+'%</em></td>';}t+='<tr><td>'+esc(n.label)+'</td>'+c(f1)+c(f2)+'</tr>';});
+  $('e-t').innerHTML=t;
+}
+$('e-1').addEventListener('change',drawE);$('e-2').addEventListener('change',drawE);drawE();
+/* F: live lookup */
+var IDMAP={};NU.forEach(function(n){IDMAP[n.fdc_nutrient_id]=n.key;});IDMAP[2047]=IDMAP[2047]||'kcal';
+var live=null;
+function liveFood(r){var o={key:'live'+r.fdcId,fdc_id:r.fdcId,name:r.description,usda_description:r.description,data_type:r.dataType,source:'https://fdc.nal.usda.gov/food-details/'+r.fdcId+'/nutrients',accessed:new Date().toISOString().slice(0,10),proxy:false,note:'',per100g:{}};
+  (r.foodNutrients||[]).forEach(function(fn){var k=IDMAP[fn.nutrientId];if(k&&typeof fn.value==='number'&&!(k==='kcal'&&fn.nutrientId!==1008&&o.per100g.kcal!==undefined))o.per100g[k]=fn.value;});return o;}
+$('f-form').addEventListener('submit',function(e){e.preventDefault();
+  var q=$('f-q').value.trim();if(!q){$('f-msg').textContent='Type a food name first.';return;}
+  var ck='fdcq:'+q.toLowerCase(),msg=$('f-msg'),res=$('f-res');res.innerHTML='';$('f-card').innerHTML='';
+  function show(list){live=list.map(liveFood);if(!live.length){msg.textContent='No USDA SR Legacy or Foundation entries matched "'+q+'". Try a simpler name.';return;}
+    msg.textContent=live.length+' USDA entries. Pick one:';
+    res.innerHTML=live.map(function(f,i){return '<li><button type="button" data-i="'+i+'">'+esc(f.name)+' <small>'+esc(f.data_type)+'</small></button></li>';}).join('');}
+  try{var c=sessionStorage.getItem(ck);if(c){show(JSON.parse(c));return;}}catch(x){}
+  msg.textContent='Searching USDA…';
+  var ctl=('AbortController' in window)?new AbortController():null,to=setTimeout(function(){if(ctl)ctl.abort();},15000);
+  fetch('https://api.nal.usda.gov/fdc/v1/foods/search?api_key=DEMO_KEY&pageSize=8&dataType=SR%20Legacy,Foundation&query='+encodeURIComponent(q),{signal:ctl?ctl.signal:undefined})
+  .then(function(r){clearTimeout(to);if(r.status===429)throw new Error('rate');if(!r.ok)throw new Error('http '+r.status);return r.json();})
+  .then(function(j){var l=(j.foods||[]).slice(0,8);try{sessionStorage.setItem(ck,JSON.stringify(l));}catch(x){}show(l);})
+  .catch(function(er){clearTimeout(to);msg.textContent=(er&&er.message==='rate')?'USDA\'s shared DEMO_KEY rate limit was reached. Try again in a while, or use the pre-fetched foods in the other sections (sweet potato, kale, bok choy, collards, broccoli).':'Could not reach USDA ('+(er&&er.name==='AbortError'?'timed out':'network error or blocked')+'). The pre-fetched foods in the other sections still work, including sweet potato, kale, bok choy, collards and broccoli.';});
+});
+$('f-res').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;curLive=live[+b.getAttribute('data-i')];drawF();});
+var curLive=null;function drawF(){if(curLive)$('f-card').innerHTML=card(curLive,gval('f-g'));}
+$('f-g').addEventListener('input',drawF);
+})();
+</script>

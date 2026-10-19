@@ -945,20 +945,68 @@ MCSS=OVCSS+ACSS+"""
 @media(min-width:561px){.swipe{display:none}}
 @media(max-width:560px){.mk{min-width:430px}.sm .mk{min-width:0}.var{padding:.9rem .8rem}}
 """
-mb=f'<p><span class="mockbadge">mock</span> Experimental chart gallery, not part of the main site. <a href="food.html">&larr; Back to Food Log</a></p>'
-mb+=f'<div class="note"><b>How to read:</b> every nutrient is shown as % of its daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). <b>*Sodium is vs its 2,300 mg upper limit, so lower is better.</b> Calories have no target and are omitted (except in chart 10). Uses the real logged data for {MDL[NC[0]]} to {MDL[NC[-1]]} ({len(NC)} complete days); <b>{MDL[-1]} is still in progress</b>, drawn dashed, hollow or hatched, and left out of averages and the radar. Food values exclude items with no data, so some totals are minimums. Estimates only.</div>'
-tg='<input class="rd" type="radio" name="s" id="sp" checked aria-label="Percent of target scale"><input class="rd" type="radio" name="s" id="sr" aria-label="Raw amount scale"><input class="rd" type="radio" name="m" id="mf" aria-label="Food only"><input class="rd" type="radio" name="m" id="mc" checked aria-label="Food plus supplements"><div class="tg2" role="group" aria-label="Data shown"><b>Show:</b><label for="mf">Food only</label><label for="mc">Food + supplements</label></div>'
-ch='<div class="charts">'+ov_sec+abs_sec
-for n,t,pc,fn,tgl in VAR:
-    body_=toggled(fn) if tgl else fn('c')
-    ch+=f'<section class="day var" id="v{n}"><h2>{n}) {t}</h2><p class="pc">{pc}'+('' if tgl else ' <i>(not affected by the toggle)</i>')+f'</p><p class="est swipe">Swipe sideways if the chart is wider than the screen.</p>{body_}</section>'
-ch+='</div>'
-dt_='<section class="day"><details><summary>Data table (all numbers behind the charts, % of target, food + supplements)</summary><div class="tw"><table class="est"><tr><th>Nutrient</th>'+''.join(f'<th>{MDL[i]}{" (in progress)" if MIP[i] else ""}</th>' for i in range(n_))+'</tr>'
-for k,l,u,t,c in MK: dt_+=f'<tr><td>{l}</td>'+''.join(f'<td>{P(i,k,"c"):.0f}%</td>' for i in range(n_))+'</tr>'
-dt_+='</table></div></details></section>'
-mp=page('Mock: week-at-a-glance charts','Ten ways to show the whole week on one view.','',mb+tg+ch+dt_)
-mp=mp.replace('</style>',MCSS+'</style>',1).replace('<nav><a href="index.html">💊 Supplements</a><a href="food.html">🥗 Food Log</a></nav>','<nav><a href="food.html">&larr; Food Log</a></nav>')
+# ================= mock.html : food nutrition explorer (USDA data from foods_full.json) =================
+XCSS="""
+.mockbadge{display:inline-block;background:#fff3df;color:#9a5c00;border-radius:999px;padding:.1rem .7rem;font-size:.75rem;font-weight:700}
+@media(prefers-color-scheme:dark){.mockbadge{background:#3a2d12;color:var(--accent)}}
+.xn{position:sticky;top:0;z-index:5;background:var(--bg);padding:.5rem 0;margin:0 0 1rem;border-bottom:1px solid var(--line)}
+.xn a{background:var(--chip);color:var(--brand);font-size:.85rem;padding:.4rem .8rem}.xn a:hover,.xn a:focus-visible{background:var(--brand);color:#fff}
+.xs{scroll-margin-top:4rem}.xs h2{font-size:1.25rem}.xs .pc{color:var(--muted);font-size:.92rem;margin:0 0 .7rem}
+.px{background:#fff3df;color:#9a5c00;border-radius:999px;padding:0 .5rem;font-size:.8rem;font-weight:700}
+@media(prefers-color-scheme:dark){.px{background:#3a2d12;color:var(--accent)}}
+.ctl{display:flex;flex-wrap:wrap;gap:.6rem .9rem;align-items:flex-end;margin:.3rem 0 .8rem}
+.ctl label{display:flex;flex-direction:column;font-size:.8rem;font-weight:700;color:var(--muted);gap:.15rem}
+.ctl input,.ctl select,.ctl button{font:inherit;font-size:.95rem;padding:.45rem .6rem;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);min-height:44px;max-width:100%}
+.ctl input[type=number]{width:7rem}.ctl select{min-width:12rem}
+.ctl label.ck{flex-direction:row;align-items:center;gap:.4rem;min-height:44px}.ctl label.ck input{min-height:0;width:1.1rem;height:1.1rem}
+.ctl button{cursor:pointer;font-weight:600;color:var(--brand2)}.ctl button.go{background:var(--brand);color:#fff;border-color:var(--brand)}
+.qb{display:flex;gap:.3rem;flex-wrap:wrap}
+.ctl :focus-visible,.hm button:focus-visible,.fr button:focus-visible,.xn a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.pf h3{margin:.2rem 0}.px2{background:#fff8ea;border-left:4px solid var(--accent);padding:.5rem .8rem;border-radius:8px;font-size:.9rem;margin:.4rem 0}
+@media(prefers-color-scheme:dark){.px2{background:#2e2614}}
+.pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:1rem}
+.pgc h4{margin:.2rem 0 .3rem;color:var(--brand);font-size:.95rem;border-bottom:2px solid var(--chip)}
+.nrw{display:grid;grid-template-columns:1fr auto;gap:0 .6rem;padding:.25rem 0;font-size:.88rem;border-bottom:1px solid var(--line)}
+.nrw .nl{font-weight:600}.nrw .nv{text-align:right;white-space:nowrap}.nrw .nv em{font-style:normal;font-weight:800;color:var(--brand);margin-left:.3rem}
+.nrw.lim .nv em{color:#9a5c00}.nrw.nd .nv,.nrw.nd .nl{color:var(--muted);font-style:italic;font-weight:400}
+.bt{grid-column:1/-1;height:7px;border-radius:99px;background:var(--line);overflow:hidden;display:block}.bt i{display:block;height:100%;background:var(--brand);border-radius:99px}
+.lim .bt i{background:var(--accent)}.nd .bt{background:repeating-linear-gradient(90deg,var(--line) 0 4px,transparent 4px 8px)}
+.lb{list-style:none;margin:0;padding:0}.lb li{display:grid;grid-template-columns:2rem minmax(0,1.3fr) minmax(60px,1fr) auto;gap:.5rem;align-items:center;padding:.3rem 0;border-bottom:1px solid var(--line);font-size:.88rem}
+.lb .rk{color:var(--muted);text-align:right;font-weight:700}.lb .fv{text-align:right;white-space:nowrap}.lb .fv em,.tc .fv em,#e-t em{font-style:normal;font-weight:800;color:var(--brand);margin-left:.25rem}
+.lb .bt{grid-column:auto}.lb .nd{color:var(--muted);font-style:italic}.lb .sep{display:block;font-weight:700;color:var(--muted);padding:.8rem 0 .2rem;border-bottom:2px solid var(--line)}
+.lb .fn{overflow-wrap:anywhere}
+.hm{max-height:70vh;overflow:auto}.hm table{font-size:.8rem;min-width:900px}.hm th,.hm td{padding:.3rem .45rem;white-space:nowrap}.hm td{text-align:right;font-variant-numeric:tabular-nums}
+.hm thead th{top:0;z-index:2;text-align:center}.hm th.sc{white-space:normal;min-width:8.5rem;max-width:11rem;position:sticky;left:0;z-index:1;background:var(--card);text-align:left}.hm thead th.sc{z-index:3;background:var(--chip)}
+.hm th button{all:unset;cursor:pointer;color:inherit;font-weight:700;display:block;padding:.2rem;text-align:center}.hm th.sc button{text-align:left}.hm th button small{display:block;font-weight:400;color:var(--muted)}
+.hm th[aria-sort=ascending] button::after{content:" ▲"}.hm th[aria-sort=descending] button::after{content:" ▼"}
+.hm td.nd{color:var(--muted);font-style:italic;font-size:.7rem;background:repeating-linear-gradient(45deg,transparent 0 4px,rgba(128,128,128,.12) 4px 8px)}
+.hm tbody tr:nth-child(even) td{background-color:transparent}
+.tops{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:.8rem}
+.tc{border:1px solid var(--line);border-top:4px solid var(--brand);border-radius:12px;padding:.4rem .8rem .6rem}.tc h3{margin:.3rem 0;font-size:1rem}
+.tc ol{list-style:none;margin:0;padding:0}.tc li{display:grid;grid-template-columns:1fr auto;gap:0 .5rem;font-size:.85rem;padding:.2rem 0}.tc .bt{grid-column:1/-1}.tc .fv{text-align:right;white-space:nowrap}
+.rw{display:grid;grid-template-columns:minmax(0,380px) 1fr;gap:1rem;align-items:start}@media(max-width:700px){.rw{grid-template-columns:1fr}}
+#e-svg svg{width:100%;height:auto;max-width:380px;display:block;margin:0 auto}
+.rg{fill:none;stroke:var(--line);stroke-width:1}.rl{font-size:12px;fill:var(--ink)}
+.r1{fill:rgba(46,139,106,.28);stroke:#2e8b6a;stroke-width:2}.r2{fill:rgba(224,118,43,.25);stroke:#e0762b;stroke-width:2}
+.r1d{fill:#2e8b6a}.r2d{fill:#e0762b}.hol{fill:var(--card)!important;stroke:var(--muted);stroke-width:1.5}
+.lg2{text-align:center;font-size:.85rem}.k1,.k2{display:inline-block;width:.8rem;height:.8rem;border-radius:3px;vertical-align:middle;margin-right:.2rem}.k1{background:#2e8b6a}.k2{background:#e0762b;margin-left:.8rem}
+#e-t td.nd{color:var(--muted);font-style:italic}
+.fr{list-style:none;padding:0;margin:.3rem 0;display:flex;flex-wrap:wrap;gap:.4rem}.fr button{font:inherit;font-size:.88rem;cursor:pointer;border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:10px;padding:.4rem .7rem;min-height:44px;text-align:left}.fr button:hover{border-color:var(--brand)}.fr small{color:var(--muted)}
+@media(max-width:560px){.lb li{grid-template-columns:1.4rem minmax(0,1fr) auto}.lb .bt{display:none}.xn a{padding:.4rem .6rem}.ctl select{min-width:0;width:100%}.ctl label{flex:1 1 40%}}
+"""
+_ff=json.load(open('foods_full.json'))
+_nf=nut['foods']
+# public page data only: USDA values, stand-in flags and generic public notes (no personal logs or quantities)
+_pub={'accessed':_ff['accessed'],'nutrients':_ff['nutrients'],'foods':[{k:f[k] for k in ('key','fdc_id','name','usda_description','data_type','source','accessed','proxy','note','extra','per100g')} for f in _ff['foods']]}
+assert len(_pub['foods'])==len([k for k,v in _nf.items() if v.get('fdc_id')])+9
+assert all(f['key'] in _nf for f in _pub['foods'] if not f['extra'])
+assert all(v in (None,) or isinstance(v,(int,float)) for f in _pub['foods'] for v in f['per100g'].values()), 'bad nutrient value'
+assert not any(isinstance(v,(int,float)) and v<0 for f in _pub['foods'] for v in f['per100g'].values())
+_tpl=open('explorer_tpl.html').read().replace('@@ACC@@',_ff['accessed']).replace('@@DATA@@',json.dumps(_pub,separators=(',',':'),ensure_ascii=False).replace('</','<\\/'))
+mp=page('Food Nutrition Explorer','Look up what is in a food, or rank every food by a nutrient. Public USDA FoodData Central data.','',_tpl)
+mp=mp.replace('</style>',XCSS+'</style>',1).replace('<nav><a href="index.html">💊 Supplements</a><a href="food.html">🥗 Food Log</a></nav>','<nav><a href="food.html">&larr; Food Log</a></nav>')
 open('mock.html','w').write(mp)
+print('mock.html explorer:',len(_pub['foods']),'foods,',len(_pub['nutrients']),'nutrients')
 
 
 # ================= food.html : final assembly with the overlay chart replacing "Week at a glance" =================
