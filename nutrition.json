@@ -1006,6 +1006,44 @@
     "magnesium": 29.0,
     "sodium": 7.0
    }
+  },
+  "kale_raw": {
+   "name": "Kale, raw",
+   "approx": true,
+   "note": "Sauteed at home; raw values used for the raw leaf weight (cooking changes weight, not nutrients much).",
+   "fdc_id": 168421,
+   "usda_description": "Kale, raw",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/168421/nutrients",
+   "accessed": "2026-10-19",
+   "per100g": {
+    "kcal": 35.0,
+    "protein": 2.92,
+    "fiber": 4.1,
+    "calcium": 254.0,
+    "potassium": 348.0,
+    "magnesium": 33.0,
+    "sodium": 53.0
+   }
+  },
+  "coconut_oil": {
+   "name": "Coconut oil",
+   "approx": false,
+   "note": "",
+   "fdc_id": 171412,
+   "usda_description": "Oil, coconut",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/171412/nutrients",
+   "accessed": "2026-10-19",
+   "per100g": {
+    "kcal": 892.0,
+    "protein": 0.0,
+    "fiber": 0.0,
+    "calcium": 1.0,
+    "potassium": 0.0,
+    "magnesium": 0.0,
+    "sodium": 0.0
+   }
   }
  },
  "days": [
@@ -2542,8 +2580,7 @@
   {
    "date": "2026-10-19",
    "partial": true,
-   "in_progress": true,
-   "partial_note": "Day in progress: lunch (~12 PM) and an afternoon snack (~3:30 PM), both times approximate, are logged so far; dinner is not yet logged, so this day is excluded from the Possible gaps averages. The lentils with spinach were a Whole Foods prepared food, so no home salt was added and sodium is likely understated (store recipe salt unknown). Many portions are assumed.",
+   "partial_note": "All meals logged: lunch (~12 PM), afternoon snack (~3:30 PM) and dinner (evening), times approximate. Many portions are assumed. The lentils with spinach were a Whole Foods prepared food, so no home salt was added for lunch and sodium is likely understated. Dinner was assumed home-cooked, so assumed salt is counted for the jerk chicken and the kale; jerk seasoning may add more sodium. Ultra-filtered milk uses generic 2% values (protein and calcium likely understated).",
    "entries": [
     {
      "meal": "Lunch",
@@ -2616,6 +2653,69 @@
      "assumed": true,
      "lo": 0.8,
      "hi": 1.2
+    },
+    {
+     "meal": "Dinner",
+     "food": "chicken_thigh",
+     "grams": 78,
+     "label": "Jerk chicken 1.5 thighs (given) ~78 g meat (1.5 x ~52 g roasted thigh meat, assumed; home-cooked assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner",
+     "food": "salt_table",
+     "grams": 1.5,
+     "label": "Salt to taste, assumed (~1/4 tsp) - jerk chicken; jerk seasoning may add more",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "kale_raw",
+     "grams": 180,
+     "label": "Kale 6 full leaves, sauteed (~30 g raw each assumed, ~180 g)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Dinner",
+     "food": "coconut_oil",
+     "grams": 4.5,
+     "label": "Coconut oil 1 tsp (given, ~4.5 g)",
+     "assumed": false,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Dinner",
+     "food": "salt_table",
+     "grams": 1.5,
+     "label": "Salt to taste, assumed (~1/4 tsp) - sauteed kale",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Dinner",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~9.5 g each assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Dinner",
+     "food": "kefir_maplehill",
+     "grams": 60,
+     "label": "Kefir 2 oz (~60 g; Maple Hill as on Oct 17-18 assumed, label values)",
+     "assumed": true,
+     "lo": 0.9,
+     "hi": 1.1
     }
    ]
   }

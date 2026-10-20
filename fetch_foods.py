@@ -17,7 +17,7 @@ NUTS=[ # key,label,unit,group,fdc nutrient id
 ('vitk','Vitamin K','µg','vitamin',1185),('b1','Thiamin (B1)','mg','vitamin',1165),('b2','Riboflavin (B2)','mg','vitamin',1166),('b3','Niacin (B3)','mg','vitamin',1167),
 ('b5','Pantothenic acid (B5)','mg','vitamin',1170),('b6','Vitamin B6','mg','vitamin',1175),('folate','Folate (DFE)','µg','vitamin',1190),('b12','Vitamin B12','µg','vitamin',1178),
 ('choline','Choline','mg','vitamin',1180)]
-EXTRA=[('sweet_potato_raw',168482),('sweet_potato_baked',168483),('kale_raw',168421),('kale_boiled',169238),('bok_choy_raw',170390),('bok_choy_boiled',170391),
+EXTRA=[('sweet_potato_raw',168482),('sweet_potato_baked',168483),('kale_boiled',169238),('bok_choy_raw',170390),('bok_choy_boiled',170391),
 ('collards_raw',170406),('collards_boiled',170407),('broccoli_raw',170379)]
 PUB={ # public, generic notes for stand-in entries (no personal details)
 'polish_sausage':'Generic pork Polish sausage; brand not specified.','milk_2':'2% reduced-fat milk entry used for milk in general.',
@@ -45,7 +45,7 @@ PUB={ # public, generic notes for stand-in entries (no personal details)
 'olive_ripe':'Canned ripe olives (brined, high in sodium) used as a stand-in for olives in general.',
 'spinach_cooked':'Plain boiled spinach, no salt, used as a stand-in for cooked leafy greens.',
 'spinach':'Raw spinach; cooked spinach has different values per gram (see the boiled entry).','onion':'Raw onion; cooking changes values per gram.',
-'eggplant':'Boiled eggplant.','avocado':'Raw avocado, all commercial varieties (Hass-type California avocados are close).','potato':'Boiled potato, flesh only.'}
+'eggplant':'Boiled eggplant.','kale_raw':'Raw kale; cooked kale has different values per gram (see the boiled entry).','coconut_oil':'Coconut oil.','avocado':'Raw avocado, all commercial varieties (Hass-type California avocados are close).','potato':'Boiled potato, flesh only.'}
 def sr(ids):
     ids=set(ids);foods={};nv={}
     for r in csv.DictReader(open(D+'/food.csv')):

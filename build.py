@@ -475,7 +475,8 @@ ABS_DEF=25
 ABSR={'milk_2':(27,'NIH ODS: ~27% from milk'),'hot_cocoa':(27,'assumed: milk-based, NIH milk figure'),
  'spinach':(5,'NIH ODS: ~5% from spinach (high oxalate)'),
  'cabbage':(27,'NIH ODS: low-oxalate greens (broccoli, kale, cabbage) similar to milk'),
- 'broccoli':(27,'NIH ODS: low-oxalate greens (broccoli, kale, cabbage) similar to milk')}
+ 'broccoli':(27,'NIH ODS: low-oxalate greens (broccoli, kale, cabbage) similar to milk'),
+ 'kale_raw':(49,'Weaver, Proulx & Heaney 1999: ~49% from kale')}
 def absr(fk):
     if fk in ABSR:
         p,s=ABSR[fk]; return p,s,('assumed' if s.startswith('assumed') else 'sourced')
@@ -632,7 +633,7 @@ def ov(mode,pct,ab=False):
                 srcd=sum(it['mg'] for it in AD[i]['items'] if it['typ']=='sourced'); tot=sum(it['mg'] for it in AD[i]['items'])
                 ss=(srcd/tot*100 if tot>0 else 0)
                 seg=f'<span class="sn" aria-hidden="true" style="left:{cp:.2f}%"></span>'
-                sp2=(f'<b>Calcium split (estimate)</b><br>Absorbed ~{fm0(ca)}{plk} mg ({cp:.0f}%) <span class="kd">solid</span><br>Not absorbed ~{fm0(ce-ca)}{plk} mg <span class="kd h">hatched</span><br>{ss:.0f}% of eaten calcium uses sourced percentages (milk 27%, spinach 5%, cabbage/broccoli 27%); the rest uses an assumed default of {ABS_DEF}%.<br><small>Source: NIH ODS calcium fact sheet, updated June 22, 2026. Typical adult, not a personal value.</small>')
+                sp2=(f'<b>Calcium split (estimate)</b><br>Absorbed ~{fm0(ca)}{plk} mg ({cp:.0f}%) <span class="kd">solid</span><br>Not absorbed ~{fm0(ce-ca)}{plk} mg <span class="kd h">hatched</span><br>{ss:.0f}% of eaten calcium uses sourced percentages (milk 27%, spinach 5%, cabbage/broccoli 27%, kale 49%); the rest uses an assumed default of {ABS_DEF}%.<br><small>Source: NIH ODS calcium fact sheet, updated June 22, 2026. Typical adult, not a personal value.</small>')
                 aria+=f'; estimated absorbed about {fm0(ca)}{plk} mg of {fm0(ce)}{plk} mg eaten ({cp:.0f}%), not absorbed about {fm0(ce-ca)} mg. Estimate, typical adult.'
             if k in SPLIT or k=='protein':
                 si=split_info(i,k,mode); sa=si['a']; spc=sa/si['e']*100 if si['e']>0 else 0
@@ -998,7 +999,7 @@ _ff=json.load(open('foods_full.json'))
 _nf=nut['foods']
 # public page data only: USDA values, stand-in flags and generic public notes (no personal logs or quantities)
 _pub={'accessed':_ff['accessed'],'nutrients':_ff['nutrients'],'foods':[{k:f[k] for k in ('key','fdc_id','name','usda_description','data_type','source','accessed','proxy','note','extra','per100g')} for f in _ff['foods']]}
-assert len(_pub['foods'])==len([k for k,v in _nf.items() if v.get('fdc_id')])+9
+assert len(_pub['foods'])==len([k for k,v in _nf.items() if v.get('fdc_id')])+8
 assert all(f['key'] in _nf for f in _pub['foods'] if not f['extra'])
 assert all(v in (None,) or isinstance(v,(int,float)) for f in _pub['foods'] for v in f['per100g'].values()), 'bad nutrient value'
 assert not any(isinstance(v,(int,float)) and v<0 for f in _pub['foods'] for v in f['per100g'].values())
