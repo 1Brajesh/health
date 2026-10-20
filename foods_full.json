@@ -2744,6 +2744,35 @@
    }
   },
   {
+   "key": "chex_mix",
+   "fdc_id": 2754919,
+   "name": "Chex Mix Traditional (General Mills)",
+   "usda_description": "Chex Mix Traditional Snack Mix (GENERAL MILLS SALES INC.)",
+   "data_type": "Branded",
+   "source": "https://fdc.nal.usda.gov/food-details/2754919/nutrients",
+   "accessed": "2026-10-18",
+   "proxy": false,
+   "note": "Branded entry (Chex Mix Traditional); calcium and potassium are rounded label zeros, and there is no magnesium data.",
+   "extra": false,
+   "per100g": {
+    "kcal": 438.0,
+    "protein": 6.25,
+    "fat": 12.5,
+    "sat": 3.12,
+    "trans": 0.0,
+    "carbs": 75.0,
+    "sugars": 9.38,
+    "addsug": 6.2,
+    "fiber": 3.1,
+    "chol": 0.0,
+    "calcium": 0.0,
+    "iron": 2.5,
+    "potassium": 0.0,
+    "sodium": 1156.0,
+    "vitd": 0.0
+   }
+  },
+  {
    "key": "sweet_potato_raw",
    "fdc_id": 168482,
    "name": "Sweet potato, raw",

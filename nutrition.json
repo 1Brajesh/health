@@ -1044,6 +1044,25 @@
     "magnesium": 0.0,
     "sodium": 0.0
    }
+  },
+  "chex_mix": {
+   "name": "Chex Mix Traditional (General Mills)",
+   "approx": false,
+   "note": "Branded USDA entry (label values). Calcium and potassium are listed as 0 on the label, which is a rounded value (under 2% of the Daily Value), so the true amounts are small but not zero. No magnesium data.",
+   "fdc_id": 2754919,
+   "usda_description": "Chex Mix Traditional Snack Mix",
+   "data_type": "Branded",
+   "source": "https://fdc.nal.usda.gov/food-details/2754919/nutrients",
+   "accessed": "2026-10-19",
+   "per100g": {
+    "kcal": 438.0,
+    "protein": 6.25,
+    "fiber": 3.1,
+    "calcium": 0.0,
+    "potassium": 0.0,
+    "magnesium": null,
+    "sodium": 1160.0
+   }
   }
  },
  "days": [
@@ -2580,7 +2599,7 @@
   {
    "date": "2026-10-19",
    "partial": true,
-   "partial_note": "All meals logged: lunch (~12 PM), afternoon snack (~3:30 PM) and dinner (evening), times approximate. Many portions are assumed. The lentils with spinach were a Whole Foods prepared food, so no home salt was added for lunch and sodium is likely understated. Dinner was assumed home-cooked, so assumed salt is counted for the jerk chicken and the kale; jerk seasoning may add more sodium. Ultra-filtered milk uses generic 2% values (protein and calcium likely understated).",
+   "partial_note": "All meals logged: lunch (~12 PM), afternoon snack (~3:30 PM), a pre-dinner snack (Chex Mix) and dinner (evening), times approximate. Many portions are assumed. The lentils with spinach were a Whole Foods prepared food, so no home salt was added for lunch and sodium is likely understated. Dinner was assumed home-cooked, so assumed salt is counted for the jerk chicken and the kale; jerk seasoning may add more sodium. Ultra-filtered milk uses generic 2% values (protein and calcium likely understated).",
    "entries": [
     {
      "meal": "Lunch",
@@ -2653,6 +2672,15 @@
      "assumed": true,
      "lo": 0.8,
      "hi": 1.2
+    },
+    {
+     "meal": "Pre-dinner snack",
+     "food": "chex_mix",
+     "grams": 45,
+     "label": "Chex Mix Traditional, two handfuls ~45 g (assumed); packaged, no salt added",
+     "assumed": true,
+     "lo": 0.65,
+     "hi": 1.4
     },
     {
      "meal": "Dinner",
