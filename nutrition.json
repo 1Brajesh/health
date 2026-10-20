@@ -1063,6 +1063,25 @@
     "magnesium": null,
     "sodium": 1160.0
    }
+  },
+  "fairlife_2": {
+   "name": "Fairlife 2% reduced-fat ultra-filtered milk",
+   "approx": false,
+   "note": "Branded USDA entry (label values: per 240 mL serving 120 kcal, 13 g protein, 400 mg calcium, 400 mg potassium, 24 mg magnesium, 120 mg sodium). Values are per 100 mL; 1 mL treated as 1 g.",
+   "fdc_id": 2624248,
+   "usda_description": "2% REDUCED FAT ULTRA-FILTERED MILK (FAIRLIFE, Fair Oaks Farms Brands)",
+   "data_type": "Branded",
+   "source": "https://fdc.nal.usda.gov/food-details/2624248/nutrients",
+   "accessed": "2026-10-20",
+   "per100g": {
+    "kcal": 50.0,
+    "protein": 5.42,
+    "fiber": 0.0,
+    "calcium": 167.0,
+    "potassium": 167.0,
+    "magnesium": 10.0,
+    "sodium": 50.0
+   }
   }
  },
  "days": [
@@ -2751,7 +2770,7 @@
    "date": "2026-10-20",
    "partial": true,
    "in_progress": true,
-   "partial_note": "Day in progress: only lunch (~1 PM, time approximate) is logged so far; dinner is not yet logged, so this day is excluded from the Possible gaps averages. Home-cooked, so one assumed salt entry is counted for the meal. Kale portion assumed from the photo.",
+   "partial_note": "Day in progress: lunch (~1 PM) and an afternoon snack (~2:30 PM), times approximate, are logged so far; dinner is not yet logged, so this day is excluded from the Possible gaps averages. Home-cooked, so one assumed salt entry is counted for the meal. Kale portion assumed from the photo.",
    "entries": [
     {
      "meal": "Lunch",
@@ -2797,6 +2816,24 @@
      "assumed": true,
      "lo": 0.5,
      "hi": 2
+    },
+    {
+     "meal": "Afternoon snack",
+     "food": "fairlife_2",
+     "grams": 240,
+     "label": "Fairlife 2% ultra-filtered milk 8 oz (240 mL; given, brand assumed Fairlife)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Afternoon snack",
+     "food": "prunes",
+     "grams": 19,
+     "label": "2 prunes (~9.5 g each assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
     }
    ]
   }
