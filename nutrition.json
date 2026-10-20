@@ -1067,7 +1067,7 @@
   "fairlife_2": {
    "name": "Fairlife 2% reduced-fat ultra-filtered milk",
    "approx": false,
-   "note": "Branded USDA entry (label values: per 240 mL serving 120 kcal, 13 g protein, 400 mg calcium, 400 mg potassium, 24 mg magnesium, 120 mg sodium). Values are per 100 mL; 1 mL treated as 1 g.",
+   "note": "Branded USDA entry. Label per 240 mL serving: 120 kcal, 13 g protein, 401 mg calcium, 401 mg potassium, 120 mg sodium. Magnesium (10 mg/100 mL) is from the USDA record's nutrient list, not the printed label. Values are per 100 mL; 1 mL treated as 1 g.",
    "fdc_id": 2624248,
    "usda_description": "2% REDUCED FAT ULTRA-FILTERED MILK (FAIRLIFE, Fair Oaks Farms Brands)",
    "data_type": "Branded",
