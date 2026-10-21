@@ -224,6 +224,10 @@
    {
     "meal": "Afternoon snack (~3:30 PM, time approximate)",
     "items": "8 oz (240 mL) ultra-filtered milk (Fairlife 2% assumed, label values); 2 prunes (~9.5 g each assumed). Status: eaten."
+   },
+   {
+    "meal": "Evening snack (~6 PM, time approximate)",
+    "items": "20 g pumpkin seeds. Status: eaten."
    }
   ]
  }
