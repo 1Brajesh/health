@@ -2960,7 +2960,7 @@
    "date": "2026-10-21",
    "partial": true,
    "in_progress": true,
-   "partial_note": "Day in progress: only lunch (~2 PM, time approximate) is logged so far; dinner is not yet logged, so this day is excluded from the Possible gaps averages. Home-cooked, so one assumed salt entry is counted for the meal. Kale leaf weight and several portions are assumed.",
+   "partial_note": "Day in progress: lunch (~2 PM) and an afternoon snack (~3:30 PM), times approximate, are logged so far; dinner is not yet logged, so this day is excluded from the Possible gaps averages. Home-cooked, so one assumed salt entry is counted for the meal. Kale leaf weight and several portions are assumed.",
    "entries": [
     {
      "meal": "Lunch",
@@ -3051,6 +3051,24 @@
      "assumed": true,
      "lo": 0.5,
      "hi": 2
+    },
+    {
+     "meal": "Afternoon snack",
+     "food": "fairlife_2",
+     "grams": 240,
+     "label": "Ultra-filtered milk 8 oz (240 mL; given; Fairlife 2% assumed, as on Oct 20)",
+     "assumed": true,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Afternoon snack",
+     "food": "prunes",
+     "grams": 19,
+     "label": "2 prunes (~9.5 g each assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
     }
    ]
   }
