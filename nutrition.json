@@ -2779,11 +2779,11 @@
     {
      "meal": "Dinner",
      "food": "kale_raw",
-     "grams": 180,
-     "label": "Kale 6 full leaves, sauteed (~30 g raw each assumed, ~180 g)",
+     "grams": 102,
+     "label": "Kale 6 full leaves, sauteed (~17 g raw each assumed, leaves stripped from ~9-inch stalks; ~102 g)",
      "assumed": true,
-     "lo": 0.8,
-     "hi": 1.2
+     "lo": 0.7,
+     "hi": 1.4
     },
     {
      "meal": "Dinner",
