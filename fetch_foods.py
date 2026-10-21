@@ -45,7 +45,7 @@ PUB={ # public, generic notes for stand-in entries (no personal details)
 'olive_ripe':'Canned ripe olives (brined, high in sodium) used as a stand-in for olives in general.',
 'spinach_cooked':'Plain boiled spinach, no salt, used as a stand-in for cooked leafy greens.',
 'spinach':'Raw spinach; cooked spinach has different values per gram (see the boiled entry).','onion':'Raw onion; cooking changes values per gram.',
-'eggplant':'Boiled eggplant.','fairlife_2':'Branded entry (Fairlife 2% ultra-filtered milk), label values per 100 mL.','chex_mix':'Branded entry (Chex Mix Traditional); calcium and potassium are rounded label zeros, and there is no magnesium data.','kale_raw':'Raw kale; cooked kale has different values per gram (see the boiled entry).','coconut_oil':'Coconut oil.','avocado':'Raw avocado, all commercial varieties (Hass-type California avocados are close).','potato':'Boiled potato, flesh only.'}
+'eggplant':'Boiled eggplant.','yogurt_lowfat':'Generic low-fat plain yogurt.','potato_baked':'Baked potato with skin, no salt.','fairlife_2':'Branded entry (Fairlife 2% ultra-filtered milk), label values per 100 mL.','chex_mix':'Branded entry (Chex Mix Traditional); calcium and potassium are rounded label zeros, and there is no magnesium data.','kale_raw':'Raw kale; cooked kale has different values per gram (see the boiled entry).','coconut_oil':'Coconut oil.','avocado':'Raw avocado, all commercial varieties (Hass-type California avocados are close).','potato':'Boiled potato, flesh only.'}
 def sr(ids):
     ids=set(ids);foods={};nv={}
     for r in csv.DictReader(open(D+'/food.csv')):

@@ -1082,6 +1082,44 @@
     "magnesium": 10.0,
     "sodium": 50.0
    }
+  },
+  "yogurt_lowfat": {
+   "name": "Yogurt, plain, low fat",
+   "note": "Brand not logged; generic USDA low-fat plain yogurt.",
+   "approx": true,
+   "fdc_id": 170886,
+   "usda_description": "Yogurt, plain, low fat",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/170886/nutrients",
+   "accessed": "2026-10-20",
+   "per100g": {
+    "kcal": 63.0,
+    "protein": 5.25,
+    "fiber": 0.0,
+    "calcium": 183.0,
+    "potassium": 234.0,
+    "magnesium": 17.0,
+    "sodium": 70.0
+   }
+  },
+  "potato_baked": {
+   "name": "Potato, baked, flesh and skin",
+   "note": "Preparation not logged; baked with skin, no salt, assumed.",
+   "approx": true,
+   "fdc_id": 170093,
+   "usda_description": "Potatoes, baked, flesh and skin, without salt",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/170093/nutrients",
+   "accessed": "2026-10-20",
+   "per100g": {
+    "kcal": 93.0,
+    "protein": 2.5,
+    "fiber": 2.2,
+    "calcium": 15.0,
+    "potassium": 535.0,
+    "magnesium": 28.0,
+    "sodium": 10.0
+   }
   }
  },
  "days": [
@@ -2769,8 +2807,7 @@
   {
    "date": "2026-10-20",
    "partial": true,
-   "in_progress": true,
-   "partial_note": "Day in progress: lunch (~1 PM) and an afternoon snack (~2:30 PM), times approximate, are logged so far; dinner is not yet logged, so this day is excluded from the Possible gaps averages. Home-cooked, so one assumed salt entry is counted for the meal. Kale portion assumed from the photo.",
+   "partial_note": "All meals logged: lunch (~1 PM), afternoon snack (~2:30 PM) and dinner (evening), times approximate. Many portions are assumed. Lunch is home-cooked with one assumed salt entry. At dinner the Whole Foods lentil soup is store-bought (no salt added; label sodium used); one assumed salt entry covers the potato and chicken, and the potato's preparation is unknown (baked with skin assumed).",
    "entries": [
     {
      "meal": "Lunch",
@@ -2831,6 +2868,69 @@
      "food": "prunes",
      "grams": 19,
      "label": "2 prunes (~9.5 g each assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Dinner",
+     "food": "wf_lentil_soup",
+     "grams": 245,
+     "label": "Whole Foods lentil soup 8 oz (1 cup, 245 g; given; store-bought, no salt added)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner",
+     "food": "yogurt_lowfat",
+     "grams": 42.5,
+     "label": "Low-fat plain yogurt 1.5 oz (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner",
+     "food": "potato_baked",
+     "grams": 173,
+     "label": "1 medium potato ~173 g (assumed; baked with skin assumed, prep not logged)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner",
+     "food": "salt_table",
+     "grams": 1.5,
+     "label": "Salt to taste, assumed (~1/4 tsp) - potato and chicken (one entry; potato prep unknown)",
+     "assumed": true,
+     "lo": 0.3,
+     "hi": 2
+    },
+    {
+     "meal": "Dinner",
+     "food": "chicken_thigh",
+     "grams": 39,
+     "label": "3/4 chicken thigh ~39 g meat (0.75 x ~52 g, assumed; salt covered by the potato salt entry)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner",
+     "food": "kefir_maplehill",
+     "grams": 85,
+     "label": "Maple Hill kefir 3 oz (85 g; given; label values)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~9.5 g each assumed)",
      "assumed": true,
      "lo": 0.8,
      "hi": 1.2
