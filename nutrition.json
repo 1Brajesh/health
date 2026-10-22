@@ -2959,8 +2959,7 @@
   {
    "date": "2026-10-21",
    "partial": true,
-   "in_progress": true,
-   "partial_note": "Day in progress: lunch (~2 PM), an afternoon snack (~3:30 PM) and an evening snack (~6 PM), times approximate, are logged so far; dinner is not yet logged, so this day is excluded from the Possible gaps averages. Home-cooked, so one assumed salt entry is counted for the meal. Kale leaf weight and several portions are assumed.",
+   "partial_note": "All meals logged: lunch (~2 PM), afternoon snack (~3:30 PM), evening snack (~6 PM) and dinner (evening), times approximate. Many portions are assumed. Lunch is home-cooked with one assumed salt entry. At dinner the Whole Foods lentil soup is store-bought (no salt added; label sodium used, no potassium/magnesium data); the potato-eggplant curry reuses the Oct 16/18 assumed components with one assumed salt entry.",
    "entries": [
     {
      "meal": "Lunch",
@@ -3078,6 +3077,105 @@
      "assumed": false,
      "lo": 0.9,
      "hi": 1.1
+    },
+    {
+     "meal": "Dinner",
+     "food": "wf_lentil_soup",
+     "grams": 153,
+     "label": "Whole Foods lentil soup 5 oz (~153 g, by 8 oz = 245 g; given; store-bought, no salt added)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner",
+     "food": "eggplant",
+     "grams": 100,
+     "label": "Curry: eggplant ~100 g (assumed share, same as Oct 16/18)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "potato",
+     "grams": 100,
+     "label": "Curry: potato ~100 g (assumed, same as Oct 16/18; same as Oct 16/18)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "tomato",
+     "grams": 60,
+     "label": "Curry: tomato ~60 g (assumed, same as Oct 16/18; same as Oct 16/18)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "olive_oil",
+     "grams": 13.5,
+     "label": "Curry: 1 tbsp oil (assumed; oil type unknown) (same as Oct 16/18)",
+     "assumed": true,
+     "lo": 0.3,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "ginger",
+     "grams": 5,
+     "label": "Curry: ginger ~5 g (assumed) (same as Oct 16/18)",
+     "assumed": true,
+     "lo": 0.3,
+     "hi": 2
+    },
+    {
+     "meal": "Dinner",
+     "food": "garlic",
+     "grams": 3,
+     "label": "Curry: garlic 1 clove (assumed) (same as Oct 16/18)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Dinner",
+     "food": "salt_table",
+     "grams": 1.5,
+     "label": "Salt to taste, assumed (~1/4 tsp) - potato-eggplant curry",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Dinner",
+     "food": "yogurt_lowfat",
+     "grams": 28,
+     "label": "Low-fat plain yogurt 1 oz (28 g; given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner",
+     "food": "kefir_maplehill",
+     "grams": 85,
+     "label": "Maple Hill kefir 3 oz (85 g; given; label values)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~9.5 g each assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
     }
    ]
   }
