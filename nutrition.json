@@ -3183,7 +3183,7 @@
    "date": "2026-10-22",
    "partial": true,
    "in_progress": true,
-   "partial_note": "Day in progress: only lunch (~1 PM, time approximate) is logged so far; dinner is not yet logged, so this day is excluded from the Possible gaps averages. Home-cooked, so one assumed salt entry is counted for the meal. Fish is white fish of unspecified type (cod values used). The onion salad's creamy dressing is assumed to be the 2 oz kefir, so it is not counted twice. Several portions are assumed.",
+   "partial_note": "Day in progress: lunch (~1 PM) and afternoon snack (~3 PM) are logged so far, times approximate; dinner is not yet logged, so this day is excluded from the Possible gaps averages. Home-cooked, so one assumed salt entry is counted for the meal. Fish is white fish of unspecified type (cod values used). The onion salad's creamy dressing is assumed to be the 2 oz kefir, so it is not counted twice. Several portions are assumed.",
    "entries": [
     {
      "meal": "Lunch",
@@ -3265,6 +3265,24 @@
      "assumed": true,
      "lo": 0.5,
      "hi": 2
+    },
+    {
+     "meal": "Afternoon snack",
+     "food": "fairlife_2",
+     "grams": 240,
+     "label": "Ultra-filtered milk 8 oz (240 mL; given; Fairlife 2% assumed, as on Oct 20/21)",
+     "assumed": true,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Afternoon snack",
+     "food": "prunes",
+     "grams": 19,
+     "label": "2 prunes (~9.5 g each assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
     }
    ]
   }
