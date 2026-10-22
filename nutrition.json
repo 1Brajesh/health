@@ -3100,7 +3100,7 @@
      "meal": "Dinner",
      "food": "potato",
      "grams": 100,
-     "label": "Curry: potato ~100 g (assumed, same as Oct 16/18; same as Oct 16/18)",
+     "label": "Curry: potato ~100 g (assumed, same as Oct 16/18)",
      "assumed": true,
      "lo": 0.6,
      "hi": 1.5
@@ -3109,7 +3109,7 @@
      "meal": "Dinner",
      "food": "tomato",
      "grams": 60,
-     "label": "Curry: tomato ~60 g (assumed, same as Oct 16/18; same as Oct 16/18)",
+     "label": "Curry: tomato ~60 g (assumed, same as Oct 16/18)",
      "assumed": true,
      "lo": 0.6,
      "hi": 1.5
