@@ -245,6 +245,10 @@
    {
     "meal": "Afternoon snack (~3 PM, time approximate)",
     "items": "8 oz (240 mL) ultra-filtered milk (Fairlife 2% assumed, label values); 2 prunes (~9.5 g each assumed). Status: eaten."
+   },
+   {
+    "meal": "Evening snack (~5:50 PM)",
+    "items": "6 oz (180 mL) ultra-filtered milk (Fairlife 2% assumed, label values); 1 chocolate biscotti (~30 g assumed; store-bought, no added salt; USDA chocolate wafer cookie values used as stand-in). Status: eaten."
    }
   ]
  }

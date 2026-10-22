@@ -1139,6 +1139,25 @@
     "magnesium": 255.0,
     "sodium": 52.0
    }
+  },
+  "choc_cookie_crisp": {
+   "name": "Chocolate biscotti (stand-in: chocolate wafer cookies)",
+   "approx": true,
+   "note": "USDA has no biscotti entry; crisp chocolate wafer cookies used as the closest stand-in.",
+   "fdc_id": 172714,
+   "usda_description": "Cookies, chocolate wafers",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/172714/nutrients",
+   "accessed": "2026-10-22",
+   "per100g": {
+    "kcal": 433.0,
+    "protein": 6.6,
+    "fiber": 3.4,
+    "calcium": 31.0,
+    "potassium": 210.0,
+    "magnesium": 53.0,
+    "sodium": 580.0
+   }
   }
  },
  "days": [
@@ -3183,7 +3202,7 @@
    "date": "2026-10-22",
    "partial": true,
    "in_progress": true,
-   "partial_note": "Day in progress: lunch (~1 PM) and afternoon snack (~3 PM) are logged so far, times approximate; dinner is not yet logged, so this day is excluded from the Possible gaps averages. Home-cooked, so one assumed salt entry is counted for the meal. Fish is white fish of unspecified type (cod values used). The onion salad's creamy dressing is assumed to be the 2 oz kefir, so it is not counted twice. Several portions are assumed.",
+   "partial_note": "Day in progress: lunch (~1 PM), afternoon snack (~3 PM) and evening snack (~5:50 PM) are logged so far, times approximate; dinner is not yet logged, so this day is excluded from the Possible gaps averages. Home-cooked, so one assumed salt entry is counted for the meal. Fish is white fish of unspecified type (cod values used). The onion salad's creamy dressing is assumed to be the 2 oz kefir, so it is not counted twice. Several portions are assumed.",
    "entries": [
     {
      "meal": "Lunch",
@@ -3283,6 +3302,24 @@
      "assumed": true,
      "lo": 0.8,
      "hi": 1.2
+    },
+    {
+     "meal": "Evening snack",
+     "food": "fairlife_2",
+     "grams": 180,
+     "label": "Ultra-filtered milk 6 oz (180 mL; given; Fairlife 2% assumed, as on Oct 20/21)",
+     "assumed": true,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Evening snack",
+     "food": "choc_cookie_crisp",
+     "grams": 30,
+     "label": "1 chocolate biscotti (~30 g assumed; store-bought, no added salt; USDA chocolate wafer cookies used as stand-in, no biscotti entry)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
     }
    ]
   }
