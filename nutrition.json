@@ -3418,7 +3418,7 @@
    "date": "2026-10-23",
    "partial": true,
    "in_progress": true,
-   "partial_note": "Day in progress: only lunch (~1:50 PM, time approximate) is logged so far; dinner is not yet logged, so this day is excluded from the Possible gaps averages. Soup is store-bought with ginger and garlic added, so no salt entry is assumed. Several portions are assumed.",
+   "partial_note": "Day in progress: lunch (~1:50 PM) and afternoon snack (~3:05 PM) are logged so far, times approximate; dinner is not yet logged, so this day is excluded from the Possible gaps averages. Soup is store-bought with ginger and garlic added, so no salt entry is assumed. Several portions are assumed.",
    "entries": [
     {
      "meal": "Lunch",
@@ -3491,6 +3491,24 @@
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
+    },
+    {
+     "meal": "Afternoon snack",
+     "food": "fairlife_2",
+     "grams": 240,
+     "label": "Ultra-filtered milk 8 oz (240 mL; given; Fairlife 2% assumed, as on Oct 20-22)",
+     "assumed": true,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Afternoon snack",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~9.5 g each assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
     }
    ]
   }
