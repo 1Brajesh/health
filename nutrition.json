@@ -3239,7 +3239,7 @@
   {
    "date": "2026-10-22",
    "partial": true,
-   "partial_note": "All meals logged: lunch (~1 PM), afternoon snack (~3 PM), evening snack (~5:50 PM), half potato (~6:15 PM) and dinner (~11 PM), times approximate. Many portions are assumed. Home-cooked lunch and potato each get one assumed salt entry; restaurant empanadas and store-bought snacks get none. Fish is white fish of unspecified type (cod values used); the onion salad's creamy dressing is assumed to be the 2 oz kefir, not counted twice. Chocolate biscotti uses chocolate wafer cookie values; empanadas use a generic USDA restaurant beef empanada.",
+   "partial_note": "All meals logged: lunch (~1 PM), afternoon snack (~3 PM), evening snack (~5:50 PM), half potato (~6:15 PM) and dinner (~11 PM), times approximate. Many portions are assumed. Home-cooked lunch gets one assumed salt entry (1.5 g); the potato was very mildly salted (light pinch, ~0.4 g assumed); restaurant empanadas and store-bought snacks get none. Fish is white fish of unspecified type (cod values used); the onion salad's creamy dressing is assumed to be the 2 oz kefir, not counted twice. Chocolate biscotti uses chocolate wafer cookie values; empanadas use a generic USDA restaurant beef empanada.",
    "entries": [
     {
      "meal": "Lunch",
@@ -3370,8 +3370,8 @@
     {
      "meal": "Evening (~6:15 PM)",
      "food": "salt_table",
-     "grams": 1.5,
-     "label": "Salt to taste, assumed (~1/4 tsp) - potato (home-cooked, same convention as Oct 20)",
+     "grams": 0.4,
+     "label": "Salt: very mildly salted, assumed light pinch (~0.4 g) - potato",
      "assumed": true,
      "lo": 0.3,
      "hi": 2
