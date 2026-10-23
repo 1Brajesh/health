@@ -3413,6 +3413,86 @@
      "hi": 1.2
     }
    ]
+  },
+  {
+   "date": "2026-10-23",
+   "partial": true,
+   "in_progress": true,
+   "partial_note": "Day in progress: only lunch (~1:50 PM, time approximate) is logged so far; dinner is not yet logged, so this day is excluded from the Possible gaps averages. Soup is store-bought with ginger and garlic added, so no salt entry is assumed. Several portions are assumed.",
+   "entries": [
+    {
+     "meal": "Lunch",
+     "food": "wf_lentil_soup",
+     "grams": 284,
+     "label": "Whole Foods lentil soup 10 oz (~284 g; given; store-bought, no added salt; label sodium used, no potassium/magnesium data)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch",
+     "food": "ginger",
+     "grams": 5,
+     "label": "Fresh ginger added to soup (~5 g assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch",
+     "food": "garlic",
+     "grams": 3,
+     "label": "Garlic 1 clove added to soup (~3 g assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch",
+     "food": "yogurt_lowfat",
+     "grams": 57,
+     "label": "Low-fat plain yogurt 2 oz (57 g; given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch",
+     "food": "onion",
+     "grams": 37,
+     "label": "1/3 red onion ~37 g (assumed; raw onion values)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch",
+     "food": "kefir_maplehill",
+     "grams": 85,
+     "label": "Maple Hill kefir 3 oz (85 g; given; label values)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch",
+     "food": "pumpkin_seeds",
+     "grams": 20,
+     "label": "Pumpkin seeds 20 g (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch",
+     "food": "tomato",
+     "grams": 50,
+     "label": "5 'angel' small tomatoes (~10 g each assumed, ~50 g; generic raw red tomato values, no grape-tomato entry used)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    }
+   ]
   }
  ]
 }
