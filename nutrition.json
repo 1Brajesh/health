@@ -3239,7 +3239,7 @@
   {
    "date": "2026-10-22",
    "partial": true,
-   "partial_note": "All meals logged: lunch (~1 PM), afternoon snack (~3 PM), evening snack (~5:50 PM), half potato (~6:15 PM) dinner (~11 PM) and 2 oz Whole Foods lentil soup (~11:20 PM; store-bought, no added salt; no potassium/magnesium data), times approximate. Many portions are assumed. Home-cooked lunch gets one assumed salt entry (1.5 g); the potato was very mildly salted (light pinch, ~0.4 g assumed); restaurant empanadas and store-bought snacks get none. Fish is white fish of unspecified type (cod values used); the onion salad's creamy dressing is assumed to be the 2 oz kefir, not counted twice. Chocolate biscotti uses chocolate wafer cookie values; empanadas use a generic USDA restaurant beef empanada.",
+   "partial_note": "All meals logged: lunch (~1 PM), afternoon snack (~3 PM), evening snack (~5:50 PM), half potato (~6:15 PM) dinner (~11 PM) and 2 oz Whole Foods lentil soup (~11:20 PM; store-bought, no added salt; no potassium/magnesium data), times approximate. Many portions are assumed. Home-cooked lunch gets one assumed salt entry (1.5 g); the potato was very mildly salted (light pinch, ~0.4 g assumed); restaurant empanadas and store-bought snacks get none. Fish is white fish of unspecified type (cod values used); the onion salad's creamy dressing is assumed to be the 2 oz kefir, not counted twice. Chocolate biscotti uses chocolate wafer cookie values; empanadas (baked, ~4 inches, ~80 g each assumed) use a generic USDA restaurant beef empanada that may include fried versions, so baked could be a bit lower in fat.",
    "entries": [
     {
      "meal": "Lunch",
@@ -3379,8 +3379,8 @@
     {
      "meal": "Dinner (~11 PM)",
      "food": "empanada_beef",
-     "grams": 180,
-     "label": "GoGo Empanadas (Miami Beach) beef empanada x1.5 (~120 g each assumed, ~180 g; restaurant, no added salt; generic USDA restaurant beef empanada values)",
+     "grams": 120,
+     "label": "GoGo Empanadas (Miami Beach) baked beef empanada x1.5, ~4 inches long (~80 g each assumed, ~120 g; restaurant, no added salt; USDA generic restaurant beef empanada, which may include fried versions, so baked could be a bit lower in fat)",
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
