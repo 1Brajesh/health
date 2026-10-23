@@ -249,6 +249,14 @@
    {
     "meal": "Evening snack (~5:50 PM)",
     "items": "6 oz (180 mL) ultra-filtered milk (Fairlife 2% assumed, label values); 1 chocolate biscotti (~30 g assumed; store-bought, no added salt; USDA chocolate wafer cookie values used as stand-in). Status: eaten."
+   },
+   {
+    "meal": "Evening (~6:15 PM, time approximate)",
+    "items": "Half a medium potato (~85 g assumed); salt to taste (assumed). Status: eaten."
+   },
+   {
+    "meal": "Dinner (~11 PM, time approximate)",
+    "items": "1.5 beef empanadas from GoGo Empanadas, Miami Beach (~120 g each assumed; generic USDA restaurant beef empanada values); 5 fistfuls SkinnyPop Original popcorn (~8 g each assumed, ~40 g). Status: eaten."
    }
   ]
  }
