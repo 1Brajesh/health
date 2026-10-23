@@ -3239,7 +3239,7 @@
   {
    "date": "2026-10-22",
    "partial": true,
-   "partial_note": "All meals logged: lunch (~1 PM), afternoon snack (~3 PM), evening snack (~5:50 PM), half potato (~6:15 PM) and dinner (~11 PM), times approximate. Many portions are assumed. Home-cooked lunch gets one assumed salt entry (1.5 g); the potato was very mildly salted (light pinch, ~0.4 g assumed); restaurant empanadas and store-bought snacks get none. Fish is white fish of unspecified type (cod values used); the onion salad's creamy dressing is assumed to be the 2 oz kefir, not counted twice. Chocolate biscotti uses chocolate wafer cookie values; empanadas use a generic USDA restaurant beef empanada.",
+   "partial_note": "All meals logged: lunch (~1 PM), afternoon snack (~3 PM), evening snack (~5:50 PM), half potato (~6:15 PM) dinner (~11 PM) and 2 oz Whole Foods lentil soup (~11:20 PM; store-bought, no added salt; no potassium/magnesium data), times approximate. Many portions are assumed. Home-cooked lunch gets one assumed salt entry (1.5 g); the potato was very mildly salted (light pinch, ~0.4 g assumed); restaurant empanadas and store-bought snacks get none. Fish is white fish of unspecified type (cod values used); the onion salad's creamy dressing is assumed to be the 2 oz kefir, not counted twice. Chocolate biscotti uses chocolate wafer cookie values; empanadas use a generic USDA restaurant beef empanada.",
    "entries": [
     {
      "meal": "Lunch",
@@ -3393,6 +3393,15 @@
      "assumed": true,
      "lo": 0.6,
      "hi": 1.5
+    },
+    {
+     "meal": "Late (~11:20 PM)",
+     "food": "wf_lentil_soup",
+     "grams": 57,
+     "label": "Whole Foods lentil soup 2 oz (~57 g; given; store-bought, no added salt; label sodium used, no potassium/magnesium data)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
     }
    ]
   }
