@@ -1291,6 +1291,25 @@
     "magnesium": 61.0,
     "sodium": 3833.0
    }
+  },
+  "soy_sauce": {
+   "name": "Soy sauce (regular)",
+   "approx": false,
+   "note": "",
+   "fdc_id": 174277,
+   "usda_description": "Soy sauce made from soy and wheat (shoyu)",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/174277/nutrients",
+   "accessed": "2026-10-23",
+   "per100g": {
+    "kcal": 53.0,
+    "protein": 8.14,
+    "fiber": 0.8,
+    "calcium": 33.0,
+    "potassium": 435.0,
+    "magnesium": 74.0,
+    "sodium": 5493.0
+   }
   }
  },
  "days": [
@@ -3512,7 +3531,7 @@
   {
    "date": "2026-10-23",
    "partial": true,
-   "partial_note": "All meals logged: lunch (~1:50 PM), afternoon snack (~3:05 PM) and dinner (~9-10 PM), times approximate. Many portions are assumed. Lunch soup is store-bought with ginger and garlic added, so no salt entry. Dinner: Moshi Moshi Red Dragon roll (menu: shrimp katsu, avocado, topped with tuna, crispy onion, ponzu mayo, spicy eel sauce) built from USDA components with assumed weights for 8 pieces (piece count not on the menu); restaurant, so no added salt beyond component values; eel sauce uses teriyaki values and crispy onion uses fried onion ring values. Home-cooked pepper, broccoli and chicken thigh get one assumed salt entry and ~1 tsp olive oil.",
+   "partial_note": "All meals logged: lunch (~1:50 PM), afternoon snack (~3:05 PM) and dinner (~9-10 PM), times approximate. Many portions are assumed. Lunch soup is store-bought with ginger and garlic added, so no salt entry. Dinner: Moshi Moshi Red Dragon roll (menu: shrimp katsu, avocado, topped with tuna, crispy onion, ponzu mayo, spicy eel sauce) built from USDA components with assumed weights for 8 pieces (piece count not on the menu); restaurant, so no added salt beyond component values, plus ~1 tbsp regular soy sauce he used (amount assumed); eel sauce uses teriyaki values and crispy onion uses fried onion ring values. Home-cooked pepper, broccoli and chicken thigh get one assumed salt entry and ~1 tsp olive oil.",
    "entries": [
     {
      "meal": "Lunch",
@@ -3729,6 +3748,15 @@
      "assumed": true,
      "lo": 0.8,
      "hi": 1.2
+    },
+    {
+     "meal": "Dinner: Red Dragon roll",
+     "food": "soy_sauce",
+     "grams": 16,
+     "label": "Soy sauce with the roll (given; amount assumed, ~1 tbsp, 16 g)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
     }
    ]
   }
