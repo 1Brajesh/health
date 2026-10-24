@@ -1196,6 +1196,101 @@
     "magnesium": 21.0,
     "sodium": 440.0
    }
+  },
+  "sushi_rice": {
+   "name": "Short-grain white rice, cooked (sushi rice)",
+   "approx": true,
+   "note": "Plain cooked short-grain rice; sushi-rice vinegar seasoning (sugar, salt) not included.",
+   "fdc_id": 168882,
+   "usda_description": "Rice, white, short-grain, enriched, cooked",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/168882/nutrients",
+   "accessed": "2026-10-23",
+   "per100g": {
+    "kcal": 130.0,
+    "protein": 2.36,
+    "fiber": null,
+    "calcium": 1.0,
+    "potassium": 26.0,
+    "magnesium": 8.0,
+    "sodium": 0.0
+   }
+  },
+  "shrimp_fried": {
+   "name": "Shrimp, breaded and fried",
+   "approx": false,
+   "note": "Breaded fried shrimp used for shrimp katsu.",
+   "fdc_id": 171970,
+   "usda_description": "Crustaceans, shrimp, mixed species, cooked, breaded and fried",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/171970/nutrients",
+   "accessed": "2026-10-23",
+   "per100g": {
+    "kcal": 242.0,
+    "protein": 21.39,
+    "fiber": 0.4,
+    "calcium": 67.0,
+    "potassium": 225.0,
+    "magnesium": 40.0,
+    "sodium": 344.0
+   }
+  },
+  "tuna_raw": {
+   "name": "Tuna, yellowfin, raw",
+   "approx": false,
+   "note": "Raw yellowfin tuna used for sushi tuna.",
+   "fdc_id": 175159,
+   "usda_description": "Fish, tuna, fresh, yellowfin, raw",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/175159/nutrients",
+   "accessed": "2026-10-23",
+   "per100g": {
+    "kcal": 109.0,
+    "protein": 24.4,
+    "fiber": 0.0,
+    "calcium": 4.0,
+    "potassium": 441.0,
+    "magnesium": 35.0,
+    "sodium": 45.0
+   }
+  },
+  "onion_fried": {
+   "name": "Fried onion (onion rings, breaded and fried)",
+   "approx": true,
+   "note": "Fried onion rings used as a stand-in for crispy onion topping.",
+   "fdc_id": 170697,
+   "usda_description": "Fast foods, onion rings, breaded and fried",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/170697/nutrients",
+   "accessed": "2026-10-23",
+   "per100g": {
+    "kcal": 411.0,
+    "protein": 3.86,
+    "fiber": 2.7,
+    "calcium": 115.0,
+    "potassium": 167.0,
+    "magnesium": 19.0,
+    "sodium": 776.0
+   }
+  },
+  "teriyaki": {
+   "name": "Teriyaki sauce",
+   "approx": true,
+   "note": "Teriyaki sauce used as a stand-in for (spicy) eel sauce; USDA has no eel sauce entry.",
+   "fdc_id": 171167,
+   "usda_description": "Sauce, teriyaki, ready-to-serve",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/171167/nutrients",
+   "accessed": "2026-10-23",
+   "per100g": {
+    "kcal": 89.0,
+    "protein": 5.93,
+    "fiber": 0.1,
+    "calcium": 25.0,
+    "potassium": 225.0,
+    "magnesium": 61.0,
+    "sodium": 3833.0
+   }
   }
  },
  "days": [
@@ -3417,8 +3512,7 @@
   {
    "date": "2026-10-23",
    "partial": true,
-   "in_progress": true,
-   "partial_note": "Day in progress: lunch (~1:50 PM) and afternoon snack (~3:05 PM) are logged so far, times approximate; dinner is not yet logged, so this day is excluded from the Possible gaps averages. Soup is store-bought with ginger and garlic added, so no salt entry is assumed. Several portions are assumed.",
+   "partial_note": "All meals logged: lunch (~1:50 PM), afternoon snack (~3:05 PM) and dinner (~9-10 PM), times approximate. Many portions are assumed. Lunch soup is store-bought with ginger and garlic added, so no salt entry. Dinner: Moshi Moshi Red Dragon roll (menu: shrimp katsu, avocado, topped with tuna, crispy onion, ponzu mayo, spicy eel sauce) built from USDA components with assumed weights for 8 pieces (piece count not on the menu); restaurant, so no added salt beyond component values; eel sauce uses teriyaki values and crispy onion uses fried onion ring values. Home-cooked pepper, broccoli and chicken thigh get one assumed salt entry and ~1 tsp olive oil.",
    "entries": [
     {
      "meal": "Lunch",
@@ -3506,6 +3600,132 @@
      "food": "prunes",
      "grams": 28.5,
      "label": "3 prunes (~9.5 g each assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Dinner: Red Dragon roll",
+     "food": "sushi_rice",
+     "grams": 150,
+     "label": "Red Dragon roll (Moshi Moshi, 8 pieces assumed): sushi rice ~150 g (assumed; plain rice values)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner: Red Dragon roll",
+     "food": "shrimp_fried",
+     "grams": 40,
+     "label": "Red Dragon roll: shrimp katsu ~40 g (assumed; breaded fried shrimp)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner: Red Dragon roll",
+     "food": "avocado",
+     "grams": 25,
+     "label": "Red Dragon roll: avocado ~25 g (assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner: Red Dragon roll",
+     "food": "tuna_raw",
+     "grams": 40,
+     "label": "Red Dragon roll: tuna topping ~40 g (assumed; raw yellowfin)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner: Red Dragon roll",
+     "food": "onion_fried",
+     "grams": 10,
+     "label": "Red Dragon roll: crispy onion ~10 g (assumed; fried onion rings stand-in)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Dinner: Red Dragon roll",
+     "food": "mayo",
+     "grams": 8,
+     "label": "Red Dragon roll: ponzu mayo ~8 g (assumed; regular mayo values, ponzu not counted)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Dinner: Red Dragon roll",
+     "food": "teriyaki",
+     "grams": 8,
+     "label": "Red Dragon roll: spicy eel sauce drizzle ~8 g (assumed; teriyaki sauce stand-in)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Dinner: home-cooked",
+     "food": "red_pepper",
+     "grams": 120,
+     "label": "Sauteed red bell pepper, 1 whole ~120 g (assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Dinner: home-cooked",
+     "food": "broccoli",
+     "grams": 44,
+     "label": "Broccoli 4 florets (~11 g each assumed, ~44 g)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner: home-cooked",
+     "food": "chicken_thigh",
+     "grams": 75,
+     "label": "Skinless chicken thigh, 1 (~75 g cooked meat assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Dinner: home-cooked",
+     "food": "olive_oil",
+     "grams": 4.5,
+     "label": "Olive oil ~1 tsp for cooking (assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 3
+    },
+    {
+     "meal": "Dinner: home-cooked",
+     "food": "salt_table",
+     "grams": 1.5,
+     "label": "Salt to taste, assumed (~1/4 tsp) - one entry for the home-cooked dish",
+     "assumed": true,
+     "lo": 0.3,
+     "hi": 2
+    },
+    {
+     "meal": "Dinner",
+     "food": "kefir_maplehill",
+     "grams": 85,
+     "label": "Maple Hill kefir 3 oz (85 g; given; label values)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner",
+     "food": "prunes",
+     "grams": 19,
+     "label": "2 prunes (~9.5 g each assumed)",
      "assumed": true,
      "lo": 0.8,
      "hi": 1.2
