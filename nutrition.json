@@ -3759,6 +3759,68 @@
      "hi": 1.5
     }
    ]
+  },
+  {
+   "date": "2026-10-24",
+   "partial": true,
+   "in_progress": true,
+   "partial_note": "Day in progress: only lunch (~1:45 PM, time approximate) is logged so far; dinner is not yet logged, so this day is excluded from the Possible gaps averages. Home-cooked, so one assumed salt entry is counted for the meal. Toast slices are large rustic sourdough-style per photo (~50 g each assumed). Several portions are assumed.",
+   "entries": [
+    {
+     "meal": "Lunch",
+     "food": "bread",
+     "grams": 100,
+     "label": "2 slices wheat toast, large rustic sourdough-style slices per photo (~50 g each assumed, ~100 g)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch",
+     "food": "egg_fried",
+     "grams": 138,
+     "label": "3 large eggs fried over easy (given; 46 g each; USDA fried egg includes some cooking fat, so no extra pan fat added; same as Oct 20)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch",
+     "food": "kale_raw",
+     "grams": 85,
+     "label": "Kale 5 stalks, leaves only, sauteed (~17 g raw each assumed, ~85 g)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.4
+    },
+    {
+     "meal": "Lunch",
+     "food": "olive_oil",
+     "grams": 4.5,
+     "label": "Kale saute: olive oil ~1 tsp (assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 3
+    },
+    {
+     "meal": "Lunch",
+     "food": "salt_table",
+     "grams": 1.5,
+     "label": "Salt to taste, assumed (~1/4 tsp) - eggs and kale (one entry for the meal)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch",
+     "food": "kombucha",
+     "grams": 240,
+     "label": "Kombucha 8 oz (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    }
+   ]
   }
  ]
 }
