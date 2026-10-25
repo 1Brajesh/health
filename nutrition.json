@@ -4048,7 +4048,7 @@
    "date": "2026-10-25",
    "partial": true,
    "in_progress": true,
-   "partial_note": "Day in progress: only morning items are logged so far (amounts assumed); dinner is not yet logged, so this day is excluded from the Possible gaps averages. Outside latte made with regular (whole) milk, split as on Oct 10 (milk + espresso). Vegan cake, believed sugar-free, uses a white cake stand-in that may overstate sugar and calories. Avocado toast is cafe/store-made, so no extra salt entry.",
+   "partial_note": "Day in progress: morning items (amounts assumed) and lunch (~2:35 PM) are logged so far; dinner is not yet logged, so this day is excluded from the Possible gaps averages. Outside latte made with regular (whole) milk, split as on Oct 10 (milk + espresso). Vegan cake, believed sugar-free, uses a white cake stand-in that may overstate sugar and calories. Avocado toast is cafe/store-made, so no extra salt entry. Lunch: store-bought lentil soup (no salt added); sauteed pepper gets one assumed salt entry; Siggi's label lacks calcium data, so calcium reads low.",
    "entries": [
     {
      "meal": "Morning",
@@ -4094,6 +4094,51 @@
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
+    },
+    {
+     "meal": "Lunch",
+     "food": "wf_lentil_soup",
+     "grams": 255,
+     "label": "Whole Foods lentil soup 9 oz (~255 g; given; store-bought, no added salt; label sodium used, no potassium/magnesium data)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch",
+     "food": "red_pepper",
+     "grams": 60,
+     "label": "1/2 red bell pepper ~60 g, sauteed (assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Lunch",
+     "food": "olive_oil",
+     "grams": 4.5,
+     "label": "Pepper saute: olive oil ~1 tsp (assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 3
+    },
+    {
+     "meal": "Lunch",
+     "food": "salt_table",
+     "grams": 1.5,
+     "label": "Salt to taste, assumed (~1/4 tsp) - sauteed pepper (one entry for the home-cooked dish)",
+     "assumed": true,
+     "lo": 0.3,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch",
+     "food": "siggis",
+     "grams": 85,
+     "label": "Siggi's plain non-fat yogurt 3 oz (85 g; given; branded label values, lacks calcium/potassium/magnesium data)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
     }
    ]
   }
