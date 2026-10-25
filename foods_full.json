@@ -1641,7 +1641,7 @@
    "source": "https://fdc.nal.usda.gov/food-details/2756890/nutrients",
    "accessed": "2026-10-18",
    "proxy": true,
-   "note": "Branded entry (Siggi's plain 0% strained yogurt); lacks calcium, potassium and magnesium data.",
+   "note": "Branded entry (Siggi's plain 0% strained yogurt). Calcium 100 mg/100 g from the package label per Brajesh, Oct 25 2026; potassium and magnesium are stand-ins from USDA nonfat plain Greek yogurt (170894).",
    "extra": false,
    "per100g": {
     "kcal": 66.0793,
@@ -1651,7 +1651,10 @@
     "carbs": 4.4053,
     "sugars": 2.2026,
     "fiber": 0.0,
-    "sodium": 37.4449
+    "sodium": 37.4449,
+    "calcium": 100.0,
+    "potassium": 141.0,
+    "magnesium": 11.0
    }
   },
   {

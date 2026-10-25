@@ -32,7 +32,7 @@ PUB={ # public, generic notes for stand-in entries (no personal details)
 'tuna':'Light tuna in water used as a stand-in for sandwich tuna.','mayo':'Regular mayonnaise.',
 'lentils':'Boiled lentils without salt; home recipes and salt vary.','tortilla':'Generic shelf-stable flour tortilla; brands vary.',
 'bread':'Toasted wheat bread used as a stand-in for bread in general.','wf_lentil_soup':'Branded entry (Whole Foods Market lentil soup); lacks potassium and magnesium data.',
-'siggis':'Branded entry (Siggi\'s plain 0% strained yogurt); lacks calcium, potassium and magnesium data.',
+'siggis':'Branded entry (Siggi\'s plain 0% strained yogurt). Calcium 100 mg/100 g from the package label per Brajesh, Oct 25 2026; potassium and magnesium are stand-ins from USDA nonfat plain Greek yogurt (170894).',
 'sushi_roll':'WEAK stand-in: a generic tempura shrimp roll from one brand; real rolls differ a lot. Few nutrients reported.',
 'egg_fried':'Fried whole egg (includes some cooking fat); over-easy or poached eggs differ slightly.',
 'broccoli':'Boiled, drained broccoli used as the closest entry to steamed.','chicken_breast':'Roasted breast meat without skin; skin or dark meat has more fat.',
@@ -82,6 +82,8 @@ def add(k,i,approx,note,extra):
 for k,i,a,t in items:
     add(k,i,a,PUB.get(k,''),False)
 for k,i in EXTRA: add(k,i,False,'',True)
+for o in out:
+    if o['key']=='siggis': o['per100g'].update(calcium=100.0,potassium=141.0,magnesium=11.0)
 names={'sweet_potato_raw':'Sweet potato, raw','sweet_potato_baked':'Sweet potato, baked in skin','kale_raw':'Kale, raw','kale_boiled':'Kale, boiled','bok_choy_raw':'Bok choy, raw','bok_choy_boiled':'Bok choy, boiled','collards_raw':'Collards, raw','collards_boiled':'Collards, boiled','broccoli_raw':'Broccoli, raw'}
 for o in out:
     if o['key'] in names: o['name']=names[o['key']]

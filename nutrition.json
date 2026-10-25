@@ -556,7 +556,7 @@
   "siggis": {
    "name": "Siggi's plain 0% strained yogurt",
    "approx": true,
-   "note": "Plain Siggi's assumed; entry lacks calcium, potassium, magnesium.",
+   "note": "Calcium 100 mg/100 g from the package label per Brajesh, Oct 25 2026 (170 mg per 170 g). Potassium and magnesium are stand-ins from USDA generic nonfat plain Greek yogurt (SR Legacy 170894).",
    "fdc_id": 2756890,
    "usda_description": "Siggi's 0% Milkfat Strained Non- Fat Plain Yogurt",
    "data_type": "Branded",
@@ -566,10 +566,15 @@
     "kcal": 66.0793,
     "protein": 12.3348,
     "fiber": 0.0,
-    "calcium": null,
-    "potassium": null,
-    "magnesium": null,
+    "calcium": 100.0,
+    "potassium": 141.0,
+    "magnesium": 11.0,
     "sodium": 37.4449
+   },
+   "nutrient_sources": {
+    "calcium": "package label per Brajesh, Oct 25 2026",
+    "potassium": "USDA SR Legacy 170894 (Yogurt, Greek, plain, nonfat) stand-in",
+    "magnesium": "USDA SR Legacy 170894 (Yogurt, Greek, plain, nonfat) stand-in"
    }
   },
   "sushi_roll": {
