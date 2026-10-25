@@ -4053,7 +4053,7 @@
    "date": "2026-10-25",
    "partial": true,
    "in_progress": true,
-   "partial_note": "Day in progress: morning items (amounts assumed) and lunch (~2:35 PM) are logged so far; dinner is not yet logged, so this day is excluded from the Possible gaps averages. Outside latte made with regular (whole) milk, split as on Oct 10 (milk + espresso). Vegan cake, believed sugar-free, uses a white cake stand-in that may overstate sugar and calories. Avocado toast is cafe/store-made, so no extra salt entry. Lunch: store-bought lentil soup (no salt added); sauteed pepper gets one assumed salt entry; Siggi's label lacks calcium data, so calcium reads low.",
+   "partial_note": "Day in progress: morning items (amounts assumed) and lunch (~2:35 PM) are logged so far; dinner is not yet logged, so this day is excluded from the Possible gaps averages. Outside latte made with regular (whole) milk, split as on Oct 10 (milk + espresso). Vegan cake, believed sugar-free, uses a white cake stand-in that may overstate sugar and calories. Avocado toast is cafe/store-made, so no extra salt entry. Lunch: store-bought lentil soup (no salt added); sauteed pepper gets one assumed salt entry; Siggi's calcium is from his package label (100 mg per 100 g).",
    "entries": [
     {
      "meal": "Morning",
@@ -4140,7 +4140,7 @@
      "meal": "Lunch",
      "food": "siggis",
      "grams": 85,
-     "label": "Siggi's plain non-fat yogurt 3 oz (85 g; given; branded label values, lacks calcium/potassium/magnesium data)",
+     "label": "Siggi's plain non-fat yogurt 3 oz (85 g; given; label values; calcium per package label, potassium/magnesium from generic nonfat Greek yogurt)",
      "assumed": false,
      "lo": 0.9,
      "hi": 1.1
