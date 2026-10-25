@@ -1310,6 +1310,101 @@
     "magnesium": 74.0,
     "sodium": 5493.0
    }
+  },
+  "potato_chips": {
+   "name": "Potato chips, plain, salted",
+   "approx": true,
+   "note": "Plain salted potato chips; chip type unknown.",
+   "fdc_id": 169677,
+   "usda_description": "Snacks, potato chips, plain, salted",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/169677/nutrients",
+   "accessed": "2026-10-25",
+   "per100g": {
+    "kcal": 532.0,
+    "protein": 6.39,
+    "fiber": 3.1,
+    "calcium": 21.0,
+    "potassium": 1196.0,
+    "magnesium": 63.0,
+    "sodium": 527.0
+   }
+  },
+  "grapes": {
+   "name": "Grapes, raw",
+   "approx": false,
+   "note": "",
+   "fdc_id": 174683,
+   "usda_description": "Grapes, red or green (European type, such as Thompson seedless), raw",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/174683/nutrients",
+   "accessed": "2026-10-25",
+   "per100g": {
+    "kcal": 69.0,
+    "protein": 0.72,
+    "fiber": 0.9,
+    "calcium": 10.0,
+    "potassium": 191.0,
+    "magnesium": 7.0,
+    "sodium": 2.0
+   }
+  },
+  "cheddar": {
+   "name": "Cheddar cheese",
+   "approx": true,
+   "note": "Cheddar used as a stand-in for unspecified cheese.",
+   "fdc_id": 173414,
+   "usda_description": "Cheese, cheddar",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/173414/nutrients",
+   "accessed": "2026-10-25",
+   "per100g": {
+    "kcal": 403.0,
+    "protein": 22.87,
+    "fiber": 0.0,
+    "calcium": 710.0,
+    "potassium": 76.0,
+    "magnesium": 27.0,
+    "sodium": 653.0
+   }
+  },
+  "salami": {
+   "name": "Salami, dry or hard, pork",
+   "approx": true,
+   "note": "Hard pork salami used as a stand-in for charcuterie meat.",
+   "fdc_id": 172938,
+   "usda_description": "Salami, dry or hard, pork",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/172938/nutrients",
+   "accessed": "2026-10-25",
+   "per100g": {
+    "kcal": 407.0,
+    "protein": 22.58,
+    "fiber": 0.0,
+    "calcium": 13.0,
+    "potassium": 378.0,
+    "magnesium": 22.0,
+    "sodium": 2260.0
+   }
+  },
+  "choc_hummus": {
+   "name": "Dark chocolate hummus",
+   "approx": true,
+   "note": "Branded Wakefern dark chocolate hummus used as a stand-in; brand unknown.",
+   "fdc_id": 2621049,
+   "usda_description": "DARK CHOCOLATE HUMMUS, DARK CHOCOLATE (Wakefern Food Corporation)",
+   "data_type": "Branded",
+   "source": "https://fdc.nal.usda.gov/food-details/2621049/nutrients",
+   "accessed": "2026-10-25",
+   "per100g": {
+    "kcal": 286.0,
+    "protein": 3.57,
+    "fiber": 3.6,
+    "calcium": null,
+    "potassium": 250.0,
+    "magnesium": null,
+    "sodium": 125.0
+   }
   }
  },
  "days": [
@@ -3763,8 +3858,7 @@
   {
    "date": "2026-10-24",
    "partial": true,
-   "in_progress": true,
-   "partial_note": "Day in progress: only lunch (~1:45 PM, time approximate) is logged so far; dinner is not yet logged, so this day is excluded from the Possible gaps averages. Home-cooked, so one assumed salt entry is counted for the meal. Toast slices are large rustic sourdough-style per photo (~50 g each assumed). Several portions are assumed.",
+   "partial_note": "All meals logged: lunch (~1:45 PM) and dinner (evening, at a board games event with finger food), times approximate. Lunch is home-cooked with one assumed salt entry; toast slices are large rustic sourdough-style per photo (~50 g each assumed). Dinner amounts are all assumed: event lentil soup uses the Whole Foods soup as a stand-in (recipe, salt and oil unknown; no extra salt entry, no potassium/magnesium data); chocolate hummus uses a branded dark chocolate hummus; chips are plain salted potato chips; cheese uses cheddar and charcuterie uses hard salami as stand-ins; milk assumed ultra-filtered Fairlife 2%.",
    "entries": [
     {
      "meal": "Lunch",
@@ -3819,6 +3913,96 @@
      "assumed": false,
      "lo": 0.9,
      "hi": 1.1
+    },
+    {
+     "meal": "Dinner (board games event, finger food)",
+     "food": "wf_lentil_soup",
+     "grams": 227,
+     "label": "Lentil soup 8 oz (~227 g; event-made, recipe unknown; Whole Foods lentil soup used as stand-in, may differ in salt/oil; no extra salt entry)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner (board games event, finger food)",
+     "food": "bread",
+     "grams": 30,
+     "label": "2 small toasts (~15 g each assumed)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner (board games event, finger food)",
+     "food": "choc_hummus",
+     "grams": 30,
+     "label": "Chocolate hummus, a little (~2 tbsp, ~30 g assumed; branded dark chocolate hummus stand-in)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner (board games event, finger food)",
+     "food": "potato_chips",
+     "grams": 28,
+     "label": "Chips, ~15-20 (~18 chips, ~28 g assumed; plain salted potato chips, type unknown)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner (board games event, finger food)",
+     "food": "grapes",
+     "grams": 25,
+     "label": "5 grapes (~25 g assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner (board games event, finger food)",
+     "food": "cheddar",
+     "grams": 20,
+     "label": "Cheese, ~2 pieces (~20 g assumed; cheddar stand-in)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner (board games event, finger food)",
+     "food": "salami",
+     "grams": 20,
+     "label": "Charcuterie meat, ~2 pieces (~20 g assumed; hard salami stand-in)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner (board games event, finger food)",
+     "food": "kombucha",
+     "grams": 240,
+     "label": "Kombucha, 1 glass (~240 g assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner (board games event, finger food)",
+     "food": "fairlife_2",
+     "grams": 240,
+     "label": "Milk, 1 glass (~240 mL assumed; ultra-filtered Fairlife 2% assumed per convention)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner (board games event, finger food)",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~9.5 g each assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
     }
    ]
   }
