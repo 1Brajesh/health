@@ -233,7 +233,7 @@
   "wf_pizza": {
    "name": "Whole Foods Market cheese pizza (1/8 pizza, 126 g)",
    "approx": true,
-   "note": "Branded USDA entry (Aryzta for Whole Foods). Lacks potassium and magnesium data. Actual slice/topping unknown.",
+   "note": "Branded USDA entry (Aryzta for Whole Foods). Lacks potassium and magnesium data. Actual slice/topping unknown. Blank label nutrients (potassium, magnesium) filled with USDA SR Legacy 170317 (Pizza, cheese topping, regular crust, frozen, cooked) stand-in.",
    "fdc_id": 2186572,
    "usda_description": "WHOLE FOODS MARKET, CHEESE PIZZA",
    "data_type": "Branded",
@@ -244,15 +244,19 @@
     "protein": 11.9,
     "fiber": 1.6,
     "calcium": 238.0,
-    "potassium": null,
-    "magnesium": null,
+    "potassium": 152.0,
+    "magnesium": 23.0,
     "sodium": 508.0
+   },
+   "nutrient_sources": {
+    "potassium": "USDA SR Legacy 170317 (Pizza, cheese topping, regular crust, frozen, cooked) stand-in",
+    "magnesium": "USDA SR Legacy 170317 (Pizza, cheese topping, regular crust, frozen, cooked) stand-in"
    }
   },
   "kombucha": {
    "name": "Kombucha (Kroger brand entry)",
    "approx": true,
-   "note": "Brand not logged; this entry reports only calories and sodium/protein.",
+   "note": "Brand not logged; this entry reports only calories and sodium/protein. Blank label nutrients (fiber, calcium, potassium, magnesium) filled with USDA SR Legacy 173227 (Beverages, tea, black, brewed, tap water; kombucha base tea, weak stand-in) stand-in.",
    "fdc_id": 512654,
    "usda_description": "KOMBUCHA",
    "data_type": "Branded",
@@ -261,11 +265,17 @@
    "per100g": {
     "kcal": 17.0,
     "protein": 0.0,
-    "fiber": null,
-    "calcium": null,
-    "potassium": null,
-    "magnesium": null,
+    "fiber": 0.0,
+    "calcium": 0.0,
+    "potassium": 37.0,
+    "magnesium": 3.0,
     "sodium": 0.0
+   },
+   "nutrient_sources": {
+    "fiber": "USDA SR Legacy 173227 (Beverages, tea, black, brewed, tap water; kombucha base tea, weak stand-in) stand-in",
+    "calcium": "USDA SR Legacy 173227 (Beverages, tea, black, brewed, tap water; kombucha base tea, weak stand-in) stand-in",
+    "potassium": "USDA SR Legacy 173227 (Beverages, tea, black, brewed, tap water; kombucha base tea, weak stand-in) stand-in",
+    "magnesium": "USDA SR Legacy 173227 (Beverages, tea, black, brewed, tap water; kombucha base tea, weak stand-in) stand-in"
    }
   },
   "kefir": {
@@ -537,7 +547,7 @@
   "wf_lentil_soup": {
    "name": "Whole Foods Market lentil soup (1 cup, 245 g)",
    "approx": true,
-   "note": "Branded USDA entry (Kettle Cuisine for Whole Foods). Lacks potassium, magnesium data.",
+   "note": "Branded USDA entry (Kettle Cuisine for Whole Foods). Blank label nutrients (potassium, magnesium) filled with USDA FNDDS (Survey) 2707462 (Soup, lentil) stand-in, accessed 2026-10-25.",
    "fdc_id": 2061447,
    "usda_description": "WHOLE FOODS MARKET, LENTIL SOUP",
    "data_type": "Branded",
@@ -548,9 +558,13 @@
     "protein": 4.9,
     "fiber": 6.1,
     "calcium": 24.0,
-    "potassium": null,
-    "magnesium": null,
+    "potassium": 203.0,
+    "magnesium": 18.0,
     "sodium": 253.0
+   },
+   "nutrient_sources": {
+    "potassium": "USDA FNDDS (Survey) 2707462 (Soup, lentil) stand-in, accessed 2026-10-25",
+    "magnesium": "USDA FNDDS (Survey) 2707462 (Soup, lentil) stand-in, accessed 2026-10-25"
    }
   },
   "siggis": {
@@ -580,7 +594,7 @@
   "sushi_roll": {
    "name": "Tempura shrimp roll (proxy for Red Dragon roll)",
    "approx": true,
-   "note": "WEAK: generic tempura shrimp roll from one brand; not the Moshi Moshi roll (tuna topping, eel sauce, ponzu mayo). Energy/fiber/protein/sodium only; likely understates.",
+   "note": "WEAK: generic tempura shrimp roll from one brand; not the Moshi Moshi roll (tuna topping, eel sauce, ponzu mayo). Energy/fiber/protein/sodium only; likely understates. Blank label nutrients (calcium, potassium, magnesium) filled with USDA FNDDS (Survey) 2708965 (Sushi roll tuna) stand-in, accessed 2026-10-25.",
    "fdc_id": 2181918,
    "usda_description": "TEMPURA SHRIMP ROLL",
    "data_type": "Branded",
@@ -590,10 +604,15 @@
     "kcal": 182.0,
     "protein": 2.53,
     "fiber": 4.0,
-    "calcium": null,
-    "potassium": null,
-    "magnesium": null,
+    "calcium": 4.0,
+    "potassium": 119.0,
+    "magnesium": 12.0,
     "sodium": 121.0
+   },
+   "nutrient_sources": {
+    "calcium": "USDA FNDDS (Survey) 2708965 (Sushi roll tuna) stand-in, accessed 2026-10-25",
+    "potassium": "USDA FNDDS (Survey) 2708965 (Sushi roll tuna) stand-in, accessed 2026-10-25",
+    "magnesium": "USDA FNDDS (Survey) 2708965 (Sushi roll tuna) stand-in, accessed 2026-10-25"
    }
   },
   "egg_fried": {
@@ -713,7 +732,7 @@
   "skyr": {
    "name": "Plain Icelandic cream-skyr, strained whole-milk yogurt (The Icelandic Milk and Skyr Corp.)",
    "approx": true,
-   "note": "Brand and size of the \"extra creamy\" skyr are unknown; this plain whole-milk skyr label entry is assumed. Entry lacks magnesium.",
+   "note": "Brand and size of the \"extra creamy\" skyr are unknown; this plain whole-milk skyr label entry is assumed. Entry lacks magnesium. Blank label nutrients (magnesium) filled with USDA SR Legacy 171304 (Yogurt, Greek, plain, whole milk) stand-in.",
    "fdc_id": 2399289,
    "usda_description": "PLAIN ICELANDIC CREAM-SKYR STRAINED WHOLE-MILK YOGURT, PLAIN",
    "data_type": "Branded",
@@ -725,8 +744,11 @@
     "fiber": 0.0,
     "calcium": 102.0,
     "potassium": 144.0,
-    "magnesium": null,
+    "magnesium": 11.0,
     "sodium": 50.0
+   },
+   "nutrient_sources": {
+    "magnesium": "USDA SR Legacy 171304 (Yogurt, Greek, plain, whole milk) stand-in"
    }
   },
   "corn_tortilla_fried": {
@@ -1052,8 +1074,8 @@
   },
   "chex_mix": {
    "name": "Chex Mix Traditional (General Mills)",
-   "approx": false,
-   "note": "Branded USDA entry (label values). Calcium and potassium are listed as 0 on the label, which is a rounded value (under 2% of the Daily Value), so the true amounts are small but not zero. No magnesium data.",
+   "approx": true,
+   "note": "Branded USDA entry (label values). Calcium and potassium are listed as 0 on the label, which is a rounded value (under 2% of the Daily Value), so the true amounts are small but not zero. No magnesium data. Blank label nutrients (magnesium) filled with USDA FNDDS (Survey) 2708291 (Snack mix, plain (Chex Mix)) stand-in, accessed 2026-10-25.",
    "fdc_id": 2754919,
    "usda_description": "Chex Mix Traditional Snack Mix",
    "data_type": "Branded",
@@ -1065,8 +1087,11 @@
     "fiber": 3.1,
     "calcium": 0.0,
     "potassium": 0.0,
-    "magnesium": null,
+    "magnesium": 27.0,
     "sodium": 1160.0
+   },
+   "nutrient_sources": {
+    "magnesium": "USDA FNDDS (Survey) 2708291 (Snack mix, plain (Chex Mix)) stand-in, accessed 2026-10-25"
    }
   },
   "fairlife_2": {
@@ -1166,8 +1191,8 @@
   },
   "skinnypop": {
    "name": "SkinnyPop Original popcorn",
-   "approx": false,
-   "note": "",
+   "approx": true,
+   "note": " Blank label nutrients (potassium, magnesium) filled with USDA SR Legacy 170247 (Snacks, popcorn, oil-popped, white popcorn, salt added) stand-in.",
    "fdc_id": 2624544,
    "usda_description": "SKINNY POP POPCORN, 4.4 OZ",
    "data_type": "Branded",
@@ -1179,8 +1204,12 @@
     "fiber": 10.7,
     "calcium": 0.0,
     "sodium": 268.0,
-    "potassium": null,
-    "magnesium": null
+    "potassium": 225.0,
+    "magnesium": 108.0
+   },
+   "nutrient_sources": {
+    "potassium": "USDA SR Legacy 170247 (Snacks, popcorn, oil-popped, white popcorn, salt added) stand-in",
+    "magnesium": "USDA SR Legacy 170247 (Snacks, popcorn, oil-popped, white popcorn, salt added) stand-in"
    }
   },
   "empanada_beef": {
@@ -1395,7 +1424,7 @@
   "choc_hummus": {
    "name": "Dark chocolate hummus",
    "approx": true,
-   "note": "Branded Wakefern dark chocolate hummus used as a stand-in; brand unknown.",
+   "note": "Branded Wakefern dark chocolate hummus used as a stand-in; brand unknown. Blank label nutrients (calcium, magnesium) filled with USDA SR Legacy 174289 (Hummus, commercial; plain hummus, weak stand-in for chocolate hummus) stand-in.",
    "fdc_id": 2621049,
    "usda_description": "DARK CHOCOLATE HUMMUS, DARK CHOCOLATE (Wakefern Food Corporation)",
    "data_type": "Branded",
@@ -1405,10 +1434,14 @@
     "kcal": 286.0,
     "protein": 3.57,
     "fiber": 3.6,
-    "calcium": null,
+    "calcium": 47.0,
     "potassium": 250.0,
-    "magnesium": null,
+    "magnesium": 75.0,
     "sodium": 125.0
+   },
+   "nutrient_sources": {
+    "calcium": "USDA SR Legacy 174289 (Hummus, commercial; plain hummus, weak stand-in for chocolate hummus) stand-in",
+    "magnesium": "USDA SR Legacy 174289 (Hummus, commercial; plain hummus, weak stand-in for chocolate hummus) stand-in"
    }
   },
   "cake_white": {
@@ -4052,8 +4085,7 @@
   {
    "date": "2026-10-25",
    "partial": true,
-   "in_progress": true,
-   "partial_note": "Day in progress: morning items (amounts assumed) and lunch (~2:35 PM) are logged so far; dinner is not yet logged, so this day is excluded from the Possible gaps averages. Outside latte made with regular (whole) milk, split as on Oct 10 (milk + espresso). Vegan cake, believed sugar-free, uses a white cake stand-in that may overstate sugar and calories. Avocado toast is cafe/store-made, so no extra salt entry. Lunch: store-bought lentil soup (no salt added); sauteed pepper gets one assumed salt entry; Siggi's calcium is from his package label (100 mg per 100 g).",
+   "partial_note": "Day complete: morning items (amounts assumed), lunch (~2:35 PM) and dinner logged. Outside latte made with regular (whole) milk, split as on Oct 10 (milk + espresso). Vegan cake, believed sugar-free, uses a white cake stand-in that may overstate sugar and calories. Avocado toast is cafe/store-made, so no extra salt entry. Lunch: store-bought lentil soup (no salt added); sauteed pepper gets one assumed salt entry; Siggi's calcium is from his package label (100 mg per 100 g). Dinner: home-cooked chicken thigh, kale and steamed broccoli get one assumed salt entry; milk, prunes and walnuts get none.",
    "entries": [
     {
      "meal": "Morning",
@@ -4144,6 +4176,69 @@
      "assumed": false,
      "lo": 0.9,
      "hi": 1.1
+    },
+    {
+     "meal": "Dinner: home-cooked",
+     "food": "chicken_thigh",
+     "grams": 75,
+     "label": "Skinless chicken thigh, 1 (~75 g cooked meat assumed, same as Oct 23)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Dinner: home-cooked",
+     "food": "kale_raw",
+     "grams": 85,
+     "label": "Kale, 5 stalks, leaves only (~17 g each, 85 g)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Dinner: home-cooked",
+     "food": "broccoli",
+     "grams": 44,
+     "label": "Broccoli 4 florets, steamed (~11 g each assumed, ~44 g, same as Oct 23)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner: home-cooked",
+     "food": "salt_table",
+     "grams": 1.5,
+     "label": "Salt to taste, assumed (~1/4 tsp) - one entry for the home-cooked chicken and kale",
+     "assumed": true,
+     "lo": 0.3,
+     "hi": 2
+    },
+    {
+     "meal": "Dinner",
+     "food": "milk_2",
+     "grams": 240,
+     "label": "2% milk 8 oz at home (240 g; given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~9.5 g each assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Dinner",
+     "food": "walnuts",
+     "grams": 24,
+     "label": "Walnuts, 12 halves (~2 g each assumed halves, ~24 g)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
     }
    ]
   }
