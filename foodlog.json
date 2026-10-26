@@ -320,7 +320,7 @@
   "meals": [
    {
     "meal": "Lunch (~1:45 PM, time approximate)",
-    "items": "16 oz homemade lentil soup, salted to taste (assumed), with 1/2 potato, 5 medium tomatoes, 100 g fresh spinach, 1 garlic clove, 10 g fresh ginger, 8 black peppercorns, 40 g eggplant, 2 oz plain nonfat yogurt, 1 tsp cumin, 1 tsp turmeric, juice of 1/4 lemon. Status: eaten."
+    "items": "16 oz homemade lentil soup, salted to taste (assumed), with 1/2 potato, 5 medium tomatoes, 100 g fresh spinach, 1 garlic clove, 10 g fresh ginger, 8 black peppercorns, 40 g eggplant, 2 oz plain nonfat yogurt, 1 tsp cumin, 1 tsp turmeric, juice of 1/4 lemon. Ingredients listed for the pot; scaled to the 16 oz bowl eaten. Status: eaten."
    },
    {
     "meal": "Afternoon snack (~3 PM, time approximate)",
