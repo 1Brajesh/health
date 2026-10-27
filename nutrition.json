@@ -1557,6 +1557,44 @@
     "calcium": 683.0,
     "potassium": 237.0
    }
+  },
+  "beets_cooked": {
+   "name": "Beets, cooked, boiled, drained",
+   "approx": true,
+   "note": "Used for sliced beets; pickled or canned beets have more sodium and sugar.",
+   "fdc_id": 169146,
+   "usda_description": "Beets, cooked, boiled, drained",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/169146/nutrients",
+   "accessed": "2026-10-27",
+   "per100g": {
+    "protein": 1.68,
+    "magnesium": 23.0,
+    "sodium": 77.0,
+    "calcium": 16.0,
+    "potassium": 305.0,
+    "kcal": 44.0,
+    "fiber": 2.0
+   }
+  },
+  "gyro": {
+   "name": "Gyro sandwich (USDA FNDDS 2706962, stand-in)",
+   "approx": true,
+   "note": "Generic USDA FNDDS gyro sandwich (1 sandwich = 200 g) used for a bought gyro wrap; real wraps vary. FNDDS record 2706962, accessed 2026-10-27.",
+   "fdc_id": null,
+   "usda_description": "Gyro sandwich",
+   "data_type": "Survey (FNDDS)",
+   "source": "https://fdc.nal.usda.gov/food-details/2706962/nutrients",
+   "accessed": "2026-10-27",
+   "per100g": {
+    "kcal": 184.0,
+    "protein": 11.24,
+    "fiber": 1.0,
+    "calcium": 46.0,
+    "potassium": 205.0,
+    "magnesium": 18.0,
+    "sodium": 323.0
+   }
   }
  },
  "days": [
@@ -4526,6 +4564,185 @@
      "food": "prunes",
      "grams": 38,
      "label": "4 prunes (~9.5 g each assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    }
+   ]
+  },
+  {
+   "date": "2026-10-27",
+   "partial": true,
+   "in_progress": true,
+   "partial_note": "Day in progress: lunch logged; dinner not yet logged, so this day is excluded from the Possible gaps averages. Gyro is bought food (no extra salt) using a generic USDA FNDDS gyro sandwich. Beets assumed cooked (~70 g). Feta dip uses feta cheese as a stand-in. Leftover lentil soup (8 oz, 227 g) reuses the Oct 26 bowl composition at half, including its proportional assumed salt; the added pepper gets no extra salt.",
+   "entries": [
+    {
+     "meal": "Lunch",
+     "food": "gyro",
+     "grams": 100,
+     "label": "1/2 gyro wrap, bought out (~100 g = half of USDA 200 g sandwich; no extra salt)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch",
+     "food": "beets_cooked",
+     "grams": 70,
+     "label": "Beets, about 7 slices (~10 g each assumed, ~70 g; cooked beets assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch",
+     "food": "feta",
+     "grams": 15,
+     "label": "Feta dip ~15 g (feta cheese stand-in; real dip may include yogurt/oil)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: leftover homemade lentil soup (8 oz)",
+     "food": "lentils",
+     "grams": 40.27,
+     "label": "Cooked lentils ~200 g (assumed split; boiled, no salt) [Oct 26 bowl composition x0.5 for 227 g]",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: leftover homemade lentil soup (8 oz)",
+     "food": "potato",
+     "grams": 17.11,
+     "label": "1/2 medium potato, boiled (~85 g assumed) [Oct 26 bowl composition x0.5 for 227 g]",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: leftover homemade lentil soup (8 oz)",
+     "food": "tomato",
+     "grams": 123.82,
+     "label": "5 medium tomatoes (USDA medium ~123 g each = 615 g; given count, weight assumed - likely smaller in a 16 oz bowl) [Oct 26 bowl composition x0.5 for 227 g]",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: leftover homemade lentil soup (8 oz)",
+     "food": "spinach",
+     "grams": 20.14,
+     "label": "Fresh spinach 100 g raw weight, cooked into soup (given) [Oct 26 bowl composition x0.5 for 227 g]",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: leftover homemade lentil soup (8 oz)",
+     "food": "garlic",
+     "grams": 0.6,
+     "label": "Garlic 1 clove (~3 g assumed) [Oct 26 bowl composition x0.5 for 227 g]",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: leftover homemade lentil soup (8 oz)",
+     "food": "ginger",
+     "grams": 2.02,
+     "label": "Fresh ginger 10 g (given) [Oct 26 bowl composition x0.5 for 227 g]",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: leftover homemade lentil soup (8 oz)",
+     "food": "black_pepper",
+     "grams": 0.1,
+     "label": "8 black peppercorns (~0.5 g assumed) [Oct 26 bowl composition x0.5 for 227 g]",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: leftover homemade lentil soup (8 oz)",
+     "food": "eggplant",
+     "grams": 8.05,
+     "label": "Eggplant 40 g cooked (given) [Oct 26 bowl composition x0.5 for 227 g]",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: leftover homemade lentil soup (8 oz)",
+     "food": "siggis",
+     "grams": 11.47,
+     "label": "Plain nonfat yogurt 2 oz (57 g; Siggi's entry, label calcium) [Oct 26 bowl composition x0.5 for 227 g]",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: leftover homemade lentil soup (8 oz)",
+     "food": "cumin",
+     "grams": 0.41,
+     "label": "Ground cumin 1 tsp (~2 g assumed) [Oct 26 bowl composition x0.5 for 227 g]",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: leftover homemade lentil soup (8 oz)",
+     "food": "turmeric",
+     "grams": 0.6,
+     "label": "Ground turmeric 1 tsp (~3 g assumed) [Oct 26 bowl composition x0.5 for 227 g]",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: leftover homemade lentil soup (8 oz)",
+     "food": "lemon_juice",
+     "grams": 2.42,
+     "label": "Juice of 1/4 lemon (~12 g assumed) [Oct 26 bowl composition x0.5 for 227 g]",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: leftover homemade lentil soup (8 oz)",
+     "food": "salt_table",
+     "grams": 0.3,
+     "label": "Salt to taste, assumed (~1/4 tsp) - one entry for the homemade soup [Oct 26 bowl composition x0.5 for 227 g]",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: leftover homemade lentil soup (8 oz)",
+     "food": "red_pepper",
+     "grams": 30,
+     "label": "1/4 red bell pepper, cooked (~30 g assumed; no extra salt)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Lunch",
+     "food": "fairlife_2",
+     "grams": 240,
+     "label": "Fairlife ultra-filtered 2% milk 8 oz (240 mL; given; label values)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch",
+     "food": "prunes",
+     "grams": 19,
+     "label": "2 prunes (~9.5 g each assumed)",
      "assumed": true,
      "lo": 0.8,
      "hi": 1.2
