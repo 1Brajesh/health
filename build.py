@@ -538,7 +538,7 @@ def cabs(i,mode):
     x=AD[i]; r=raw(i,'calcium',mode)
     return (r*x['a']/x['e'] if x['e']>0 else r), x['e'], (x['a']/x['e']*100 if x['e']>0 else 100)
 
-KMAX=2500
+KMAX=2000
 def PL(i,k): return '+' if res[MDATES[i]][1][k] else ''     # '+' = some foods lack data, true amount higher
 def NS(i,k): return numset(MDATES[i],k)
 def kcal_info(i,mode):
@@ -578,7 +578,7 @@ def kmark(i,mode):
     body=f'<b>Calories</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>{"Eaten (food only): " if mode=="f" else "Eaten (food + supplements): "}<b>~{fm0(ki["shown"])}{PL(i,"kcal")} kcal</b>'
     if mode=='f': body+=f' (food + supplements ~{fm0(ki["tot"])}{PL(i,"kcal")})'
     body+=f'<br>food ~{fm0(ki["f"])}{PL(i,"kcal")} + supplements {fm0(ki["s"])} kcal<br>{meal}<i>estimate</i>; logged meals only{"; day in progress, so the total is partial" if ip else ""}. No calorie target is used.'
-    if ki['shown']>KMAX: body+=' Marker clipped at the 2,500 kcal edge.'
+    if ki['shown']>KMAX: body+=' Marker clipped at the 2,000 kcal edge (true value shown above).'
     aria=f'Calories, {MDL[i]}{" in progress" if ip else ""}: about {fm0(ki["shown"])}{PL(i,"kcal")} kcal, estimate; food {fm0(ki["f"])}, supplements {fm0(ki["s"])}'
     kr=' kr' if x>50 else ''
     head=f'<b>Calories</b> · {MDL[i]}{" (in progress)" if ip else ""}<br>{"Eaten (food only): " if mode=="f" else "Eaten (food + supplements): "}<b>~{fm0(ki["shown"])}{PL(i,"kcal")} kcal</b>'
@@ -781,7 +781,7 @@ PANEL='<div class="dpn empty" id="dpn" aria-live="polite">Hover, tap or Tab onto
 PANEL_JS='''<script>(function(){var s=document.getElementById("v0"),p=document.getElementById("dpn"),pin=null,D=p.innerHTML;function show(h,pn){p.classList.remove("empty");p.innerHTML=h+(pn?'<span class="pin">Pinned. Tap another layer to change, or the same one to clear.</span>':"")}function reset(){if(pin){show(pin.querySelector(".dt").innerHTML,true)}else{p.classList.add("empty");p.innerHTML=D}}function dt(e){return e.querySelector(".dt").innerHTML}function cl(e){var t=e.querySelector(".tp");if(!t)return;requestAnimationFrame(function(){t.style.translate="0px";var r=t.getBoundingClientRect(),w=document.documentElement.clientWidth,m=0;if(r.width&&r.left<6)m=6-r.left;else if(r.right>w-6)m=w-6-r.right;t.style.translate=m+"px"})}s.querySelectorAll(".ly,.kc").forEach(function(e){e.addEventListener("mouseenter",function(){show(dt(e));cl(e)});e.addEventListener("mouseleave",reset);e.addEventListener("focus",function(){show(dt(e));cl(e)});e.addEventListener("blur",reset);e.addEventListener("click",function(){cl(e);pin=(pin===e)?null:e;if(pin)show(dt(e),true);else show(dt(e))})});s.querySelectorAll(".rd").forEach(function(r){r.addEventListener("change",function(){pin=null;reset()})})})()</script>'''
 ov_sec=('<section class="day var" id="v0"><h2>New) Overlay bar <span class="mockbadge">new</span></h2>'
  '<p class="pc">One bar per day; every nutrient is its own colored layer starting at the left, longest at the back so none is hidden. Hover, tap or Tab onto a layer for the numbers. Hover or tap the <b>calcium, potassium, magnesium or protein</b> layer (or its legend name) to see it split into estimated absorbed (solid) and not absorbed (hatched). Sodium and fiber show a one-line note instead of a split.</p>'
- '<p class="est"><b>Calories:</b> the black tick on each bar shows each day’s estimated calories on the <b>bottom kcal axis</b> (0 to 2,500). The top axis is still % of target. There is no calorie target; the line only shows the amount. A hollow marker means the day is in progress. Use the “Calories” chip in the legend to hide it.</p>'
+ '<p class="est"><b>Calories:</b> the black tick on each bar shows each day’s estimated calories on the <b>bottom kcal axis</b> (0 to 2,000). The top axis is still % of target. There is no calorie target; the line only shows the amount. A hollow marker means the day is in progress. Use the “Calories” chip in the legend to hide it.</p>'
  '<div class="ovs" role="group" aria-label="Scale"><b>Scale:</b><label for="sp">% of target (default)</label><label for="sr">Raw amount (mg-equivalent, small nutrients tiny)</label></div>'
  '<p class="est s-p">Scale: % of each nutrient’s daily target (protein 56 g, fiber 30 g, calcium 1,000 mg, potassium 3,400 mg, magnesium 420 mg). Sodium* is against its 2,300 mg limit, so shorter is better. Dashed magenta line = 100%; faint lines = 50% and 150%. Bars past the right edge are clipped.</p>'
  '<p class="est s-r">Scale: raw numbers on one shared axis, as logged (mg for calcium, potassium, magnesium and sodium; g for protein and fiber). Fiber and protein, in grams, look tiny next to potassium in mg, which is why % mode is the default. Tiny layers are given a minimum width so they stay visible.</p>'
