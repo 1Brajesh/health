@@ -1540,22 +1540,22 @@
    }
   },
   "tofu_firm": {
-   "name": "Tofu, firm (calcium sulfate, assumed)",
+   "name": "Tofu, extra firm, nigari (hot bar stand-in)",
    "approx": true,
-   "note": "Assumed firm tofu made with calcium sulfate; tofu made without a calcium coagulant has far less calcium.",
-   "fdc_id": 172475,
-   "usda_description": "Tofu, raw, firm, prepared with calcium sulfate",
+   "note": "Hot bar, coagulant unknown, conservative stand-in: USDA extra-firm tofu made with nigari (no calcium sulfate). Calcium-set tofu would have much more calcium.",
+   "fdc_id": 174290,
+   "usda_description": "Tofu, extra firm, prepared with nigari",
    "data_type": "SR Legacy",
-   "source": "https://fdc.nal.usda.gov/food-details/172475/nutrients",
+   "source": "https://fdc.nal.usda.gov/food-details/174290/nutrients",
    "accessed": "2026-10-27",
    "per100g": {
-    "fiber": 2.3,
-    "kcal": 144.0,
-    "protein": 17.27,
-    "magnesium": 58.0,
-    "sodium": 14.0,
-    "calcium": 683.0,
-    "potassium": 237.0
+    "protein": 9.98,
+    "fiber": 1.0,
+    "magnesium": 35.0,
+    "sodium": 4.0,
+    "kcal": 83.0,
+    "calcium": 282.0,
+    "potassium": 130.0
    }
   },
   "beets_cooked": {
@@ -4359,7 +4359,7 @@
   {
    "date": "2026-10-26",
    "partial": true,
-   "partial_note": "Day complete: lunch, afternoon snack and dinner logged (dinner reported just after midnight). Dinner: no oil mentioned, none added; one assumed salt entry; tofu assumed firm with calcium sulfate. Lunch soup was homemade (not Whole Foods), salted to taste: one assumed salt entry. Ingredients listed for the pot; scaled to the 16 oz bowl eaten (all lunch soup ingredients incl. assumed salt x0.403, solids total 454 g, water 0 g; lentils ~200 g in the pot is an assumed split).",
+   "partial_note": "Day complete: lunch, afternoon snack and dinner logged (dinner reported just after midnight). Dinner: no oil mentioned, none added; one assumed salt entry; tofu from a hot bar, coagulant unknown; conservative nigari extra-firm tofu stand-in used. Lunch soup was homemade (not Whole Foods), salted to taste: one assumed salt entry. Ingredients listed for the pot; scaled to the 16 oz bowl eaten (all lunch soup ingredients incl. assumed salt x0.403, solids total 454 g, water 0 g; lentils ~200 g in the pot is an assumed split).",
    "entries": [
     {
      "meal": "Lunch: homemade lentil soup (16 oz bowl)",
@@ -4509,7 +4509,7 @@
      "meal": "Dinner: home-cooked",
      "food": "tofu_firm",
      "grams": 275,
-     "label": "Tofu, 5 cubes ~1.5 in (~55 g each assumed, 275 g; firm, calcium sulfate assumed)",
+     "label": "Tofu, 5 cubes ~1.5 in (~55 g each assumed, 275 g; hot bar, coagulant unknown, conservative stand-in: extra-firm nigari tofu)",
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
