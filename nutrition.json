@@ -1595,6 +1595,25 @@
     "magnesium": 18.0,
     "sodium": 323.0
    }
+  },
+  "salmon_cooked": {
+   "name": "Salmon, Atlantic, farmed, cooked",
+   "approx": true,
+   "note": "Farmed Atlantic salmon, dry-heat cooked; wild salmon differs.",
+   "fdc_id": 175168,
+   "usda_description": "Fish, salmon, Atlantic, farmed, cooked, dry heat",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/175168/nutrients",
+   "accessed": "2026-10-27",
+   "per100g": {
+    "calcium": 15.0,
+    "potassium": 384.0,
+    "protein": 22.1,
+    "fiber": 0.0,
+    "magnesium": 30.0,
+    "sodium": 61.0,
+    "kcal": 206.0
+   }
   }
  },
  "days": [
@@ -4574,7 +4593,7 @@
    "date": "2026-10-27",
    "partial": true,
    "in_progress": true,
-   "partial_note": "Day in progress: lunch logged; dinner not yet logged, so this day is excluded from the Possible gaps averages. Gyro is bought food (no extra salt) using a generic USDA FNDDS gyro sandwich. Beets assumed cooked (~70 g). Feta dip uses feta cheese as a stand-in. Leftover lentil soup (8 oz, 227 g) reuses the Oct 26 bowl composition at half, including its proportional assumed salt; the added pepper gets no extra salt.",
+   "partial_note": "Day in progress: lunch and dinner logged; more may be added, so this day is excluded from the Possible gaps averages. Gyro is bought food (no extra salt) using a generic USDA FNDDS gyro sandwich. Beets assumed cooked (~70 g). Feta dip uses feta cheese as a stand-in. Leftover lentil soup (8 oz, 227 g) reuses the Oct 26 bowl composition at half, including its proportional assumed salt; the added pepper gets no extra salt.",
    "entries": [
     {
      "meal": "Lunch",
@@ -4746,6 +4765,42 @@
      "assumed": true,
      "lo": 0.8,
      "hi": 1.2
+    },
+    {
+     "meal": "Dinner: home-cooked",
+     "food": "salmon_cooked",
+     "grams": 170,
+     "label": "Salmon ~6 oz cooked (170 g; estimated from photo; farmed Atlantic assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Dinner: home-cooked",
+     "food": "kale_raw",
+     "grams": 102,
+     "label": "Kale, 6 leaves sauteed (~17 g each, 102 g)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Dinner: home-cooked",
+     "food": "olive_oil",
+     "grams": 4.5,
+     "label": "Olive oil ~1 tsp (assumed; kale looked glossy)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 3
+    },
+    {
+     "meal": "Dinner: home-cooked",
+     "food": "salt_table",
+     "grams": 1.5,
+     "label": "Salt to taste, assumed (~1/4 tsp) - one entry for the home-cooked dish",
+     "assumed": true,
+     "lo": 0.3,
+     "hi": 2
     }
    ]
   }
