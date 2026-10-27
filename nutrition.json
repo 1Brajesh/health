@@ -1596,23 +1596,23 @@
     "sodium": 323.0
    }
   },
-  "salmon_cooked": {
-   "name": "Salmon, Atlantic, farmed, cooked",
-   "approx": true,
-   "note": "Farmed Atlantic salmon, dry-heat cooked; wild salmon differs.",
-   "fdc_id": 175168,
-   "usda_description": "Fish, salmon, Atlantic, farmed, cooked, dry heat",
+  "salmon_wild": {
+   "name": "Salmon, Atlantic, wild, cooked",
+   "approx": false,
+   "note": "Wild Atlantic salmon, dry-heat cooked.",
+   "fdc_id": 171998,
+   "usda_description": "Fish, salmon, Atlantic, wild, cooked, dry heat",
    "data_type": "SR Legacy",
-   "source": "https://fdc.nal.usda.gov/food-details/175168/nutrients",
+   "source": "https://fdc.nal.usda.gov/food-details/171998/nutrients",
    "accessed": "2026-10-27",
    "per100g": {
-    "calcium": 15.0,
-    "potassium": 384.0,
-    "protein": 22.1,
+    "protein": 25.44,
     "fiber": 0.0,
-    "magnesium": 30.0,
-    "sodium": 61.0,
-    "kcal": 206.0
+    "magnesium": 37.0,
+    "sodium": 56.0,
+    "kcal": 182.0,
+    "calcium": 15.0,
+    "potassium": 628.0
    }
   }
  },
@@ -4768,9 +4768,9 @@
     },
     {
      "meal": "Dinner: home-cooked",
-     "food": "salmon_cooked",
+     "food": "salmon_wild",
      "grams": 170,
-     "label": "Salmon ~6 oz cooked (170 g; estimated from photo; farmed Atlantic assumed)",
+     "label": "Salmon ~6 oz cooked (170 g; estimated from photo; wild Atlantic, given)",
      "assumed": true,
      "lo": 0.8,
      "hi": 1.2
