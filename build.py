@@ -662,7 +662,7 @@ def ov(mode,pct,ab=False):
             for gv in (50,150):
                 if gv<mx: h+=f'<i class="gl5" style="left:{gv/mx*100:.2f}%"></i>'
         _k=kcal_info(i,mode)['shown']
-        h+=f'</div><span class="ktot" aria-hidden="true">{fm0(_k)}{PL(i,"kcal")} kcal</span></div>'
+        h+=f'</div><span class="ktot" aria-hidden="true">{int(_k/10+0.5)*10:,}{PL(i,"kcal")}</span></div>'
     h+=kaxis()+'<svg class="kln" aria-hidden="true"></svg>'
     h+='</div></div>'
     return h
