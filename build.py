@@ -586,13 +586,13 @@ def kmark(i,mode):
             f'<span class="tp kt tb" aria-hidden="true">{head}{tipbd(i,"kcal",mode,"kcal")}<small class="hint">Meal split and notes in the panel below the chart.</small></span><span class="dt" aria-hidden="true">{body}</span></div>')
 def kaxis():
     return ('<div class="ovb"><span class="ovd kl axt"><i class="sw ksw"></i>kcal</span><div class="ovt kt2">'
-      +''.join(f'<span style="left:{v/KMAX*100:.2f}%">{v:,}</span>' for v in range(0,KMAX+1,500))+'</div></div>')
+      +''.join(f'<span style="left:{v/KMAX*100:.2f}%">{v:,}</span>' for v in range(0,KMAX+1,500))+'</div><span></span></div>')
 def ov(mode,pct,ab=False):
     mx=ov_scale(mode,pct); cl='s-p' if pct else 's-r'
     ticks=range(0,mx+1,50 if pct else 500)
     if pct and mx>300: ticks=range(0,mx+1,100)
     h=f'<div class="{cl}"><div class="ovl">'
-    h+='<div class="ova"><span class="ovd axt">'+('% of daily target' if pct else 'raw amount')+'</span><div class="ovt">'+''.join(f'<span style="left:{v/mx*100:.2f}%">{v}{"%" if pct else ""}</span>' for v in ticks)+'</div></div>'
+    h+='<div class="ova"><span class="ovd axt">'+('% of daily target' if pct else 'raw amount')+'</span><div class="ovt">'+''.join(f'<span style="left:{v/mx*100:.2f}%">{v}{"%" if pct else ""}</span>' for v in ticks)+'</div><span></span></div>'
     for i in range(n_):
         items=[]
         for k,l,u,t,c in MK:
@@ -661,7 +661,8 @@ def ov(mode,pct,ab=False):
             h+=f'<i class="m100" style="left:{100/mx*100:.2f}%"></i>'
             for gv in (50,150):
                 if gv<mx: h+=f'<i class="gl5" style="left:{gv/mx*100:.2f}%"></i>'
-        h+='</div></div>'
+        _k=kcal_info(i,mode)['shown']
+        h+=f'</div><span class="ktot" aria-hidden="true">{fm0(_k)}{PL(i,"kcal")} kcal</span></div>'
     h+=kaxis()+'<svg class="kln" aria-hidden="true"></svg>'
     h+='</div></div>'
     return h
@@ -682,9 +683,10 @@ OVCSS="""
 .dpn.empty{color:var(--muted)}.dpn .al{border-top:1px solid var(--line)}.dpn small{opacity:.85}.dpn .ar{display:block;opacity:.85}.dpn .ar.me{opacity:1;font-weight:700}.dpn .al b{display:block}
 .dpn .pin{display:block;margin-top:.5rem;font-size:.7rem;color:var(--muted)}
 .ovl{margin:.4rem 0 1.2rem}
-.ovr,.ova{display:grid;grid-template-columns:4.6rem 1fr;gap:.5rem;align-items:center;margin:.3rem 0;position:relative}
+.ovr,.ova{display:grid;grid-template-columns:4.6rem 1fr 4.4rem;gap:.5rem;align-items:center;margin:.3rem 0;position:relative}
 .ovr:hover,.ovr:focus-within{z-index:60}.ovl{position:relative}
 .ovd{font-size:.85rem;color:var(--muted);line-height:1.1}.ovd small{display:block;font-size:.65rem;font-style:italic}
+.ktot{font-size:.74rem;font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--muted,#555)}#v0.nok .ktot{visibility:hidden}
 .ovk{position:relative;height:30px;border-radius:7px;background:var(--line);margin-right:.4rem}
 .ovr.ip .ovk{background:repeating-linear-gradient(45deg,var(--line) 0 4px,transparent 4px 9px),var(--card);outline:1px dashed var(--muted)}
 
@@ -714,7 +716,7 @@ OVCSS="""
 #v0[data-hl=protein] .ly[data-k=protein],#v0[data-hl=fiber] .ly[data-k=fiber],#v0[data-hl=calcium] .ly[data-k=calcium],#v0[data-hl=potassium] .ly[data-k=potassium],#v0[data-hl=magnesium] .ly[data-k=magnesium],#v0[data-hl=sodium] .ly[data-k=sodium]{opacity:1;z-index:45!important;outline:3px solid #ff00d4;outline-offset:1px}
 #v0[data-hl=calcium] .cs[data-k=calcium] .sn,#v0[data-hl=potassium] .cs[data-k=potassium] .sn,#v0[data-hl=magnesium] .cs[data-k=magnesium] .sn,#v0[data-hl=protein] .cs[data-k=protein] .sn{opacity:1;transform:scaleX(1)}
 
-.ovb{display:grid;grid-template-columns:4.6rem 1fr;gap:.5rem;align-items:center;margin:.3rem 0}
+.ovb{display:grid;grid-template-columns:4.6rem 1fr 4.4rem;gap:.5rem;align-items:center;margin:.3rem 0}
 .ovb .ovt{border-top:2px solid #111}.kt2 span{font-weight:700;color:#111}.kt2 span:last-child{transform:translateX(-100%)}
 .ovb .kl{font-weight:700;color:#111;display:flex;align-items:center}
 .ksw{background:#111!important;border:2px solid #fff!important;box-shadow:0 0 0 1px #111;width:8px!important;height:14px!important;border-radius:2px!important}
@@ -727,14 +729,14 @@ OVCSS="""
 .lk{cursor:pointer;padding:.15rem .4rem;border-radius:999px;border:2px solid transparent;user-select:none;display:inline-flex;align-items:center;opacity:.55}
 .lk.on{opacity:1;border-color:#111}.lk:hover,.lk:focus{outline:none;border-color:#ff00d4}
 #v0.nok .kc,#v0.nok .kln,#v0.nok .ovb{display:none}
-@media(max-width:560px){.ovb{grid-template-columns:3.6rem 1fr}.kt2 span{font-size:.62rem}}
+@media(max-width:560px){.ovb{grid-template-columns:3.6rem 1fr 3.6rem}.kt2 span{font-size:.62rem}}
 @media(prefers-reduced-motion:reduce){.cs .sn{transition:none}}
 #sp:checked ~ .charts label[for=sp],#sr:checked ~ .charts label[for=sr]{background:var(--brand);color:#fff}
 #sr:checked ~ .charts .s-p,#sp:checked ~ .charts .s-r{display:none}
 #sp:focus-visible ~ .charts label[for=sp],#sr:focus-visible ~ .charts label[for=sr]{outline:3px solid var(--accent);outline-offset:2px}
 .ovs{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin:.3rem 0}
 .ovs label{cursor:pointer;padding:.35rem .9rem;border-radius:999px;border:2px solid var(--brand);color:var(--brand);font-weight:700;font-size:.85rem}
-@media(max-width:560px){.ovr,.ova{grid-template-columns:3.6rem 1fr}.ovk{height:26px}}
+@media(max-width:560px){.ovr,.ova{grid-template-columns:3.6rem 1fr 3.6rem}.ktot{font-size:.66rem}.ovk{height:26px}}
 /* ===== calmer restyle of #v0 overlay chart ===== */
 #v0{--pin:#6d5bd0;--trk:#f3eee4;--grd:#e2d9c8;--ax:#9a9285;box-shadow:0 1px 2px rgba(60,40,10,.06),0 10px 28px rgba(60,40,10,.09);border-radius:16px}
 @media(prefers-color-scheme:dark){#v0{--pin:#a99cff;--trk:#2b2a27;--grd:#3d3b36;--ax:#8d887d;box-shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35)}}
@@ -774,7 +776,7 @@ OVCSS="""
 #v0 .kc{animation:ovfade .6s ease .6s both}
 #v0 .ovr:nth-of-type(2) .ly{animation-delay:.04s}#v0 .ovr:nth-of-type(3) .ly{animation-delay:.08s}#v0 .ovr:nth-of-type(4) .ly{animation-delay:.12s}#v0 .ovr:nth-of-type(5) .ly{animation-delay:.16s}#v0 .ovr:nth-of-type(6) .ly{animation-delay:.2s}#v0 .ovr:nth-of-type(7) .ly{animation-delay:.24s}#v0 .ovr:nth-of-type(8) .ly{animation-delay:.28s}
 @media(prefers-reduced-motion:reduce){#v0 .ly,#v0 .kc{animation:none}}
-@media(max-width:560px){#v0 .ovr,#v0 .ova{grid-template-columns:3.6rem 1fr}#v0 .ovk{height:18px}#v0 .lc,#v0 .lk{padding:.2rem .5rem}}
+@media(max-width:560px){#v0 .ovr,#v0 .ova{grid-template-columns:3.6rem 1fr 3.6rem}#v0 .ovk{height:18px}#v0 .lc,#v0 .lk{padding:.2rem .5rem}}
 
 """
 PANEL='<div class="dpn empty" id="dpn" aria-live="polite">Hover, tap or Tab onto a bar layer or a calorie tick: the tooltip lists the top sources for that day, and the full detail (eaten vs absorbed, sources, all nutrients, meal split) appears here. Tapping pins the last selection.</div>'
