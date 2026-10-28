@@ -1,0 +1,35 @@
+{
+ "recipes": [
+  {
+   "id": "lentil_soup_medium",
+   "name": "Brajesh's lentil soup (medium thickness)",
+   "status": "estimated, not measured — update with real pot amounts (dry lentils, number of bowls)",
+   "reference_bowl_g": 482,
+   "default_bowl_g": 454,
+   "ingredients": [
+    {"food": "lentils", "label": "Lentils, cooked", "g": 150},
+    {"food": "tomato", "label": "Tomatoes", "g": 100},
+    {"food": "potato", "label": "Potato, boiled", "g": 45},
+    {"food": "onion", "label": "Onion", "g": 35},
+    {"food": "spinach", "label": "Spinach (raw weight)", "g": 30},
+    {"food": "eggplant", "label": "Eggplant, cooked", "g": 20},
+    {"food": "olive_oil", "label": "Olive oil", "g": 5},
+    {"food": "ginger", "label": "Fresh ginger", "g": 4},
+    {"food": "garlic", "label": "Garlic", "g": 2},
+    {"food": "cumin", "label": "Cumin", "g": 1},
+    {"food": "turmeric", "label": "Turmeric", "g": 1},
+    {"food": "black_pepper", "label": "Black peppercorns", "g": 0.3},
+    {"food": "cardamom", "label": "Cardamom", "g": 0.3},
+    {"food": "cloves", "label": "Cloves", "g": 0.2},
+    {"food": "salt_table", "label": "Salt to taste (assumed)", "g": 1.5},
+    {"food": null, "label": "Water (remainder)", "g": 86.7}
+   ],
+   "served_with": [
+    {"food": "siggis", "label": "Siggi's plain nonfat yogurt, 2 oz", "g": 57},
+    {"food": "lemon_juice", "label": "Lemon juice", "g": 10}
+   ],
+   "thickness": "Medium is this recipe. Thicker soup: more lentils and less water per bowl. Thinner soup: fewer lentils and more water. Adjust the lentil share accordingly.",
+   "usage": "Log a bowl by recipe id and bowl weight in grams; every ingredient (including the assumed salt) scales by bowl_g / reference_bowl_g. Served-with items are fixed amounts."
+  }
+ ]
+}

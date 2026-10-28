@@ -84,7 +84,7 @@ ul{padding-left:1.2rem}li{margin:.3rem 0}
 footer{text-align:center;color:var(--muted);font-size:.85rem;padding:1.5rem 1rem 2.5rem}
 """
 def page(title,sub,active,body):
-    nav=''.join(f'<a href="{h}"{" class=on" if k==active else ""}>{t}</a>' for k,h,t in [('s','index.html','💊 Supplements'),('f','food.html','🥗 Food Log')])
+    nav=''.join(f'<a href="{h}"{" class=on" if k==active else ""}>{t}</a>' for k,h,t in [('s','index.html','💊 Supplements'),('f','food.html','🥗 Food Log'),('r','recipes.html','🍲 Recipes')])
     return f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{title} · Health Tracker</title><meta name="color-scheme" content="light dark"><style>{CSS}</style></head><body><header class="hero"><div class="wrap"><nav>{nav}</nav><h1>{title}</h1><p>{sub}</p></div></header><main class="wrap">{body}</main><footer>Educational information only, not medical advice. Talk to your doctor about changes.</footer></body></html>'
 d=json.load(open('supplements.json'))
 cards=''
@@ -1010,7 +1010,7 @@ assert all(v in (None,) or isinstance(v,(int,float)) for f in _pub['foods'] for 
 assert not any(isinstance(v,(int,float)) and v<0 for f in _pub['foods'] for v in f['per100g'].values())
 _tpl=open('explorer_tpl.html').read().replace('@@ACC@@',_ff['accessed']).replace('@@DATA@@',json.dumps(_pub,separators=(',',':'),ensure_ascii=False).replace('</','<\\/'))
 mp=page('Food Nutrition Explorer','Look up what is in a food, or rank every food by a nutrient. Public USDA FoodData Central data.','',_tpl)
-mp=mp.replace('</style>',XCSS+'</style>',1).replace('<nav><a href="index.html">💊 Supplements</a><a href="food.html">🥗 Food Log</a></nav>','<nav><a href="food.html">&larr; Food Log</a></nav>')
+mp=mp.replace('</style>',XCSS+'</style>',1).replace('<nav><a href="index.html">💊 Supplements</a><a href="food.html">🥗 Food Log</a><a href="recipes.html">🍲 Recipes</a></nav>','<nav><a href="food.html">&larr; Food Log</a></nav>')
 open('mock.html','w').write(mp)
 print('mock.html explorer:',len(_pub['foods']),'foods,',len(_pub['nutrients']),'nutrients')
 
@@ -1122,3 +1122,25 @@ for mode,seg in (('f',chart_html.split('<div class="m-c">')[0]),('c',chart_html.
         tcount+=1
 assert tcount>=2*len(days)*len(MK)
 print('tooltip breakdown rows match day-card breakdowns for',tcount,'layer tooltips')
+
+# ================= recipes.html : recipes from recipes.json =================
+_R=json.load(open('recipes.json'))['recipes']; _NF=json.load(open('nutrition.json'))['foods']
+_RK=[('kcal','Calories','kcal'),('protein','Protein','g'),('fiber','Fiber','g'),('calcium','Calcium','mg'),('potassium','Potassium','mg'),('magnesium','Magnesium','mg'),('sodium','Sodium','mg')]
+def _rtot(rows,f=1.0):
+    return {k:sum(((_NF[r['food']]['per100g'].get(k) or 0) if r['food'] else 0)*r['g']*f/100 for r in rows) for k,_,_ in _RK}
+def _rfmt(k,v): return f'{v:,.1f}' if k in('protein','fiber') else f'{v:,.0f}'
+_rb=''
+for r in _R:
+    f=r['default_bowl_g']/r['reference_bowl_g']
+    rows=''.join(f'<tr><td>{E(i["label"])}</td><td>{i["g"]*f:,.1f} g</td></tr>' for i in r['ingredients'])
+    sw=''.join(f'<tr><td>{E(i["label"])}</td><td>{i["g"]:,.0f} g</td></tr>' for i in r['served_with'])
+    tb=_rtot(r['ingredients'],f); ts=_rtot(r['served_with'])
+    nt=''.join(f'<tr><td>{l}</td><td>{_rfmt(k,tb[k])} {u}</td><td>{_rfmt(k,tb[k]+ts[k])} {u}</td></tr>' for k,l,u in _RK)
+    _rb+=(f'<section class="card" id="{r["id"]}"><h2>{E(r["name"])}</h2><p class="note"><b>Amounts {E(r["status"])}.</b></p>'
+          f'<p>Recipe id: <code>{r["id"]}</code></p>'
+          f'<h3>Per {r["default_bowl_g"]} g bowl (16 oz)</h3><table class="tbl"><tr><th>Ingredient</th><th>Amount</th></tr>{rows}</table>'
+          f'<h3>Served with</h3><table class="tbl"><tr><th>Item</th><th>Amount</th></tr>{sw}</table>'
+          f'<h3>Nutrients per bowl (estimate, USDA FoodData Central)</h3><table class="tbl"><tr><th>Nutrient</th><th>Soup only</th><th>With yogurt and lemon</th></tr>{nt}</table>'
+          f'<p class="note"><b>Thickness:</b> {E(r["thickness"])}</p><p class="note">{E(r["usage"])}</p></section>')
+open('recipes.html','w').write(page('Recipes','Home recipes used in the food log, with estimated per-bowl nutrients.','r',_rb))
+print('recipes.html:',len(_R),'recipe(s)')

@@ -1,0 +1,83 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Recipes · Health Tracker</title><meta name="color-scheme" content="light dark"><style>
+:root{--bg:#f4f8f5;--card:#fff;--ink:#1f2d27;--muted:#5d6f66;--brand:#2e8b6a;--brand2:#1d6f8f;--accent:#f2a541;--line:#dfe9e3;--chip:#e6f4ee;--shadow:0 2px 10px rgba(30,70,55,.08)}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1815;--card:#17241f;--ink:#e8f1ec;--muted:#9bb0a6;--brand:#4cc79a;--brand2:#5bb8dc;--accent:#f5b85c;--line:#27382f;--chip:#1f3a30;--shadow:0 2px 10px rgba(0,0,0,.4)}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--brand2)}
+.hero{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;padding:2.2rem 1rem 3.2rem}
+.wrap{max-width:1000px;margin:0 auto;padding:0 1rem}
+.hero .wrap{padding:0}
+.hero h1{margin:.2rem 0;font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.2}
+.hero p{margin:.3rem 0 0;opacity:.92;max-width:42rem}
+nav{display:flex;gap:.5rem;margin-bottom:1.2rem;flex-wrap:wrap}
+nav a{color:#fff;text-decoration:none;padding:.45rem 1rem;border-radius:999px;background:rgba(255,255,255,.16);font-weight:600;font-size:.95rem}
+nav a:hover{background:rgba(255,255,255,.28)}nav a.on{background:#fff;color:var(--brand2)}
+main{margin-top:-1.8rem;padding-bottom:3rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.8rem;margin-bottom:1.5rem}
+.stat{background:var(--card);border-radius:14px;padding:.9rem 1rem;box-shadow:var(--shadow)}
+.stat b{display:block;font-size:1.6rem;color:var(--brand)}.stat span{color:var(--muted);font-size:.9rem}
+.note{background:var(--card);border-left:4px solid var(--accent);border-radius:10px;padding:.8rem 1rem;box-shadow:var(--shadow);margin-bottom:1.5rem;color:var(--muted);font-size:.95rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1rem}
+.card{background:var(--card);border-radius:16px;padding:1.1rem 1.2rem;box-shadow:var(--shadow);border-top:4px solid var(--brand)}
+.card h3{margin:0 0 .1rem;font-size:1.08rem;line-height:1.3}
+.card .brand{color:var(--muted);font-size:.9rem;margin-bottom:.6rem}
+.num{display:inline-block;background:var(--brand);color:#fff;border-radius:50%;width:1.7rem;height:1.7rem;line-height:1.7rem;text-align:center;font-size:.85rem;margin-right:.45rem;font-weight:700}
+.chip{display:inline-block;background:var(--chip);color:var(--brand);border-radius:999px;padding:.15rem .7rem;font-size:.85rem;font-weight:600;margin:0 .3rem .4rem 0}
+.chip.when{background:#fff3df;color:#9a5c00}
+@media(prefers-color-scheme:dark){.chip.when{background:#3a2d12;color:var(--accent)}}
+.card p{margin:.35rem 0;font-size:.93rem}.card small{color:var(--muted)}
+.meals{margin:.3rem 0 .6rem}.nx{margin:.5rem 0 .4rem;border:1px solid var(--line);border-radius:12px;padding:0 .8rem;background:rgba(0,0,0,.015)}.nx>summary,.gx>summary{list-style:none;display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .7rem;padding:.7rem 0;min-height:44px;box-sizing:border-box}.nx>summary::-webkit-details-marker,.gx>summary::-webkit-details-marker{display:none}.nx>summary::before,.gx>summary::before{content:"▸";display:inline-block;width:1.1em;transition:transform .15s;color:var(--brand2)}.nx[open]>summary::before,.gx[open]>summary::before{transform:rotate(90deg)}.nx[open]>summary .nxl{font-size:0}.nx[open]>summary .nxl::after{content:"Hide nutrients";font-size:.9rem}.nxl{color:var(--brand2);font-weight:600;font-size:.9rem}.nxq{font-weight:400;color:var(--muted);font-size:.82rem}.gx>summary h2{display:inline;margin:0}.nx[open]{padding-bottom:.5rem}
+details{margin-top:.4rem}summary{cursor:pointer;color:var(--brand2);font-weight:600;font-size:.9rem}
+h2{font-size:1.5rem;margin:2.2rem 0 .8rem;padding-bottom:.3rem;border-bottom:3px solid var(--chip)}
+h3{margin:1.4rem 0 .5rem;color:var(--brand)}
+.review{background:var(--card);border-radius:16px;padding:1rem 1.4rem 1.4rem;box-shadow:var(--shadow)}
+.review h2{margin-top:.8rem}
+.tw{overflow-x:auto;margin:.6rem 0;border-radius:10px;border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th{background:var(--chip);color:var(--brand);text-align:left;position:sticky;top:0}
+td,th{padding:.55rem .7rem;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}tbody tr:nth-child(even) td{background:rgba(46,139,106,.04)}
+ul{padding-left:1.2rem}li{margin:.3rem 0}
+.day{background:var(--card);border-radius:16px;box-shadow:var(--shadow);padding:1rem 1.2rem;margin-bottom:1rem}
+.day h2{margin:0 0 .6rem;border:0;font-size:1.2rem;color:var(--brand2)}
+.meal{display:flex;gap:.8rem;padding:.55rem 0;border-top:1px solid var(--line)}
+.meal:first-of-type{border-top:0}
+.ico{font-size:1.4rem;line-height:1.5}.mt{font-weight:700;font-size:.9rem;color:var(--brand)}
+.planned{opacity:.75;font-style:italic}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:.55rem;margin:.2rem 0 .9rem}
+.tile{border-radius:12px;padding:.55rem .7rem;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--c)}
+.tile .l{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.tile .v{font-size:1.25rem;font-weight:800;color:var(--c);line-height:1.25}.tile .v small{font-size:.75rem;font-weight:600;color:var(--muted)}
+.tile .r{font-size:.72rem;color:var(--muted);min-height:1.1em}
+.bar{height:7px;border-radius:99px;background:var(--line);overflow:hidden;margin:.25rem 0}.bar i{display:block;height:100%;background:var(--c);border-radius:99px}
+.tile .t{font-size:.7rem;color:var(--muted)}
+.t-cal{--c:#e0762b}.t-pro{--c:#c2493f}.t-fib{--c:#2e8b6a}.t-ca{--c:#5b7fd6}.t-k{--c:#a45bc7}.t-mg{--c:#1d9aa8}.t-na{--c:#b88a1b}
+@media(prefers-color-scheme:dark){.t-cal{--c:#f0914f}.t-pro{--c:#ec7a70}.t-fib{--c:#4cc79a}.t-ca{--c:#86a4f0}.t-k{--c:#c98ae6}.t-mg{--c:#4cc9d6}.t-na{--c:#e0b94a}}
+.badge{display:inline-block;background:#fff3df;color:#9a5c00;border-radius:999px;padding:.1rem .6rem;font-size:.75rem;font-weight:700;margin-left:.4rem;vertical-align:middle}
+@media(prefers-color-scheme:dark){.badge{background:#3a2d12;color:var(--accent)}}
+.est{font-size:.85rem;color:var(--muted)}.est td,.est th{padding:.35rem .5rem}
+.week td:first-child{white-space:nowrap;font-weight:600}.week td,.week th{text-align:right}.week th:first-child{text-align:left}
+.assume{color:var(--accent);font-weight:700}
+.wk{margin-bottom:1.2rem}
+.nt{margin:.2rem 0 .9rem}.nhead,.nr{display:grid;grid-template-columns:1.1fr 1fr 1fr 1.2fr;gap:.4rem;align-items:start}
+.nhead{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;padding:0 .3rem}
+.nr{padding:.45rem .5rem;margin:.3rem 0;border:1px solid var(--line);border-left:5px solid var(--c);border-radius:10px}
+.nr .l{font-weight:700;font-size:.85rem;color:var(--c)}.nr .l small,.nr .h{color:var(--muted);font-weight:600}
+.nr .h{display:none;font-size:.65rem;text-transform:uppercase;letter-spacing:.04em}
+.nr .c b{display:block;font-size:1.05rem}.nr .c.o b{color:var(--c)}.nr .c.s b{color:var(--brand2)}
+.nr .t{font-size:.7rem;color:var(--muted);display:block}
+.sx{font-size:.85rem;margin-top:.7rem;color:var(--muted)}
+.gap{border-left:5px solid var(--accent)}.gap.ok{border-left-color:var(--brand)}.gap.un{border-left-color:var(--muted)}
+.bd{margin:-.2rem 0 .5rem;border:1px solid var(--line);border-left:5px solid var(--c);border-top:0;border-radius:0 0 10px 10px;padding:0 .6rem;background:var(--card)}
+.bd>summary{display:block;padding:.65rem .1rem;min-height:44px;box-sizing:border-box;font-size:.85rem;list-style:none}
+.bd>summary::-webkit-details-marker{display:none}
+.bd>summary::before{content:"▸";display:inline-block;width:1.1em;transition:transform .15s}
+.bd[open]>summary::before{transform:rotate(90deg)}
+.bd[open]{padding-bottom:.5rem}
+.bd table{font-size:.8rem}.bd td,.bd th{padding:.35rem .45rem}.bd td.n,.bd th.n{text-align:right;white-space:nowrap}
+.bd tr.sup td{background:rgba(91,184,220,.10)}.bd tr.nd td{color:var(--muted);font-style:italic}
+.bd .tag{display:inline-block;background:var(--chip);color:var(--brand2);border-radius:999px;padding:0 .5rem;font-size:.7rem;font-weight:700;margin-left:.3rem;font-style:normal}
+.bd .est{margin:.4rem 0}
+@media(max-width:560px){.nhead{display:none}.nr{grid-template-columns:1fr 1fr 1fr}.nr .l{grid-column:1/-1}.nr .h{display:block}}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:1.5rem 1rem 2.5rem}
+</style></head><body><header class="hero"><div class="wrap"><nav><a href="index.html">💊 Supplements</a><a href="food.html">🥗 Food Log</a><a href="recipes.html" class=on>🍲 Recipes</a></nav><h1>Recipes</h1><p>Home recipes used in the food log, with estimated per-bowl nutrients.</p></div></header><main class="wrap"><section class="card" id="lentil_soup_medium"><h2>Brajesh&#x27;s lentil soup (medium thickness)</h2><p class="note"><b>Amounts estimated, not measured — update with real pot amounts (dry lentils, number of bowls).</b></p><p>Recipe id: <code>lentil_soup_medium</code></p><h3>Per 454 g bowl (16 oz)</h3><table class="tbl"><tr><th>Ingredient</th><th>Amount</th></tr><tr><td>Lentils, cooked</td><td>141.3 g</td></tr><tr><td>Tomatoes</td><td>94.2 g</td></tr><tr><td>Potato, boiled</td><td>42.4 g</td></tr><tr><td>Onion</td><td>33.0 g</td></tr><tr><td>Spinach (raw weight)</td><td>28.3 g</td></tr><tr><td>Eggplant, cooked</td><td>18.8 g</td></tr><tr><td>Olive oil</td><td>4.7 g</td></tr><tr><td>Fresh ginger</td><td>3.8 g</td></tr><tr><td>Garlic</td><td>1.9 g</td></tr><tr><td>Cumin</td><td>0.9 g</td></tr><tr><td>Turmeric</td><td>0.9 g</td></tr><tr><td>Black peppercorns</td><td>0.3 g</td></tr><tr><td>Cardamom</td><td>0.3 g</td></tr><tr><td>Cloves</td><td>0.2 g</td></tr><tr><td>Salt to taste (assumed)</td><td>1.4 g</td></tr><tr><td>Water (remainder)</td><td>81.7 g</td></tr></table><h3>Served with</h3><table class="tbl"><tr><th>Item</th><th>Amount</th></tr><tr><td>Siggi&#x27;s plain nonfat yogurt, 2 oz</td><td>57 g</td></tr><tr><td>Lemon juice</td><td>10 g</td></tr></table><h3>Nutrients per bowl (estimate, USDA FoodData Central)</h3><table class="tbl"><tr><th>Nutrient</th><th>Soup only</th><th>With yogurt and lemon</th></tr><tr><td>Calories</td><td>300 kcal</td><td>340 kcal</td></tr><tr><td>Protein</td><td>16.2 g</td><td>23.3 g</td></tr><tr><td>Fiber</td><td>15.4 g</td><td>15.4 g</td></tr><tr><td>Calcium</td><td>93 mg</td><td>151 mg</td></tr><tr><td>Potassium</td><td>1,203 mg</td><td>1,293 mg</td></tr><tr><td>Magnesium</td><td>107 mg</td><td>114 mg</td></tr><tr><td>Sodium</td><td>584 mg</td><td>605 mg</td></tr></table><p class="note"><b>Thickness:</b> Medium is this recipe. Thicker soup: more lentils and less water per bowl. Thinner soup: fewer lentils and more water. Adjust the lentil share accordingly.</p><p class="note">Log a bowl by recipe id and bowl weight in grams; every ingredient (including the assumed salt) scales by bowl_g / reference_bowl_g. Served-with items are fixed amounts.</p></section></main><footer>Educational information only, not medical advice. Talk to your doctor about changes.</footer></body></html>
