@@ -4593,7 +4593,7 @@
    "date": "2026-10-27",
    "partial": true,
    "in_progress": true,
-   "partial_note": "Day in progress: lunch and dinner logged; more may be added, so this day is excluded from the Possible gaps averages. Gyro is bought food (no extra salt) using a generic USDA FNDDS gyro sandwich. Beets assumed cooked (~70 g). Feta dip uses feta cheese as a stand-in. Leftover lentil soup (8 oz, 227 g) reuses the Oct 26 bowl composition at half, including its proportional assumed salt; the added pepper gets no extra salt.",
+   "partial_note": "Day in progress: lunch, dinner and evening snack logged; more may be added, so this day is excluded from the Possible gaps averages. Gyro is bought food (no extra salt) using a generic USDA FNDDS gyro sandwich. Beets assumed cooked (~70 g). Feta dip uses feta cheese as a stand-in. Leftover lentil soup (8 oz, 227 g) reuses the Oct 26 bowl composition at half, including its proportional assumed salt; the added pepper gets no extra salt.",
    "entries": [
     {
      "meal": "Lunch",
@@ -4801,6 +4801,33 @@
      "assumed": true,
      "lo": 0.3,
      "hi": 2
+    },
+    {
+     "meal": "Evening snack",
+     "food": "kefir_maplehill",
+     "grams": 85,
+     "label": "Maple Hill kefir 3 oz (85 g; given; label values)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Evening snack",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~9.5 g each assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Evening snack",
+     "food": "pumpkin_seeds",
+     "grams": 15,
+     "label": "Pumpkin seeds 15 g (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
     }
    ]
   }
