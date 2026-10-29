@@ -1066,6 +1066,41 @@ chart_html=(
  +ov_sec[ov_sec.index('<script>'):ov_sec.index('<p class="est">Hatched row')]
  +ov_sec[ov_sec.index('<details><summary>Data table'):]
 )
+# ---- running averages panel (completed days only; recomputed every build) ----
+AVD=sorted([d for d in days if not d.get('in_progress')],key=lambda x:x['date'])
+def _avg(k,which):
+    v=[(res[d['date']][0][k][0] if which!='s' else 0)+(sup[d['date']].get(k,0) if which!='f' else 0) for d in AVD]
+    return sum(v)/len(v) if v else 0
+AVG_C={k:_avg(k,'c') for k,*_ in NUT}; AVG_F={k:_avg(k,'f') for k,*_ in NUT}
+_miss=[d['date'] for d in AVD if any(res[d['date']][1][k] for k,*_ in NUT)]
+def _r10(x): return f'{int(math.floor(x/10+0.5)*10):,}'
+def _lab(ds): return datetime.date.fromisoformat(ds).strftime('%b %-d')
+def avg_panel():
+    if not AVD: return ''
+    rows=''
+    for k,l,u,tg,_ in NUT:
+        c,fo=AVG_C[k],AVG_F[k]
+        if k=='kcal':
+            rows+=f'<tr><td><b>Calories</b></td><td>{_r10(c)}{"+" if any(res[d["date"]][1][k] for d in AVD) else ""}</td><td>{_r10(fo)}{"+" if any(res[d["date"]][1][k] for d in AVD) else ""}</td><td>no target</td></tr>'; continue
+        pl='+' if any(res[d['date']][1][k] for d in AVD) else ''
+        tl=f'{tg:,} {u} limit' if k=='sodium' else f'{tg:,} {u}'
+        rows+=(f'<tr><td>{sw(k)}<b>{l.replace(" (eaten)","")}</b></td><td>{fm0(c)}{pl} {u} <small>({c/tg*100:.0f}%)</small></td>'
+               f'<td>{fm0(fo)}{pl} {u} <small>({fo/tg*100:.0f}%)</small></td><td>{tl}</td></tr>')
+    foot=(f'<p class="est">* Some days are missing data for some foods ({", ".join(_lab(x) for x in _miss)}), so averages may be low (&ldquo;+&rdquo;).</p>' if _miss else '')
+    return ('<section class="day avg" id="avg"><h2>Running averages <span class="badge">updates with every log</span></h2>'
+            f'<p class="est"><b>Average of {len(AVD)} days, {_lab(AVD[0]["date"])} to {_lab(AVD[-1]["date"])}</b> (completed days only; a day still in progress is left out). Percent is of the daily target; sodium is against its limit, so lower is better.</p>'
+            '<table><thead><tr><th>Nutrient</th><th>Food + supplements</th><th>Food only</th><th>Daily target</th></tr></thead><tbody>'+rows+'</tbody></table>'+foot+'</section>')
+# self-check: averages equal an independent recomputation
+for k,*_ in NUT:
+    for which,store in (('c',AVG_C),('f',AVG_F)):
+        rc=0.0
+        for d in AVD:
+            dd=next(x for x in nut['days'] if x['date']==d['date'])
+            fv=sum(foods[e['food']]['per100g'][k]*e['grams']/100 for e in dd['entries'] if foods[e['food']]['per100g'][k] is not None)
+            rc+=fv+(supp_day(d['date']).get(k,0) if which=='c' else 0)
+        rc/=max(len(AVD),1)
+        assert abs(rc-store[k])<1e-6,(k,which,rc,store[k])
+chart_html=chart_html+avg_panel()
 FOOD_BODY=FOOD_BODY.replace('@@CHART@@',chart_html)
 fp=page('Food Log','Daily meals with estimated nutrition, newest first.','f',FOOD_BODY).replace('</style>',FOODCSS+'</style>',1)
 open('food.html','w').write(fp)
