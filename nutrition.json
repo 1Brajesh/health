@@ -1652,6 +1652,82 @@
     "sodium": 277.0,
     "protein": 5.97
    }
+  },
+  "mahimahi": {
+   "name": "Mahi mahi, cooked, dry heat",
+   "approx": false,
+   "note": "Restaurant fillet; preparation unknown (likely grilled); restaurant oil/butter/seasoning not included.",
+   "fdc_id": 171992,
+   "usda_description": "Fish, mahimahi, cooked, dry heat",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/171992/nutrients",
+   "accessed": "2026-10-29",
+   "per100g": {
+    "kcal": 109.0,
+    "protein": 23.72,
+    "fiber": 0.0,
+    "calcium": 19.0,
+    "potassium": 533.0,
+    "magnesium": 38.0,
+    "sodium": 113.0
+   }
+  },
+  "rice_plain": {
+   "name": "White rice, long-grain, cooked",
+   "approx": false,
+   "note": "Plain cooked white rice; unsalted entry, so restaurant salt is not included.",
+   "fdc_id": 168878,
+   "usda_description": "Rice, white, long-grain, regular, enriched, cooked",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/168878/nutrients",
+   "accessed": "2026-10-29",
+   "per100g": {
+    "kcal": 130.0,
+    "protein": 2.69,
+    "fiber": 0.4,
+    "calcium": 10.0,
+    "potassium": 35.0,
+    "magnesium": 12.0,
+    "sodium": 1.0
+   }
+  },
+  "coleslaw_rest": {
+   "name": "Coleslaw, restaurant (family style)",
+   "approx": true,
+   "note": "Restaurant family-style coleslaw with dressing; recipes vary.",
+   "fdc_id": 169026,
+   "usda_description": "Restaurant, family style, coleslaw",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/169026/nutrients",
+   "accessed": "2026-10-29",
+   "per100g": {
+    "kcal": 159.0,
+    "protein": 0.88,
+    "fiber": 1.9,
+    "calcium": 34.0,
+    "potassium": 153.0,
+    "magnesium": 10.0,
+    "sodium": 221.0
+   }
+  },
+  "crab_blue": {
+   "name": "Blue crab, cooked, moist heat (stand-in for stone crab)",
+   "approx": true,
+   "note": "Stand-in: USDA has no stone crab entry; blue crab meat used.",
+   "fdc_id": 174205,
+   "usda_description": "Crustaceans, crab, blue, cooked, moist heat",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/174205/nutrients",
+   "accessed": "2026-10-29",
+   "per100g": {
+    "kcal": 83.0,
+    "protein": 17.88,
+    "fiber": 0.0,
+    "calcium": 91.0,
+    "potassium": 259.0,
+    "magnesium": 36.0,
+    "sodium": 395.0
+   }
   }
  },
  "days": [
@@ -4871,8 +4947,7 @@
   {
    "date": "2026-10-28",
    "partial": true,
-   "in_progress": true,
-   "partial_note": "Day in progress: lunch and dinner logged; day not closed, so excluded from the Possible gaps averages. Soup amounts estimated (17 oz bowl = 482 g, medium). One assumed salt entry for the homemade soup only; dinner items get no added salt. Tuna tartare dressing unknown, not counted.",
+   "partial_note": "Lunch and dinner logged; day closed. Soup amounts estimated (17 oz bowl = 482 g, medium). One assumed salt entry for the homemade soup only; dinner items get no added salt. Tuna tartare dressing unknown, not counted.",
    "entries": [
     {
      "meal": "Lunch: homemade lentil soup (17 oz bowl)",
@@ -5116,6 +5191,77 @@
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
+    }
+   ]
+  },
+  {
+   "date": "2026-10-29",
+   "partial": true,
+   "in_progress": true,
+   "partial_note": "Day in progress: lunch logged. Restaurant portions estimated; no added-salt entry (restaurant food). Restaurant cooking oil/butter not counted. Stone crab uses a blue crab stand-in.",
+   "entries": [
+    {
+     "meal": "Lunch: Garcia's Seafood (restaurant)",
+     "food": "mahimahi",
+     "grams": 170,
+     "label": "Mahi mahi fillet ~170 g cooked (6 oz, estimated; preparation unknown, likely grilled)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.4
+    },
+    {
+     "meal": "Lunch: Garcia's Seafood (restaurant)",
+     "food": "rice_plain",
+     "grams": 150,
+     "label": "Side of white rice ~150 g (about 1 cup, estimated)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch: Garcia's Seafood (restaurant)",
+     "food": "coleslaw_rest",
+     "grams": 100,
+     "label": "Side of coleslaw ~100 g (estimated)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch: Garcia's Seafood (restaurant)",
+     "food": "crab_blue",
+     "grams": 105,
+     "label": "3 medium stone crab claws, ~35 g meat each = ~105 g (estimated; blue crab stand-in)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.4
+    },
+    {
+     "meal": "After lunch",
+     "food": "fairlife_2",
+     "grams": 240,
+     "label": "Fairlife 2% ultra-filtered milk 8 oz (240 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "After lunch",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~28.5 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "After lunch",
+     "food": "pumpkin_seeds",
+     "grams": 10,
+     "label": "Pumpkin seeds 10 g (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
     }
    ]
   }
