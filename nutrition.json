@@ -4872,7 +4872,7 @@
    "date": "2026-10-28",
    "partial": true,
    "in_progress": true,
-   "partial_note": "Day in progress: lunch logged; dinner not yet logged, so this day is excluded from the Possible gaps averages. Soup amounts estimated; user gave ingredients only (17 oz bowl = 482 g, medium thickness; remainder ~87 g water, no nutrients). One assumed salt entry for the homemade soup.",
+   "partial_note": "Day in progress: lunch and dinner logged; day not closed, so excluded from the Possible gaps averages. Soup amounts estimated (17 oz bowl = 482 g, medium). One assumed salt entry for the homemade soup only; dinner items get no added salt. Tuna tartare dressing unknown, not counted.",
    "entries": [
     {
      "meal": "Lunch: homemade lentil soup (17 oz bowl)",
@@ -5026,6 +5026,96 @@
      "assumed": true,
      "lo": 0.5,
      "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "tuna_raw",
+     "grams": 50,
+     "label": "Tuna tartare: raw yellowfin tuna ~50 g (given; outside dish, no added salt; dressing unknown, not counted)",
+     "assumed": false,
+     "lo": 0.8,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner",
+     "food": "corn_tortilla_fried",
+     "grams": 26,
+     "label": "2 small corn tortillas (~4 in), ~13 g each (estimated)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner",
+     "food": "fairlife_2",
+     "grams": 120,
+     "label": "Fairlife 2% ultra-filtered milk 4 oz (120 g; given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner",
+     "food": "kefir_maplehill",
+     "grams": 85,
+     "label": "Maple Hill kefir 3 oz (85 g; given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~28.5 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner",
+     "food": "bread",
+     "grams": 32,
+     "label": "1 slice whole wheat toast ~32 g (estimated)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner",
+     "food": "olive_oil",
+     "grams": 4.5,
+     "label": "Olive oil 'a little', assumed 1 tsp (4.5 g)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "pumpkin_seeds",
+     "grams": 30,
+     "label": "Pumpkin seeds 30 g (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner",
+     "food": "walnuts",
+     "grams": 12,
+     "label": "3 walnuts, assumed 6 halves ~12 g",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner",
+     "food": "avocado",
+     "grams": 91,
+     "label": "2/3 avocado, estimated from medium Hass (~136 g flesh) ~91 g",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
     }
    ]
   }
