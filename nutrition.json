@@ -2924,7 +2924,7 @@
      "meal": "Afternoon snack (time not given)",
      "food": "milk_2",
      "grams": 122.0,
-     "label": "Caf\u00e9 con leche: ~4 oz 2% steamed milk (assumed half of 8 oz)",
+     "label": "Café con leche: ~4 oz 2% steamed milk (assumed half of 8 oz)",
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
@@ -2933,7 +2933,7 @@
      "meal": "Afternoon snack (time not given)",
      "food": "coffee",
      "grams": 118.0,
-     "label": "Caf\u00e9 con leche: ~4 oz brewed coffee (assumed half of 8 oz; espresso treated as brewed)",
+     "label": "Café con leche: ~4 oz brewed coffee (assumed half of 8 oz; espresso treated as brewed)",
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
@@ -5216,8 +5216,7 @@
   {
    "date": "2026-10-29",
    "partial": true,
-   "in_progress": true,
-   "partial_note": "Day in progress: lunch and dinner logged. Restaurant lunch portions estimated; no added salt for restaurant food. Dinner soup = recipe lentil_soup_medium scaled 454/482 (includes its assumed salt share). Stone crab uses blue crab stand-in; Guinness 0.0 uses USDA non-alcoholic beer stand-in.",
+   "partial_note": "Day closed: lunch and dinner logged (nothing else reported). Restaurant lunch portions estimated; no added salt for restaurant food. Dinner soup = recipe lentil_soup_medium scaled 454/482 (includes its assumed salt share). Stone crab uses blue crab stand-in; Guinness 0.0 uses USDA non-alcoholic beer stand-in.",
    "entries": [
     {
      "meal": "Lunch: Garcia's Seafood (restaurant)",
@@ -5460,6 +5459,68 @@
      "label": "Guinness 0.0 alcohol-free 4 oz (~118 g; USDA non-alcoholic beer stand-in)",
      "assumed": true,
      "lo": 0.5,
+     "hi": 1.1
+    }
+   ]
+  },
+  {
+   "date": "2026-10-30",
+   "partial": true,
+   "in_progress": true,
+   "partial_note": "Day in progress: lunch logged. Portions estimated from photos.",
+   "entries": [
+    {
+     "meal": "Lunch: home-cooked (photo-based)",
+     "food": "egg_fried",
+     "grams": 138,
+     "label": "3 large eggs, fried in olive oil ~138 g as fried (photo-based, estimated)",
+     "assumed": true,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch: home-cooked (photo-based)",
+     "food": "bread",
+     "grams": 90,
+     "label": "2 large slices whole wheat toast ~45 g each = 90 g (photo-based, estimated)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.4
+    },
+    {
+     "meal": "Lunch: home-cooked (photo-based)",
+     "food": "kale_raw",
+     "grams": 170,
+     "label": "Steamed kale ~170 g raw (~10 leaves at ~17 g; photo-based, estimated)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
+    },
+    {
+     "meal": "Lunch: home-cooked (photo-based)",
+     "food": "olive_oil",
+     "grams": 9,
+     "label": "Olive oil ~2 tsp (9 g) across eggs, toast and kale (assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch: home-cooked (photo-based)",
+     "food": "salt_table",
+     "grams": 1.5,
+     "label": "Salt to taste, assumed (~1/4 tsp) - one entry for the home-cooked meal",
+     "assumed": true,
+     "lo": 0.3,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch: home-cooked (photo-based)",
+     "food": "kombucha",
+     "grams": 240,
+     "label": "Kombucha 8 oz (240 g)",
+     "assumed": false,
+     "lo": 0.9,
      "hi": 1.1
     }
    ]
