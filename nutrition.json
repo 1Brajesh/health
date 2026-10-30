@@ -5467,7 +5467,7 @@
    "date": "2026-10-30",
    "partial": true,
    "in_progress": true,
-   "partial_note": "Day in progress: lunch logged. Portions estimated from photos.",
+   "partial_note": "Day in progress: lunch logged (incl. 8 oz Fairlife 2% and 3 prunes). Portions estimated from photos.",
    "entries": [
     {
      "meal": "Lunch: home-cooked (photo-based)",
@@ -5519,6 +5519,24 @@
      "food": "kombucha",
      "grams": 240,
      "label": "Kombucha 8 oz (240 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch: home-cooked (photo-based)",
+     "food": "fairlife_2",
+     "grams": 240,
+     "label": "Fairlife 2% ultra-filtered milk 8 oz (240 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch: home-cooked (photo-based)",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~9.5 g each = 28.5 g)",
      "assumed": false,
      "lo": 0.9,
      "hi": 1.1
