@@ -1728,6 +1728,25 @@
     "magnesium": 36.0,
     "sodium": 395.0
    }
+  },
+  "beer_na": {
+   "name": "Non-alcoholic beer (USDA malt beverage; stand-in for Guinness 0.0)",
+   "approx": true,
+   "note": "Stand-in: USDA SR Legacy 174863 'Malt beverage, includes non-alcoholic beer'. Guinness 0.0's own label is reportedly lower in calories (~17 kcal/100 ml, not verified here), so calories may be overstated.",
+   "fdc_id": 174863,
+   "usda_description": "Malt beverage, includes non-alcoholic beer",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/174863/nutrients",
+   "accessed": "2026-10-29",
+   "per100g": {
+    "kcal": 37.0,
+    "protein": 0.21,
+    "fiber": 0.0,
+    "calcium": 7.0,
+    "potassium": 8.0,
+    "magnesium": 7.0,
+    "sodium": 13.0
+   }
   }
  },
  "days": [
@@ -2905,7 +2924,7 @@
      "meal": "Afternoon snack (time not given)",
      "food": "milk_2",
      "grams": 122.0,
-     "label": "Café con leche: ~4 oz 2% steamed milk (assumed half of 8 oz)",
+     "label": "Caf\u00e9 con leche: ~4 oz 2% steamed milk (assumed half of 8 oz)",
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
@@ -2914,7 +2933,7 @@
      "meal": "Afternoon snack (time not given)",
      "food": "coffee",
      "grams": 118.0,
-     "label": "Café con leche: ~4 oz brewed coffee (assumed half of 8 oz; espresso treated as brewed)",
+     "label": "Caf\u00e9 con leche: ~4 oz brewed coffee (assumed half of 8 oz; espresso treated as brewed)",
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
@@ -5198,7 +5217,7 @@
    "date": "2026-10-29",
    "partial": true,
    "in_progress": true,
-   "partial_note": "Day in progress: lunch logged. Restaurant portions estimated; no added-salt entry (restaurant food). Restaurant cooking oil/butter not counted. Stone crab uses a blue crab stand-in.",
+   "partial_note": "Day in progress: lunch and dinner logged. Restaurant lunch portions estimated; no added salt for restaurant food. Dinner soup = recipe lentil_soup_medium scaled 454/482 (includes its assumed salt share). Stone crab uses blue crab stand-in; Guinness 0.0 uses USDA non-alcoholic beer stand-in.",
    "entries": [
     {
      "meal": "Lunch: Garcia's Seafood (restaurant)",
@@ -5261,6 +5280,186 @@
      "label": "Pumpkin seeds 10 g (given)",
      "assumed": false,
      "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner: homemade lentil soup (16 oz bowl)",
+     "food": "lentils",
+     "grams": 141.29,
+     "label": "Lentils, cooked ~141.29 g (recipe lentil_soup_medium x 454/482, estimated)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner: homemade lentil soup (16 oz bowl)",
+     "food": "tomato",
+     "grams": 94.19,
+     "label": "Tomatoes ~94.19 g (recipe lentil_soup_medium x 454/482, estimated)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner: homemade lentil soup (16 oz bowl)",
+     "food": "potato",
+     "grams": 42.39,
+     "label": "Potato, boiled ~42.39 g (recipe lentil_soup_medium x 454/482, estimated)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner: homemade lentil soup (16 oz bowl)",
+     "food": "onion",
+     "grams": 32.97,
+     "label": "Onion ~32.97 g (recipe lentil_soup_medium x 454/482, estimated)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner: homemade lentil soup (16 oz bowl)",
+     "food": "spinach",
+     "grams": 28.26,
+     "label": "Spinach (raw weight) ~28.26 g (recipe lentil_soup_medium x 454/482, estimated)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner: homemade lentil soup (16 oz bowl)",
+     "food": "eggplant",
+     "grams": 18.84,
+     "label": "Eggplant, cooked ~18.84 g (recipe lentil_soup_medium x 454/482, estimated)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner: homemade lentil soup (16 oz bowl)",
+     "food": "olive_oil",
+     "grams": 4.71,
+     "label": "Olive oil ~4.71 g (recipe lentil_soup_medium x 454/482, estimated)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner: homemade lentil soup (16 oz bowl)",
+     "food": "ginger",
+     "grams": 3.77,
+     "label": "Fresh ginger ~3.77 g (recipe lentil_soup_medium x 454/482, estimated)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner: homemade lentil soup (16 oz bowl)",
+     "food": "garlic",
+     "grams": 1.88,
+     "label": "Garlic ~1.88 g (recipe lentil_soup_medium x 454/482, estimated)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner: homemade lentil soup (16 oz bowl)",
+     "food": "cumin",
+     "grams": 0.94,
+     "label": "Cumin ~0.94 g (recipe lentil_soup_medium x 454/482, estimated)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner: homemade lentil soup (16 oz bowl)",
+     "food": "turmeric",
+     "grams": 0.94,
+     "label": "Turmeric ~0.94 g (recipe lentil_soup_medium x 454/482, estimated)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner: homemade lentil soup (16 oz bowl)",
+     "food": "black_pepper",
+     "grams": 0.28,
+     "label": "Black peppercorns ~0.28 g (recipe lentil_soup_medium x 454/482, estimated)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner: homemade lentil soup (16 oz bowl)",
+     "food": "cardamom",
+     "grams": 0.28,
+     "label": "Cardamom ~0.28 g (recipe lentil_soup_medium x 454/482, estimated)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner: homemade lentil soup (16 oz bowl)",
+     "food": "cloves",
+     "grams": 0.19,
+     "label": "Cloves ~0.19 g (recipe lentil_soup_medium x 454/482, estimated)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner: homemade lentil soup (16 oz bowl)",
+     "food": "salt_table",
+     "grams": 1.41,
+     "label": "Salt to taste (assumed) ~1.41 g (recipe lentil_soup_medium x 454/482, estimated)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner: homemade lentil soup (16 oz bowl)",
+     "food": "lemon_juice",
+     "grams": 9.4,
+     "label": "Lemon juice ~9.4 g (estimated, scaled from 10 g per 482 g bowl)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner",
+     "food": "kefir_maplehill",
+     "grams": 85,
+     "label": "Maple Hill kefir 3 oz (85 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~28.5 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner",
+     "food": "pumpkin_seeds",
+     "grams": 10,
+     "label": "Pumpkin seeds 10 g (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner",
+     "food": "beer_na",
+     "grams": 118,
+     "label": "Guinness 0.0 alcohol-free 4 oz (~118 g; USDA non-alcoholic beer stand-in)",
+     "assumed": true,
+     "lo": 0.5,
      "hi": 1.1
     }
    ]

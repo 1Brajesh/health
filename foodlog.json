@@ -143,7 +143,7 @@
    },
    {
     "meal": "Afternoon snack (time not given)",
-    "items": "Café con leche 8 oz (assumed ~4 oz 2% milk + ~4 oz brewed coffee; no sugar mentioned, none assumed). Status: eaten."
+    "items": "Caf\u00e9 con leche 8 oz (assumed ~4 oz 2% milk + ~4 oz brewed coffee; no sugar mentioned, none assumed). Status: eaten."
    },
    {
     "meal": "Evening (time not given)",
@@ -164,7 +164,7 @@
   "meals": [
    {
     "meal": "Lunch (12:30 PM)",
-    "items": "Decaf café latte 8 oz (assumed ~150 g 2% milk + ~60 g coffee; decaf, caffeine negligible). Salad: 1/2 onion (~55 g assumed, half of a medium onion), tomato (~100 g assumed), 20 g pumpkin seeds, lemon juice (~15 g assumed), a little olive oil (~1 tsp assumed), salt to taste (amount assumed). Lentils (1 cup cooked assumed) mixed with potato-eggplant curry (same assumed components as Oct 16), salt to taste (amount assumed). Dessert: 3/4 of a single-serve skyr, same as Oct 17 (~112.5 g). Status: eaten."
+    "items": "Decaf caf\u00e9 latte 8 oz (assumed ~150 g 2% milk + ~60 g coffee; decaf, caffeine negligible). Salad: 1/2 onion (~55 g assumed, half of a medium onion), tomato (~100 g assumed), 20 g pumpkin seeds, lemon juice (~15 g assumed), a little olive oil (~1 tsp assumed), salt to taste (amount assumed). Lentils (1 cup cooked assumed) mixed with potato-eggplant curry (same assumed components as Oct 16), salt to taste (amount assumed). Dessert: 3/4 of a single-serve skyr, same as Oct 17 (~112.5 g). Status: eaten."
    },
    {
     "meal": "Dinner (~8 PM, time approximate)",
@@ -372,6 +372,10 @@
    {
     "meal": "After lunch",
     "items": "8 oz Fairlife 2% ultra-filtered milk; 3 prunes; 10 g pumpkin seeds. Status: eaten."
+   },
+   {
+    "meal": "Dinner",
+    "items": "16 oz homemade lentil soup (same batch as Oct 28 lunch; recipe lentil_soup_medium), salt to taste (assumed), with a little lemon juice (no yogurt); 3 oz Maple Hill kefir; 3 prunes; 10 g pumpkin seeds; 4 oz Guinness 0.0 (alcohol-free). Status: eaten."
    }
   ]
  }
