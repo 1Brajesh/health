@@ -5490,9 +5490,9 @@
     {
      "meal": "Lunch: home-cooked (photo-based)",
      "food": "kale_raw",
-     "grams": 170,
-     "label": "Steamed kale ~170 g raw (~10 leaves at ~17 g; photo-based, estimated)",
-     "assumed": true,
+     "grams": 85,
+     "label": "Steamed kale, 5 leaves (~8-inch stalks), ~85 g raw",
+     "assumed": false,
      "lo": 0.6,
      "hi": 1.4
     },
