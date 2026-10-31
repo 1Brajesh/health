@@ -545,16 +545,16 @@
    }
   },
   "wf_lentil_soup": {
-   "name": "Whole Foods Market lentil soup (1 cup, 245 g)",
+   "name": "Whole Foods 'Vegan Lentil Dal & Spinach Soup' (hot bar; 1 cup, 245 g)",
    "approx": true,
-   "note": "Branded USDA entry (Kettle Cuisine for Whole Foods). Blank label nutrients (potassium, magnesium) filled with USDA FNDDS (Survey) 2707462 (Soup, lentil) stand-in, accessed 2026-10-25.",
+   "note": "Calories from the Whole Foods store label (printed 09/08/26): 180 kcal per 8 oz (227 g) = 79 kcal/100 g; label beats database. The label lists no other nutrients, so protein, fiber, calcium and sodium are estimates from USDA Branded 2061447 (WHOLE FOODS MARKET, LENTIL SOUP, a different recipe), and potassium/magnesium from USDA FNDDS 2707462 (Soup, lentil) stand-in, accessed 2026-10-25. This soup contains coconut milk, so its fat (incl. saturated fat) may differ from the stand-in. Ingredients (store label printed 09/08/26, photographed by Brajesh 2026-10-31): red lentil soup (water, diced tomatoes (tomatoes, tomato juice, salt, citric acid), onions, coconut milk (coconut extract, water), red lentils, spinach, lime juice concentrate, extra virgin olive oil, sea salt, cumin seed, garlic, turmeric, cinnamon, chile peppers, cardamom, black peppercorn). Vegan; contains coconut.",
    "fdc_id": 2061447,
    "usda_description": "WHOLE FOODS MARKET, LENTIL SOUP",
    "data_type": "Branded",
    "source": "https://fdc.nal.usda.gov/food-details/2061447/nutrients",
    "accessed": "2026-10-15",
    "per100g": {
-    "kcal": 114.0,
+    "kcal": 79.0,
     "protein": 4.9,
     "fiber": 6.1,
     "calcium": 24.0,
@@ -564,8 +564,14 @@
    },
    "nutrient_sources": {
     "potassium": "USDA FNDDS (Survey) 2707462 (Soup, lentil) stand-in, accessed 2026-10-25",
-    "magnesium": "USDA FNDDS (Survey) 2707462 (Soup, lentil) stand-in, accessed 2026-10-25"
-   }
+    "magnesium": "USDA FNDDS (Survey) 2707462 (Soup, lentil) stand-in, accessed 2026-10-25",
+    "kcal": "Whole Foods store label printed 09/08/26: 180 kcal per 8 oz (227 g), photo 2026-10-31",
+    "protein": "Estimate: USDA Branded 2061447 (WHOLE FOODS MARKET, LENTIL SOUP) stand-in; not on store label",
+    "fiber": "Estimate: USDA Branded 2061447 (WHOLE FOODS MARKET, LENTIL SOUP) stand-in; not on store label",
+    "calcium": "Estimate: USDA Branded 2061447 (WHOLE FOODS MARKET, LENTIL SOUP) stand-in; not on store label",
+    "sodium": "Estimate: USDA Branded 2061447 (WHOLE FOODS MARKET, LENTIL SOUP) stand-in; not on store label"
+   },
+   "label_source": "Whole Foods store label printed 09/08/26 (photo 2026-10-31)"
   },
   "siggis": {
    "name": "Siggi's plain 0% strained yogurt",

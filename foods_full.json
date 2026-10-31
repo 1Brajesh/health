@@ -173,14 +173,14 @@
   {
    "key": "selenium",
    "label": "Selenium",
-   "unit": "\u00b5g",
+   "unit": "µg",
    "group": "mineral",
    "fdc_nutrient_id": 1103
   },
   {
    "key": "vita",
    "label": "Vitamin A (RAE)",
-   "unit": "\u00b5g",
+   "unit": "µg",
    "group": "vitamin",
    "fdc_nutrient_id": 1106
   },
@@ -194,7 +194,7 @@
   {
    "key": "vitd",
    "label": "Vitamin D",
-   "unit": "\u00b5g",
+   "unit": "µg",
    "group": "vitamin",
    "fdc_nutrient_id": 1114
   },
@@ -208,7 +208,7 @@
   {
    "key": "vitk",
    "label": "Vitamin K",
-   "unit": "\u00b5g",
+   "unit": "µg",
    "group": "vitamin",
    "fdc_nutrient_id": 1185
   },
@@ -250,14 +250,14 @@
   {
    "key": "folate",
    "label": "Folate (DFE)",
-   "unit": "\u00b5g",
+   "unit": "µg",
    "group": "vitamin",
    "fdc_nutrient_id": 1190
   },
   {
    "key": "b12",
    "label": "Vitamin B12",
-   "unit": "\u00b5g",
+   "unit": "µg",
    "group": "vitamin",
    "fdc_nutrient_id": 1178
   },
@@ -677,7 +677,7 @@
    "source": "https://fdc.nal.usda.gov/food-details/171277/nutrients",
    "accessed": "2026-10-18",
    "proxy": true,
-   "note": "Homemade hot chocolate with milk used as a stand-in; mixes and caf\u00e9 versions vary.",
+   "note": "Homemade hot chocolate with milk used as a stand-in; mixes and café versions vary.",
    "extra": false,
    "per100g": {
     "kcal": 77.0,
