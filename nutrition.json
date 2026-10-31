@@ -3025,7 +3025,7 @@
      "meal": "Afternoon snack (time not given)",
      "food": "milk_2",
      "grams": 122.0,
-     "label": "Café con leche: ~4 oz 2% steamed milk (assumed half of 8 oz)",
+     "label": "Caf\u00e9 con leche: ~4 oz 2% steamed milk (assumed half of 8 oz)",
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
@@ -3034,7 +3034,7 @@
      "meal": "Afternoon snack (time not given)",
      "food": "coffee",
      "grams": 118.0,
-     "label": "Café con leche: ~4 oz brewed coffee (assumed half of 8 oz; espresso treated as brewed)",
+     "label": "Caf\u00e9 con leche: ~4 oz brewed coffee (assumed half of 8 oz; espresso treated as brewed)",
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
@@ -5567,8 +5567,7 @@
   {
    "date": "2026-10-30",
    "partial": true,
-   "in_progress": true,
-   "partial_note": "Day in progress: lunch, dinner (Whole Foods lentil soup) and evening party food logged. Party portions and types partly assumed.",
+   "partial_note": "Lunch, dinner (Whole Foods lentil soup) and evening party food logged. Party portions and types partly assumed.",
    "entries": [
     {
      "meal": "Lunch: home-cooked (photo-based)",
@@ -5728,6 +5727,59 @@
      "food": "prunes",
      "grams": 28.5,
      "label": "3 prunes (~9.5 g each = 28.5 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    }
+   ]
+  },
+  {
+   "date": "2026-10-31",
+   "partial": true,
+   "in_progress": true,
+   "partial_note": "Day in progress: lunch logged.",
+   "entries": [
+    {
+     "meal": "Lunch: Whole Foods lentil soup (store-bought, garlic & onion added)",
+     "food": "wf_lentil_soup",
+     "grams": 397,
+     "label": "Whole Foods Vegan Lentil Dal & Spinach Soup 14 oz (~397 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch: Whole Foods lentil soup (store-bought, garlic & onion added)",
+     "food": "garlic",
+     "grams": 3,
+     "label": "1 garlic clove added (~3 g, assumed clove)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.5
+    },
+    {
+     "meal": "Lunch: Whole Foods lentil soup (store-bought, garlic & onion added)",
+     "food": "onion",
+     "grams": 28,
+     "label": "1/4 medium onion added (~28 g raw, assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.4
+    },
+    {
+     "meal": "Lunch: Whole Foods lentil soup (store-bought, garlic & onion added)",
+     "food": "kombucha",
+     "grams": 240,
+     "label": "Kombucha 8 oz (240 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch: Whole Foods lentil soup (store-bought, garlic & onion added)",
+     "food": "pumpkin_seeds",
+     "grams": 10,
+     "label": "Pumpkin seeds 10 g",
      "assumed": false,
      "lo": 0.9,
      "hi": 1.1
