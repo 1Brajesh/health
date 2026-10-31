@@ -1747,6 +1747,101 @@
     "magnesium": 7.0,
     "sodium": 13.0
    }
+  },
+  "bread_white": {
+   "name": "White bread, commercial (stand-in for party bread)",
+   "approx": true,
+   "note": "Bread type unknown; generic commercial white bread assumed.",
+   "fdc_id": 174924,
+   "usda_description": "Bread, white, commercially prepared (includes soft bread crumbs)",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/174924/nutrients",
+   "accessed": "2026-10-31",
+   "per100g": {
+    "kcal": 266.0,
+    "protein": 8.85,
+    "fiber": 2.7,
+    "calcium": 144.0,
+    "potassium": 126.0,
+    "magnesium": 23.0,
+    "sodium": 490.0
+   }
+  },
+  "hummus": {
+   "name": "Hummus, commercial (stand-in for unknown party dips)",
+   "approx": true,
+   "note": "Dips unknown; plain commercial hummus used as a stand-in.",
+   "fdc_id": 174289,
+   "usda_description": "Hummus, commercial",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/174289/nutrients",
+   "accessed": "2026-10-31",
+   "per100g": {
+    "kcal": 237.0,
+    "protein": 7.78,
+    "fiber": 5.5,
+    "calcium": 47.0,
+    "potassium": 312.0,
+    "magnesium": 75.0,
+    "sodium": 426.0
+   }
+  },
+  "oreo": {
+   "name": "Chocolate sandwich cookie with creme filling (Oreo-type)",
+   "approx": true,
+   "note": "Generic chocolate sandwich cookie entry used for Oreo.",
+   "fdc_id": 172718,
+   "usda_description": "Cookies, chocolate sandwich, with creme filling, regular",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/172718/nutrients",
+   "accessed": "2026-10-31",
+   "per100g": {
+    "kcal": 464.0,
+    "protein": 5.21,
+    "fiber": 2.9,
+    "calcium": 21.0,
+    "potassium": 234.0,
+    "magnesium": 47.0,
+    "sodium": 388.0
+   }
+  },
+  "beer_regular": {
+   "name": "Beer, regular",
+   "approx": true,
+   "note": "Regular beer; brand unknown.",
+   "fdc_id": 168746,
+   "usda_description": "Alcoholic beverage, beer, regular, all",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/168746/nutrients",
+   "accessed": "2026-10-31",
+   "per100g": {
+    "kcal": 43.0,
+    "protein": 0.46,
+    "fiber": 0.0,
+    "calcium": 4.0,
+    "potassium": 27.0,
+    "magnesium": 6.0,
+    "sodium": 4.0
+   }
+  },
+  "muffin_blueberry": {
+   "name": "Blueberry muffin, commercial (stand-in for small muffin)",
+   "approx": true,
+   "note": "Muffin type unknown; commercial blueberry muffin assumed.",
+   "fdc_id": 172765,
+   "usda_description": "Muffins, blueberry, commercially prepared (Includes mini-muffins)",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/172765/nutrients",
+   "accessed": "2026-10-31",
+   "per100g": {
+    "kcal": 375.0,
+    "protein": 4.49,
+    "fiber": 1.1,
+    "calcium": 44.0,
+    "potassium": 121.0,
+    "magnesium": 10.0,
+    "sodium": 336.0
+   }
   }
  },
  "days": [
@@ -5467,7 +5562,7 @@
    "date": "2026-10-30",
    "partial": true,
    "in_progress": true,
-   "partial_note": "Day in progress: lunch logged (incl. 8 oz Fairlife 2% and 3 prunes). Portions estimated from photos.",
+   "partial_note": "Day in progress: lunch, dinner (Whole Foods lentil soup) and evening party food logged. Party portions and types partly assumed.",
    "entries": [
     {
      "meal": "Lunch: home-cooked (photo-based)",
@@ -5534,6 +5629,96 @@
     },
     {
      "meal": "Lunch: home-cooked (photo-based)",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~9.5 g each = 28.5 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner: Whole Foods lentil soup",
+     "food": "wf_lentil_soup",
+     "grams": 227,
+     "label": "Whole Foods lentil soup 8 oz (~227 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Evening: party (store-bought/party food)",
+     "food": "bread_white",
+     "grams": 100,
+     "label": "Bread ~100 g of the 150 g bread and dips (assumed split; bread type assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Evening: party (store-bought/party food)",
+     "food": "hummus",
+     "grams": 50,
+     "label": "Dips ~50 g of the 150 g bread and dips (dips unknown; hummus stand-in, assumed)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.6
+    },
+    {
+     "meal": "Evening: party (store-bought/party food)",
+     "food": "potato_chips",
+     "grams": 30,
+     "label": "~25 potato chips, ~1.2 g each = ~30 g (plain salted assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.4
+    },
+    {
+     "meal": "Evening: party (store-bought/party food)",
+     "food": "oreo",
+     "grams": 11,
+     "label": "1 Oreo cookie (~11 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Evening: party (store-bought/party food)",
+     "food": "beer_regular",
+     "grams": 89,
+     "label": "Beer 3 oz (~89 g), regular beer assumed",
+     "assumed": true,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Evening: party (store-bought/party food)",
+     "food": "chicken_breast",
+     "grams": 113,
+     "label": "Chicken breast 4 oz (113 g) cooked; roasted, meat only assumed",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.3
+    },
+    {
+     "meal": "Evening: party (store-bought/party food)",
+     "food": "muffin_blueberry",
+     "grams": 57,
+     "label": "Small muffin ~57 g (blueberry, commercial assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.5
+    },
+    {
+     "meal": "Evening: party (store-bought/party food)",
+     "food": "kefir_maplehill",
+     "grams": 57,
+     "label": "Maple Hill kefir 2 oz (57 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Evening: party (store-bought/party food)",
      "food": "prunes",
      "grams": 28.5,
      "label": "3 prunes (~9.5 g each = 28.5 g)",
