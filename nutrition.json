@@ -5831,8 +5831,7 @@
   {
    "date": "2026-10-31",
    "partial": true,
-   "in_progress": true,
-   "partial_note": "Day in progress: lunch and dinner logged.",
+   "partial_note": "Day closed: lunch and dinner logged (nothing else reported). Lunch: Whole Foods lentil soup (label calories) with assumed 1 garlic clove; no added salt. Suviche dinner portions estimated; cancha uses corn nuts stand-in, spring roll uses egg roll stand-in.",
    "entries": [
     {
      "meal": "Lunch: Whole Foods lentil soup (store-bought, garlic & onion added)",
@@ -5983,6 +5982,86 @@
      "food": "pumpkin_seeds",
      "grams": 10,
      "label": "Pumpkin seeds 10 g",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    }
+   ]
+  },
+  {
+   "date": "2026-11-01",
+   "partial": true,
+   "in_progress": true,
+   "partial_note": "Day in progress: lunch logged.",
+   "entries": [
+    {
+     "meal": "Lunch: home (photo-based)",
+     "food": "avocado",
+     "grams": 136,
+     "label": "1 medium Hass avocado, flesh ~136 g (photo-based, estimated)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.4
+    },
+    {
+     "meal": "Lunch: home (photo-based)",
+     "food": "bread",
+     "grams": 90,
+     "label": "2 slices whole wheat toast ~45 g each = 90 g (photo-based, estimated)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.4
+    },
+    {
+     "meal": "Lunch: home (photo-based)",
+     "food": "olive_oil",
+     "grams": 4.5,
+     "label": "Olive oil \"a little\" ~1 tsp (4.5 g, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch: home (photo-based)",
+     "food": "salt_table",
+     "grams": 1.5,
+     "label": "Salt to taste, assumed (~1/4 tsp) - one entry for the meal",
+     "assumed": true,
+     "lo": 0.3,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch: home (photo-based)",
+     "food": "black_pepper",
+     "grams": 0.3,
+     "label": "Black pepper sprinkle ~0.3 g (visible in photo, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch: home (photo-based)",
+     "food": "fairlife_2",
+     "grams": 240,
+     "label": "Fairlife 2% ultra-filtered milk 8 oz (240 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch: home (photo-based)",
+     "food": "pumpkin_seeds",
+     "grams": 20,
+     "label": "Pumpkin seeds 20 g",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch: home (photo-based)",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~9.5 g each = 28.5 g)",
      "assumed": false,
      "lo": 0.9,
      "hi": 1.1
