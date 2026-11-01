@@ -20,7 +20,7 @@ NUTS=[ # key,label,unit,group,fdc nutrient id
 EXTRA=[('sweet_potato_raw',168482),('sweet_potato_baked',168483),('kale_boiled',169238),('bok_choy_raw',170390),('bok_choy_boiled',170391),
 ('collards_raw',170406),('collards_boiled',170407),('broccoli_raw',170379)]
 PUB={ # public, generic notes for stand-in entries (no personal details)
-'polish_sausage':'Generic pork Polish sausage; brand not specified.','milk_2':'2% reduced-fat milk entry used for milk in general.',
+'salmon_farmed_raw':'Raw farmed Atlantic salmon used for restaurant poke; wild vs farmed unknown.','edamame':'Frozen prepared edamame.','wakame':'Raw wakame used as a stand-in for seaweed salad; dressed seaweed salad has added sugar, oil and salt.','egg_roll_rest':'Restaurant egg roll used as a stand-in for a beef spring roll (USDA has no beef spring roll entry).','corn_nuts':'Barbecue-flavor corn nuts used as a stand-in for Peruvian cancha toasted corn.','polish_sausage':'Generic pork Polish sausage; brand not specified.','milk_2':'2% reduced-fat milk entry used for milk in general.',
 'croissant':'Plain butter croissant; USDA has no chocolate croissant, so a chocolate one would have a little more sugar and calories.',
 'pork_shoulder':'Braised pork shoulder entry used as a stand-in for pulled pork; sauce not included.',
 'popcorn':'Unsalted air-popped entry; salted or oil-popped popcorn would have more sodium and fat.',

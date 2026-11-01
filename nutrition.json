@@ -1848,6 +1848,101 @@
     "magnesium": 10.0,
     "sodium": 336.0
    }
+  },
+  "salmon_farmed_raw": {
+   "name": "Atlantic salmon, farmed, raw (poke)",
+   "approx": true,
+   "note": "Farmed raw Atlantic salmon used for restaurant poke; wild vs farmed unknown.",
+   "fdc_id": 175167,
+   "usda_description": "Fish, salmon, Atlantic, farmed, raw",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/175167/nutrients",
+   "accessed": "2026-11-01",
+   "per100g": {
+    "kcal": 208.0,
+    "protein": 20.42,
+    "fiber": 0.0,
+    "calcium": 9.0,
+    "potassium": 363.0,
+    "magnesium": 27.0,
+    "sodium": 59.0
+   }
+  },
+  "edamame": {
+   "name": "Edamame, prepared",
+   "approx": false,
+   "note": "Frozen prepared edamame.",
+   "fdc_id": 168411,
+   "usda_description": "Edamame, frozen, prepared",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/168411/nutrients",
+   "accessed": "2026-11-01",
+   "per100g": {
+    "kcal": 121.0,
+    "protein": 11.91,
+    "fiber": 5.2,
+    "calcium": 63.0,
+    "potassium": 436.0,
+    "magnesium": 64.0,
+    "sodium": 6.0
+   }
+  },
+  "wakame": {
+   "name": "Seaweed (wakame), raw",
+   "approx": true,
+   "note": "Raw wakame used as a stand-in for seaweed salad; dressed seaweed salad has added sugar, oil and salt.",
+   "fdc_id": 170496,
+   "usda_description": "Seaweed, wakame, raw",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/170496/nutrients",
+   "accessed": "2026-11-01",
+   "per100g": {
+    "kcal": 45.0,
+    "protein": 3.03,
+    "fiber": 0.5,
+    "calcium": 150.0,
+    "potassium": 50.0,
+    "magnesium": 107.0,
+    "sodium": 872.0
+   }
+  },
+  "egg_roll_rest": {
+   "name": "Egg roll, restaurant (stand-in for beef spring roll)",
+   "approx": true,
+   "note": "Restaurant Chinese egg roll used as a stand-in for a beef spring roll; USDA has no beef spring roll entry.",
+   "fdc_id": 167667,
+   "usda_description": "Restaurant, Chinese, egg rolls, assorted",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/167667/nutrients",
+   "accessed": "2026-11-01",
+   "per100g": {
+    "kcal": 250.0,
+    "protein": 8.28,
+    "fiber": 2.6,
+    "calcium": 40.0,
+    "potassium": 165.0,
+    "magnesium": 18.0,
+    "sodium": 468.0
+   }
+  },
+  "corn_nuts": {
+   "name": "Corn nuts (stand-in for cancha toasted corn)",
+   "approx": true,
+   "note": "Barbecue-flavor corn nuts (the only SR corn-nut entry) used as a stand-in for Peruvian cancha toasted corn; plain cancha differs slightly in sodium.",
+   "fdc_id": 169672,
+   "usda_description": "Snacks, cornnuts, barbecue-flavor",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/169672/nutrients",
+   "accessed": "2026-11-01",
+   "per100g": {
+    "kcal": 436.0,
+    "protein": 9.0,
+    "fiber": 8.4,
+    "calcium": 17.0,
+    "potassium": 286.0,
+    "magnesium": 109.0,
+    "sodium": 600.0
+   }
   }
  },
  "days": [
@@ -3025,7 +3120,7 @@
      "meal": "Afternoon snack (time not given)",
      "food": "milk_2",
      "grams": 122.0,
-     "label": "Caf\u00e9 con leche: ~4 oz 2% steamed milk (assumed half of 8 oz)",
+     "label": "Café con leche: ~4 oz 2% steamed milk (assumed half of 8 oz)",
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
@@ -3034,7 +3129,7 @@
      "meal": "Afternoon snack (time not given)",
      "food": "coffee",
      "grams": 118.0,
-     "label": "Caf\u00e9 con leche: ~4 oz brewed coffee (assumed half of 8 oz; espresso treated as brewed)",
+     "label": "Café con leche: ~4 oz brewed coffee (assumed half of 8 oz; espresso treated as brewed)",
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
@@ -5737,7 +5832,7 @@
    "date": "2026-10-31",
    "partial": true,
    "in_progress": true,
-   "partial_note": "Day in progress: lunch logged.",
+   "partial_note": "Day in progress: lunch and dinner logged.",
    "entries": [
     {
      "meal": "Lunch: Whole Foods lentil soup (store-bought, garlic & onion added)",
@@ -5777,6 +5872,114 @@
     },
     {
      "meal": "Lunch: Whole Foods lentil soup (store-bought, garlic & onion added)",
+     "food": "pumpkin_seeds",
+     "grams": 10,
+     "label": "Pumpkin seeds 10 g",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner: Suviche (restaurant)",
+     "food": "salmon_farmed_raw",
+     "grams": 113,
+     "label": "Poke bowl: raw salmon ~4 oz (~113 g, estimated typical poke portion; farmed assumed)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner: Suviche (restaurant)",
+     "food": "sushi_rice",
+     "grams": 50,
+     "label": "Poke bowl: 25% of rice (~50 g of an assumed ~200 g, estimated)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner: Suviche (restaurant)",
+     "food": "cucumber",
+     "grams": 40,
+     "label": "Poke bowl veggies: cucumber ~40 g (assumed mix)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner: Suviche (restaurant)",
+     "food": "edamame",
+     "grams": 30,
+     "label": "Poke bowl veggies: edamame ~30 g (assumed mix)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner: Suviche (restaurant)",
+     "food": "wakame",
+     "grams": 30,
+     "label": "Poke bowl veggies: seaweed salad ~30 g (assumed mix; wakame stand-in)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner: Suviche (restaurant)",
+     "food": "soy_sauce",
+     "grams": 10,
+     "label": "Poke sauce: ~10 g soy-based dressing (assumed; poke is usually dressed)",
+     "assumed": true,
+     "lo": 0.3,
+     "hi": 2
+    },
+    {
+     "meal": "Dinner: Suviche (restaurant)",
+     "food": "egg_roll_rest",
+     "grams": 65,
+     "label": "1 beef spring roll ~65 g (estimated; egg roll stand-in)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner: Suviche (restaurant)",
+     "food": "corn_nuts",
+     "grams": 40,
+     "label": "Fistful roasted corn ~40 g (estimated; corn nuts stand-in for cancha)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner: Suviche (restaurant)",
+     "food": "empanada_beef",
+     "grams": 80,
+     "label": "Small beef empanada ~80 g (estimated)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner: Suviche (restaurant)",
+     "food": "kefir",
+     "grams": 85,
+     "label": "Maple Hill kefir 3 oz (85 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner: Suviche (restaurant)",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "Prunes x3 (~28.5 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner: Suviche (restaurant)",
      "food": "pumpkin_seeds",
      "grams": 10,
      "label": "Pumpkin seeds 10 g",
