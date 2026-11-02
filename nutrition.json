@@ -6086,8 +6086,7 @@
   {
    "date": "2026-11-01",
    "partial": true,
-   "in_progress": true,
-   "partial_note": "Day in progress: lunch and later food logged.",
+   "partial_note": "All reported food logged: lunch and later food (party and home). Many portions are assumed.",
    "entries": [
     {
      "meal": "Lunch: home (photo-based)",
@@ -6295,6 +6294,95 @@
      "assumed": false,
      "lo": 0.9,
      "hi": 1.1
+    }
+   ]
+  },
+  {
+   "date": "2026-11-02",
+   "partial": true,
+   "in_progress": true,
+   "partial_note": "Day in progress: lunch, milk/prunes and afternoon coffee and cake logged.",
+   "entries": [
+    {
+     "meal": "Lunch: home",
+     "food": "chicken_thigh",
+     "grams": 113,
+     "label": "Chicken thigh 4 oz cooked (113 g)",
+     "assumed": false,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "kale_raw",
+     "grams": 102,
+     "label": "Steamed kale, 6 leaves ~17 g each = 102 g (raw-kale values)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "olive_oil",
+     "grams": 4.5,
+     "label": "Olive oil sprinkled on kale ~1 tsp (4.5 g, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "salt_table",
+     "grams": 1.5,
+     "label": "Salt to taste, assumed (~1/4 tsp) - one entry for the meal",
+     "assumed": true,
+     "lo": 0.3,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "pumpkin_seeds",
+     "grams": 28,
+     "label": "Pumpkin seeds 1 oz (28 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "An hour later",
+     "food": "fairlife_2",
+     "grams": 240,
+     "label": "Fairlife 2% ultra-filtered milk 8 oz (240 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "An hour later",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~9.5 g each = 28.5 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Afternoon",
+     "food": "coffee",
+     "grams": 120,
+     "label": "Coffee 4 oz (120 g), black (no milk mentioned)",
+     "assumed": true,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Afternoon",
+     "food": "cake_white",
+     "grams": 56,
+     "label": "Cake, 2 small pieces ~1 oz each = 56 g (white-cake stand-in)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
     }
    ]
   }

@@ -421,5 +421,22 @@
     "items": "Out/party: 8 oz latte (whole milk), 1/2 caramel cookie, 2 pineapple cubes, 2 watermelon cubes, 1 glass champagne, a small sausage, 1 cracker with cheese. Home: 8 oz Whole Foods lentil soup, 1 slice whole wheat toast with olive oil, 3 prunes, 10 g pumpkin seeds. Status: eaten."
    }
   ]
+ },
+ {
+  "date": "2026-11-02",
+  "meals": [
+   {
+    "meal": "Lunch",
+    "items": "Home: 4 oz chicken thigh, 6 steamed kale leaves with a little olive oil, 1 oz pumpkin seeds. Status: eaten."
+   },
+   {
+    "meal": "An hour later",
+    "items": "8 oz Fairlife ultra-filtered milk, 3 prunes. Status: eaten."
+   },
+   {
+    "meal": "Afternoon",
+    "items": "4 oz coffee, 2 small pieces of cake (~1 oz each). Status: eaten."
+   }
+  ]
  }
 ]
