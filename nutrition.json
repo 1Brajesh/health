@@ -2038,6 +2038,25 @@
     "magnesium": 18.0,
     "sodium": 726.0
    }
+  },
+  "trail_mix": {
+   "name": "Trail mix, regular",
+   "approx": true,
+   "note": "Generic USDA regular trail mix (salted) used as a stand-in; actual mix unknown.",
+   "fdc_id": 167561,
+   "usda_description": "Snacks, trail mix, regular",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/167561/nutrients",
+   "accessed": "2026-11-03",
+   "per100g": {
+    "kcal": 462.0,
+    "protein": 13.8,
+    "fiber": null,
+    "calcium": 78.0,
+    "potassium": 685.0,
+    "magnesium": 158.0,
+    "sodium": 229.0
+   }
   }
  },
  "days": [
@@ -6301,7 +6320,7 @@
    "date": "2026-11-02",
    "partial": true,
    "in_progress": true,
-   "partial_note": "Day in progress: lunch, milk/prunes and afternoon coffee and cake logged.",
+   "partial_note": "Day in progress: lunch, milk/prunes, afternoon coffee and cake, and dinner logged.",
    "entries": [
     {
      "meal": "Lunch: home",
@@ -6383,6 +6402,51 @@
      "assumed": true,
      "lo": 0.6,
      "hi": 1.5
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "wf_lentil_soup",
+     "grams": 397,
+     "label": "Whole Foods Vegan Lentil Dal & Spinach Soup 14 oz (397 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "trail_mix",
+     "grams": 30,
+     "label": "Trail mix, a handful ~30 g (regular trail mix stand-in)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "bread",
+     "grams": 90,
+     "label": "2 slices whole wheat toast ~45 g each = 90 g (plain)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "kefir_maplehill",
+     "grams": 85,
+     "label": "Maple Hill kefir 3 oz (85 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~9.5 g each = 28.5 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
     }
    ]
   }

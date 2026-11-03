@@ -31,6 +31,7 @@ PUB={ # public, generic notes for stand-in entries (no personal details)
 'cod':'Pacific cod used as a stand-in for white fish; USDA lists no fiber value for it.',
 'tuna':'Light tuna in water used as a stand-in for sandwich tuna.','mayo':'Regular mayonnaise.',
 'lentils':'Boiled lentils without salt; home recipes and salt vary.','tortilla':'Generic shelf-stable flour tortilla; brands vary.',
+'trail_mix':'Regular salted trail mix used as a stand-in; actual mix unknown.',
 'bread':'Toasted wheat bread used as a stand-in for bread in general.','wf_lentil_soup':'Branded entry (Whole Foods Market lentil soup); lacks potassium and magnesium data.',
 'siggis':'Branded entry (Siggi\'s plain 0% strained yogurt). Calcium 100 mg/100 g from the package label per Brajesh, Oct 25 2026; potassium and magnesium are stand-ins from USDA nonfat plain Greek yogurt (170894).',
 'sushi_roll':'WEAK stand-in: a generic tempura shrimp roll from one brand; real rolls differ a lot. Few nutrients reported.',
