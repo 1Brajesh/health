@@ -459,5 +459,15 @@
     "items": "3 oz Maple Hill kefir, 3 prunes. Status: eaten."
    }
   ]
+ },
+ {
+  "date": "2026-11-04",
+  "in_progress": true,
+  "meals": [
+   {
+    "meal": "Lunch",
+    "items": "Home: 7 oz salmon, 6 steamed kale leaves, 1 slice whole wheat toast, all with olive oil; 8 oz kombucha. Status: eaten."
+   }
+  ]
  }
 ]

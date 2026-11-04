@@ -6572,6 +6572,68 @@
      "hi": 1.1
     }
    ]
+  },
+  {
+   "date": "2026-11-04",
+   "partial": true,
+   "in_progress": true,
+   "partial_note": "In progress: lunch logged.",
+   "entries": [
+    {
+     "meal": "Lunch: home",
+     "food": "salmon_wild",
+     "grams": 198,
+     "label": "Salmon 7 oz cooked (198 g; wild cooked entry used, farmed/wild unknown)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "kale_raw",
+     "grams": 102,
+     "label": "Steamed kale 6 leaves (~17 g each, 102 g)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "bread",
+     "grams": 45,
+     "label": "1 slice whole wheat toast ~45 g",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "olive_oil",
+     "grams": 9,
+     "label": "Olive oil sprinkled on salmon, kale and toast ~2 tsp (9 g, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "salt_table",
+     "grams": 1.5,
+     "label": "Salt to taste, assumed (~1/4 tsp) - one entry for the meal",
+     "assumed": true,
+     "lo": 0.3,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "kombucha",
+     "grams": 240,
+     "label": "Kombucha 8 oz (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    }
+   ]
   }
  ]
 }
