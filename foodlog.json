@@ -453,6 +453,10 @@
    {
     "meal": "Dinner",
     "items": "Home: 1 chicken thigh, 1 chicken leg, 5 steamed kale leaves with olive oil. Status: eaten."
+   },
+   {
+    "meal": "Evening",
+    "items": "3 oz Maple Hill kefir, 3 prunes. Status: eaten."
    }
   ]
  }

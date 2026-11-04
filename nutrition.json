@@ -6452,8 +6452,7 @@
   {
    "date": "2026-11-03",
    "partial": true,
-   "in_progress": true,
-   "partial_note": "Day in progress: lunch and dinner logged.",
+   "partial_note": "All reported food logged: lunch, dinner, and evening kefir/prunes. Many portions are assumed.",
    "entries": [
     {
      "meal": "Lunch: home",
@@ -6553,6 +6552,24 @@
      "assumed": true,
      "lo": 0.5,
      "hi": 2
+    },
+    {
+     "meal": "Evening",
+     "food": "kefir_maplehill",
+     "grams": 85,
+     "label": "Maple Hill kefir 3 oz (85 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Evening",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~9.5 g each = 28.5 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
     }
    ]
   }
