@@ -6453,7 +6453,7 @@
    "date": "2026-11-03",
    "partial": true,
    "in_progress": true,
-   "partial_note": "Day in progress: lunch logged.",
+   "partial_note": "Day in progress: lunch and dinner logged.",
    "entries": [
     {
      "meal": "Lunch: home",
@@ -6508,6 +6508,51 @@
      "assumed": false,
      "lo": 0.9,
      "hi": 1.1
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "chicken_thigh",
+     "grams": 100,
+     "label": "1 chicken thigh ~100 g cooked meat (assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "chicken_thigh",
+     "grams": 75,
+     "label": "1 chicken leg/drumstick ~75 g cooked meat (thigh meat used as stand-in, assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "kale_raw",
+     "grams": 85,
+     "label": "Steamed kale 5 leaves (~17 g each, 85 g)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "olive_oil",
+     "grams": 4.5,
+     "label": "Olive oil sprinkled on kale ~1 tsp (4.5 g, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "salt_table",
+     "grams": 1.5,
+     "label": "Salt to taste, assumed (~1/4 tsp) - one entry for the meal",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
     }
    ]
   }

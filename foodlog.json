@@ -449,6 +449,10 @@
    {
     "meal": "Lunch",
     "items": "Home: 14 oz Whole Foods lentil soup, 1 slice whole wheat toast with olive oil, 25 g pumpkin seeds, 8 oz kombucha. Status: eaten."
+   },
+   {
+    "meal": "Dinner",
+    "items": "Home: 1 chicken thigh, 1 chicken leg, 5 steamed kale leaves with olive oil. Status: eaten."
    }
   ]
  }
