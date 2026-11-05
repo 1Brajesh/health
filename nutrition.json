@@ -6577,7 +6577,7 @@
    "date": "2026-11-04",
    "partial": true,
    "in_progress": true,
-   "partial_note": "In progress: lunch logged.",
+   "partial_note": "In progress: lunch and dinner logged.",
    "entries": [
     {
      "meal": "Lunch: home",
@@ -6629,6 +6629,51 @@
      "food": "kombucha",
      "grams": 240,
      "label": "Kombucha 8 oz (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner: restaurant",
+     "food": "mahimahi",
+     "grams": 120,
+     "label": "Mahi mahi in 2 tacos (~60 g each, 120 g; assumed portions)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner: restaurant",
+     "food": "corn_tortilla_fried",
+     "grams": 52,
+     "label": "2 small corn tortillas (~26 g each, 52 g; assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner: restaurant",
+     "food": "coleslaw_rest",
+     "grams": 40,
+     "label": "Slaw/cabbage topping on 2 tacos (~20 g each, 40 g; assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Dinner: restaurant",
+     "food": "kefir_maplehill",
+     "grams": 85,
+     "label": "Maple Hill kefir 3 oz (85 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner: restaurant",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~9.5 g each, 28.5 g)",
      "assumed": false,
      "lo": 0.9,
      "hi": 1.1
