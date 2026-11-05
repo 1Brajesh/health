@@ -6683,7 +6683,7 @@
    "date": "2026-11-05",
    "partial": true,
    "in_progress": true,
-   "partial_note": "In progress: lunch logged.",
+   "partial_note": "In progress: lunch and after-lunch logged.",
    "entries": [
     {
      "meal": "Lunch: home",
@@ -6735,6 +6735,24 @@
      "food": "kombucha",
      "grams": 240,
      "label": "Kombucha 8 oz (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "After lunch",
+     "food": "fairlife_2",
+     "grams": 240,
+     "label": "Fairlife 2% ultra-filtered milk 8 oz (240 g)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "After lunch",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~28.5 g)",
      "assumed": false,
      "lo": 0.9,
      "hi": 1.1
