@@ -462,7 +462,6 @@
  },
  {
   "date": "2026-11-04",
-  "in_progress": true,
   "meals": [
    {
     "meal": "Lunch",
@@ -471,6 +470,16 @@
    {
     "meal": "Dinner",
     "items": "Restaurant: 2 mahi-mahi tacos (corn tortillas, slaw; portions assumed); 3 oz kefir; 3 prunes. Status: eaten."
+   }
+  ]
+ },
+ {
+  "date": "2026-11-05",
+  "in_progress": true,
+  "meals": [
+   {
+    "meal": "Lunch",
+    "items": "Home: 15 oz Whole Foods lentil soup; large chicken drumstick with olive oil and lemon juice; 8 oz kombucha. Status: eaten."
    }
   ]
  }
