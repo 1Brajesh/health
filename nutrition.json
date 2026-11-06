@@ -2057,6 +2057,44 @@
     "magnesium": 158.0,
     "sodium": 229.0
    }
+  },
+  "cashews": {
+   "name": "Cashew nuts, oil roasted, no salt",
+   "approx": true,
+   "note": "Oil-roasted unsalted cashews (USDA SR); party cashews are often salted, so sodium may be undercounted.",
+   "fdc_id": 170572,
+   "usda_description": "Nuts, cashew nuts, oil roasted, without salt added",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/170572/nutrients",
+   "accessed": "2026-11-05",
+   "per100g": {
+    "kcal": 580.0,
+    "protein": 16.84,
+    "fiber": 3.3,
+    "calcium": 43.0,
+    "potassium": 632.0,
+    "magnesium": 273.0,
+    "sodium": 13.0
+   }
+  },
+  "mixed_vegetables": {
+   "name": "Mixed vegetables, frozen, boiled, no salt",
+   "approx": true,
+   "note": "Frozen mixed vegetables (corn, lima beans, peas, green beans, carrots), boiled drained without salt; party veg mix unknown.",
+   "fdc_id": 170472,
+   "usda_description": "Vegetables, mixed, frozen, cooked, boiled, drained, without salt",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/170472/nutrients",
+   "accessed": "2026-11-05",
+   "per100g": {
+    "kcal": 65.0,
+    "protein": 2.86,
+    "fiber": 4.4,
+    "calcium": 25.0,
+    "potassium": 169.0,
+    "magnesium": 22.0,
+    "sodium": 35.0
+   }
   }
  },
  "days": [
@@ -3234,7 +3272,7 @@
      "meal": "Afternoon snack (time not given)",
      "food": "milk_2",
      "grams": 122.0,
-     "label": "Café con leche: ~4 oz 2% steamed milk (assumed half of 8 oz)",
+     "label": "Caf\u00e9 con leche: ~4 oz 2% steamed milk (assumed half of 8 oz)",
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
@@ -3243,7 +3281,7 @@
      "meal": "Afternoon snack (time not given)",
      "food": "coffee",
      "grams": 118.0,
-     "label": "Café con leche: ~4 oz brewed coffee (assumed half of 8 oz; espresso treated as brewed)",
+     "label": "Caf\u00e9 con leche: ~4 oz brewed coffee (assumed half of 8 oz; espresso treated as brewed)",
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
@@ -6683,7 +6721,7 @@
    "date": "2026-11-05",
    "partial": true,
    "in_progress": true,
-   "partial_note": "In progress: lunch and after-lunch logged.",
+   "partial_note": "In progress: lunch, after-lunch, and evening party snacks logged.",
    "entries": [
     {
      "meal": "Lunch: home",
@@ -6756,6 +6794,60 @@
      "assumed": false,
      "lo": 0.9,
      "hi": 1.1
+    },
+    {
+     "meal": "Evening: party (store-bought/party food)",
+     "food": "rice_plain",
+     "grams": 75,
+     "label": "Rice ~75 g of the 150 g rice and vegetables (assumed 50/50 split; plain cooked white rice)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Evening: party (store-bought/party food)",
+     "food": "mixed_vegetables",
+     "grams": 75,
+     "label": "Vegetables ~75 g of the 150 g rice and vegetables (assumed 50/50 split; frozen mixed veg stand-in)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Evening: party (store-bought/party food)",
+     "food": "cashews",
+     "grams": 28,
+     "label": "Cashews, a handful ~20 nuts ~28 g (oil-roasted unsalted stand-in; may be salted)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Evening: party (store-bought/party food)",
+     "food": "chicken_breast",
+     "grams": 21,
+     "label": "Chicken salad 1 oz (28 g): ~21 g chicken breast (75/25 chicken+mayo stand-in, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Evening: party (store-bought/party food)",
+     "food": "mayo",
+     "grams": 7,
+     "label": "Chicken salad 1 oz: ~7 g mayo (75/25 chicken+mayo stand-in, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.5
+    },
+    {
+     "meal": "Evening: party (store-bought/party food)",
+     "food": "potato_chips",
+     "grams": 15,
+     "label": "~10 potato chips ~15 g (plain salted assumed)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
     }
    ]
   }
