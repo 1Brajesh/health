@@ -1,494 +1,498 @@
 [
- {
-  "date": "2026-10-10",
-  "meals": [
-   {
-    "meal": "Lunch",
-    "items": "Cabbage, spinach, pumpkin seeds, Polish sausage links"
-   },
-   {
-    "meal": "After lunch",
-    "items": "Glass of milk"
-   },
-   {
-    "meal": "Afternoon",
-    "items": "Chocolate croissant, latte"
-   },
-   {
-    "meal": "Dinner",
-    "items": "Cabbage, spinach, tomatoes, pulled pork"
-   },
-   {
-    "meal": "Late evening",
-    "items": "Popcorn"
-   },
-   {
-    "meal": "Evening",
-    "items": "Glass of milk (with supplements)"
-   }
-  ]
- },
- {
-  "date": "2026-10-11",
-  "meals": [
-   {
-    "meal": "~11am",
-    "items": "Hot chocolate, about 8 oz"
-   },
-   {
-    "meal": "Lunch",
-    "items": "Cabbage 100 g and spinach 70 g sauteed in olive oil with ginger and garlic; 1 slice Whole Foods pizza; ginger 15 g; kombucha 8 oz; kefir 3 oz"
-   },
-   {
-    "meal": "Dinner",
-    "items": "Red Dragon roll, Moshi Moshi, 1448 Washington Ave, Miami Beach (menu: shrimp katsu, avocado, topped with tuna, crispy onion, ponzu mayo, drizzle of spicy eel sauce; $18 on Uber Eats menu). Source: Uber Eats menu listing. Portion/pieces not recorded."
-   },
-   {
-    "meal": "After dinner",
-    "items": "1 cup Whole Foods lentil soup; 1/2 cup Siggi's plain yogurt with 3 strawberries; 20 g pumpkin seeds"
-   }
-  ]
- },
- {
-  "date": "2026-10-12",
-  "meals": [
-   {
-    "meal": "Lunch",
-    "items": "Cabbage ~100 g, spinach ~70 g, 1/4 onion, white fish ~5 oz, glass of milk"
-   },
-   {
-    "meal": "Kefir",
-    "items": "Kefir ~5 oz"
-   },
-   {
-    "meal": "Dinner",
-    "items": "Small portion of tuna sandwich, bowl of lentils"
-   }
-  ]
- },
- {
-  "date": "2026-10-13",
-  "meals": [
-   {
-    "meal": "Lunch",
-    "items": "Half a tuna sandwich; eggplant, potato, and onion tomato curry; kefir ~3 oz; 1 wheat flour tortilla"
-   },
-   {
-    "meal": "Afternoon snack",
-    "items": "Latte (coffee with milk), ~6 oz"
-   },
-   {
-    "meal": "Dinner",
-    "items": "Half a tuna sandwich, lentils"
-   },
-   {
-    "meal": "After dinner, before bed",
-    "items": "Yogurt ~3 oz, kefir ~3 oz, 4 strawberries"
-   }
-  ]
- },
- {
-  "date": "2026-10-14",
-  "meals": [
-   {
-    "meal": "Lunch",
-    "items": "Eggplant potato curry with tomatoes, onions, ginger, garlic, red bell peppers; 1.5 wheat flour tortillas"
-   },
-   {
-    "meal": "Dinner",
-    "items": "1/4 tuna roll sandwich, 1/4 raw onion, bowl of lentils, kombucha, 1 oz pumpkin seeds, 1 piece of toast"
-   }
-  ]
- },
- {
-  "date": "2026-10-15",
-  "meals": [
-   {
-    "meal": "Lunch",
-    "items": "3 eggs over easy; 2 slices wheat bread toast; 5 steamed broccoli florets; 1 oz pumpkin seeds; kefir 3 oz; kombucha 8 oz; all drizzled with olive oil (about 1 tsp, assumed). Status: eaten."
-   },
-   {
-    "meal": "Later (time not given)",
-    "items": "8 oz milk (2% assumed); small salad of onion, tomato and lemon juice (portions assumed); 2 prunes. Status: eaten."
-   },
-   {
-    "meal": "Dinner",
-    "items": "Bowl of lentils (1 cup cooked assumed); 20 g walnuts; 20 g pumpkin seeds. Status: eaten."
-   }
-  ]
- },
- {
-  "date": "2026-10-16",
-  "meals": [
-   {
-    "meal": "Lunch",
-    "items": "1.5 organic wheat flour tortillas; potato, eggplant and tomato curry with garlic and ginger; about 30 g chicken (cooked breast meat assumed). Status: eaten. "
-   },
-   {
-    "meal": "Afternoon snack (3:30 PM)",
-    "items": "8 oz (240 g) ultra-filtered 2% milk (Fairlife-type; generic 2% milk values assumed). Status: eaten."
-   },
-   {
-    "meal": "Dinner",
-    "items": "Bowl of lentils (1 cup cooked assumed); 3 oz (85 g) white fish; 2 prunes. Status: eaten."
-   }
-  ]
- },
- {
-  "date": "2026-10-17",
-  "meals": [
-   {
-    "meal": "Lunch",
-    "items": "Bowl of lentils (1 cup cooked assumed); cabbage ~100 g and spinach ~70 g (assumed); 1 single-serve \"extra creamy\" Icelandic skyr yogurt (~150 g plain whole-milk skyr assumed, brand unknown); kombucha 8 oz; 1 oz (28.4 g) pumpkin seeds; 2 oz (57 g) whitefish (cod values used, cooking method assumed). Status: eaten."
-   },
-   {
-    "meal": "Afternoon snack (time not given)",
-    "items": "Café con leche 8 oz (assumed ~4 oz 2% milk + ~4 oz brewed coffee; no sugar mentioned, none assumed). Status: eaten."
-   },
-   {
-    "meal": "Evening (time not given)",
-    "items": "4 oz (120 g) ultra-filtered 2% milk (generic 2% milk values assumed). Status: eaten."
-   },
-   {
-    "meal": "Dinner",
-    "items": "2 flautas (Mexican rolled, probably fried corn tortilla), each ~6 in long x 1 in wide; user believes filled with duck and some kind of cheese (type unknown, melting cheese assumed). No toppings or sides mentioned. Portions, filling and frying oil are assumed (wide range). Status: eaten."
-   },
-   {
-    "meal": "Later (time not given)",
-    "items": "3 oz (85 g) Maple Hill organic unsweetened plain kefir (label values); 30 g white fish (cod values used); 3 prunes (~9.5 g each assumed). Status: eaten."
-   }
-  ]
- },
- {
-  "date": "2026-10-18",
-  "meals": [
-   {
-    "meal": "Lunch (12:30 PM)",
-    "items": "Decaf café latte 8 oz (assumed ~150 g 2% milk + ~60 g coffee; decaf, caffeine negligible). Salad: 1/2 onion (~55 g assumed, half of a medium onion), tomato (~100 g assumed), 20 g pumpkin seeds, lemon juice (~15 g assumed), a little olive oil (~1 tsp assumed), salt to taste (amount assumed). Lentils (1 cup cooked assumed) mixed with potato-eggplant curry (same assumed components as Oct 16), salt to taste (amount assumed). Dessert: 3/4 of a single-serve skyr, same as Oct 17 (~112.5 g). Status: eaten."
-   },
-   {
-    "meal": "Dinner (~8 PM, time approximate)",
-    "items": "Takeout-style box, 0.8 lb (~363 g) total, user-given. Photo shows: chicken pieces (seasoned dark meat, thigh assumed) ~86 g, yellow turmeric rice ~80 g, broccoli ~50 g, wilted dark greens (spinach-like, maybe creamed) ~35 g, orange tikka-style sauce ~35 g, sliced orange/yellow bell peppers ~25 g, cucumber ~20 g, cherry tomato ~15 g, feta crumbles ~12 g, one kalamata-type olive ~5 g (split among foods assumed from photo). Plus a little dessert of 120 kcal, not in the photo (user-given calories only). Likely restaurant/takeout, so sodium probably understated; salt not counted. Status: eaten."
-   },
-   {
-    "meal": "Late evening (~10 PM, time approximate)",
-    "items": "3 oz (85 g) Maple Hill organic unsweetened plain kefir (label values). Status: eaten. User says this closes the day."
-   }
-  ]
- },
- {
-  "date": "2026-10-19",
-  "meals": [
-   {
-    "meal": "Lunch (~12 PM, time approximate)",
-    "items": "Bowl of lentils with some spinach from Whole Foods (store-prepared; 1 cup cooked lentils and ~30 g cooked spinach assumed; no home salt added, store salt unknown); 1.5 slices wheat toast (~28 g per slice assumed); 3/4 of an avocado (~112.5 g flesh assumed, medium avocado); kombucha 8 oz glass. Status: eaten."
-   },
-   {
-    "meal": "Afternoon snack (~3:30 PM, time approximate)",
-    "items": "8 oz (240 g) ultra-filtered milk (Fairlife-type assumed; generic 2% milk values assumed); 20 g pumpkin seeds; 3 prunes (~9.5 g each assumed). Status: eaten."
-   },
-   {
-    "meal": "Pre-dinner snack (evening, before dinner, time approximate)",
-    "items": "Chex Mix Traditional, two handfuls (~45 g assumed; packaged, label values, no salt added). Status: eaten."
-   },
-   {
-    "meal": "Dinner (evening, time approximate)",
-    "items": "1.5 jerk chicken thighs (home-cooked assumed; ~78 g meat assumed), salt to taste (assumed; jerk seasoning may add more); kale, 6 full leaves sauteed (~102 g raw assumed; ~17 g per leaf, stripped from ~9-inch stalks) in 1 tsp coconut oil, salt to taste (assumed); 3 prunes (~9.5 g each assumed); 2 oz (~60 g) kefir (Maple Hill assumed). Status: eaten."
-   }
-  ]
- },
- {
-  "date": "2026-10-20",
-  "meals": [
-   {
-    "meal": "Lunch (~1 PM, time approximate)",
-    "items": "3 large eggs fried over easy; 1.5 slices wheat toast (~28 g per slice assumed); sauteed kale (~150 g raw assumed from photo) in ~1 tsp olive oil (assumed); salt to taste (assumed). Status: eaten."
-   },
-   {
-    "meal": "Afternoon snack (~2:30 PM, time approximate)",
-    "items": "8 oz (240 mL) Fairlife 2% ultra-filtered milk (label values); 2 prunes (~9.5 g each assumed). Status: eaten."
-   },
-   {
-    "meal": "Dinner (evening, time approximate)",
-    "items": "8 oz Whole Foods lentil soup; 1.5 oz low-fat plain yogurt; 1 medium potato (~173 g, baked with skin assumed); 3/4 chicken thigh (~39 g meat assumed); salt to taste (assumed, one entry for potato and chicken); 3 oz Maple Hill kefir; 3 prunes (~9.5 g each assumed). Status: eaten."
-   }
-  ]
- },
- {
-  "date": "2026-10-21",
-  "meals": [
-   {
-    "meal": "Lunch (~2 PM, time approximate)",
-    "items": "1 oz Maple Hill kefir; kale, 6 leaves stripped from ~9-inch stalks (~102 g raw assumed); 1/3 medium onion; 2/3 red bell pepper; 3 tbsp Whole Foods lentil soup; 3 oz chicken thigh cooked in olive oil (~1 tsp assumed) with 2 tsp curry powder and 1 garlic clove; salt to taste (assumed). Status: eaten."
-   },
-   {
-    "meal": "Afternoon snack (~3:30 PM, time approximate)",
-    "items": "8 oz (240 mL) ultra-filtered milk (Fairlife 2% assumed, label values); 2 prunes (~9.5 g each assumed). Status: eaten."
-   },
-   {
-    "meal": "Evening snack (~6 PM, time approximate)",
-    "items": "20 g pumpkin seeds. Status: eaten."
-   },
-   {
-    "meal": "Dinner (evening, time approximate)",
-    "items": "5 oz Whole Foods lentil soup; potato-eggplant curry (same assumed components as Oct 16/18), salt to taste (assumed); 1 oz low-fat plain yogurt; 3 oz Maple Hill kefir; 3 prunes (~9.5 g each assumed). Status: eaten."
-   }
-  ]
- },
- {
-  "date": "2026-10-22",
-  "meals": [
-   {
-    "meal": "Lunch (~1 PM, time approximate)",
-    "items": "~3 oz white fish (type unspecified; cod values used), kale (6 leaves stripped from stalks, ~102 g raw assumed) and 1/2 red bell pepper (~60 g assumed), all cooked in olive oil (~1 tbsp assumed); onion salad of 1/2 red onion (~55 g assumed) with a creamy dressing (assumed to be the kefir below) and 20 g pumpkin seeds; 2 oz Maple Hill kefir; 8 oz kombucha; salt to taste (assumed). Status: eaten."
-   },
-   {
-    "meal": "Afternoon snack (~3 PM, time approximate)",
-    "items": "8 oz (240 mL) ultra-filtered milk (Fairlife 2% assumed, label values); 2 prunes (~9.5 g each assumed). Status: eaten."
-   },
-   {
-    "meal": "Evening snack (~5:50 PM)",
-    "items": "6 oz (180 mL) ultra-filtered milk (Fairlife 2% assumed, label values); 1 chocolate biscotti (~30 g assumed; store-bought, no added salt; USDA chocolate wafer cookie values used as stand-in). Status: eaten."
-   },
-   {
-    "meal": "Evening (~6:15 PM, time approximate)",
-    "items": "Half a medium potato (~85 g assumed); very mildly salted (light pinch, assumed). Status: eaten."
-   },
-   {
-    "meal": "Dinner (~11 PM, time approximate)",
-    "items": "1.5 baked beef empanadas (~4 inches) from GoGo Empanadas, Miami Beach (~80 g each assumed; generic USDA restaurant beef empanada values); 5 fistfuls SkinnyPop Original popcorn (~8 g each assumed, ~40 g). Status: eaten."
-   },
-   {
-    "meal": "Late snack (~11:20 PM, time approximate)",
-    "items": "2 oz Whole Foods lentil soup (store-bought). Status: eaten."
-   },
-   {
-    "meal": "Late snack (~11:30 PM, time approximate)",
-    "items": "2 prunes (~9.5 g each assumed). Status: eaten."
-   }
-  ]
- },
- {
-  "date": "2026-10-23",
-  "meals": [
-   {
-    "meal": "Lunch (~1:50 PM, time approximate)",
-    "items": "10 oz Whole Foods lentil soup with fresh ginger (~5 g assumed) and 1 garlic clove (~3 g assumed), no added salt (store-bought); 2 oz low-fat plain yogurt; 1/3 red onion (~37 g assumed); 3 oz Maple Hill kefir; 20 g pumpkin seeds; 5 'angel' small tomatoes (~50 g assumed). Status: eaten."
-   },
-   {
-    "meal": "Afternoon snack (~3:05 PM, time approximate)",
-    "items": "8 oz (240 mL) ultra-filtered milk (Fairlife 2% assumed, label values); 3 prunes (~9.5 g each assumed). Status: eaten."
-   },
-   {
-    "meal": "Dinner (~9-10 PM, time approximate)",
-    "items": "Red Dragon roll at Moshi Moshi, Miami Beach (shrimp katsu, avocado, topped with tuna, crispy onion, ponzu mayo, spicy eel sauce; 8 pieces assumed), with soy sauce (~1 tbsp, amount assumed); 1 sauteed red bell pepper, 4 broccoli florets and 1 skinless chicken thigh, cooked in olive oil (~1 tsp assumed), salt to taste (assumed); 3 oz Maple Hill kefir; 2 prunes. Status: eaten."
-   }
-  ]
- },
- {
-  "date": "2026-10-24",
-  "meals": [
-   {
-    "meal": "Lunch (~1:45 PM, time approximate)",
-    "items": "2 slices wheat toast (large rustic slices, ~50 g each assumed); 3 eggs fried over easy; kale, 5 stalks leaves only (~85 g raw assumed), sauteed in olive oil (~1 tsp assumed); salt to taste (assumed); 8 oz kombucha. Status: eaten."
-   },
-   {
-    "meal": "Dinner (evening, board games event; time approximate)",
-    "items": "Finger food, all amounts assumed: 8 oz lentil soup (event-made); 2 small toasts; a little chocolate hummus (~2 tbsp); ~15-20 potato chips; 5 grapes; ~2 pieces cheese; ~2 pieces charcuterie meat; 1 glass kombucha; 1 glass milk (ultra-filtered assumed); 3 prunes. Status: eaten."
-   }
-  ]
- },
- {
-  "date": "2026-10-25",
-  "meals": [
-   {
-    "meal": "Morning (time approximate)",
-    "items": "8 oz latte (outside, regular milk); 3 pieces vegan cake (~1-inch cubes, believed sugar-free); 1/4 avocado toast. Amounts assumed. Status: eaten."
-   },
-   {
-    "meal": "Lunch (~2:35 PM, time approximate)",
-    "items": "9 oz Whole Foods lentil soup; 1/2 red bell pepper sauteed in olive oil (~1 tsp assumed), salt to taste (assumed); 3 oz Siggi's plain non-fat yogurt. Status: eaten."
-   },
-   {
-    "meal": "Dinner (time approximate)",
-    "items": "1 skinless chicken thigh; 5 kale stalks, leaves only (~85 g); 4 steamed broccoli florets; salt to taste (assumed); 8 oz 2% milk; 3 prunes; 12 walnut halves (~24 g assumed). Status: eaten."
-   }
-  ]
- },
- {
-  "date": "2026-10-26",
-  "meals": [
-   {
-    "meal": "Lunch (~1:45 PM, time approximate)",
-    "items": "16 oz homemade lentil soup, salted to taste (assumed), with 1/2 potato, 5 medium tomatoes, 100 g fresh spinach, 1 garlic clove, 10 g fresh ginger, 8 black peppercorns, 40 g eggplant, 2 oz plain nonfat yogurt, 1 tsp cumin, 1 tsp turmeric, juice of 1/4 lemon. Ingredients listed for the pot; scaled to the 16 oz bowl eaten. Status: eaten."
-   },
-   {
-    "meal": "Afternoon snack (~3 PM, time approximate)",
-    "items": "20 g pumpkin seeds; 8 oz Fairlife ultra-filtered 2% milk; 2 prunes. Status: eaten."
-   },
-   {
-    "meal": "Dinner (late, time approximate)",
-    "items": "5 tofu cubes (~1.5 in); 4 kale leaves; 10 g pumpkin seeds; 1/2 red bell pepper, cooked; salt to taste (assumed); 3 oz Maple Hill kefir; 4 prunes. Status: eaten."
-   }
-  ]
- },
- {
-  "date": "2026-10-27",
-  "meals": [
-   {
-    "meal": "Lunch (time approximate)",
-    "items": "1/2 gyro wrap (bought); about 7 beet slices; ~15 g feta dip; 8 oz leftover homemade lentil soup with 1/4 red bell pepper; 8 oz Fairlife ultra-filtered 2% milk; 2 prunes. Status: eaten."
-   },
-   {
-    "meal": "Dinner (time approximate)",
-    "items": "Wild Atlantic salmon ~6 oz; 6 kale leaves sauteed in olive oil (~1 tsp assumed); salt to taste (assumed). Status: eaten."
-   },
-   {
-    "meal": "Evening snack (~9:45 PM, time approximate)",
-    "items": "3 oz Maple Hill kefir; 3 prunes; 15 g pumpkin seeds. Status: eaten."
-   }
-  ]
- },
- {
-  "date": "2026-10-28",
-  "meals": [
-   {
-    "meal": "Lunch (~1:15 PM, time approximate)",
-    "items": "17 oz homemade lentil soup (medium thickness) with onion, tomato, potato, spinach, ginger, garlic, cardamom, cloves, cumin, black peppercorns, turmeric, eggplant, olive oil; salt to taste (assumed); eaten with a little lemon juice and 2 oz Siggi's plain non-fat yogurt. Soup amounts estimated; user gave ingredients only. Status: eaten."
-   },
-   {
-    "meal": "Dinner (late evening, reported 12:47 AM Oct 29)",
-    "items": "Tuna tartare (~50 g raw tuna; dressing unknown) with 2 small corn tortillas (~4 in); 4 oz Fairlife 2% ultra-filtered milk; 3 oz Maple Hill kefir; 3 prunes; 1 slice whole wheat toast with a little olive oil (assumed 1 tsp); 30 g pumpkin seeds; 3 walnuts; 2/3 avocado. Status: eaten."
-   }
-  ]
- },
- {
-  "date": "2026-10-29",
-  "meals": [
-   {
-    "meal": "Lunch (Garcia's Seafood, Miami)",
-    "items": "Mahi mahi (~6 oz, preparation unknown, likely grilled) with a side of white rice and coleslaw; 3 medium stone crab claws. Portions estimated. Status: eaten."
-   },
-   {
-    "meal": "After lunch",
-    "items": "8 oz Fairlife 2% ultra-filtered milk; 3 prunes; 10 g pumpkin seeds. Status: eaten."
-   },
-   {
-    "meal": "Dinner",
-    "items": "16 oz homemade lentil soup (same batch as Oct 28 lunch; recipe lentil_soup_medium), salt to taste (assumed), with a little lemon juice (no yogurt); 3 oz Maple Hill kefir; 3 prunes; 10 g pumpkin seeds; 4 oz Guinness 0.0 (alcohol-free). Status: eaten."
-   }
-  ]
- },
- {
-  "date": "2026-10-30",
-  "meals": [
-   {
-    "meal": "Lunch",
-    "items": "3 fried eggs, 2 slices whole wheat toast and steamed kale (5 leaves, ~8-inch stalks, ~85 g), all with olive oil and a sprinkle of salt; 8 oz kombucha; 8 oz Fairlife 2% ultra-filtered milk; 3 prunes. Toast and oil portions estimated from photos. Status: eaten."
-   },
-   {
-    "meal": "Dinner",
-    "items": "8 oz Whole Foods lentil soup. Status: eaten."
-   },
-   {
-    "meal": "Evening (party)",
-    "items": "~150 g bread and dips, ~25 chips, 1 Oreo, 3 oz beer, 4 oz chicken breast, small muffin, 2 oz Maple Hill kefir, 3 prunes. Status: eaten."
-   }
-  ]
- },
- {
-  "date": "2026-10-31",
-  "meals": [
-   {
-    "meal": "Lunch",
-    "items": "14 oz Whole Foods Vegan Lentil Dal & Spinach Soup with 1 garlic clove and 1/4 onion added; 8 oz kombucha; 10 g pumpkin seeds. Status: eaten."
-   },
-   {
-    "meal": "Dinner",
-    "items": "Suviche (restaurant): salmon poke bowl - ate all the salmon, ~25% of the rice and all the veggies; 1 beef spring roll; a fistful of roasted corn; 1 small beef empanada. Then 3 oz Maple Hill kefir, 3 prunes, 10 g pumpkin seeds. Restaurant portions estimated. Status: eaten."
-   }
-  ]
- },
- {
-  "date": "2026-11-01",
-  "meals": [
-   {
-    "meal": "Lunch",
-    "items": "Home (photo-based): 1 avocado on 2 slices whole wheat toast with a little olive oil, salt and black pepper; 8 oz Fairlife ultra-filtered milk; 20 g pumpkin seeds; 3 prunes. Status: eaten."
-   },
-   {
-    "meal": "Later",
-    "items": "Out/party: 8 oz latte (whole milk), 1/2 caramel cookie, 2 pineapple cubes, 2 watermelon cubes, 1 glass champagne, a small sausage, 1 cracker with cheese. Home: 8 oz Whole Foods lentil soup, 1 slice whole wheat toast with olive oil, 3 prunes, 10 g pumpkin seeds. Status: eaten."
-   }
-  ]
- },
- {
-  "date": "2026-11-02",
-  "meals": [
-   {
-    "meal": "Lunch",
-    "items": "Home: 4 oz chicken thigh, 6 steamed kale leaves with a little olive oil, 1 oz pumpkin seeds. Status: eaten."
-   },
-   {
-    "meal": "An hour later",
-    "items": "8 oz Fairlife ultra-filtered milk, 3 prunes. Status: eaten."
-   },
-   {
-    "meal": "Afternoon",
-    "items": "4 oz coffee, 2 small pieces of cake (~1 oz each). Status: eaten."
-   },
-   {
-    "meal": "Dinner",
-    "items": "Home: 14 oz Whole Foods lentil soup, a handful of trail mix, 2 slices whole wheat toast, 3 oz Maple Hill kefir, 3 prunes. Status: eaten."
-   }
-  ]
- },
- {
-  "date": "2026-11-03",
-  "meals": [
-   {
-    "meal": "Lunch",
-    "items": "Home: 14 oz Whole Foods lentil soup, 1 slice whole wheat toast with olive oil, 25 g pumpkin seeds, 8 oz kombucha. Status: eaten."
-   },
-   {
-    "meal": "Dinner",
-    "items": "Home: 1 chicken thigh, 1 chicken leg, 5 steamed kale leaves with olive oil. Status: eaten."
-   },
-   {
-    "meal": "Evening",
-    "items": "3 oz Maple Hill kefir, 3 prunes. Status: eaten."
-   }
-  ]
- },
- {
-  "date": "2026-11-04",
-  "meals": [
-   {
-    "meal": "Lunch",
-    "items": "Home: 7 oz salmon, 6 steamed kale leaves, 1 slice whole wheat toast, all with olive oil; 8 oz kombucha. Status: eaten."
-   },
-   {
-    "meal": "Dinner",
-    "items": "Restaurant: 2 mahi-mahi tacos (corn tortillas, slaw; portions assumed); 3 oz kefir; 3 prunes. Status: eaten."
-   }
-  ]
- },
- {
-  "date": "2026-11-05",
-  "in_progress": true,
-  "meals": [
-   {
-    "meal": "Lunch",
-    "items": "Home: 15 oz Whole Foods lentil soup; large chicken drumstick with olive oil and lemon juice; 8 oz kombucha. Status: eaten."
-   },
-   {
-    "meal": "After lunch",
-    "items": "Home: 8 oz Fairlife 2% ultra-filtered milk; 3 prunes. Status: eaten."
-   },
-   {
-    "meal": "Evening",
-    "items": "Party: 150 g rice and vegetables combined (assumed ~75 g rice + 75 g mixed veg); handful of cashews (~20 nuts, ~28 g); 1 oz chicken salad (chicken+mayo stand-in); ~10 potato chips (~15 g). Status: eaten."
-   }
-  ]
- }
+  {
+    "date": "2026-10-10",
+    "meals": [
+      {
+        "meal": "Lunch",
+        "items": "Cabbage, spinach, pumpkin seeds, Polish sausage links"
+      },
+      {
+        "meal": "After lunch",
+        "items": "Glass of milk"
+      },
+      {
+        "meal": "Afternoon",
+        "items": "Chocolate croissant, latte"
+      },
+      {
+        "meal": "Dinner",
+        "items": "Cabbage, spinach, tomatoes, pulled pork"
+      },
+      {
+        "meal": "Late evening",
+        "items": "Popcorn"
+      },
+      {
+        "meal": "Evening",
+        "items": "Glass of milk (with supplements)"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-11",
+    "meals": [
+      {
+        "meal": "~11am",
+        "items": "Hot chocolate, about 8 oz"
+      },
+      {
+        "meal": "Lunch",
+        "items": "Cabbage 100 g and spinach 70 g sauteed in olive oil with ginger and garlic; 1 slice Whole Foods pizza; ginger 15 g; kombucha 8 oz; kefir 3 oz"
+      },
+      {
+        "meal": "Dinner",
+        "items": "Red Dragon roll, Moshi Moshi, 1448 Washington Ave, Miami Beach (menu: shrimp katsu, avocado, topped with tuna, crispy onion, ponzu mayo, drizzle of spicy eel sauce; $18 on Uber Eats menu). Source: Uber Eats menu listing. Portion/pieces not recorded."
+      },
+      {
+        "meal": "After dinner",
+        "items": "1 cup Whole Foods lentil soup; 1/2 cup Siggi's plain yogurt with 3 strawberries; 20 g pumpkin seeds"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-12",
+    "meals": [
+      {
+        "meal": "Lunch",
+        "items": "Cabbage ~100 g, spinach ~70 g, 1/4 onion, white fish ~5 oz, glass of milk"
+      },
+      {
+        "meal": "Kefir",
+        "items": "Kefir ~5 oz"
+      },
+      {
+        "meal": "Dinner",
+        "items": "Small portion of tuna sandwich, bowl of lentils"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-13",
+    "meals": [
+      {
+        "meal": "Lunch",
+        "items": "Half a tuna sandwich; eggplant, potato, and onion tomato curry; kefir ~3 oz; 1 wheat flour tortilla"
+      },
+      {
+        "meal": "Afternoon snack",
+        "items": "Latte (coffee with milk), ~6 oz"
+      },
+      {
+        "meal": "Dinner",
+        "items": "Half a tuna sandwich, lentils"
+      },
+      {
+        "meal": "After dinner, before bed",
+        "items": "Yogurt ~3 oz, kefir ~3 oz, 4 strawberries"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-14",
+    "meals": [
+      {
+        "meal": "Lunch",
+        "items": "Eggplant potato curry with tomatoes, onions, ginger, garlic, red bell peppers; 1.5 wheat flour tortillas"
+      },
+      {
+        "meal": "Dinner",
+        "items": "1/4 tuna roll sandwich, 1/4 raw onion, bowl of lentils, kombucha, 1 oz pumpkin seeds, 1 piece of toast"
+      }
+    ]
+  },
+  {
+    "date": "2026-10-15",
+    "meals": [
+      {
+        "meal": "Lunch",
+        "items": "3 eggs over easy; 2 slices wheat bread toast; 5 steamed broccoli florets; 1 oz pumpkin seeds; kefir 3 oz; kombucha 8 oz; all drizzled with olive oil (about 1 tsp, assumed). Status: eaten."
+      },
+      {
+        "meal": "Later (time not given)",
+        "items": "8 oz milk (2% assumed); small salad of onion, tomato and lemon juice (portions assumed); 2 prunes. Status: eaten."
+      },
+      {
+        "meal": "Dinner",
+        "items": "Bowl of lentils (1 cup cooked assumed); 20 g walnuts; 20 g pumpkin seeds. Status: eaten."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-16",
+    "meals": [
+      {
+        "meal": "Lunch",
+        "items": "1.5 organic wheat flour tortillas; potato, eggplant and tomato curry with garlic and ginger; about 30 g chicken (cooked breast meat assumed). Status: eaten. "
+      },
+      {
+        "meal": "Afternoon snack (3:30 PM)",
+        "items": "8 oz (240 g) ultra-filtered 2% milk (Fairlife-type; generic 2% milk values assumed). Status: eaten."
+      },
+      {
+        "meal": "Dinner",
+        "items": "Bowl of lentils (1 cup cooked assumed); 3 oz (85 g) white fish; 2 prunes. Status: eaten."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-17",
+    "meals": [
+      {
+        "meal": "Lunch",
+        "items": "Bowl of lentils (1 cup cooked assumed); cabbage ~100 g and spinach ~70 g (assumed); 1 single-serve \"extra creamy\" Icelandic skyr yogurt (~150 g plain whole-milk skyr assumed, brand unknown); kombucha 8 oz; 1 oz (28.4 g) pumpkin seeds; 2 oz (57 g) whitefish (cod values used, cooking method assumed). Status: eaten."
+      },
+      {
+        "meal": "Afternoon snack (time not given)",
+        "items": "Caf\u00e9 con leche 8 oz (assumed ~4 oz 2% milk + ~4 oz brewed coffee; no sugar mentioned, none assumed). Status: eaten."
+      },
+      {
+        "meal": "Evening (time not given)",
+        "items": "4 oz (120 g) ultra-filtered 2% milk (generic 2% milk values assumed). Status: eaten."
+      },
+      {
+        "meal": "Dinner",
+        "items": "2 flautas (Mexican rolled, probably fried corn tortilla), each ~6 in long x 1 in wide; user believes filled with duck and some kind of cheese (type unknown, melting cheese assumed). No toppings or sides mentioned. Portions, filling and frying oil are assumed (wide range). Status: eaten."
+      },
+      {
+        "meal": "Later (time not given)",
+        "items": "3 oz (85 g) Maple Hill organic unsweetened plain kefir (label values); 30 g white fish (cod values used); 3 prunes (~9.5 g each assumed). Status: eaten."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-18",
+    "meals": [
+      {
+        "meal": "Lunch (12:30 PM)",
+        "items": "Decaf caf\u00e9 latte 8 oz (assumed ~150 g 2% milk + ~60 g coffee; decaf, caffeine negligible). Salad: 1/2 onion (~55 g assumed, half of a medium onion), tomato (~100 g assumed), 20 g pumpkin seeds, lemon juice (~15 g assumed), a little olive oil (~1 tsp assumed), salt to taste (amount assumed). Lentils (1 cup cooked assumed) mixed with potato-eggplant curry (same assumed components as Oct 16), salt to taste (amount assumed). Dessert: 3/4 of a single-serve skyr, same as Oct 17 (~112.5 g). Status: eaten."
+      },
+      {
+        "meal": "Dinner (~8 PM, time approximate)",
+        "items": "Takeout-style box, 0.8 lb (~363 g) total, user-given. Photo shows: chicken pieces (seasoned dark meat, thigh assumed) ~86 g, yellow turmeric rice ~80 g, broccoli ~50 g, wilted dark greens (spinach-like, maybe creamed) ~35 g, orange tikka-style sauce ~35 g, sliced orange/yellow bell peppers ~25 g, cucumber ~20 g, cherry tomato ~15 g, feta crumbles ~12 g, one kalamata-type olive ~5 g (split among foods assumed from photo). Plus a little dessert of 120 kcal, not in the photo (user-given calories only). Likely restaurant/takeout, so sodium probably understated; salt not counted. Status: eaten."
+      },
+      {
+        "meal": "Late evening (~10 PM, time approximate)",
+        "items": "3 oz (85 g) Maple Hill organic unsweetened plain kefir (label values). Status: eaten. User says this closes the day."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-19",
+    "meals": [
+      {
+        "meal": "Lunch (~12 PM, time approximate)",
+        "items": "Bowl of lentils with some spinach from Whole Foods (store-prepared; 1 cup cooked lentils and ~30 g cooked spinach assumed; no home salt added, store salt unknown); 1.5 slices wheat toast (~28 g per slice assumed); 3/4 of an avocado (~112.5 g flesh assumed, medium avocado); kombucha 8 oz glass. Status: eaten."
+      },
+      {
+        "meal": "Afternoon snack (~3:30 PM, time approximate)",
+        "items": "8 oz (240 g) ultra-filtered milk (Fairlife-type assumed; generic 2% milk values assumed); 20 g pumpkin seeds; 3 prunes (~9.5 g each assumed). Status: eaten."
+      },
+      {
+        "meal": "Pre-dinner snack (evening, before dinner, time approximate)",
+        "items": "Chex Mix Traditional, two handfuls (~45 g assumed; packaged, label values, no salt added). Status: eaten."
+      },
+      {
+        "meal": "Dinner (evening, time approximate)",
+        "items": "1.5 jerk chicken thighs (home-cooked assumed; ~78 g meat assumed), salt to taste (assumed; jerk seasoning may add more); kale, 6 full leaves sauteed (~102 g raw assumed; ~17 g per leaf, stripped from ~9-inch stalks) in 1 tsp coconut oil, salt to taste (assumed); 3 prunes (~9.5 g each assumed); 2 oz (~60 g) kefir (Maple Hill assumed). Status: eaten."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-20",
+    "meals": [
+      {
+        "meal": "Lunch (~1 PM, time approximate)",
+        "items": "3 large eggs fried over easy; 1.5 slices wheat toast (~28 g per slice assumed); sauteed kale (~150 g raw assumed from photo) in ~1 tsp olive oil (assumed); salt to taste (assumed). Status: eaten."
+      },
+      {
+        "meal": "Afternoon snack (~2:30 PM, time approximate)",
+        "items": "8 oz (240 mL) Fairlife 2% ultra-filtered milk (label values); 2 prunes (~9.5 g each assumed). Status: eaten."
+      },
+      {
+        "meal": "Dinner (evening, time approximate)",
+        "items": "8 oz Whole Foods lentil soup; 1.5 oz low-fat plain yogurt; 1 medium potato (~173 g, baked with skin assumed); 3/4 chicken thigh (~39 g meat assumed); salt to taste (assumed, one entry for potato and chicken); 3 oz Maple Hill kefir; 3 prunes (~9.5 g each assumed). Status: eaten."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-21",
+    "meals": [
+      {
+        "meal": "Lunch (~2 PM, time approximate)",
+        "items": "1 oz Maple Hill kefir; kale, 6 leaves stripped from ~9-inch stalks (~102 g raw assumed); 1/3 medium onion; 2/3 red bell pepper; 3 tbsp Whole Foods lentil soup; 3 oz chicken thigh cooked in olive oil (~1 tsp assumed) with 2 tsp curry powder and 1 garlic clove; salt to taste (assumed). Status: eaten."
+      },
+      {
+        "meal": "Afternoon snack (~3:30 PM, time approximate)",
+        "items": "8 oz (240 mL) ultra-filtered milk (Fairlife 2% assumed, label values); 2 prunes (~9.5 g each assumed). Status: eaten."
+      },
+      {
+        "meal": "Evening snack (~6 PM, time approximate)",
+        "items": "20 g pumpkin seeds. Status: eaten."
+      },
+      {
+        "meal": "Dinner (evening, time approximate)",
+        "items": "5 oz Whole Foods lentil soup; potato-eggplant curry (same assumed components as Oct 16/18), salt to taste (assumed); 1 oz low-fat plain yogurt; 3 oz Maple Hill kefir; 3 prunes (~9.5 g each assumed). Status: eaten."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-22",
+    "meals": [
+      {
+        "meal": "Lunch (~1 PM, time approximate)",
+        "items": "~3 oz white fish (type unspecified; cod values used), kale (6 leaves stripped from stalks, ~102 g raw assumed) and 1/2 red bell pepper (~60 g assumed), all cooked in olive oil (~1 tbsp assumed); onion salad of 1/2 red onion (~55 g assumed) with a creamy dressing (assumed to be the kefir below) and 20 g pumpkin seeds; 2 oz Maple Hill kefir; 8 oz kombucha; salt to taste (assumed). Status: eaten."
+      },
+      {
+        "meal": "Afternoon snack (~3 PM, time approximate)",
+        "items": "8 oz (240 mL) ultra-filtered milk (Fairlife 2% assumed, label values); 2 prunes (~9.5 g each assumed). Status: eaten."
+      },
+      {
+        "meal": "Evening snack (~5:50 PM)",
+        "items": "6 oz (180 mL) ultra-filtered milk (Fairlife 2% assumed, label values); 1 chocolate biscotti (~30 g assumed; store-bought, no added salt; USDA chocolate wafer cookie values used as stand-in). Status: eaten."
+      },
+      {
+        "meal": "Evening (~6:15 PM, time approximate)",
+        "items": "Half a medium potato (~85 g assumed); very mildly salted (light pinch, assumed). Status: eaten."
+      },
+      {
+        "meal": "Dinner (~11 PM, time approximate)",
+        "items": "1.5 baked beef empanadas (~4 inches) from GoGo Empanadas, Miami Beach (~80 g each assumed; generic USDA restaurant beef empanada values); 5 fistfuls SkinnyPop Original popcorn (~8 g each assumed, ~40 g). Status: eaten."
+      },
+      {
+        "meal": "Late snack (~11:20 PM, time approximate)",
+        "items": "2 oz Whole Foods lentil soup (store-bought). Status: eaten."
+      },
+      {
+        "meal": "Late snack (~11:30 PM, time approximate)",
+        "items": "2 prunes (~9.5 g each assumed). Status: eaten."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-23",
+    "meals": [
+      {
+        "meal": "Lunch (~1:50 PM, time approximate)",
+        "items": "10 oz Whole Foods lentil soup with fresh ginger (~5 g assumed) and 1 garlic clove (~3 g assumed), no added salt (store-bought); 2 oz low-fat plain yogurt; 1/3 red onion (~37 g assumed); 3 oz Maple Hill kefir; 20 g pumpkin seeds; 5 'angel' small tomatoes (~50 g assumed). Status: eaten."
+      },
+      {
+        "meal": "Afternoon snack (~3:05 PM, time approximate)",
+        "items": "8 oz (240 mL) ultra-filtered milk (Fairlife 2% assumed, label values); 3 prunes (~9.5 g each assumed). Status: eaten."
+      },
+      {
+        "meal": "Dinner (~9-10 PM, time approximate)",
+        "items": "Red Dragon roll at Moshi Moshi, Miami Beach (shrimp katsu, avocado, topped with tuna, crispy onion, ponzu mayo, spicy eel sauce; 8 pieces assumed), with soy sauce (~1 tbsp, amount assumed); 1 sauteed red bell pepper, 4 broccoli florets and 1 skinless chicken thigh, cooked in olive oil (~1 tsp assumed), salt to taste (assumed); 3 oz Maple Hill kefir; 2 prunes. Status: eaten."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-24",
+    "meals": [
+      {
+        "meal": "Lunch (~1:45 PM, time approximate)",
+        "items": "2 slices wheat toast (large rustic slices, ~50 g each assumed); 3 eggs fried over easy; kale, 5 stalks leaves only (~85 g raw assumed), sauteed in olive oil (~1 tsp assumed); salt to taste (assumed); 8 oz kombucha. Status: eaten."
+      },
+      {
+        "meal": "Dinner (evening, board games event; time approximate)",
+        "items": "Finger food, all amounts assumed: 8 oz lentil soup (event-made); 2 small toasts; a little chocolate hummus (~2 tbsp); ~15-20 potato chips; 5 grapes; ~2 pieces cheese; ~2 pieces charcuterie meat; 1 glass kombucha; 1 glass milk (ultra-filtered assumed); 3 prunes. Status: eaten."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-25",
+    "meals": [
+      {
+        "meal": "Morning (time approximate)",
+        "items": "8 oz latte (outside, regular milk); 3 pieces vegan cake (~1-inch cubes, believed sugar-free); 1/4 avocado toast. Amounts assumed. Status: eaten."
+      },
+      {
+        "meal": "Lunch (~2:35 PM, time approximate)",
+        "items": "9 oz Whole Foods lentil soup; 1/2 red bell pepper sauteed in olive oil (~1 tsp assumed), salt to taste (assumed); 3 oz Siggi's plain non-fat yogurt. Status: eaten."
+      },
+      {
+        "meal": "Dinner (time approximate)",
+        "items": "1 skinless chicken thigh; 5 kale stalks, leaves only (~85 g); 4 steamed broccoli florets; salt to taste (assumed); 8 oz 2% milk; 3 prunes; 12 walnut halves (~24 g assumed). Status: eaten."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-26",
+    "meals": [
+      {
+        "meal": "Lunch (~1:45 PM, time approximate)",
+        "items": "16 oz homemade lentil soup, salted to taste (assumed), with 1/2 potato, 5 medium tomatoes, 100 g fresh spinach, 1 garlic clove, 10 g fresh ginger, 8 black peppercorns, 40 g eggplant, 2 oz plain nonfat yogurt, 1 tsp cumin, 1 tsp turmeric, juice of 1/4 lemon. Ingredients listed for the pot; scaled to the 16 oz bowl eaten. Status: eaten."
+      },
+      {
+        "meal": "Afternoon snack (~3 PM, time approximate)",
+        "items": "20 g pumpkin seeds; 8 oz Fairlife ultra-filtered 2% milk; 2 prunes. Status: eaten."
+      },
+      {
+        "meal": "Dinner (late, time approximate)",
+        "items": "5 tofu cubes (~1.5 in); 4 kale leaves; 10 g pumpkin seeds; 1/2 red bell pepper, cooked; salt to taste (assumed); 3 oz Maple Hill kefir; 4 prunes. Status: eaten."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-27",
+    "meals": [
+      {
+        "meal": "Lunch (time approximate)",
+        "items": "1/2 gyro wrap (bought); about 7 beet slices; ~15 g feta dip; 8 oz leftover homemade lentil soup with 1/4 red bell pepper; 8 oz Fairlife ultra-filtered 2% milk; 2 prunes. Status: eaten."
+      },
+      {
+        "meal": "Dinner (time approximate)",
+        "items": "Wild Atlantic salmon ~6 oz; 6 kale leaves sauteed in olive oil (~1 tsp assumed); salt to taste (assumed). Status: eaten."
+      },
+      {
+        "meal": "Evening snack (~9:45 PM, time approximate)",
+        "items": "3 oz Maple Hill kefir; 3 prunes; 15 g pumpkin seeds. Status: eaten."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-28",
+    "meals": [
+      {
+        "meal": "Lunch (~1:15 PM, time approximate)",
+        "items": "17 oz homemade lentil soup (medium thickness) with onion, tomato, potato, spinach, ginger, garlic, cardamom, cloves, cumin, black peppercorns, turmeric, eggplant, olive oil; salt to taste (assumed); eaten with a little lemon juice and 2 oz Siggi's plain non-fat yogurt. Soup amounts estimated; user gave ingredients only. Status: eaten."
+      },
+      {
+        "meal": "Dinner (late evening, reported 12:47 AM Oct 29)",
+        "items": "Tuna tartare (~50 g raw tuna; dressing unknown) with 2 small corn tortillas (~4 in); 4 oz Fairlife 2% ultra-filtered milk; 3 oz Maple Hill kefir; 3 prunes; 1 slice whole wheat toast with a little olive oil (assumed 1 tsp); 30 g pumpkin seeds; 3 walnuts; 2/3 avocado. Status: eaten."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-29",
+    "meals": [
+      {
+        "meal": "Lunch (Garcia's Seafood, Miami)",
+        "items": "Mahi mahi (~6 oz, preparation unknown, likely grilled) with a side of white rice and coleslaw; 3 medium stone crab claws. Portions estimated. Status: eaten."
+      },
+      {
+        "meal": "After lunch",
+        "items": "8 oz Fairlife 2% ultra-filtered milk; 3 prunes; 10 g pumpkin seeds. Status: eaten."
+      },
+      {
+        "meal": "Dinner",
+        "items": "16 oz homemade lentil soup (same batch as Oct 28 lunch; recipe lentil_soup_medium), salt to taste (assumed), with a little lemon juice (no yogurt); 3 oz Maple Hill kefir; 3 prunes; 10 g pumpkin seeds; 4 oz Guinness 0.0 (alcohol-free). Status: eaten."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-30",
+    "meals": [
+      {
+        "meal": "Lunch",
+        "items": "3 fried eggs, 2 slices whole wheat toast and steamed kale (5 leaves, ~8-inch stalks, ~85 g), all with olive oil and a sprinkle of salt; 8 oz kombucha; 8 oz Fairlife 2% ultra-filtered milk; 3 prunes. Toast and oil portions estimated from photos. Status: eaten."
+      },
+      {
+        "meal": "Dinner",
+        "items": "8 oz Whole Foods lentil soup. Status: eaten."
+      },
+      {
+        "meal": "Evening (party)",
+        "items": "~150 g bread and dips, ~25 chips, 1 Oreo, 3 oz beer, 4 oz chicken breast, small muffin, 2 oz Maple Hill kefir, 3 prunes. Status: eaten."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-31",
+    "meals": [
+      {
+        "meal": "Lunch",
+        "items": "14 oz Whole Foods Vegan Lentil Dal & Spinach Soup with 1 garlic clove and 1/4 onion added; 8 oz kombucha; 10 g pumpkin seeds. Status: eaten."
+      },
+      {
+        "meal": "Dinner",
+        "items": "Suviche (restaurant): salmon poke bowl - ate all the salmon, ~25% of the rice and all the veggies; 1 beef spring roll; a fistful of roasted corn; 1 small beef empanada. Then 3 oz Maple Hill kefir, 3 prunes, 10 g pumpkin seeds. Restaurant portions estimated. Status: eaten."
+      }
+    ]
+  },
+  {
+    "date": "2026-11-01",
+    "meals": [
+      {
+        "meal": "Lunch",
+        "items": "Home (photo-based): 1 avocado on 2 slices whole wheat toast with a little olive oil, salt and black pepper; 8 oz Fairlife ultra-filtered milk; 20 g pumpkin seeds; 3 prunes. Status: eaten."
+      },
+      {
+        "meal": "Later",
+        "items": "Out/party: 8 oz latte (whole milk), 1/2 caramel cookie, 2 pineapple cubes, 2 watermelon cubes, 1 glass champagne, a small sausage, 1 cracker with cheese. Home: 8 oz Whole Foods lentil soup, 1 slice whole wheat toast with olive oil, 3 prunes, 10 g pumpkin seeds. Status: eaten."
+      }
+    ]
+  },
+  {
+    "date": "2026-11-02",
+    "meals": [
+      {
+        "meal": "Lunch",
+        "items": "Home: 4 oz chicken thigh, 6 steamed kale leaves with a little olive oil, 1 oz pumpkin seeds. Status: eaten."
+      },
+      {
+        "meal": "An hour later",
+        "items": "8 oz Fairlife ultra-filtered milk, 3 prunes. Status: eaten."
+      },
+      {
+        "meal": "Afternoon",
+        "items": "4 oz coffee, 2 small pieces of cake (~1 oz each). Status: eaten."
+      },
+      {
+        "meal": "Dinner",
+        "items": "Home: 14 oz Whole Foods lentil soup, a handful of trail mix, 2 slices whole wheat toast, 3 oz Maple Hill kefir, 3 prunes. Status: eaten."
+      }
+    ]
+  },
+  {
+    "date": "2026-11-03",
+    "meals": [
+      {
+        "meal": "Lunch",
+        "items": "Home: 14 oz Whole Foods lentil soup, 1 slice whole wheat toast with olive oil, 25 g pumpkin seeds, 8 oz kombucha. Status: eaten."
+      },
+      {
+        "meal": "Dinner",
+        "items": "Home: 1 chicken thigh, 1 chicken leg, 5 steamed kale leaves with olive oil. Status: eaten."
+      },
+      {
+        "meal": "Evening",
+        "items": "3 oz Maple Hill kefir, 3 prunes. Status: eaten."
+      }
+    ]
+  },
+  {
+    "date": "2026-11-04",
+    "meals": [
+      {
+        "meal": "Lunch",
+        "items": "Home: 7 oz salmon, 6 steamed kale leaves, 1 slice whole wheat toast, all with olive oil; 8 oz kombucha. Status: eaten."
+      },
+      {
+        "meal": "Dinner",
+        "items": "Restaurant: 2 mahi-mahi tacos (corn tortillas, slaw; portions assumed); 3 oz kefir; 3 prunes. Status: eaten."
+      }
+    ]
+  },
+  {
+    "date": "2026-11-05",
+    "in_progress": true,
+    "meals": [
+      {
+        "meal": "Lunch",
+        "items": "Home: 15 oz Whole Foods lentil soup; large chicken drumstick with olive oil and lemon juice; 8 oz kombucha. Status: eaten."
+      },
+      {
+        "meal": "After lunch",
+        "items": "Home: 8 oz Fairlife 2% ultra-filtered milk; 3 prunes. Status: eaten."
+      },
+      {
+        "meal": "Evening",
+        "items": "Party: 150 g rice and vegetables combined (assumed ~75 g rice + 75 g mixed veg); handful of cashews (~20 nuts, ~28 g); 1 oz chicken salad (chicken+mayo stand-in); ~10 potato chips (~15 g). Status: eaten."
+      },
+      {
+        "meal": "Late evening",
+        "items": "3 oz Maple Hill kefir. Status: eaten."
+      }
+    ]
+  }
 ]
