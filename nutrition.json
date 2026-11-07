@@ -7043,7 +7043,7 @@
    "date": "2026-11-07",
    "partial": true,
    "in_progress": true,
-   "partial_note": "In progress: lunch and after-lunch milk and prunes logged. Whole lunch plate weighed 422 g; the split between rice, chicken and broccoli is assumed.",
+   "partial_note": "In progress: lunch, after-lunch milk and prunes, and an evening latte logged. Whole lunch plate weighed 422 g; the split between rice, chicken and broccoli is assumed.",
    "entries": [
     {
      "meal": "Lunch: home",
@@ -7098,6 +7098,24 @@
      "assumed": true,
      "lo": 0.8,
      "hi": 1.2
+    },
+    {
+     "meal": "Evening",
+     "food": "milk_whole",
+     "grams": 150,
+     "label": "Latte 8 oz: ~150 g whole milk (milk type and split assumed, same as Oct 25)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Evening",
+     "food": "coffee",
+     "grams": 60,
+     "label": "Latte 8 oz: espresso/coffee ~60 g (assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
     }
    ]
   }

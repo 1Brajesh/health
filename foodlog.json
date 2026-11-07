@@ -518,6 +518,10 @@
    {
     "meal": "After lunch",
     "items": "Home: 8 oz Fairlife 2% ultra-filtered milk; 3 prunes. Status: eaten."
+   },
+   {
+    "meal": "Evening",
+    "items": "8 oz latte (milk type not given; whole milk assumed). Status: eaten."
    }
   ]
  }
