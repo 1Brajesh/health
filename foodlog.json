@@ -514,6 +514,10 @@
    {
     "meal": "Lunch",
     "items": "Home: yellow rice, a couple pieces skinless chicken thigh, a couple pieces broccoli, ~2 oz creamed spinach. Whole plate 0.93 lb (~422 g); split assumed (~165 g rice, ~140 g chicken, ~60 g broccoli, 57 g spinach). Status: eaten."
+   },
+   {
+    "meal": "After lunch",
+    "items": "Home: 8 oz Fairlife 2% ultra-filtered milk; 3 prunes. Status: eaten."
    }
   ]
  }
