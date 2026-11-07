@@ -496,11 +496,24 @@
  },
  {
   "date": "2026-11-06",
-  "in_progress": true,
   "meals": [
    {
     "meal": "Lunch",
     "items": "Home: cooked lentils 10 oz (280 g); chicken thighs and wings mixed 6 oz cooked (170 g; chicken_thigh stand-in); half an onion (~55 g raw, assumed); 1 oz Maple Hill kefir (28 g); 30 g pumpkin seeds; 8 oz Fairlife 2% ultra-filtered milk; 3 prunes (~28.5 g); salt to taste, assumed. Status: eaten."
+   },
+   {
+    "meal": "Dinner",
+    "items": "Home: 2 slices wheat toast with olive oil (~1 tsp, estimated) and honey (~1 tsp, estimated); 7 g pumpkin seeds; 8 oz Fairlife 2% ultra-filtered milk; 3 prunes. Status: eaten."
+   }
+  ]
+ },
+ {
+  "date": "2026-11-07",
+  "in_progress": true,
+  "meals": [
+   {
+    "meal": "Lunch",
+    "items": "Home: yellow rice, a couple pieces skinless chicken thigh, a couple pieces broccoli, ~2 oz creamed spinach. Whole plate 0.93 lb (~422 g); split assumed (~165 g rice, ~140 g chicken, ~60 g broccoli, 57 g spinach). Status: eaten."
    }
   ]
  }
