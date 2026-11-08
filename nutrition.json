@@ -2133,6 +2133,80 @@
     "magnesium": 30.0,
     "sodium": 566.0
    }
+  },
+  "sweet_potato_baked": {
+   "name": "Sweet potato, baked",
+   "approx": true,
+   "note": "Baked sweet potato used for roasted sweet potato; roasting oil and salt not included.",
+   "fdc_id": 168483,
+   "usda_description": "Sweet potato, cooked, baked in skin, flesh, without salt",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/168483/nutrients",
+   "accessed": "2026-11-07",
+   "per100g": {
+    "kcal": 90.0,
+    "protein": 2.01,
+    "fiber": 3.3,
+    "calcium": 38.0,
+    "potassium": 475.0,
+    "magnesium": 27.0,
+    "sodium": 36.0
+   }
+  },
+  "chicken_wing": {
+   "name": "Chicken wing, meat and skin, roasted",
+   "approx": true,
+   "note": "Roasted wing with skin used for sauced drumettes; sauce not included.",
+   "fdc_id": 173630,
+   "usda_description": "Chicken, broilers or fryers, wing, meat and skin, cooked, roasted",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/173630/nutrients",
+   "accessed": "2026-11-07",
+   "per100g": {
+    "kcal": 254.0,
+    "protein": 23.79,
+    "fiber": 0.0,
+    "calcium": 18.0,
+    "potassium": 212.0,
+    "magnesium": 19.0,
+    "sodium": 98.0
+   }
+  },
+  "brussels_kale_slaw": {
+   "name": "Brussels & Kale Slaw (store deli label)",
+   "approx": true,
+   "note": "Store deli label gives calories only (200 kcal per 4 oz); other nutrients not reported.",
+   "fdc_id": null,
+   "data_type": "Label",
+   "source": "Store deli label photo",
+   "accessed": "2026-11-07",
+   "per100g": {
+    "kcal": 176.4,
+    "protein": null,
+    "fiber": null,
+    "calcium": null,
+    "potassium": null,
+    "magnesium": null,
+    "sodium": null
+   }
+  },
+  "saag_tofu": {
+   "name": "Saag Tofu (store deli label)",
+   "approx": true,
+   "note": "Store deli label gives calories only (80 kcal per 4 oz); other nutrients not reported.",
+   "fdc_id": null,
+   "data_type": "Label",
+   "source": "Store deli label photo",
+   "accessed": "2026-11-07",
+   "per100g": {
+    "kcal": 70.5,
+    "protein": null,
+    "fiber": null,
+    "calcium": null,
+    "potassium": null,
+    "magnesium": null,
+    "sodium": null
+   }
   }
  },
  "days": [
@@ -7043,7 +7117,7 @@
    "date": "2026-11-07",
    "partial": true,
    "in_progress": true,
-   "partial_note": "In progress: lunch, after-lunch milk and prunes, and an evening latte logged. Whole lunch plate weighed 422 g; the split between rice, chicken and broccoli is assumed.",
+   "partial_note": "In progress: lunch, after-lunch milk and prunes, evening latte, and dinner logged. Lunch plate (422 g) and dinner box (331 g) were weighed whole; splits are assumed. Dinner slaw and saag tofu have calories only.",
    "entries": [
     {
      "meal": "Lunch: home",
@@ -7116,6 +7190,42 @@
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
+    },
+    {
+     "meal": "Dinner: store hot bar",
+     "food": "chicken_wing",
+     "grams": 65,
+     "label": "2 chicken drumettes ~65 g edible (assumed share of 331 g box)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner: store hot bar",
+     "food": "sweet_potato_baked",
+     "grams": 70,
+     "label": "Roasted sweet potato ~70 g (assumed share of 331 g box)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner: store hot bar",
+     "food": "saag_tofu",
+     "grams": 90,
+     "label": "Saag tofu ~90 g (assumed share; label 80 kcal per 4 oz)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner: store hot bar",
+     "food": "brussels_kale_slaw",
+     "grams": 106,
+     "label": "Brussels & kale slaw ~106 g (assumed share; label 200 kcal per 4 oz)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
     }
    ]
   }
