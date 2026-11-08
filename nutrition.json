@@ -7236,6 +7236,113 @@
      "hi": 1.2
     }
    ]
+  },
+  {
+   "date": "2026-11-08",
+   "partial": true,
+   "in_progress": true,
+   "partial_note": "In progress: lunch (lentil soup with onion, garlic and lemon; wheat toast with pumpkin seeds and olive oil), afternoon milk and prunes, and a 6 oz latte. Soup type, add-in amounts, toast weight and latte milk/split are assumed.",
+   "entries": [
+    {
+     "meal": "Lunch: home",
+     "food": "wf_lentil_soup",
+     "grams": 425,
+     "label": "Lentil soup 15 oz (425 g; Whole Foods Vegan Lentil Dal & Spinach Soup assumed, as on recent days)",
+     "assumed": true,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "onion",
+     "grams": 27.5,
+     "label": "Onion 1/4 added to soup (~27.5 g raw, assumed)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "garlic",
+     "grams": 3,
+     "label": "Garlic 1 clove added to soup (~3 g, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "lemon_juice",
+     "grams": 15,
+     "label": "Lemon juice squeezed ~1 tbsp (15 g, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "bread",
+     "grams": 30,
+     "label": "Wheat toast, 1 slice (~30 g, assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "pumpkin_seeds",
+     "grams": 10,
+     "label": "Pumpkin seeds 10 g (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "olive_oil",
+     "grams": 4.5,
+     "label": "Olive oil sprinkled on toast ~1 tsp (4.5 g, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Afternoon: home",
+     "food": "fairlife_2",
+     "grams": 240,
+     "label": "Fairlife 2% ultra-filtered milk 8 oz (240 mL)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Afternoon: home",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~28.5 g)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Afternoon: latte",
+     "food": "milk_whole",
+     "grams": 120,
+     "label": "Latte 6 oz: ~120 g whole milk (milk type and split assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Afternoon: latte",
+     "food": "coffee",
+     "grams": 60,
+     "label": "Latte 6 oz: espresso/coffee ~60 g (assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    }
+   ]
   }
  ]
 }

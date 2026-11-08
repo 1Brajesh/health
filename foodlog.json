@@ -531,5 +531,22 @@
     "items": "Home: 3 oz kefir; 3 prunes. Status: eaten."
    }
   ]
+ },
+ {
+  "date": "2026-11-08",
+  "meals": [
+   {
+    "meal": "Lunch",
+    "items": "Home: 15 oz lentil soup (Whole Foods lentil soup assumed) with 1/4 onion, 1 garlic clove, lemon squeezed in (~1 tbsp, assumed); 1 slice wheat toast with 10 g pumpkin seeds and olive oil (~1 tsp, assumed). Status: eaten."
+   },
+   {
+    "meal": "Afternoon",
+    "items": "Home: 8 oz Fairlife 2% ultra-filtered milk; 3 prunes. Status: eaten."
+   },
+   {
+    "meal": "Afternoon (latte)",
+    "items": "6 oz latte (milk type not given; whole milk assumed). Status: eaten."
+   }
+  ]
  }
 ]
