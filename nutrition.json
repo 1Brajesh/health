@@ -2173,21 +2173,21 @@
    }
   },
   "brussels_kale_slaw": {
-   "name": "Brussels & Kale Slaw (store deli label)",
+   "name": "Brussels & Kale Slaw (store deli; label calories, ingredient-based estimate)",
    "approx": true,
-   "note": "Store deli label gives calories only (200 kcal per 4 oz); other nutrients not reported.",
+   "note": "Store deli label gives 200 kcal per 4 oz only. Other nutrients estimated from label ingredients with USDA SR Legacy values (per 100 g: ~45 g Brussels sprouts, 15 g kale, 8 g carrot, 4 g celery, 5 g parmesan, 5 g almonds, 11 g canola oil, 7 g mustard/vinegar dressing), scaled to the label calories.",
    "fdc_id": null,
    "data_type": "Label",
    "source": "Store deli label photo",
    "accessed": "2026-11-07",
    "per100g": {
     "kcal": 176.4,
-    "protein": null,
-    "fiber": null,
-    "calcium": null,
-    "potassium": null,
-    "magnesium": null,
-    "sodium": null
+    "protein": 4.71,
+    "fiber": 3.45,
+    "calcium": 119.43,
+    "potassium": 313.45,
+    "magnesium": 34.59,
+    "sodium": 191.72
    }
   }
  },
@@ -7099,7 +7099,7 @@
    "date": "2026-11-07",
    "partial": true,
    "in_progress": true,
-   "partial_note": "In progress: lunch, after-lunch milk and prunes, evening latte, and dinner logged. Lunch plate (422 g) and dinner box (331 g) were weighed whole; splits are assumed. Dinner slaw has calories only; saag sauce estimated as cooked spinach plus a little oil.",
+   "partial_note": "In progress: lunch, after-lunch milk and prunes, evening latte, and dinner logged. Lunch plate (422 g) and dinner box (331 g) were weighed whole; splits are assumed. Dinner slaw nutrients estimated from its ingredients; saag sauce estimated as cooked spinach plus a little oil.",
    "entries": [
     {
      "meal": "Lunch: home",
