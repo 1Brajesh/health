@@ -7098,8 +7098,7 @@
   {
    "date": "2026-11-07",
    "partial": true,
-   "in_progress": true,
-   "partial_note": "In progress: lunch, after-lunch milk and prunes, evening latte, and dinner logged. Lunch plate (422 g) and dinner box (331 g) were weighed whole; splits are assumed. Dinner slaw nutrients estimated from its ingredients; saag sauce estimated as cooked spinach plus a little oil.",
+   "partial_note": "All reported food logged: lunch (yellow rice, chicken thigh, broccoli, creamed spinach), after-lunch milk and prunes, evening latte, dinner (drumettes, sweet potato, saag spinach, Brussels & kale slaw), and late-evening kefir and prunes. Lunch plate and dinner box were weighed whole; splits are assumed.",
    "entries": [
     {
      "meal": "Lunch: home",
@@ -7217,6 +7216,24 @@
      "assumed": true,
      "lo": 0.6,
      "hi": 1.4
+    },
+    {
+     "meal": "Late evening: home",
+     "food": "kefir_maplehill",
+     "grams": 85,
+     "label": "Kefir 3 oz (85 g; Maple Hill assumed, as on recent days)",
+     "assumed": true,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Late evening: home",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~28.5 g)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
     }
    ]
   }
