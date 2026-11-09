@@ -2189,6 +2189,63 @@
     "magnesium": 34.59,
     "sodium": 191.72
    }
+  },
+  "egg_omelet": {
+   "name": "Egg, whole, cooked, omelet",
+   "approx": false,
+   "note": "Used as the egg portion of a Spanish omelette (tortilla española); cooking oil counted separately.",
+   "fdc_id": 172185,
+   "usda_description": "Egg, whole, cooked, omelet",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/172185/nutrients",
+   "accessed": "2026-11-08",
+   "per100g": {
+    "kcal": 154.0,
+    "protein": 10.57,
+    "fiber": 0.0,
+    "calcium": 48.0,
+    "potassium": 117.0,
+    "magnesium": 11.0,
+    "sodium": 155.0
+   }
+  },
+  "mushroom_cooked": {
+   "name": "Mushrooms, white, cooked, boiled, drained, no salt",
+   "approx": true,
+   "note": "Sautéed mushrooms in the Spanish omelette approximated with boiled drained white mushrooms; cooking oil counted separately.",
+   "fdc_id": 169252,
+   "usda_description": "Mushrooms, white, cooked, boiled, drained, without salt",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/169252/nutrients",
+   "accessed": "2026-11-08",
+   "per100g": {
+    "kcal": 28.0,
+    "protein": 2.17,
+    "fiber": 2.2,
+    "calcium": 6.0,
+    "potassium": 356.0,
+    "magnesium": 12.0,
+    "sodium": 2.0
+   }
+  },
+  "spanakopita": {
+   "name": "Spanakopita (Greek spinach and feta pie)",
+   "approx": true,
+   "note": "USDA FNDDS survey food used as stand-in for spinach pie; recipe (phyllo, spinach, feta, oil) and salt vary. Diameter alone does not fix weight — full-pie weight is assumed from USDA 12 g per cubic inch density and an assumed thickness.",
+   "fdc_id": 2708729,
+   "usda_description": "Spanakopita",
+   "data_type": "Survey (FNDDS)",
+   "source": "https://fdc.nal.usda.gov/food-details/2708729/nutrients",
+   "accessed": "2026-11-08",
+   "per100g": {
+    "kcal": 212.0,
+    "protein": 8.27,
+    "fiber": 1.0,
+    "calcium": 132.0,
+    "potassium": 264.0,
+    "magnesium": 48.0,
+    "sodium": 392.0
+   }
   }
  },
  "days": [
@@ -3366,7 +3423,7 @@
      "meal": "Afternoon snack (time not given)",
      "food": "milk_2",
      "grams": 122.0,
-     "label": "Caf\u00e9 con leche: ~4 oz 2% steamed milk (assumed half of 8 oz)",
+     "label": "Café con leche: ~4 oz 2% steamed milk (assumed half of 8 oz)",
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
@@ -3375,7 +3432,7 @@
      "meal": "Afternoon snack (time not given)",
      "food": "coffee",
      "grams": 118.0,
-     "label": "Caf\u00e9 con leche: ~4 oz brewed coffee (assumed half of 8 oz; espresso treated as brewed)",
+     "label": "Café con leche: ~4 oz brewed coffee (assumed half of 8 oz; espresso treated as brewed)",
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
@@ -7241,7 +7298,7 @@
    "date": "2026-11-08",
    "partial": true,
    "in_progress": true,
-   "partial_note": "In progress: lunch (lentil soup with onion, garlic and lemon; wheat toast with pumpkin seeds and olive oil), afternoon milk and prunes, and a 6 oz latte. Soup type, add-in amounts, toast weight and latte milk/split are assumed.",
+   "partial_note": "In progress: lunch (lentil soup with onion, garlic and lemon; wheat toast with pumpkin seeds and olive oil), afternoon milk and prunes, a 6 oz latte, and dinner (1/3 of a thick 4-in Spanish omelette with eggs, potatoes, onions and mushrooms; spinach-pie wedge ~27% of a 4-in pie). Omelette and pie full weights, ingredient split, oil, and spanakopita recipe are assumed.",
    "entries": [
     {
      "meal": "Lunch: home",
@@ -7341,6 +7398,60 @@
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "potato",
+     "grams": 28,
+     "label": "Spanish omelette (tortilla española) 1/3 of 4-in pie: potato ~28 g (assumed share of ~70 g serving; full pie ~210 g assumed thickness)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.6
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "egg_omelet",
+     "grams": 22,
+     "label": "Spanish omelette: egg ~22 g (assumed share)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.6
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "onion",
+     "grams": 7,
+     "label": "Spanish omelette: onion ~7 g (assumed share)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.6
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "mushroom_cooked",
+     "grams": 7,
+     "label": "Spanish omelette: mushrooms ~7 g (assumed share; boiled-mushroom stand-in)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.6
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "olive_oil",
+     "grams": 6,
+     "label": "Spanish omelette: cooking oil ~6 g absorbed (assumed)",
+     "assumed": true,
+     "lo": 0.4,
+     "hi": 2.0
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "spanakopita",
+     "grams": 38,
+     "label": "Spinach pie (spanakopita stand-in) wedge ~38 g: 4-in pie ~140 g assumed, ~27% from 3-in chord (geometry for fraction only, not weight)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.8
     }
    ]
   }
