@@ -7297,7 +7297,7 @@
   {
    "date": "2026-11-08",
    "partial": true,
-   "partial_note": "All reported food logged: lunch (lentil soup with onion, garlic and lemon; toast with pumpkin seeds and olive oil), milk and prunes, 6 oz latte, dinner (Spanish omelette and spinach pie), and late-evening kefir and prunes. Dinner portion weights are estimated from size; the soup label lacks potassium and magnesium.",
+   "partial_note": "All reported food logged: lunch (lentil soup with onion, garlic and lemon; toast with pumpkin seeds and olive oil), milk and prunes, 6 oz latte, dinner (Spanish omelette and spinach pie), and late-evening kefir and prunes. Dinner portion weights are estimated from size; soup nutrients other than calories are USDA lentil-soup estimates.",
    "entries": [
     {
      "meal": "Lunch: home",
