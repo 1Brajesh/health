@@ -550,6 +550,10 @@
    {
     "meal": "Dinner",
     "items": "Home: 1/3 of a thick Spanish omelette (tortilla española), 4-inch radius, with eggs, potatoes, onions and mushrooms (full pie ~840 g assumed; oil assumed; corrected from diameter to radius); spinach pie also 4-inch radius, wedge with 3-inch triangular base (~12.2% of pie; full pie ~560 g assumed; spanakopita stand-in). Status: eaten."
+   },
+   {
+    "meal": "Late evening",
+    "items": "Home: 3 oz kefir; 3 prunes. Status: eaten."
    }
   ]
  }

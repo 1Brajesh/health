@@ -7297,8 +7297,7 @@
   {
    "date": "2026-11-08",
    "partial": true,
-   "in_progress": true,
-   "partial_note": "In progress: lunch (lentil soup with onion, garlic and lemon; wheat toast with pumpkin seeds and olive oil), afternoon milk and prunes, a 6 oz latte, and dinner (1/3 of a thick Spanish omelette with 4-inch radius — eggs, potatoes, onions and mushrooms; spinach-pie wedge ~12.2% of a 4-inch-radius pie, 3-in chord). Omelette and pie full weights, ingredient split, oil, and spanakopita recipe are assumed; earlier log used diameter by mistake and was corrected.",
+   "partial_note": "All reported food logged: lunch (lentil soup with onion, garlic and lemon; toast with pumpkin seeds and olive oil), milk and prunes, 6 oz latte, dinner (Spanish omelette and spinach pie), and late-evening kefir and prunes. Dinner portion weights are estimated from size; the soup label lacks potassium and magnesium.",
    "entries": [
     {
      "meal": "Lunch: home",
@@ -7452,6 +7451,24 @@
      "assumed": true,
      "lo": 0.5,
      "hi": 1.8
+    },
+    {
+     "meal": "Late evening: home",
+     "food": "kefir_maplehill",
+     "grams": 85,
+     "label": "Kefir 3 oz (85 g; Maple Hill assumed, as on recent days)",
+     "assumed": true,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Late evening: home",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~28.5 g)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
     }
    ]
   }
