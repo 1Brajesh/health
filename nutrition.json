@@ -7298,7 +7298,7 @@
    "date": "2026-11-08",
    "partial": true,
    "in_progress": true,
-   "partial_note": "In progress: lunch (lentil soup with onion, garlic and lemon; wheat toast with pumpkin seeds and olive oil), afternoon milk and prunes, a 6 oz latte, and dinner (1/3 of a thick 4-in Spanish omelette with eggs, potatoes, onions and mushrooms; spinach-pie wedge ~27% of a 4-in pie). Omelette and pie full weights, ingredient split, oil, and spanakopita recipe are assumed.",
+   "partial_note": "In progress: lunch (lentil soup with onion, garlic and lemon; wheat toast with pumpkin seeds and olive oil), afternoon milk and prunes, a 6 oz latte, and dinner (1/3 of a thick Spanish omelette with 4-inch radius — eggs, potatoes, onions and mushrooms; spinach-pie wedge ~12.2% of a 4-inch-radius pie, 3-in chord). Omelette and pie full weights, ingredient split, oil, and spanakopita recipe are assumed; earlier log used diameter by mistake and was corrected.",
    "entries": [
     {
      "meal": "Lunch: home",
@@ -7402,8 +7402,8 @@
     {
      "meal": "Dinner: home",
      "food": "potato",
-     "grams": 28,
-     "label": "Spanish omelette (tortilla española) 1/3 of 4-in pie: potato ~28 g (assumed share of ~70 g serving; full pie ~210 g assumed thickness)",
+     "grams": 112,
+     "label": "Spanish omelette (tortilla española) 1/3 of 4-in-radius pie: potato ~112 g (assumed share of ~280 g serving; full pie ~840 g assumed thickness ~3 cm; radius not diameter)",
      "assumed": true,
      "lo": 0.5,
      "hi": 1.6
@@ -7411,8 +7411,8 @@
     {
      "meal": "Dinner: home",
      "food": "egg_omelet",
-     "grams": 22,
-     "label": "Spanish omelette: egg ~22 g (assumed share)",
+     "grams": 88,
+     "label": "Spanish omelette: egg ~88 g (assumed share of ~280 g serving)",
      "assumed": true,
      "lo": 0.5,
      "hi": 1.6
@@ -7420,8 +7420,8 @@
     {
      "meal": "Dinner: home",
      "food": "onion",
-     "grams": 7,
-     "label": "Spanish omelette: onion ~7 g (assumed share)",
+     "grams": 28,
+     "label": "Spanish omelette: onion ~28 g (assumed share)",
      "assumed": true,
      "lo": 0.5,
      "hi": 1.6
@@ -7429,8 +7429,8 @@
     {
      "meal": "Dinner: home",
      "food": "mushroom_cooked",
-     "grams": 7,
-     "label": "Spanish omelette: mushrooms ~7 g (assumed share; boiled-mushroom stand-in)",
+     "grams": 28,
+     "label": "Spanish omelette: mushrooms ~28 g (assumed share; boiled-mushroom stand-in)",
      "assumed": true,
      "lo": 0.5,
      "hi": 1.6
@@ -7438,8 +7438,8 @@
     {
      "meal": "Dinner: home",
      "food": "olive_oil",
-     "grams": 6,
-     "label": "Spanish omelette: cooking oil ~6 g absorbed (assumed)",
+     "grams": 24,
+     "label": "Spanish omelette: cooking oil ~24 g absorbed (assumed)",
      "assumed": true,
      "lo": 0.4,
      "hi": 2.0
@@ -7447,8 +7447,8 @@
     {
      "meal": "Dinner: home",
      "food": "spanakopita",
-     "grams": 38,
-     "label": "Spinach pie (spanakopita stand-in) wedge ~38 g: 4-in pie ~140 g assumed, ~27% from 3-in chord (geometry for fraction only, not weight)",
+     "grams": 68.5,
+     "label": "Spinach pie (spanakopita stand-in) wedge ~69 g: 4-in-radius pie ~560 g assumed, ~12.2% from 3-in chord (geometry for fraction only, not weight; radius not diameter)",
      "assumed": true,
      "lo": 0.5,
      "hi": 1.8
