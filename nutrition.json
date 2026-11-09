@@ -7471,6 +7471,113 @@
      "hi": 1.2
     }
    ]
+  },
+  {
+   "date": "2026-11-09",
+   "partial": true,
+   "in_progress": true,
+   "partial_note": "Day in progress: lunch (lentil soup with onion; toast with pumpkin seeds and olive oil; kefir), milk and prunes, 8 oz latte, steamed kale. Soup nutrients other than calories are USDA lentil-soup estimates.",
+   "entries": [
+    {
+     "meal": "Lunch: home",
+     "food": "wf_lentil_soup",
+     "grams": 397,
+     "label": "Lentil soup 14 oz (397 g; Whole Foods Vegan Lentil Dal & Spinach Soup assumed, as on recent days)",
+     "assumed": true,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "onion",
+     "grams": 27.5,
+     "label": "Onion 1/4 added to soup (~27.5 g raw, assumed)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "bread",
+     "grams": 45,
+     "label": "Wheat toast, 1.5 slices (~45 g, assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "pumpkin_seeds",
+     "grams": 12.5,
+     "label": "Pumpkin seeds 10-15 g (midpoint 12.5 g)",
+     "assumed": false,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "olive_oil",
+     "grams": 6.75,
+     "label": "Olive oil sprinkled on toast ~1.5 tsp (6.75 g, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "kefir_maplehill",
+     "grams": 28,
+     "label": "Kefir 1 oz (28 g; Maple Hill assumed)",
+     "assumed": true,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Afternoon: home",
+     "food": "fairlife_2",
+     "grams": 240,
+     "label": "Fairlife 2% ultra-filtered milk 8 oz (240 mL)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Afternoon: home",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~28.5 g)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Afternoon: latte",
+     "food": "milk_whole",
+     "grams": 150,
+     "label": "Latte 8 oz: ~150 g whole milk (milk type and split assumed, same as Nov 7)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Afternoon: latte",
+     "food": "coffee",
+     "grams": 60,
+     "label": "Latte 8 oz: espresso/coffee ~60 g (assumed)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Later: home",
+     "food": "kale_raw",
+     "grams": 102,
+     "label": "Steamed kale 6 leaves (~17 g each, 102 g; raw-kale values)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    }
+   ]
   }
  ]
 }
