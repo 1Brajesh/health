@@ -590,6 +590,10 @@
    {
     "meal": "Lunch",
     "items": "Home: 15 oz lentil soup (Whole Foods lentil soup assumed); 1 slice wheat toast sprinkled with olive oil (~1 tsp, assumed); 1 oz pumpkin seeds. Status: eaten."
+   },
+   {
+    "meal": "Afternoon",
+    "items": "8 oz hot chocolate (recipe not given; homemade with milk assumed). Status: eaten."
    }
   ]
  }
