@@ -7693,7 +7693,7 @@
    "date": "2026-11-10",
    "partial": true,
    "in_progress": true,
-   "partial_note": "Day in progress: lunch (lentil soup; toast with olive oil; pumpkin seeds), afternoon hot chocolate. Soup nutrients other than calories are USDA lentil-soup estimates.",
+   "partial_note": "Day in progress: lunch (lentil soup; toast with olive oil; pumpkin seeds), afternoon hot chocolate and kombucha. Soup nutrients other than calories are USDA lentil-soup estimates.",
    "entries": [
     {
      "meal": "Lunch: home",
@@ -7736,6 +7736,15 @@
      "food": "hot_cocoa",
      "grams": 240,
      "label": "Hot chocolate 8 oz (240 g; recipe assumed, homemade with milk)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Afternoon",
+     "food": "kombucha",
+     "grams": 240,
+     "label": "Kombucha 8 oz (240 g; brand not given)",
      "assumed": true,
      "lo": 0.7,
      "hi": 1.3

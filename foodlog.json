@@ -594,6 +594,10 @@
    {
     "meal": "Afternoon",
     "items": "8 oz hot chocolate (recipe not given; homemade with milk assumed). Status: eaten."
+   },
+   {
+    "meal": "Afternoon (kombucha)",
+    "items": "8 oz kombucha (brand not given). Status: eaten."
    }
   ]
  }
