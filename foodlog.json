@@ -582,5 +582,15 @@
     "items": "Home: 1/4 onion, 1 oz kefir and 10-15 g pumpkin seeds (same as lunch); tuna cranberry apple salad wrap, 315 kcal (ingredient split assumed). Status: eaten."
    }
   ]
+ },
+ {
+  "date": "2026-11-10",
+  "in_progress": true,
+  "meals": [
+   {
+    "meal": "Lunch",
+    "items": "Home: 15 oz lentil soup (Whole Foods lentil soup assumed); 1 slice wheat toast sprinkled with olive oil (~1 tsp, assumed); 1 oz pumpkin seeds. Status: eaten."
+   }
+  ]
  }
 ]

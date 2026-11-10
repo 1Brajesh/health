@@ -7688,6 +7688,50 @@
      "hi": 1.5
     }
    ]
+  },
+  {
+   "date": "2026-11-10",
+   "partial": true,
+   "in_progress": true,
+   "partial_note": "Day in progress: lunch (lentil soup; toast with olive oil; pumpkin seeds). Soup nutrients other than calories are USDA lentil-soup estimates.",
+   "entries": [
+    {
+     "meal": "Lunch: home",
+     "food": "wf_lentil_soup",
+     "grams": 425,
+     "label": "Lentil soup 15 oz (425 g; Whole Foods Vegan Lentil Dal & Spinach Soup assumed, as on recent days)",
+     "assumed": true,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "bread",
+     "grams": 30,
+     "label": "Wheat toast, 1 slice (~30 g, assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "olive_oil",
+     "grams": 4.5,
+     "label": "Olive oil sprinkled on toast ~1 tsp (4.5 g, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "pumpkin_seeds",
+     "grams": 28.35,
+     "label": "Pumpkin seeds 1 oz (28.35 g, given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    }
+   ]
   }
  ]
 }
