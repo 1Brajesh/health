@@ -2246,6 +2246,44 @@
     "magnesium": 48.0,
     "sodium": 392.0
    }
+  },
+  "apple": {
+   "name": "Apple, raw, with skin",
+   "approx": true,
+   "note": "Ingredient in a tuna cranberry apple salad wrap; amount assumed.",
+   "fdc_id": 171688,
+   "usda_description": "Apples, raw, with skin (Includes foods for USDA's Food Distribution Program)",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/171688/nutrients",
+   "accessed": "2026-11-09",
+   "per100g": {
+    "kcal": 52.0,
+    "protein": 0.26,
+    "fiber": 2.4,
+    "calcium": 6.0,
+    "potassium": 107.0,
+    "magnesium": 5.0,
+    "sodium": 1.0
+   }
+  },
+  "cranberry_dried": {
+   "name": "Cranberries, dried, sweetened",
+   "approx": true,
+   "note": "Ingredient in a tuna cranberry apple salad wrap; amount assumed.",
+   "fdc_id": 171723,
+   "usda_description": "Cranberries, dried, sweetened (Includes foods for USDA's Food Distribution Program)",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/171723/nutrients",
+   "accessed": "2026-11-09",
+   "per100g": {
+    "kcal": 308.0,
+    "protein": 0.17,
+    "fiber": 5.3,
+    "calcium": 9.0,
+    "potassium": 49.0,
+    "magnesium": 4.0,
+    "sodium": 5.0
+   }
   }
  },
  "days": [
@@ -7476,7 +7514,7 @@
    "date": "2026-11-09",
    "partial": true,
    "in_progress": true,
-   "partial_note": "Day in progress: lunch (lentil soup with onion; toast with pumpkin seeds and olive oil; kefir), milk and prunes, 8 oz latte, steamed kale. Soup nutrients other than calories are USDA lentil-soup estimates.",
+   "partial_note": "Day in progress: lunch (lentil soup with onion; toast with pumpkin seeds and olive oil; kefir), milk and prunes, 8 oz latte, steamed kale, dinner (onion, kefir, pumpkin seeds; tuna cranberry apple salad wrap). Soup nutrients other than calories are USDA lentil-soup estimates; wrap calories are given, its other nutrients are estimated from assumed ingredients.",
    "entries": [
     {
      "meal": "Lunch: home",
@@ -7576,6 +7614,78 @@
      "assumed": true,
      "lo": 0.8,
      "hi": 1.2
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "onion",
+     "grams": 27.5,
+     "label": "Onion 1/4 (~27.5 g raw, assumed; same as lunch)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.4
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "kefir_maplehill",
+     "grams": 28,
+     "label": "Kefir 1 oz (28 g; Maple Hill assumed; same as lunch)",
+     "assumed": true,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "pumpkin_seeds",
+     "grams": 12.5,
+     "label": "Pumpkin seeds 10-15 g (midpoint 12.5 g; same as lunch)",
+     "assumed": false,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "tortilla",
+     "grams": 46.2,
+     "label": "Tuna cranberry apple salad wrap (315 kcal given): flour tortilla ~46 g (assumed split, scaled to 315 kcal)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "tuna",
+     "grams": 56.5,
+     "label": "Tuna cranberry apple salad wrap (315 kcal given): tuna ~57 g (assumed split, scaled to 315 kcal)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "mayo",
+     "grams": 11.3,
+     "label": "Tuna cranberry apple salad wrap (315 kcal given): mayo ~11 g (assumed split, scaled to 315 kcal)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "apple",
+     "grams": 23.6,
+     "label": "Tuna cranberry apple salad wrap (315 kcal given): apple ~24 g (assumed split, scaled to 315 kcal)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "cranberry_dried",
+     "grams": 7.5,
+     "label": "Tuna cranberry apple salad wrap (315 kcal given): dried cranberries ~8 g (assumed split, scaled to 315 kcal)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
     }
    ]
   }

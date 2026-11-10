@@ -173,14 +173,14 @@
   {
    "key": "selenium",
    "label": "Selenium",
-   "unit": "µg",
+   "unit": "\u00b5g",
    "group": "mineral",
    "fdc_nutrient_id": 1103
   },
   {
    "key": "vita",
    "label": "Vitamin A (RAE)",
-   "unit": "µg",
+   "unit": "\u00b5g",
    "group": "vitamin",
    "fdc_nutrient_id": 1106
   },
@@ -194,7 +194,7 @@
   {
    "key": "vitd",
    "label": "Vitamin D",
-   "unit": "µg",
+   "unit": "\u00b5g",
    "group": "vitamin",
    "fdc_nutrient_id": 1114
   },
@@ -208,7 +208,7 @@
   {
    "key": "vitk",
    "label": "Vitamin K",
-   "unit": "µg",
+   "unit": "\u00b5g",
    "group": "vitamin",
    "fdc_nutrient_id": 1185
   },
@@ -250,14 +250,14 @@
   {
    "key": "folate",
    "label": "Folate (DFE)",
-   "unit": "µg",
+   "unit": "\u00b5g",
    "group": "vitamin",
    "fdc_nutrient_id": 1190
   },
   {
    "key": "b12",
    "label": "Vitamin B12",
-   "unit": "µg",
+   "unit": "\u00b5g",
    "group": "vitamin",
    "fdc_nutrient_id": 1178
   },
@@ -677,7 +677,7 @@
    "source": "https://fdc.nal.usda.gov/food-details/171277/nutrients",
    "accessed": "2026-10-18",
    "proxy": true,
-   "note": "Homemade hot chocolate with milk used as a stand-in; mixes and café versions vary.",
+   "note": "Homemade hot chocolate with milk used as a stand-in; mixes and caf\u00e9 versions vary.",
    "extra": false,
    "per100g": {
     "kcal": 77.0,
@@ -5853,7 +5853,7 @@
    "source": "https://fdc.nal.usda.gov/food-details/172185/nutrients",
    "accessed": "2026-11-08",
    "proxy": false,
-   "note": "Used as the egg portion of a Spanish omelette (tortilla española); cooking oil counted separately.",
+   "note": "Used as the egg portion of a Spanish omelette (tortilla espa\u00f1ola); cooking oil counted separately.",
    "extra": null,
    "per100g": {
     "kcal": 154.0,
@@ -5905,7 +5905,7 @@
    "source": "https://fdc.nal.usda.gov/food-details/169252/nutrients",
    "accessed": "2026-11-08",
    "proxy": false,
-   "note": "Sautéed mushrooms in the Spanish omelette approximated with boiled drained white mushrooms; cooking oil counted separately.",
+   "note": "Saut\u00e9ed mushrooms in the Spanish omelette approximated with boiled drained white mushrooms; cooking oil counted separately.",
    "extra": null,
    "per100g": {
     "kcal": 28.0,
@@ -5957,7 +5957,7 @@
    "source": "https://fdc.nal.usda.gov/food-details/2708729/nutrients",
    "accessed": "2026-11-08",
    "proxy": true,
-   "note": "USDA FNDDS survey food used as stand-in for spinach pie; recipe (phyllo, spinach, feta, oil) and salt vary. Diameter alone does not fix weight — full-pie weight is assumed from USDA 12 g per cubic inch density and an assumed thickness.",
+   "note": "USDA FNDDS survey food used as stand-in for spinach pie; recipe (phyllo, spinach, feta, oil) and salt vary. Diameter alone does not fix weight \u2014 full-pie weight is assumed from USDA 12 g per cubic inch density and an assumed thickness.",
    "extra": null,
    "per100g": {
     "kcal": 212,
@@ -5998,6 +5998,48 @@
     "folate": 63.0,
     "b12": 0.25,
     "choline": 46.6
+   }
+  },
+  {
+   "key": "apple",
+   "fdc_id": 171688,
+   "name": "Apple, raw, with skin",
+   "usda_description": "Apples, raw, with skin (Includes foods for USDA's Food Distribution Program)",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/171688/nutrients",
+   "accessed": "2026-10-18",
+   "proxy": true,
+   "note": "Raw apple with skin.",
+   "extra": false,
+   "per100g": {
+    "kcal": 52.0,
+    "protein": 0.26,
+    "fiber": 2.4,
+    "calcium": 6.0,
+    "potassium": 107.0,
+    "magnesium": 5.0,
+    "sodium": 1.0
+   }
+  },
+  {
+   "key": "cranberry_dried",
+   "fdc_id": 171723,
+   "name": "Cranberries, dried, sweetened",
+   "usda_description": "Cranberries, dried, sweetened (Includes foods for USDA's Food Distribution Program)",
+   "data_type": "SR Legacy",
+   "source": "https://fdc.nal.usda.gov/food-details/171723/nutrients",
+   "accessed": "2026-10-18",
+   "proxy": true,
+   "note": "Sweetened dried cranberries.",
+   "extra": false,
+   "per100g": {
+    "kcal": 308.0,
+    "protein": 0.17,
+    "fiber": 5.3,
+    "calcium": 9.0,
+    "potassium": 49.0,
+    "magnesium": 4.0,
+    "sodium": 5.0
    }
   }
  ]
