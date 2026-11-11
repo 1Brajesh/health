@@ -610,6 +610,10 @@
    {
     "meal": "Lunch",
     "items": "Home: 3 eggs over easy; 2 slices wheat toast; ~9 leaves kale; all sprinkled with olive oil (~1 tbsp total, assumed) and a little salt (assumed); 8 oz kombucha. Status: eaten."
+   },
+   {
+    "meal": "Afternoon",
+    "items": "Home: 8 oz milk (Fairlife 2% ultra-filtered assumed, as usual); 3 prunes. Status: eaten."
    }
   ]
  }
