@@ -7513,8 +7513,7 @@
   {
    "date": "2026-11-09",
    "partial": true,
-   "in_progress": true,
-   "partial_note": "Day in progress: lunch (lentil soup with onion; toast with pumpkin seeds and olive oil; kefir), milk and prunes, 8 oz latte, steamed kale, dinner (onion, kefir, pumpkin seeds; tuna cranberry apple salad wrap). Soup nutrients other than calories are USDA lentil-soup estimates; wrap calories are given, its other nutrients are estimated from assumed ingredients.",
+   "partial_note": "All reported food logged: lunch (lentil soup with onion; toast with pumpkin seeds and olive oil; kefir), milk and prunes, 8 oz latte, steamed kale, dinner (onion, kefir, pumpkin seeds; tuna cranberry apple salad wrap). Soup nutrients other than calories are USDA lentil-soup estimates; wrap calories are given, its other nutrients are estimated from assumed ingredients.",
    "entries": [
     {
      "meal": "Lunch: home",
@@ -7828,6 +7827,68 @@
      "assumed": true,
      "lo": 0.8,
      "hi": 1.2
+    }
+   ]
+  },
+  {
+   "date": "2026-11-11",
+   "partial": true,
+   "in_progress": true,
+   "partial_note": "Day in progress: lunch (eggs over easy, toast, kale with olive oil and salt; kombucha).",
+   "entries": [
+    {
+     "meal": "Lunch: home",
+     "food": "egg_fried",
+     "grams": 138,
+     "label": "3 large eggs fried over easy (given; 46 g each; USDA fried egg includes some cooking fat; same as Oct 20)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "bread",
+     "grams": 60,
+     "label": "Wheat toast, 2 slices (~60 g, assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "kale_raw",
+     "grams": 153,
+     "label": "Kale ~9 leaves (~17 g raw each assumed, ~153 g; raw-kale values)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "olive_oil",
+     "grams": 13.5,
+     "label": "Olive oil sprinkled over eggs, toast and kale ~1 tbsp total (13.5 g, assumed)",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 1.8
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "salt_table",
+     "grams": 0.75,
+     "label": "Salt: a little, assumed ~1/8 tsp (0.75 g) - one entry for the meal",
+     "assumed": true,
+     "lo": 0.5,
+     "hi": 2
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "kombucha",
+     "grams": 240,
+     "label": "Kombucha 8 oz (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
     }
    ]
   }

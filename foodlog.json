@@ -559,7 +559,6 @@
  },
  {
   "date": "2026-11-09",
-  "in_progress": true,
   "meals": [
    {
     "meal": "Lunch",
@@ -601,6 +600,16 @@
    {
     "meal": "Dinner",
     "items": "Home: tuna cranberry apple salad wrap, 315 kcal (same as Nov 9; ingredient split assumed); 1 slice wheat toast with tomato slices (~40 g, assumed); 3 oz kefir; 3 prunes. Status: eaten."
+   }
+  ]
+ },
+ {
+  "date": "2026-11-11",
+  "in_progress": true,
+  "meals": [
+   {
+    "meal": "Lunch",
+    "items": "Home: 3 eggs over easy; 2 slices wheat toast; ~9 leaves kale; all sprinkled with olive oil (~1 tbsp total, assumed) and a little salt (assumed); 8 oz kombucha. Status: eaten."
    }
   ]
  }
