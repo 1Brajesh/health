@@ -585,7 +585,6 @@
  },
  {
   "date": "2026-11-10",
-  "in_progress": true,
   "meals": [
    {
     "meal": "Lunch",
@@ -598,6 +597,10 @@
    {
     "meal": "Afternoon (kombucha)",
     "items": "8 oz kombucha (brand not given). Status: eaten."
+   },
+   {
+    "meal": "Dinner",
+    "items": "Home: tuna cranberry apple salad wrap, 315 kcal (same as Nov 9; ingredient split assumed); 1 slice wheat toast with tomato slices (~40 g, assumed); 3 oz kefir; 3 prunes. Status: eaten."
    }
   ]
  }
