@@ -620,5 +620,15 @@
     "items": "Home: 12 oz homemade lentil soup (usual recipe assumed); 1 slice wheat toast with 10 g pumpkin seeds; 3 oz kefir; 3 prunes. Status: eaten."
    }
   ]
+ },
+ {
+  "date": "2026-11-12",
+  "in_progress": true,
+  "meals": [
+   {
+    "meal": "Lunch",
+    "items": "Home: 11 oz homemade lentil soup (usual recipe assumed); 1 slice wheat toast sprinkled with ~10 g pumpkin seeds; 8 oz kombucha. Status: eaten."
+   }
+  ]
  }
 ]

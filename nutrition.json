@@ -8080,6 +8080,176 @@
      "hi": 1.2
     }
    ]
+  },
+  {
+   "date": "2026-11-12",
+   "partial": true,
+   "in_progress": true,
+   "partial_note": "Day in progress: lunch (homemade lentil soup by usual recipe; toast with pumpkin seeds; kombucha).",
+   "entries": [
+    {
+     "meal": "Lunch: home",
+     "food": "lentils",
+     "grams": 97.1,
+     "label": "Lentils, cooked ~97.1 g (recipe lentil_soup_medium x 312/482, estimated; 11 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "tomato",
+     "grams": 64.73,
+     "label": "Tomatoes ~64.73 g (recipe lentil_soup_medium x 312/482, estimated; 11 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "potato",
+     "grams": 29.13,
+     "label": "Potato, boiled ~29.13 g (recipe lentil_soup_medium x 312/482, estimated; 11 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "onion",
+     "grams": 22.66,
+     "label": "Onion ~22.66 g (recipe lentil_soup_medium x 312/482, estimated; 11 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "spinach",
+     "grams": 19.42,
+     "label": "Spinach (raw weight) ~19.42 g (recipe lentil_soup_medium x 312/482, estimated; 11 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "eggplant",
+     "grams": 12.95,
+     "label": "Eggplant, cooked ~12.95 g (recipe lentil_soup_medium x 312/482, estimated; 11 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "olive_oil",
+     "grams": 3.24,
+     "label": "Olive oil ~3.24 g (recipe lentil_soup_medium x 312/482, estimated; 11 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "ginger",
+     "grams": 2.59,
+     "label": "Fresh ginger ~2.59 g (recipe lentil_soup_medium x 312/482, estimated; 11 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "garlic",
+     "grams": 1.29,
+     "label": "Garlic ~1.29 g (recipe lentil_soup_medium x 312/482, estimated; 11 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "cumin",
+     "grams": 0.65,
+     "label": "Cumin ~0.65 g (recipe lentil_soup_medium x 312/482, estimated; 11 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "turmeric",
+     "grams": 0.65,
+     "label": "Turmeric ~0.65 g (recipe lentil_soup_medium x 312/482, estimated; 11 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "black_pepper",
+     "grams": 0.19,
+     "label": "Black peppercorns ~0.19 g (recipe lentil_soup_medium x 312/482, estimated; 11 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "cardamom",
+     "grams": 0.19,
+     "label": "Cardamom ~0.19 g (recipe lentil_soup_medium x 312/482, estimated; 11 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "cloves",
+     "grams": 0.13,
+     "label": "Cloves ~0.13 g (recipe lentil_soup_medium x 312/482, estimated; 11 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "salt_table",
+     "grams": 0.97,
+     "label": "Salt to taste (assumed) ~0.97 g (recipe lentil_soup_medium x 312/482, estimated; 11 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "bread",
+     "grams": 30,
+     "label": "Wheat toast, 1 slice (~30 g, assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "pumpkin_seeds",
+     "grams": 10,
+     "label": "Pumpkin seeds 10 g (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Lunch: home",
+     "food": "kombucha",
+     "grams": 240,
+     "label": "Kombucha 8 oz (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    }
+   ]
   }
  ]
 }
