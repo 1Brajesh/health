@@ -7834,7 +7834,7 @@
    "date": "2026-11-11",
    "partial": true,
    "in_progress": true,
-   "partial_note": "Day in progress: lunch (eggs over easy, toast, kale with olive oil and salt; kombucha), afternoon milk and prunes.",
+   "partial_note": "Day in progress: lunch (eggs over easy, toast, kale with olive oil and salt; kombucha), afternoon milk and prunes, dinner (homemade lentil soup by usual recipe; toast with pumpkin seeds; kefir; prunes).",
    "entries": [
     {
      "meal": "Lunch: home",
@@ -7901,6 +7901,177 @@
     },
     {
      "meal": "Afternoon: home",
+     "food": "prunes",
+     "grams": 28.5,
+     "label": "3 prunes (~28.5 g)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "lentils",
+     "grams": 105.81,
+     "label": "Lentils, cooked ~105.81 g (recipe lentil_soup_medium x 340/482, estimated; 12 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "tomato",
+     "grams": 70.54,
+     "label": "Tomatoes ~70.54 g (recipe lentil_soup_medium x 340/482, estimated; 12 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "potato",
+     "grams": 31.74,
+     "label": "Potato, boiled ~31.74 g (recipe lentil_soup_medium x 340/482, estimated; 12 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "onion",
+     "grams": 24.69,
+     "label": "Onion ~24.69 g (recipe lentil_soup_medium x 340/482, estimated; 12 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "spinach",
+     "grams": 21.16,
+     "label": "Spinach (raw weight) ~21.16 g (recipe lentil_soup_medium x 340/482, estimated; 12 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "eggplant",
+     "grams": 14.11,
+     "label": "Eggplant, cooked ~14.11 g (recipe lentil_soup_medium x 340/482, estimated; 12 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "olive_oil",
+     "grams": 3.53,
+     "label": "Olive oil ~3.53 g (recipe lentil_soup_medium x 340/482, estimated; 12 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "ginger",
+     "grams": 2.82,
+     "label": "Fresh ginger ~2.82 g (recipe lentil_soup_medium x 340/482, estimated; 12 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "garlic",
+     "grams": 1.41,
+     "label": "Garlic ~1.41 g (recipe lentil_soup_medium x 340/482, estimated; 12 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "cumin",
+     "grams": 0.71,
+     "label": "Cumin ~0.71 g (recipe lentil_soup_medium x 340/482, estimated; 12 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "turmeric",
+     "grams": 0.71,
+     "label": "Turmeric ~0.71 g (recipe lentil_soup_medium x 340/482, estimated; 12 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "black_pepper",
+     "grams": 0.21,
+     "label": "Black peppercorns ~0.21 g (recipe lentil_soup_medium x 340/482, estimated; 12 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "cardamom",
+     "grams": 0.21,
+     "label": "Cardamom ~0.21 g (recipe lentil_soup_medium x 340/482, estimated; 12 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "cloves",
+     "grams": 0.14,
+     "label": "Cloves ~0.14 g (recipe lentil_soup_medium x 340/482, estimated; 12 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "salt_table",
+     "grams": 1.06,
+     "label": "Salt to taste (assumed) ~1.06 g (recipe lentil_soup_medium x 340/482, estimated; 12 oz bowl)",
+     "assumed": true,
+     "lo": 0.7,
+     "hi": 1.3
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "bread",
+     "grams": 30,
+     "label": "Wheat toast, 1 slice (~30 g, assumed)",
+     "assumed": true,
+     "lo": 0.8,
+     "hi": 1.2
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "pumpkin_seeds",
+     "grams": 10,
+     "label": "Pumpkin seeds 10 g (given)",
+     "assumed": false,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner: home",
+     "food": "kefir_maplehill",
+     "grams": 85,
+     "label": "Kefir 3 oz (85 g; Maple Hill assumed)",
+     "assumed": true,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Dinner: home",
      "food": "prunes",
      "grams": 28.5,
      "label": "3 prunes (~28.5 g)",
