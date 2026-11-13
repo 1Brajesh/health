@@ -2284,6 +2284,101 @@
     "magnesium": 4.0,
     "sodium": 5.0
    }
+  },
+  "empanada_nfs": {
+   "name": "Empanada (unspecified filling)",
+   "approx": true,
+   "note": "Generic empanada, filling not specified; party empanadas vary.",
+   "fdc_id": 2708709,
+   "usda_description": "Empanada, NFS",
+   "data_type": "Survey (FNDDS)",
+   "source": "https://fdc.nal.usda.gov/food-details/2708709/nutrients",
+   "accessed": "2026-11-12",
+   "per100g": {
+    "kcal": 291,
+    "protein": 7.19,
+    "fiber": 2.0,
+    "calcium": 47.0,
+    "potassium": 176,
+    "magnesium": 18.0,
+    "sodium": 446
+   }
+  },
+  "quiche_cheese": {
+   "name": "Cheese quiche, meatless",
+   "approx": true,
+   "note": "Generic cheese quiche used as a stand-in for party mini quiche; fillings vary.",
+   "fdc_id": 2708733,
+   "usda_description": "Cheese quiche, meatless",
+   "data_type": "Survey (FNDDS)",
+   "source": "https://fdc.nal.usda.gov/food-details/2708733/nutrients",
+   "accessed": "2026-11-12",
+   "per100g": {
+    "kcal": 365,
+    "protein": 11.9,
+    "fiber": 0.8,
+    "calcium": 267,
+    "potassium": 117,
+    "magnesium": 17.0,
+    "sodium": 361
+   }
+  },
+  "macaroon": {
+   "name": "Macaroon cookie (coconut)",
+   "approx": true,
+   "note": "Coconut macaroon cookie; a French almond macaron would differ.",
+   "fdc_id": 2707936,
+   "usda_description": "Cookie, macaroon",
+   "data_type": "Survey (FNDDS)",
+   "source": "https://fdc.nal.usda.gov/food-details/2707936/nutrients",
+   "accessed": "2026-11-12",
+   "per100g": {
+    "kcal": 460,
+    "protein": 3.02,
+    "fiber": 5.1,
+    "calcium": 5.0,
+    "potassium": 123,
+    "magnesium": 29.0,
+    "sodium": 241
+   }
+  },
+  "chicken_salad_wrap": {
+   "name": "Chicken salad sandwich wrap",
+   "approx": true,
+   "note": "Generic chicken salad wrap; recipes vary.",
+   "fdc_id": 2706992,
+   "usda_description": "Chicken salad sandwich wrap",
+   "data_type": "Survey (FNDDS)",
+   "source": "https://fdc.nal.usda.gov/food-details/2706992/nutrients",
+   "accessed": "2026-11-12",
+   "per100g": {
+    "kcal": 269,
+    "protein": 12.9,
+    "fiber": 1.3,
+    "calcium": 149,
+    "potassium": 177,
+    "magnesium": 18.0,
+    "sodium": 603
+   }
+  },
+  "ferrero_rocher": {
+   "name": "Ferrero Rocher",
+   "approx": true,
+   "note": "Branded entry (Ferrero Rocher) for calories and macros; it has no fiber or mineral data, so fiber, calcium, potassium, magnesium and sodium are stand-ins from USDA FNDDS chocolate candy with nuts (2710330).",
+   "fdc_id": 2079982,
+   "usda_description": "FERRERO ROCHER, WHOLE HAZELNUT IN MILK CHOCOLATE AND NUT CROQUANTE (Diversion Technologies, Inc.)",
+   "data_type": "Branded",
+   "source": "https://fdc.nal.usda.gov/food-details/2079982/nutrients",
+   "accessed": "2026-11-12",
+   "per100g": {
+    "kcal": 603.0,
+    "protein": 8.2,
+    "fiber": 4.4,
+    "calcium": 163,
+    "potassium": 424,
+    "magnesium": 86.0,
+    "sodium": 64.0
+   }
   }
  },
  "days": [
@@ -8084,7 +8179,7 @@
    "date": "2026-11-12",
    "partial": true,
    "in_progress": true,
-   "partial_note": "Day in progress: lunch (homemade lentil soup by usual recipe; toast with pumpkin seeds; kombucha).",
+   "partial_note": "Day in progress: lunch (homemade lentil soup by usual recipe; toast with pumpkin seeds; kombucha), evening event snacks (mini empanadas, mini quiche, meat and cheese bites, Ferrero Rocher, macaroons, part of a chicken salad wrap).",
    "entries": [
     {
      "meal": "Lunch: home",
@@ -8247,6 +8342,69 @@
      "assumed": false,
      "lo": 0.9,
      "hi": 1.1
+    },
+    {
+     "meal": "Evening: event",
+     "food": "empanada_nfs",
+     "grams": 50,
+     "label": "Mini empanadas, 2 (~25 g each assumed; filling unknown)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Evening: event",
+     "food": "quiche_cheese",
+     "grams": 30,
+     "label": "Mini quiche, 1 (~30 g assumed; cheese quiche stand-in)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Evening: event",
+     "food": "salami",
+     "grams": 10,
+     "label": "Toothpick of cured meats, 1 (~10 g assumed; hard salami stand-in)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Evening: event",
+     "food": "cheddar",
+     "grams": 10,
+     "label": "Toothpick of cheese, 1 (~10 g assumed; cheddar stand-in)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Evening: event",
+     "food": "ferrero_rocher",
+     "grams": 25,
+     "label": "Ferrero Rocher, 2 pieces (~12.5 g each)",
+     "assumed": true,
+     "lo": 0.9,
+     "hi": 1.1
+    },
+    {
+     "meal": "Evening: event",
+     "food": "macaroon",
+     "grams": 30,
+     "label": "Small macaroons, 2 (~15 g each assumed; coconut type assumed)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
+    },
+    {
+     "meal": "Evening: event",
+     "food": "chicken_salad_wrap",
+     "grams": 50,
+     "label": "Chicken salad wrap, 1/4 (USDA wrap 200 g, so ~50 g)",
+     "assumed": true,
+     "lo": 0.6,
+     "hi": 1.5
     }
    ]
   }
